@@ -12,17 +12,10 @@ export default function ModernFooter() {
       { name: 'Privacy Policy', href: '/privacy' },
     ],
     company: [
-      { name: 'About', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Contact', href: 'mailto:P.R.O.devel001@gmail.com' },
+      { name: 'About', href: '/about', isInternal: true },
+      { name: 'Contact', href: 'mailto:P.R.O.devel001@gmail.com', isInternal: false },
     ],
-    support: [
-      { name: 'Help Center', href: '#' },
-      { name: 'Community', href: '#' },
-      { name: 'Status', href: '#' },
-      { name: 'Feedback', href: 'mailto:P.R.O.devel001@gmail.com' },
-    ],
+    
   };
 
   const socialLinks = [
@@ -86,33 +79,28 @@ export default function ModernFooter() {
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
+                  {link.isInternal ? (
+                    <Link
+                      to={link.href}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Support Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-white">Support</h3>
-            <ul className="space-y-4">
-              {footerLinks.support.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          
         </div>
 
         {/* Bottom Section */}

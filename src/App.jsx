@@ -4,6 +4,7 @@ import Features from './pages/Features';
 import FAQ from './pages/FAQ';
 import BetaSignup from './pages/BetaSignup';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AboutUs from './pages/AboutUs';
 import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
 
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/beta" element={<BetaSignup />} />
+            <Route path="/about" element={<AboutUs />} />
           </Routes>
         </main>
         <ModernFooter />

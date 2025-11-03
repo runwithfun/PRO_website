@@ -6,6 +6,7 @@ export default function ModernNav() {
 
   const navItems = [
     { path: '/', label: 'Home' },
+    { path: '/about', label: 'About Us' },
     { path: '/features', label: 'Features' },
     { path: '/faq', label: 'FAQ' },
     { path: '/beta', label: 'Beta' },

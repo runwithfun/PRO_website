@@ -29,7 +29,7 @@ export default function ModernAppShowcase() {
           <div className="relative z-10 transform -translate-x-8 lg:-translate-x-12 group">
             <div className="relative">
               <img 
-                src="./IMG_7372-portrait.png" 
+                src={`${import.meta.env.BASE_URL}IMG_7372-portrait.png`} 
                 alt="P.R.O. App - Running Overview with Statistics" 
                 className="w-full max-w-[280px] rounded-3xl shadow-large group-hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2"
               />
@@ -43,7 +43,7 @@ export default function ModernAppShowcase() {
           <div className="relative z-20 group">
             <div className="relative">
               <img 
-                src="./IMG_7368-portrait.png" 
+                src={`${import.meta.env.BASE_URL}IMG_7368-portrait.png`} 
                 alt="P.R.O. App - Points and Streak Tracking" 
                 className="w-full max-w-[300px] rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-3"
               />
@@ -57,7 +57,7 @@ export default function ModernAppShowcase() {
           <div className="relative z-10 transform translate-x-8 lg:translate-x-12 group">
             <div className="relative">
               <img 
-                src="./IMG_7373-portrait.png" 
+                src={`${import.meta.env.BASE_URL}IMG_7373-portrait.png`} 
                 alt="P.R.O. App - Suggested Goals and Custom Goal Creation" 
                 className="w-full max-w-[280px] rounded-3xl shadow-large group-hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2"
               />

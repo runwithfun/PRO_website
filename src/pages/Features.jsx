@@ -181,7 +181,7 @@ export default function Features() {
           <div className="flex justify-center">
             <div className="relative group">
               <img 
-                src="./Frame 1-3.png" 
+                src={`${import.meta.env.BASE_URL}Frame 1-3.png`} 
                 alt="P.R.O. App Interface - Multiple Screens Showing Dashboard, Workouts, Analytics, and Records" 
                 className="w-full max-w-6xl rounded-2xl shadow-large group-hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105"
               />

@@ -152,8 +152,8 @@ export default function AboutUs() {
                 controls={false}
                 preload="auto"
               >
-                <source src="./app_gallery.mov" type="video/quicktime" />
-                <source src="./app_gallery.mov" type="video/mp4" />
+                <source src={`${import.meta.env.BASE_URL}app_gallery.mov`} type="video/quicktime" />
+                <source src={`${import.meta.env.BASE_URL}app_gallery.mov`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>

@@ -5,138 +5,134 @@ const privacySections = [
   {
     id: 'collection',
     title: 'Information We Collect',
-    description: 'We collect only the information necessary to provide you with the best fitness tracking experience.',
+    description: 'We collect minimal information to provide you with the best fitness tracking experience. Your health data stays on your device.',
     content: [
       {
-        title: 'Account Information',
-        description: 'Name, email address, username, and password for account creation and management.'
+        title: 'Email Address Only',
+        description: 'We collect only your email address for account registration and authentication. No other personal information is required or collected.'
       },
       {
-        title: 'Fitness Data',
-        description: 'Activity logs, workout details, steps, distance, calories, heart rate, and other health metrics you choose to track.'
+        title: 'Apple Health Data (Local Only)',
+        description: 'With your permission, our app accesses workouts and activity data from Apple Health. This data is read directly from your device and stored locally—we never see it, access it remotely, or store it on our servers.'
       },
       {
-        title: 'Device & Usage Data',
-        description: 'Device type, operating system, app version, and usage statistics to optimize app performance.'
+        title: 'GPS Workout Tracks & Activity Data',
+        description: 'All GPS workout tracks and other personal activity data tracked with our app are stored exclusively on your device. This information is not visible to us, not transmitted to our servers, and remains completely private.'
       },
       {
-        title: 'Optional Information',
-        description: 'Profile photo, fitness goals, and other details you voluntarily provide to personalize your experience.'
+        title: 'No Additional Data Collection',
+        description: 'We do not collect names, usernames, or any other personal data beyond your email address. Your privacy is our priority.'
       }
     ]
   },
   {
     id: 'usage',
     title: 'How We Use Your Information',
-    description: 'Your data is used exclusively to enhance your fitness journey and improve our services.',
+    description: 'Your email is used only for account management. Your health data remains private and local to your device.',
     content: [
       {
-        title: 'App Features',
-        description: 'Provide and improve the app\'s features and functionality based on user needs and preferences.'
+        title: 'Email for Account Management',
+        description: 'Your email address is used solely for account registration, login authentication, and important service communications.'
       },
       {
-        title: 'Progress Tracking',
-        description: 'Track and display your fitness progress with accurate, real-time data visualization.'
+        title: 'Local Data Storage',
+        description: 'All workout and activity data from Apple Health is stored exclusively on your device. We have no access to this information.'
       },
       {
-        title: 'Personalization',
-        description: 'Personalize your experience with tailored recommendations and custom dashboard layouts.'
+        title: 'AI Analytics Processing',
+        description: 'When you use AI analytics features, your health data is processed locally or through secure AI services to generate insights. Even during processing, we do not see, store, or have access to your actual data—only the AI-generated responses are provided to you.'
       },
       {
-        title: 'Communication',
-        description: 'Communicate with you about updates, new features, or important service notices.'
-      },
-      {
-        title: 'Security',
-        description: 'Maintain the security of your account and protect against unauthorized access.'
+        title: 'No Data Transmission',
+        description: 'Your health and fitness data never leaves your device except when you explicitly use AI analytics, and even then, we cannot see or access the underlying data.'
       }
     ]
   },
   {
     id: 'protection',
     title: 'Data Protection & Security',
-    description: 'We implement industry-standard security measures to protect your personal information.',
+    description: 'Your data is protected by device-level security and stays under your complete control.',
     content: [
       {
-        title: 'Encryption',
-        description: 'All data is encrypted using industry-standard protocols both in transit and at rest.'
+        title: 'Local Device Storage',
+        description: 'All health and fitness data is stored securely on your device using iOS security features. We do not maintain any servers or cloud storage for your health data.'
       },
       {
-        title: 'Secure Servers',
-        description: 'We use secure, cloud-based servers with multiple layers of protection and redundancy.'
+        title: 'No Remote Access',
+        description: 'We cannot access, view, or retrieve your health data remotely. Your data remains private and under your control at all times.'
       },
       {
-        title: 'Access Control',
-        description: 'Only authorized personnel with specific security clearances can access your information.'
+        title: 'Apple HealthKit Security',
+        description: 'Data accessed from Apple Health is protected by Apple\'s built-in security and privacy controls, which you manage through your device settings.'
       },
       {
-        title: 'Data Retention',
-        description: 'We store your data only for as long as necessary to provide our services effectively.'
+        title: 'Email Security',
+        description: 'Your email address is stored securely and used only for account management purposes. We implement standard security measures to protect account information.'
       }
     ]
   },
   {
     id: 'sharing',
     title: 'Information Sharing',
-    description: 'We are committed to protecting your privacy and do not sell your personal information.',
+    description: 'We do not share, sell, or transmit your personal information. Your health data never leaves your device.',
     content: [
       {
         title: 'No Data Sales',
-        description: 'We do not sell, rent, or trade your personal information to third parties for marketing purposes.'
+        description: 'We do not sell, rent, trade, or monetize your personal information or health data in any way.'
       },
       {
-        title: 'Service Providers',
-        description: 'We may share data with trusted service providers who help us operate the app (e.g., cloud storage, analytics).'
+        title: 'No Third-Party Sharing',
+        description: 'We do not share your email or health data with third parties, advertisers, or any other services.'
+      },
+      {
+        title: 'AI Processing Privacy',
+        description: 'When using AI analytics, data processing occurs through secure AI services. We do not see your data during this process, and processed data is not stored or shared.'
       },
       {
         title: 'Legal Requirements',
-        description: 'We may share information when required by law or in response to valid legal requests.'
-      },
-      {
-        title: 'Explicit Consent',
-        description: 'We will only share your data with third parties when you provide explicit consent.'
+        description: 'We may only share your email address if required by law or in response to valid legal requests. Your health data remains on your device and is not accessible to us.'
       }
     ]
   },
   {
     id: 'rights',
     title: 'Your Privacy Rights',
-    description: 'You have complete control over your personal information and how it\'s used.',
+    description: 'You have complete control over your data. Since your health data stays on your device, you can manage it directly.',
     content: [
       {
-        title: 'Access & Control',
-        description: 'Access, update, or delete your account and personal data at any time through the app settings.'
+        title: 'Account Management',
+        description: 'You can update or delete your account and email address at any time through the app settings.'
       },
       {
-        title: 'Consent Management',
-        description: 'Withdraw your consent for data processing at any time with immediate effect.'
+        title: 'Health Data Control',
+        description: 'You control access to Apple Health data through your device settings. You can revoke access at any time, and all locally stored data can be deleted from your device.'
       },
       {
-        title: 'Data Portability',
-        description: 'Request a complete copy of your stored information in a machine-readable format.'
+        title: 'Data Deletion',
+        description: 'Deleting your account removes your email from our system. Your health data stored on your device can be deleted through the app or by uninstalling the app.'
       },
       {
-        title: 'Deletion Rights',
-        description: 'Request permanent deletion of your account and all associated data from our systems.'
+        title: 'Transparency',
+        description: 'Since we don\'t store or access your health data, there\'s nothing to request or export from our systems—your data is yours alone.'
       }
     ]
   },
   {
     id: 'third-party',
     title: 'Third-Party Services',
-    description: 'We maintain transparency about any third-party integrations and their data practices.',
+    description: 'We maintain transparency about integrations. Your data privacy is protected at every level.',
     content: [
       {
-        title: 'HealthKit Integration',
-        description: 'Our app integrates with Apple HealthKit, and their data handling is governed by Apple\'s privacy policy.'
+        title: 'Apple HealthKit',
+        description: 'Our app integrates with Apple HealthKit to read your workouts and activity data. This integration is governed by Apple\'s privacy policy and your device permissions. Data accessed from HealthKit is stored only on your device.'
       },
       {
-        title: 'Cloud Services',
-        description: 'We use secure cloud services for data storage and backup, with strict privacy controls.'
+        title: 'AI Analytics Services',
+        description: 'When you use AI analytics features, your data may be processed by secure AI services. However, we do not see, store, or have access to your data during or after processing.'
       },
       {
-        title: 'Analytics',
-        description: 'We use privacy-focused analytics tools that do not collect personally identifiable information.'
+        title: 'No Cloud Storage',
+        description: 'We do not use cloud services to store your health or fitness data. All data remains on your device under your control.'
       }
     ]
   },
@@ -151,7 +147,7 @@ const privacySections = [
       },
       {
         title: 'Change Notifications',
-        description: 'Significant changes are communicated through in-app notifications or email updates.'
+        description: 'Significant changes are communicated through in-app notifications or email updates to your registered email address.'
       },
       {
         title: 'Version History',
@@ -207,8 +203,9 @@ export default function PrivacyPolicy() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We believe in complete transparency about how we collect, use, and protect your personal information. 
-            Your data security and privacy are fundamental to our mission.
+            We believe in true privacy by design. We collect only your email for registration. Your health and fitness data 
+            from Apple Health stays on your device—we never see it, store it, or access it. When you use AI analytics, 
+            your data is processed securely without us ever viewing it.
           </p>
           
           {/* Policy Info */}
@@ -276,7 +273,7 @@ export default function PrivacyPolicy() {
             Ready to Start Your Fitness Journey?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of users who trust P.R.O. with their fitness data and personal information.
+            Trust P.R.O. to keep your fitness data private and secure on your device, where it belongs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -1,18 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // Timeline data for future updates
 const timelineItems = [
     {
         id: 1,
-        title: 'Custom Training Plans',
-        description: 'AI-generated training plans tailored to your goals, schedule, and fitness level',
-        quarter: 'Q4 2025',
-        status: 'planned',
-        icon: ''
-        },
-    {
-        id: 2,
         title: 'Wearable Device Integration',
         description: 'Enhanced support for Apple Watch, Garmin, Polar, and other fitness trackers',
         quarter: 'Q1 2026',
@@ -20,7 +11,7 @@ const timelineItems = [
         icon: ''
         },
     {
-        id: 3,
+        id: 2,
         title: 'Nutrition Tracking',
         description: 'Comprehensive nutrition logging and meal planning to complement your training',
         quarter: 'Q1 2026',
@@ -28,7 +19,7 @@ const timelineItems = [
         icon: ''
         },
   {
-    id: 4,
+    id: 3,
     title: 'Gamification',
     description: 'Secret Gamification features to keep you motivated and engaged are coming',
     quarter: 'Q2 2026',
@@ -36,7 +27,7 @@ const timelineItems = [
     icon: ''
   },
   {
-    id: 5,
+    id: 4,
     title: 'Recovery Analytics',
     description: 'Advanced recovery metrics and recommendations to optimize your rest periods',
     quarter: 'Q2 2026',
@@ -44,7 +35,7 @@ const timelineItems = [
     icon: ''
   },
   {
-    id: 6,
+    id: 5,
     title: 'Social Features',
     description: 'Connect with friends, share achievements, and compete in friendly challenges',
     quarter: 'Q3 2026',
@@ -201,6 +192,50 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* Featured Capability Section */}
+      <section className="py-20 bg-gradient-to-br from-pink-50 to-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 lg:p-12 border border-pink-100 shadow-soft">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="inline-flex items-center px-4 py-2 bg-pink-50 text-pink-700 text-sm font-medium rounded-full mb-6">
+                  <span className="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
+                  Most Advanced Feature
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                  Custom Training Plans
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Our flagship feature is already live. P.R.O. builds personalized training plans from your activity history, goals, and current fitness level, then adapts each day as your performance changes.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+                  <div className="bg-pink-50 rounded-2xl p-5 border border-pink-100">
+                    <h3 className="font-semibold text-gray-900 mb-2">Personalized from Day One</h3>
+                    <p className="text-sm text-gray-600">Plans are generated around your history, schedule, and preferred sport types.</p>
+                  </div>
+                  <div className="bg-pink-50 rounded-2xl p-5 border border-pink-100">
+                    <h3 className="font-semibold text-gray-900 mb-2">Adaptive Daily Updates</h3>
+                    <p className="text-sm text-gray-600">Workouts automatically adjust based on completed sessions and recovery signals.</p>
+                  </div>
+                  <div className="bg-pink-50 rounded-2xl p-5 border border-pink-100">
+                    <h3 className="font-semibold text-gray-900 mb-2">Goal-Focused Progress</h3>
+                    <p className="text-sm text-gray-600">Every block is designed to move you toward measurable performance milestones.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center lg:justify-end">
+                <img
+                  src={`${import.meta.env.BASE_URL}training-plan-feature.png`}
+                  alt="P.R.O. custom training plan screen"
+                  className="w-full max-w-sm rounded-3xl shadow-2xl border border-pink-100"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Timeline Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -245,21 +280,14 @@ export default function AboutUs() {
             Join thousands of athletes who are already building their record-breaking future with P.R.O.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/beta"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-pink-700 font-semibold rounded-full hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-soft hover:shadow-medium"
-            >
-              <span className="mr-2">🚀</span>
-              Join Beta
-            </Link>
             <button
-              onClick={() => window.open('https://apps.apple.com/app/your-app-id', '_blank')}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 transform hover:scale-105 transition-all duration-300 border border-white/30 hover:border-white/50"
+              onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-pink-700 font-semibold rounded-full hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-soft hover:shadow-medium"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
               </svg>
-              Download for iOS
+              Download on App Store
             </button>
           </div>
         </div>

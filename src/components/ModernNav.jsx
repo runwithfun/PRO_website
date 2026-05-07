@@ -9,7 +9,6 @@ export default function ModernNav() {
     { path: '/about', label: 'About Us' },
     { path: '/features', label: 'Features' },
     { path: '/faq', label: 'FAQ' },
-    { path: '/beta', label: 'Beta' },
     { path: '/privacy', label: 'Privacy' },
   ];
 
@@ -50,12 +49,14 @@ export default function ModernNav() {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center">
-              <NavLink
-                to="/beta"
+              <a
+                href="https://apps.apple.com/us/app/p-r-o/id6749865568"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 bg-gray-900 text-white text-base font-semibold rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-soft hover:shadow-medium transform hover:scale-105"
               >
-                Join Beta →
-              </NavLink>
+                Download App →
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -107,13 +108,15 @@ export default function ModernNav() {
                   </NavLink>
                 ))}
                 <div className="pt-4">
-                  <NavLink
-                    to="/beta"
+                  <a
+                    href="https://apps.apple.com/us/app/p-r-o/id6749865568"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full px-6 py-3 bg-gray-900 text-white text-center font-semibold rounded-xl hover:bg-gray-800 transition-colors duration-300 shadow-soft"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Join Beta →
-                  </NavLink>
+                    Download App →
+                  </a>
                 </div>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const asciiLogo = `
 ██████╗ ██████╗  ██████╗ 
@@ -49,7 +48,7 @@ export default function ModernHero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-slide-up" style={{animationDelay: '0.2s'}}>
             <button
-              onClick={() => window.open('https://apps.apple.com/app/your-app-id', '_blank')}
+              onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
               className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-pink-600 rounded-full shadow-large hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-pink-500 hover:border-pink-400"
             >
               <svg 
@@ -61,16 +60,6 @@ export default function ModernHero() {
               </svg>
               Download for iOS
             </button>
-            
-            <Link
-              to="/beta"
-              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-pink-700 bg-white/90 backdrop-blur-sm rounded-full shadow-soft hover:shadow-medium transform hover:scale-105 transition-all duration-300 border-2 border-white/50 hover:border-white hover:bg-white"
-            >
-              <span className="flex items-center justify-center">
-                <span className="mr-2">🚀</span>
-                <span>Join Beta</span>
-              </span>
-            </Link>
           </div>
 
           

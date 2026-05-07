@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function ModernCTA() {
   return (
@@ -30,13 +29,13 @@ export default function ModernCTA() {
           {/* Description */}
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
             Join thousands of athletes who have already elevated their performance with P.R.O. 
-            Download now, try the beta, or get in touch with our team to learn more.
+            Download from the App Store and start training smarter today.
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <button
-              onClick={() => window.open('https://apps.apple.com/app/your-app-id', '_blank')}
+              onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
               className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-semibold text-pink-700 bg-white rounded-full shadow-large hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white hover:bg-gray-50"
             >
               <svg 
@@ -48,16 +47,6 @@ export default function ModernCTA() {
               </svg>
               Download for iOS
             </button>
-            
-            <Link
-              to="/beta"
-              className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-semibold text-white bg-white/20 backdrop-blur-sm rounded-full shadow-soft hover:shadow-medium transform hover:scale-105 transition-all duration-300 border-2 border-white/30 hover:border-white/50 hover:bg-white/30"
-            >
-              <span className="flex items-center justify-center">
-                <span className="mr-2">🚀</span>
-                <span>Join Beta</span>
-              </span>
-            </Link>
             
             <a
               href="mailto:P.R.O.devel001@gmail.com"
@@ -74,23 +63,7 @@ export default function ModernCTA() {
             </a>
           </div>
 
-          {/* Additional Info */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">Free</div>
-                <div className="text-white/80 text-sm">No download cost</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">14 Days</div>
-                <div className="text-white/80 text-sm">Free trial period</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                <div className="text-white/80 text-sm">Support available</div>
-              </div>
-            </div>
-          </div>
+          
 
           {/* Contact Info */}
           <div className="mt-8 text-white/70">

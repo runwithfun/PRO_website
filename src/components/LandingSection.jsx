@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import AnimatedFeatureNames from './AnimatedFeatureNames';
 
 const asciiLogo = `
@@ -13,8 +12,7 @@ const asciiLogo = `
 
 export default function LandingSection() {
   const handleDownload = () => {
-    // Replace with actual App Store link
-    window.open('https://apps.apple.com/app/your-app-id', '_blank');
+    window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank');
   };
 
   return (
@@ -58,17 +56,6 @@ export default function LandingSection() {
                 Download for iOS
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </button>
-              
-              <Link
-                to="/beta"
-                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-pink-900 bg-gradient-to-r from-pink-100 to-pink-200 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-pink-400 hover:border-pink-500"
-              >
-                <span className="flex items-center justify-center">
-                  <span className="mr-2">🚀</span>
-                  <span>Join Beta</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-300 to-pink-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              </Link>
             </div>
             
             {/* App Store Badge (Alternative) */}

@@ -7,7 +7,7 @@ export default function ModernFooter() {
   const footerLinks = {
     product: [
       { name: 'Features', href: '/features' },
-      { name: 'Beta Signup', href: '/beta' },
+      { name: 'Download on App Store', href: 'https://apps.apple.com/us/app/p-r-o/id6749865568', isInternal: false },
       { name: 'FAQ', href: '/faq' },
       { name: 'Privacy Policy', href: '/privacy' },
     ],
@@ -19,10 +19,8 @@ export default function ModernFooter() {
   };
 
   const socialLinks = [
-    { name: 'Twitter', href: '#', icon: '𝕏' },
-    { name: 'Instagram', href: '#', icon: '📷' },
-    { name: 'LinkedIn', href: '#', icon: '💼' },
-    { name: 'Discord', href: '#', icon: '🎮' },
+    { name: 'Instagram', href: 'https://www.instagram.com/thep.r.o?igsh=MWxmcDA1ZnVteHN4aQ%3D%3D&utm_source=qr', icon: '📷' },
+    { name: 'TikTok', href: 'https://www.tiktok.com/@pro165936', icon: '🎵' },
   ];
 
   return (
@@ -47,6 +45,8 @@ export default function ModernFooter() {
                 <a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-pink-600 transition-all duration-300"
                   aria-label={social.name}
                 >
@@ -62,12 +62,23 @@ export default function ModernFooter() {
             <ul className="space-y-4">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
-                  >
-                    {link.name}
-                  </Link>
+                  {link.isInternal === false ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

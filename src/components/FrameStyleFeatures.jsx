@@ -46,7 +46,7 @@ const FrameStyleFeatures = () => {
       services: [
         'Health Rings Visualization',
         'Real-time Activity Tracking',
-        'Personalized Widgets',
+        'Dozens of Widgets',
         'Quick Stats Overview',
         'Daily Progress Monitoring'
       ],
@@ -57,14 +57,14 @@ const FrameStyleFeatures = () => {
     {
       id: 'ai',
       title: 'AI-Powered Features',
-      subtitle: 'Intelligent Coaching & Personalized Insights',
-      description: 'Our advanced AI learns from your patterns and provides personalized coaching, goal suggestions, and performance predictions that adapt to your unique fitness journey and help you reach new heights.',
+      subtitle: 'Comprehensive Coaching · v2.0 in development',
+      description: 'In P.R.O. 2.0, the Coach Assistant delivers report-style answers — comparison tables, inline diagrams, and personalised insights built from your workouts, heart rate, sleep, and goals.',
       services: [
-        'Coach Assistant',
-        'Smart Goal Suggestions',
-        'Performance Predictions',
-        'Personalized Recommendations',
-        'Adaptive Learning'
+        'Rich chat with tables & charts',
+        'Personalised metric breakdowns',
+        'Week-over-week comparisons',
+        'Actionable coaching takeaways',
+        'Adaptive learning from your data'
       ],
       color: 'from-purple-500 to-pink-500',
       accent: 'bg-pink-200',
@@ -137,30 +137,17 @@ const FrameStyleFeatures = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50 py-20 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-3xl"></div>
-      </div>
+    <div className="relative overflow-hidden border-t border-white/5 py-20">
+      <div className="pro-grid absolute inset-0 opacity-20" aria-hidden />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-20 animate-frame-slide-in">
-          <div className="inline-flex items-center px-4 py-2 bg-pink-50 text-pink-700 text-sm font-medium rounded-full mb-6 shadow-soft">
-            <span className="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
-            Feature Showcase
-          </div>
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6">
-            Discover Our
-            <span className="block bg-gradient-to-r from-pink-600 to-pink-700 bg-clip-text text-transparent">
-              Core Features
-            </span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Each feature is designed as a comprehensive solution, providing everything you need 
-            to excel in your fitness journey with intelligent insights and powerful tools.
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-pink">Core pillars</p>
+          <h2 className="mt-3 font-display text-3xl font-extrabold text-white lg:text-4xl">
+            Six feature pillars
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-gray-500">
+            Widget dashboards, AI coaching, history analytics, tracking, goals, and records.
           </p>
         </div>
 
@@ -185,16 +172,11 @@ const FrameStyleFeatures = () => {
               }}
             >
               {/* Main Frame Card */}
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-soft border border-gray-100/50 hover:shadow-large transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] group-hover:shadow-2xl group-hover:bg-white/95">
-                {/* Top Accent Shapes */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-pink-700 to-pink-800 rounded-2xl opacity-80 animate-frame-float"></div>
-                <div className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl opacity-90 animate-frame-float" style={{ animationDelay: '1s' }}></div>
-                
-                {/* Top Right Label */}
+              <div className="relative pro-surface rounded-3xl p-8 transition hover:border-brand-pink/40">
                 <div className="absolute top-6 right-6">
-                  <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-lg px-3 py-1 text-xs shadow-soft">
-                    <span className="font-bold text-gray-900">P.R.O.</span>
-                    <span className="block text-gray-600">Features</span>
+                  <div className="rounded-lg border border-white/10 bg-black/60 px-3 py-1 text-xs">
+                    <span className="font-bold text-white">P.R.O.</span>
+                    <span className="block text-gray-500">Features</span>
                   </div>
                 </div>
 
@@ -209,16 +191,15 @@ const FrameStyleFeatures = () => {
                 <div className="relative z-10 mt-8">
                   {/* Title and Subtitle */}
                   <div className="mb-6">
-                    <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors duration-300">
+                    <h2 className="mb-2 text-2xl font-bold text-white lg:text-3xl">
                       {frame.title}
                     </h2>
-                    <p className="text-lg italic text-gray-700 mb-4 group-hover:text-gray-600 transition-colors duration-300">
+                    <p className="mb-4 text-lg italic text-gray-400">
                       {frame.subtitle}
                     </p>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed mb-8 text-base group-hover:text-gray-700 transition-colors duration-300">
+                  <p className="mb-8 text-base leading-relaxed text-gray-500">
                     {frame.description}
                   </p>
 
@@ -227,7 +208,7 @@ const FrameStyleFeatures = () => {
                     {frame.services.map((service, serviceIndex) => (
                       <div key={serviceIndex} className="flex items-start space-x-2 group-hover:scale-105 transition-transform duration-300" style={{ transitionDelay: `${serviceIndex * 50}ms` }}>
                         <div className="w-2 h-2 bg-gray-800 rounded-full mt-2 flex-shrink-0 group-hover:bg-gray-700 transition-colors duration-300"></div>
-                        <span className="text-sm text-gray-700 leading-tight group-hover:text-gray-800 transition-colors duration-300">{service}</span>
+                        <span className="text-sm leading-tight text-gray-400">{service}</span>
                       </div>
                     ))}
                   </div>
@@ -244,26 +225,17 @@ const FrameStyleFeatures = () => {
           ))}
         </div>
 
-        {/* Bottom CTA Section */}
-        <div className="text-center animate-frame-slide-in animate-delay-500">
-          <div className="bg-gradient-to-r from-pink-600 to-pink-700 rounded-3xl p-12 text-white shadow-2xl backdrop-blur-sm">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Experience These Features?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of athletes who have already transformed their fitness journey with P.R.O.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-pink-700 font-semibold rounded-full hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-soft hover:shadow-medium"
-              >
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
-                Download on App Store
-              </button>
-            </div>
+        <div className="text-center">
+          <div className="pro-surface mx-auto max-w-3xl rounded-3xl p-10">
+            <h2 className="font-display text-2xl font-bold text-white">Ready to experience P.R.O.?</h2>
+            <p className="mt-3 text-gray-500">Download now — v2.0 coach upgrade in development.</p>
+            <button
+              type="button"
+              onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
+              className="mt-6 inline-flex rounded-full bg-brand-pink px-8 py-3 font-semibold text-white pro-glow"
+            >
+              App Store
+            </button>
           </div>
         </div>
       </div>

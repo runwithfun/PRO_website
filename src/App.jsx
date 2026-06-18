@@ -6,11 +6,13 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <HashRouter>
-      <div className="min-h-screen bg-white font-sans">
+      <ScrollToTop />
+      <div className="min-h-screen bg-black font-sans text-white">
         <ModernNav />
         <main>
           <Routes>

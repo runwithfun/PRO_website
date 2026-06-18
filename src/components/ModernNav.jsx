@@ -1,128 +1,107 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+
+const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 export default function ModernNav() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const onHomeHero = pathname === '/' && !scrolled;
 
-  const navItems = [
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
+    { path: '/about', label: 'About' },
     { path: '/features', label: 'Features' },
     { path: '/faq', label: 'FAQ' },
     { path: '/privacy', label: 'Privacy' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl px-8 py-4 shadow-soft">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <NavLink to="/" className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center shadow-soft">
-                  <span className="text-white font-bold text-xl">P</span>
-                </div>
-                <span className="font-bold text-2xl text-gray-900">
-                  P.R.O.
-                </span>
-              </NavLink>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navItems.map((item, index) => (
-                <div key={item.path} className="flex items-center">
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) => `text-base font-medium transition-all duration-300 relative px-4 py-2 rounded-xl ${
-                      isActive 
-                        ? 'text-white bg-gradient-to-r from-pink-500 to-pink-600 shadow-soft' 
-                        : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
-                    }`}
-                  >
-                    {item.label}
-                  </NavLink>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden lg:flex items-center">
-              <a
-                href="https://apps.apple.com/us/app/p-r-o/id6749865568"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gray-900 text-white text-base font-semibold rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-soft hover:shadow-medium transform hover:scale-105"
-              >
-                Download App →
-              </a>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
+    <header className="pointer-events-none fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-6">
+      <nav
+        className={`pointer-events-auto mx-auto flex max-w-5xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-6 ${
+          onHomeHero
+            ? 'border-pink-400/25 bg-white/55 shadow-lg shadow-pink-900/10 backdrop-blur-xl'
+            : scrolled
+              ? 'border-white/10 bg-black/85 shadow-2xl shadow-black/40 backdrop-blur-xl'
+              : 'border-white/10 bg-black/70 shadow-xl backdrop-blur-xl'
+        }`}
+      >
+        <NavLink to="/" className="flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-pink">
+            <span className="font-display text-sm font-bold text-white">P</span>
           </div>
+          <span
+            className={`font-display text-lg font-extrabold ${onHomeHero ? 'text-pink-900' : 'text-white'}`}
+          >
+            P.R.O.
+          </span>
+        </NavLink>
 
-          {/* Mobile Navigation */}
-          {isMobileMenuOpen && (
-            <div className="lg:hidden mt-4 pt-4 border-t border-gray-200">
-              <div className="space-y-4">
-                {navItems.map((item) => (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    className={({ isActive }) => `block text-lg font-medium transition-colors duration-300 ${
-                      isActive ? 'text-pink-600' : 'text-gray-700 hover:text-pink-600'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </NavLink>
-                ))}
-                <div className="pt-4">
-                  <a
-                    href="https://apps.apple.com/us/app/p-r-o/id6749865568"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full px-6 py-3 bg-gray-900 text-white text-center font-semibold rounded-xl hover:bg-gray-800 transition-colors duration-300 shadow-soft"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Download App →
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
+        <div className="hidden items-center gap-0.5 lg:flex">
+          {links.map((l) => (
+            <NavLink
+              key={l.path}
+              to={l.path}
+              className={({ isActive }) =>
+                `rounded-xl px-3.5 py-2 text-sm font-medium transition ${
+                  isActive
+                    ? 'bg-brand-pink text-white'
+                    : onHomeHero
+                      ? 'text-pink-800/80 hover:bg-pink-100/60 hover:text-pink-900'
+                      : 'text-gray-400 hover:text-white'
+                }`
+              }
+            >
+              {l.label}
+            </NavLink>
+          ))}
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`ml-2 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+              onHomeHero
+                ? 'bg-pink-600 text-white hover:bg-pink-700'
+                : 'border border-brand-pink/50 text-white hover:bg-brand-pink/15'
+            }`}
+          >
+            Download
+          </a>
         </div>
-      </div>
-    </nav>
+
+        <button
+          type="button"
+          className={`lg:hidden ${onHomeHero ? 'text-pink-900' : 'text-gray-300'}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+      </nav>
+
+      {open && (
+        <div className="pointer-events-auto mx-auto mt-2 max-w-5xl rounded-2xl border border-white/10 bg-black/95 px-4 py-3 backdrop-blur-xl lg:hidden">
+          {links.map((l) => (
+            <NavLink
+              key={l.path}
+              to={l.path}
+              onClick={() => setOpen(false)}
+              className="block py-2 text-gray-300"
+            >
+              {l.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </header>
   );
 }

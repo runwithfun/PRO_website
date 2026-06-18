@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Carousel Templates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --paper: #ffffff;
+      --pink: #d42d78;
+      --pink-soft: #f06aa4;
+      --pink-deep: #9b1f57;
+      --pink-glow: rgba(212, 45, 120, 0.45);
+      --muted: rgba(255, 255, 255, 0.62);
+      --muted-dark: rgba(10, 10, 10, 0.58);
+      --slide-w: 360px;
+      --slide-h: 450px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--paper);
+      font-family: "DM Sans", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 0%, rgba(212, 45, 120, 0.22), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(255, 255, 255, 0.06), transparent 50%),
+        linear-gradient(165deg, #050505 0%, #111 42%, #0a0a0a 100%);
+    }
+
+    .page {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+
+    .intro h1 {
+      margin: 0 0 12px;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      background: linear-gradient(120deg, var(--paper) 0%, #ffd0e4 38%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .swatch i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 0 4px;
+    }
+
+    .card-label strong {
+      font-family: "Syne", sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    .card-label span {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .slide {
+      position: relative;
+      width: var(--slide-w);
+      height: var(--slide-h);
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      isolation: isolate;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.12), transparent 28%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.03) 0,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+    }
+
+    .slide-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      min-height: 0;
+      padding: 38px 26px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .slide-inner > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .headline {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .body-copy {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.94rem;
+    }
+
+    .serif {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rule {
+      width: 56px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), transparent);
+    }
+
+    .num {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+  /* 01 Hook — dark mesh */
+    .hook {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212, 45, 120, 0.55), transparent 34%),
+        radial-gradient(circle at 10% 88%, rgba(255, 255, 255, 0.08), transparent 30%),
+        linear-gradient(160deg, #050505, #121212 55%, #1a0a12);
+      color: var(--paper);
+    }
+
+    .hook .slide-inner {
+      justify-content: space-between;
+    }
+
+    .hook .eyebrow {
+      color: var(--pink-soft);
+    }
+
+    .hook .headline {
+      font-size: clamp(1.95rem, 7.8vw, 2.25rem);
+      max-width: 11ch;
+      line-height: 1.08;
+    }
+
+    .hook .headline em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--paper), var(--pink-soft));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hook .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hook .swipe {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .hook .orb {
+      position: absolute;
+      right: -30px;
+      top: 120px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 45, 120, 0.35), transparent 68%);
+      filter: blur(8px);
+    }
+
+  /* 02 Editorial */
+    .editorial {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .editorial .slide-inner {
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .editorial .eyebrow {
+      color: var(--pink);
+    }
+
+    .editorial .headline {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.85rem, 7vw, 2.1rem);
+      font-weight: 400;
+      line-height: 1.08;
+      max-width: 12ch;
+    }
+
+    .editorial .body-copy {
+      max-width: none;
+      color: var(--muted-dark);
+      font-size: 0.9rem;
+    }
+
+    .editorial .accent-bar {
+      position: absolute;
+      left: 0;
+      top: 34px;
+      bottom: 34px;
+      width: 5px;
+      border-radius: 0 8px 8px 0;
+      background: linear-gradient(180deg, var(--pink), rgba(212, 45, 120, 0.08));
+    }
+
+  /* 03 Quote */
+    .quote {
+      background:
+        linear-gradient(135deg, rgba(212, 45, 120, 0.92), rgba(155, 31, 87, 0.98)),
+        #d42d78;
+      color: var(--paper);
+    }
+
+    .quote::before {
+      content: "“";
+      position: absolute;
+      left: 18px;
+      top: 8px;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 8rem;
+      line-height: 1;
+      opacity: 0.18;
+    }
+
+    .quote .slide-inner {
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .quote .headline {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.12;
+      max-width: 14ch;
+    }
+
+    .quote .attribution {
+      margin: 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.82;
+    }
+
+  /* 04 Comparison */
+    .comparison {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .comparison .slide-inner {
+      gap: 14px;
+    }
+
+    .comparison .headline {
+      font-size: clamp(1.28rem, 5vw, 1.45rem);
+      line-height: 1.14;
+      max-width: none;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .comparison-col {
+      border-radius: 16px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .comparison-col.bad {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .comparison-col.good {
+      background: linear-gradient(160deg, rgba(212, 45, 120, 0.22), rgba(212, 45, 120, 0.06));
+      border: 1px solid rgba(212, 45, 120, 0.35);
+      box-shadow: 0 0 40px rgba(212, 45, 120, 0.12);
+    }
+
+    .comparison-col h3 {
+      margin: 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .comparison-col p {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+  /* 05 Tips */
+    .tips {
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f7f2f5 100%);
+      color: var(--ink);
+    }
+
+    .tips .slide-inner {
+      gap: 12px;
+    }
+
+    .tips .headline {
+      font-size: clamp(1.35rem, 5.2vw, 1.55rem);
+      line-height: 1.1;
+    }
+
+    .tip-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .tip-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(10, 10, 10, 0.03);
+      border: 1px solid rgba(10, 10, 10, 0.06);
+    }
+
+    .tip-list .num {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      color: var(--paper);
+      background: linear-gradient(145deg, var(--pink), var(--pink-deep));
+      box-shadow: 0 10px 24px rgba(212, 45, 120, 0.28);
+    }
+
+    .tip-list p {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+  /* 06 Minimal */
+    .minimal {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .minimal .slide-inner {
+      justify-content: space-between;
+    }
+
+    .minimal .headline {
+      font-size: clamp(1.75rem, 6.5vw, 1.95rem);
+      max-width: 11ch;
+      line-height: 1.08;
+    }
+
+    .minimal .body-copy {
+      max-width: 30ch;
+      color: var(--muted-dark);
+    }
+
+    .minimal .corner {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: conic-gradient(from 210deg, var(--pink), #fff 25%, var(--pink));
+      opacity: 0.9;
+      filter: blur(0.2px);
+    }
+
+    .minimal .corner::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: var(--paper);
+    }
+
+  /* 07 Story chapter */
+    .story {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(212, 45, 120, 0.28), transparent 42%),
+        linear-gradient(180deg, #0d0d0d, #050505);
+      color: var(--paper);
+    }
+
+    .story .slide-inner {
+      justify-content: flex-end;
+      gap: 14px;
+    }
+
+    .story .chapter {
+      font-size: 4.8rem;
+      opacity: 0.12;
+      position: absolute;
+      top: 24px;
+      right: 22px;
+    }
+
+    .story .eyebrow {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .story .headline {
+      font-size: clamp(1.55rem, 5.8vw, 1.75rem);
+      max-width: 13ch;
+      line-height: 1.1;
+    }
+
+    .story .body-copy {
+      color: var(--muted);
+      max-width: 32ch;
+    }
+
+    .story .glow-line {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      top: 42%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 45, 120, 0.8), transparent);
+      box-shadow: 0 0 24px var(--pink-glow);
+    }
+
+  /* 08 Value stack */
+    .value {
+      background:
+        linear-gradient(125deg, #101010 0%, #181018 48%, #0a0a0a 100%);
+      color: var(--paper);
+    }
+
+    .value .slide-inner {
+      gap: 18px;
+    }
+
+    .value .headline {
+      font-size: clamp(1.28rem, 4.8vw, 1.48rem);
+      line-height: 1.12;
+    }
+
+    .value-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .value-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(212, 45, 120, 0.16), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .value-item strong {
+      display: block;
+      font-family: "Syne", sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .value-item span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+
+  /* 09 Checklist */
+    .checklist {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .checklist .slide-inner {
+      gap: 16px;
+    }
+
+    .checklist .headline {
+      font-size: clamp(1.28rem, 4.8vw, 1.45rem);
+      line-height: 1.12;
+    }
+
+    .checks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .checks li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.84rem;
+      line-height: 1.42;
+    }
+
+    .checks .mark {
+      flex: 0 0 22px;
+      height: 22px;
+      margin-top: 2px;
+      border-radius: 7px;
+      background: linear-gradient(145deg, var(--pink), var(--pink-deep));
+      position: relative;
+    }
+
+    .checks .mark::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 4px;
+      width: 6px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+  /* 10 CTA */
+    .cta {
+      background:
+        radial-gradient(circle at 50% 120%, rgba(212, 45, 120, 0.55), transparent 55%),
+        linear-gradient(180deg, #050505, #111);
+      color: var(--paper);
+      text-align: center;
+    }
+
+    .cta .slide-inner {
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .cta .headline {
+      font-size: clamp(1.55rem, 6vw, 1.8rem);
+      max-width: 12ch;
+      line-height: 1.12;
+    }
+
+    .cta .body-copy {
+      max-width: 30ch;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.48;
+    }
+
+    .cta .button {
+      margin-top: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: linear-gradient(120deg, var(--pink), var(--pink-deep));
+      box-shadow:
+        0 16px 40px rgba(212, 45, 120, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    }
+
+    .cta .halo {
+      position: absolute;
+      inset: auto 50% 18%;
+      width: 220px;
+      height: 220px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 45, 120, 0.28), transparent 68%);
+      filter: blur(12px);
+      z-index: 0;
+    }
+
+  /* 11 Stat */
+    .stat {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .stat .slide-inner {
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .stat .metric {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2.35rem, 10.5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      background: linear-gradient(180deg, #fff 10%, var(--pink-soft) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat .headline {
+      font-size: clamp(1.08rem, 4.1vw, 1.22rem);
+      line-height: 1.2;
+      max-width: none;
+    }
+
+    .stat .body-copy {
+      color: var(--muted);
+      max-width: none;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      margin-top: auto;
+    }
+
+    .stat .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at 50% 40%, black, transparent 78%);
+      opacity: 0.35;
+    }
+
+  /* 12 Split reveal */
+    .split {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .split .top-band {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 48%;
+      background:
+        linear-gradient(135deg, rgba(212, 45, 120, 0.95), rgba(10, 10, 10, 0.98));
+      clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+    }
+
+    .split .slide-inner {
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .split .eyebrow,
+    .split .headline {
+      color: var(--paper);
+      position: relative;
+      z-index: 2;
+    }
+
+    .split .headline {
+      position: absolute;
+      top: 34px;
+      left: 30px;
+      right: 30px;
+      font-size: 1.85rem;
+      max-width: 12ch;
+    }
+
+    .split .body-copy {
+      color: var(--muted-dark);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 760px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <h1>Text carousel templates</h1>
+      <p>
+        Twelve slide layouts for hooks, education, quotes, comparisons, and CTAs.
+        Palette: black, white, and accent pink <strong>#D42D78</strong> with gradients, mesh light, glass panels, and typographic hierarchy.
+      </p>
+      <div class="palette" aria-label="Palette">
+        <span class="swatch"><i style="background:#0a0a0a"></i>#0A0A0A</span>
+        <span class="swatch"><i style="background:#ffffff"></i>#FFFFFF</span>
+        <span class="swatch"><i style="background:#d42d78"></i>#D42D78</span>
+      </div>
+    </header>
+
+    <section class="gallery" aria-label="Template gallery">
+      <article class="card">
+        <div class="card-label"><strong>Hook</strong><span>Stop the scroll</span></div>
+        <div class="slide hook">
+          <div class="orb" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <div>
+              <p class="eyebrow">Slide 01</p>
+              <h2 class="headline">Most carousels fail <em>before</em> slide two</h2>
+            </div>
+            <div class="footer">
+              <div class="rule" aria-hidden="true"></div>
+              <p class="swipe">Swipe →</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Editorial</strong><span>Story lead</span></div>
+        <div class="slide editorial">
+          <div class="accent-bar" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <p class="eyebrow">The setup</p>
+            <h2 class="headline">Structure beats decoration when attention is scarce</h2>
+            <p class="body-copy">Readers do not reward prettier slides. They reward slides that move an idea forward with intent.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Quote</strong><span>Authority</span></div>
+        <div class="slide quote">
+          <div class="slide-inner">
+            <h2 class="headline">Clarity is the design. Everything else is packaging.</h2>
+            <p class="attribution">Studio note · 2026</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Comparison</strong><span>Before / after</span></div>
+        <div class="slide comparison">
+          <div class="slide-inner">
+            <p class="eyebrow">Reframe</p>
+            <h2 class="headline">Manual formatting vs structured narrative</h2>
+            <div class="comparison-grid">
+              <div class="comparison-col bad">
+                <h3>Without structure</h3>
+                <p>Long paragraphs squeezed onto every slide with no hook or payoff.</p>
+              </div>
+              <div class="comparison-col good">
+                <h3>With structure</h3>
+                <p>Hook, tension, value, and CTA each get room to land.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Tips</strong><span>Education</span></div>
+        <div class="slide tips">
+          <div class="slide-inner">
+            <p class="eyebrow">Quick wins</p>
+            <h2 class="headline">Three ways to tighten copy</h2>
+            <ul class="tip-list">
+              <li><span class="num">01</span><p>Lead with the outcome, not the background.</p></li>
+              <li><span class="num">02</span><p>One idea per slide. Let whitespace do the persuasion.</p></li>
+              <li><span class="num">03</span><p>End with a verb the reader can act on today.</p></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Minimal</strong><span>Clean</span></div>
+        <div class="slide minimal">
+          <div class="corner" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <p class="eyebrow" style="color: var(--pink);">Essentials</p>
+            <h2 class="headline">Say less. Mean more.</h2>
+            <p class="body-copy">Minimal layouts work when the sentence itself carries the tension.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Story</strong><span>Chapter</span></div>
+        <div class="slide story">
+          <div class="glow-line" aria-hidden="true"></div>
+          <div class="chapter num" aria-hidden="true">03</div>
+          <div class="slide-inner">
+            <p class="eyebrow">Middle beat</p>
+            <h2 class="headline">Build momentum before you ask for belief</h2>
+            <p class="body-copy">The middle is where curiosity turns into trust. Give proof, contrast, or a sharper question.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Value stack</strong><span>Proof</span></div>
+        <div class="slide value">
+          <div class="slide-inner">
+            <p class="eyebrow">Why it works</p>
+            <h2 class="headline">Each slide earns the next swipe</h2>
+            <div class="value-stack">
+              <div class="value-item">
+                <strong>Pattern interrupt</strong>
+                <span>High contrast headline on a dark mesh field.</span>
+              </div>
+              <div class="value-item">
+                <strong>Progressive reveal</strong>
+                <span>Information arrives in the order the reader can absorb it.</span>
+              </div>
+              <div class="value-item">
+                <strong>Visual rhythm</strong>
+                <span>Alternate dense and airy layouts to reset attention.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Checklist</strong><span>Actionable</span></div>
+        <div class="slide checklist">
+          <div class="slide-inner">
+            <p class="eyebrow" style="color: var(--pink);">Before you post</p>
+            <h2 class="headline">Run this pass on the deck</h2>
+            <ul class="checks">
+              <li><span class="mark" aria-hidden="true"></span>First slide states the promise in under eight words.</li>
+              <li><span class="mark" aria-hidden="true"></span>Middle slides remove objections or add proof.</li>
+              <li><span class="mark" aria-hidden="true"></span>Final slide tells the reader exactly what to do next.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Stat</strong><span>Data point</span></div>
+        <div class="slide stat">
+          <div class="grid-bg" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <p class="eyebrow">Signal</p>
+            <p class="metric">72%</p>
+            <h2 class="headline">of saves happen after slide three</h2>
+            <p class="body-copy">That makes the middle of the carousel your real product, not the cover.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>Split reveal</strong><span>Contrast</span></div>
+        <div class="slide split">
+          <div class="top-band" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <h2 class="headline">Bold headline zone</h2>
+            <p class="eyebrow" style="color: var(--pink);">Supporting copy</p>
+            <p class="body-copy">Use angled color blocks to separate promise from explanation without adding clutter.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-label"><strong>CTA</strong><span>Convert</span></div>
+        <div class="slide cta">
+          <div class="halo" aria-hidden="true"></div>
+          <div class="slide-inner">
+            <p class="eyebrow">Final slide</p>
+            <h2 class="headline">Save this structure for your next post</h2>
+            <p class="body-copy">Reuse the sequence: hook, push, value, action. Swap the copy, keep the flow.</p>
+            <div class="button">Start creating</div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

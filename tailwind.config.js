@@ -7,6 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          pink: '#d42d78',
+          'pink-soft': '#f06aa4',
+          'pink-deep': '#9b1f57',
+          ink: '#0a0a0a',
+          paper: '#ffffff',
+        },
         primary: {
           50: '#fdf2f8',
           100: '#fce7f3',
@@ -45,8 +52,9 @@ export default {
         }
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'display': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+        'display': ['Syne', 'Inter', 'system-ui', 'sans-serif'],
+        'serif': ['Instrument Serif', 'Georgia', 'serif'],
       },
       fontSize: {
         'hero': ['3.5rem', { lineHeight: '1.1' }],

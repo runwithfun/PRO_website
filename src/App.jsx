@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Features from './pages/Features';
 import FAQ from './pages/FAQ';
@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen bg-black font-sans text-white">
         <ModernNav />
@@ -25,6 +25,6 @@ export default function App() {
         </main>
         <ModernFooter />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }

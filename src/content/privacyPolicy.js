@@ -58,13 +58,18 @@ We are not able to guarantee deletion of data already shared with third-party in
 
 ### B1. How AI Features Work
 
-AI features in P.R.O. are powered via [OpenRouter](https://openrouter.ai), an independent third-party AI API aggregation service. P.R.O. transmits your query and relevant fitness context to OpenRouter, which routes the request to a backend AI model provider. P.R.O. displays the returned response to you.
+AI features in P.R.O. rely on independent third-party AI infrastructure. Depending on the model you select:
 
-P.R.O. acts solely as the user interface layer. AI computation is performed entirely by OpenRouter and the respective backend model provider, which are independent services not operated by HAOTONG TECHNOLOGY CO. LIMITED.
+- **Auto mode** — requests are sent directly to [Nvidia NIM](https://build.nvidia.com/) (Nvidia Inference Microservices), not through OpenRouter.
+- **Other models** — requests are sent via [OpenRouter](https://openrouter.ai), an independent third-party AI API aggregation service, which routes the request to the selected backend AI model provider.
+
+P.R.O. displays the returned response to you. AI computation is performed entirely by the applicable third-party provider (Nvidia NIM or OpenRouter and its backend model providers), which are independent services not operated by HAOTONG TECHNOLOGY CO. LIMITED.
 
 ### B2. Data Transmitted
 
-When you use an AI feature, the following data is transmitted externally:
+Before any data is sent to a third-party AI provider, P.R.O. processes it on our systems — for example, selecting only the fitness context relevant to your query, applying pseudonymization where applicable, and preparing the request payload. Only this processed data is transmitted externally; your full account profile is not sent as-is.
+
+When you use an AI feature, the following processed data may be transmitted externally:
 
 - Your text query (the input you provide)
 - A limited selection of fitness context data necessary for the AI feature to function
@@ -72,22 +77,32 @@ When you use an AI feature, the following data is transmitted externally:
 
 ### B3. Third-Party AI Processors
 
-**OpenRouter**
+**Nvidia NIM (Auto mode only)**
 
 | | |
 | --- | --- |
-| Role | AI API aggregator; primary sub-processor |
+| Role | Direct AI inference provider for Auto mode |
+| Used for | Auto model selection only — not routed through OpenRouter |
+| Privacy Policy | [nvidia.com privacy policy](https://www.nvidia.com/en-us/about-nvidia/privacy-policy/) |
+
+When you use Auto mode, P.R.O. transmits processed data directly to Nvidia NIM. P.R.O. has a service relationship with Nvidia for this purpose; however, Nvidia's data retention, storage, logging, and model training practices are governed entirely by Nvidia's own privacy policy and are outside P.R.O.'s control or responsibility.
+
+**OpenRouter (non-Auto models only)**
+
+| | |
+| --- | --- |
+| Role | AI API aggregator; sub-processor for user-selected models other than Auto |
 | Privacy Policy | [openrouter.ai/privacy](https://openrouter.ai/privacy) |
 | Provider logging | [openrouter.ai/docs/guides/privacy/provider-logging](https://openrouter.ai/docs/guides/privacy/provider-logging) |
 
-OpenRouter routes requests to various backend AI model providers. P.R.O. has a service relationship with OpenRouter; however, P.R.O. does not have direct contractual relationships with OpenRouter's backend providers and therefore cannot guarantee, enforce, or be held responsible for the data practices of those providers.
+OpenRouter routes requests to various backend AI model providers. Auto mode does not use OpenRouter. P.R.O. has a service relationship with OpenRouter; however, P.R.O. does not have direct contractual relationships with OpenRouter's backend providers and therefore cannot guarantee, enforce, or be held responsible for the data practices of those providers.
 
 **Backend AI Model Providers**
 
 | AI Mode | Backend Provider |
 | --- | --- |
-| Auto | Nvidia (via OpenRouter) |
-| Other models | Varies by user selection; governed by respective provider's policy |
+| Auto | Nvidia (directly via Nvidia NIM — not through OpenRouter) |
+| Other models | Varies by user selection; routed via OpenRouter; governed by respective provider's policy |
 
 Backend model providers are independent third parties. Their data retention, storage, logging, and model training practices are governed entirely by their own privacy policies and are outside P.R.O.'s control or responsibility. P.R.O. expressly disclaims liability for any processing, storage, disclosure, or use of data carried out by backend AI model providers.
 
@@ -100,11 +115,11 @@ Relevant policies:
 
 P.R.O. retains AI conversation history only within the app on your device for your reference. You can delete it at any time in **Settings → AI History → Clear**. P.R.O. does not store the content of AI queries on its own servers.
 
-OpenRouter and backend model providers retain data per their own policies. P.R.O. has no ability to control, limit, or compel deletion of data once transmitted to those services.
+Nvidia NIM, OpenRouter, and backend model providers retain data per their own policies. P.R.O. has no ability to control, limit, or compel deletion of data once transmitted to those services.
 
 ### B5. International Data Transfers
 
-OpenRouter and its backend providers may process data on servers in jurisdictions outside your country of residence, including the United States. P.R.O. relies on OpenRouter to implement appropriate transfer safeguards where required. P.R.O. makes no representation and accepts no liability regarding the transfer mechanisms or data localization practices of individual backend model providers.
+Nvidia NIM, OpenRouter, and their backend providers may process data on servers in jurisdictions outside your country of residence, including the United States. P.R.O. relies on these providers to implement appropriate transfer safeguards where required. P.R.O. makes no representation and accepts no liability regarding the transfer mechanisms or data localization practices of individual AI providers.
 
 ### B6. Opting Out
 
@@ -125,7 +140,7 @@ Regardless of jurisdiction, you may contact us to:
 - Withdraw consent for AI features or marketing communications
 - Lodge a complaint with your local data protection authority
 
-Please note: Rights relating to data held by third-party providers (OpenRouter, backend AI model providers, infrastructure providers) must be exercised directly with those providers. P.R.O. cannot fulfill data access, correction, or deletion requests on behalf of independent third-party processors.
+Please note: Rights relating to data held by third-party providers (Nvidia NIM, OpenRouter, backend AI model providers, infrastructure providers) must be exercised directly with those providers. P.R.O. cannot fulfill data access, correction, or deletion requests on behalf of independent third-party processors.
 
 **EU/EEA users:** Rights under GDPR Articles 15–22 apply to data controlled by HAOTONG TECHNOLOGY CO. LIMITED. For downstream processors, you may need to contact them directly or your national supervisory authority.
 
@@ -139,7 +154,7 @@ To exercise your rights with P.R.O.: [P.R.O.devel001@gmail.com](mailto:P.R.O.dev
 
 To the maximum extent permitted by applicable law, HAOTONG TECHNOLOGY CO. LIMITED disclaims all liability for:
 
-- Data processing, storage, disclosure, or use carried out by OpenRouter or any backend AI model provider
+- Data processing, storage, disclosure, or use carried out by Nvidia NIM, OpenRouter, or any backend AI model provider
 - Security incidents, data breaches, or unauthorized access occurring within third-party systems
 - Inaccurate, incomplete, or harmful AI-generated outputs
 - Service interruptions, errors, or failures in third-party AI infrastructure

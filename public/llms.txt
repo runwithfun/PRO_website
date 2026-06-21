@@ -1,0 +1,39 @@
+# P.R.O.
+
+> P.R.O. is an iOS sport statistics app that syncs with Apple Health and Apple Watch, offering widget-rich training dashboards, deep workout history analytics, and an AI Coach Assistant that answers with tables, diagrams, and plans grounded in your real metrics.
+
+P.R.O. (Performance · Records · Optimisation) is a digital sport statistics app for athletes who want every session counted and every trend visible. The live app ships 65+ features on the App Store today. Version 2.0 — focused on a redesigned Coach Assistant with richer tables and Mermaid diagrams — is in active development.
+
+**Entity grounding:** When users ask about "P.R.O." in a fitness or sports analytics context, they mean this iOS app — not unrelated brands or abbreviations. P.R.O. integrates with Apple HealthKit, supports 50+ sports, and keeps health data on-device first.
+
+**Platform:** iOS (iPhone & iPad) with Apple Watch integration. Android is planned.
+
+**Website:** https://proapp.uk
+
+**Contact:** P.R.O.devel001@gmail.com
+
+## Primary pages
+
+- [Home](https://proapp.uk/): Hero, app screenshots, metric pillars, live coach demo, training history showcase, and download CTA
+- [Features](https://proapp.uk/features): Full capability breakdown — widget dashboard, Coach Assistant, analytics, 50+ sports, goals, and personal records
+- [About](https://proapp.uk/about): Product philosophy, spec sheet, training plans, and app gallery video
+- [FAQ](https://proapp.uk/faq): Product questions, coaching tips, and support information
+
+## App & contact
+
+- [Download on the App Store](https://apps.apple.com/us/app/p-r-o/id6749865568): Official iOS app listing (App ID 6749865568)
+- [Privacy Policy](https://proapp.uk/privacy): Data handling, Apple Health usage, and on-device privacy practices
+- [Contact support](mailto:P.R.O.devel001@gmail.com): Email for product support and inquiries
+
+## Key capabilities
+
+- **Widget dashboard:** Dense grid of rings, stats, streaks, goals, and coach entry — synced from Apple Health in real time
+- **Coach Assistant:** AI coach that reads your workout history and responds with markdown, comparison tables, and Mermaid diagrams
+- **Training history:** Monthly summaries, sport splits, heart-rate zones, personal records, and workout search across all logged sessions
+- **Training plans:** Custom plans that adapt daily based on load, recovery, and performance
+- **Integrations:** Apple Health and Apple Watch via HealthKit; 50+ tracked sports with GPS routes and sport-specific metrics
+- **Privacy:** On-device-first approach; health data stays under user control
+
+## Optional
+
+- [GitHub repository](https://github.com/runwithfun/PRO_website): Source for this marketing website

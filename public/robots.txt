@@ -1,0 +1,38 @@
+# P.R.O. — sport statistics & AI coaching app (iOS)
+# https://proapp.uk/
+
+User-agent: *
+Allow: /
+
+# AI crawlers — welcome; see /llms.txt for structured site context
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://proapp.uk/sitemap.xml
+
+# Curated index for language models (https://llmstxt.org/)
+# llms.txt: https://proapp.uk/llms.txt

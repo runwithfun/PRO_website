@@ -1,1 +1,4 @@
-/*    /index.html   200
+/.well-known/apple-app-site-association  /.well-known/apple-app-site-association  200
+/invite/*  /invite-landing.html  200
+/invite  /invite-landing.html  200
+/*  /index.html  200

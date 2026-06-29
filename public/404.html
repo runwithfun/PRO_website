@@ -13,6 +13,20 @@
       var pathSegmentsToKeep = 0;
 
       var l = window.location;
+      var inviteMatch = l.pathname.match(/^\/invite\/([^/?#]+)\/?$/);
+      if (inviteMatch) {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/invite-landing.html?code=' + encodeURIComponent(inviteMatch[1]) + l.hash
+        );
+      }
+      if (l.pathname === '/invite' || l.pathname === '/invite/') {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/invite-landing.html' + l.hash
+        );
+      }
+
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
         l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +

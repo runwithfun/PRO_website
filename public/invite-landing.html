@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join P.R.O.</title>
+  <meta name="description" content="You've been invited to P.R.O. — download the app and use your friend's referral code.">
+  <meta name="apple-itunes-app" content="app-id=6749865568, app-argument=https://proapp.uk/invite/CODE">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #d42d78;
+      --pink-soft: #f06aa4;
+      --pink-deep: #9b1f57;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+      color: #f5f5f5;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(212, 45, 120, 0.18), transparent 55%),
+        #000000;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+      z-index: 0;
+    }
+
+    .orb-a {
+      width: 320px;
+      height: 320px;
+      top: 10%;
+      right: -80px;
+      background: radial-gradient(circle, rgba(212, 45, 120, 0.45), transparent 70%);
+      animation: floatSlow 9s ease-in-out infinite;
+    }
+
+    .orb-b {
+      width: 380px;
+      height: 380px;
+      bottom: 8%;
+      left: -100px;
+      background: radial-gradient(circle, rgba(240, 106, 164, 0.28), transparent 70%);
+      animation: floatReverse 11s ease-in-out infinite;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+      background-image:
+        linear-gradient(rgba(212, 45, 120, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 45, 120, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      animation: slideUp 0.6s ease-out forwards;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--pink);
+      font-family: 'Syne', system-ui, sans-serif;
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .brand-name {
+      font-family: 'Syne', system-ui, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .card {
+      border: 1px solid rgba(212, 45, 120, 0.2);
+      background: linear-gradient(160deg, #141414 0%, #0a0a0a 100%);
+      box-shadow: 0 0 40px rgba(212, 45, 120, 0.06);
+      border-radius: 24px;
+      padding: 36px 28px 32px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 45, 120, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 8px 16px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    h1 {
+      font-family: 'Syne', system-ui, sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.6;
+      margin: 0 0 24px;
+      font-size: 1rem;
+    }
+
+    .code-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+
+    .code {
+      font-family: ui-monospace, 'SF Mono', monospace;
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #fff;
+      margin: 0 0 28px;
+      padding: 18px 16px;
+      border-radius: 16px;
+      background: rgba(212, 45, 120, 0.08);
+      border: 1px solid rgba(212, 45, 120, 0.35);
+      box-shadow: 0 0 30px rgba(212, 45, 120, 0.12);
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 280px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--pink);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 0 60px rgba(212, 45, 120, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 70px rgba(212, 45, 120, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 280px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 45, 120, 0.55);
+      color: #fff;
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(212, 45, 120, 0.12);
+    }
+
+    .steps-callout {
+      margin-top: 28px;
+      padding: 20px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(212, 45, 120, 0.45);
+      background: rgba(212, 45, 120, 0.1);
+      text-align: left;
+      box-shadow: 0 0 24px rgba(212, 45, 120, 0.08);
+    }
+
+    .steps-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .steps-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--pink);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .steps-title {
+      margin: 0;
+      font-family: 'Syne', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .steps-list {
+      margin: 0;
+      padding: 0 0 0 1.25rem;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .steps-list li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .steps-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .steps-list strong {
+      color: var(--pink-soft);
+      font-weight: 700;
+    }
+
+    .steps-note {
+      margin: 14px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid rgba(212, 45, 120, 0.25);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .footer-link {
+      display: block;
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--pink-soft);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(12px, -20px) scale(1.04); }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-16px, 14px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page, .orb-a, .orb-b { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <main class="page">
+    <a class="brand" href="https://proapp.uk/">
+      <span class="brand-mark">P</span>
+      <span class="brand-name">P.R.O.</span>
+    </a>
+
+    <div class="card">
+      <div class="badge"><span class="badge-dot"></span> Referral invite</div>
+      <h1>You're invited to P.R.O.</h1>
+      <p class="subtitle">Download the app and sign up. Your friend's referral code is below.</p>
+
+      <p class="code-label">Referral code</p>
+      <div class="code" id="code" aria-live="polite">------</div>
+
+      <div class="actions">
+        <a class="btn-primary" id="store-link" href="https://apps.apple.com/us/app/p-r-o/id6749865568">Download on the App Store</a>
+        <button class="btn-secondary" id="copy-btn" type="button">Copy code</button>
+      </div>
+
+      <div class="steps-callout" role="note">
+        <div class="steps-header">
+          <span class="steps-icon" aria-hidden="true">!</span>
+          <p class="steps-title">After you install</p>
+        </div>
+        <ol class="steps-list">
+          <li>Open <strong>this invite link again</strong>, or</li>
+          <li>Go to <strong>Settings → Invite Friends</strong> and enter your code</li>
+        </ol>
+        <p class="steps-note">Your referral is applied automatically when you sign up.</p>
+      </div>
+    </div>
+
+    <a class="footer-link" href="https://proapp.uk/">Learn more about P.R.O.</a>
+  </main>
+
+  <script>
+    (function () {
+      var APP_ID = '6749865568';
+      var APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id' + APP_ID;
+
+      var params = new URLSearchParams(window.location.search);
+      var parts = window.location.pathname.split('/').filter(Boolean);
+      var code = params.get('code') || parts[parts.length - 1] || '';
+      if (code.toLowerCase() === 'invite' || code.toLowerCase() === 'invite-landing.html') code = '';
+
+      document.getElementById('code').textContent = code || '------';
+
+      var storeLink = document.getElementById('store-link');
+      storeLink.href = APP_STORE;
+
+      var inviteURL = 'https://proapp.uk/invite/' + encodeURIComponent(code);
+      var meta = document.querySelector('meta[name="apple-itunes-app"]');
+      if (meta && code) {
+        meta.setAttribute('content', 'app-id=' + APP_ID + ', app-argument=' + inviteURL);
+      }
+
+      document.getElementById('copy-btn').addEventListener('click', function () {
+        if (!code) return;
+        navigator.clipboard.writeText(code).then(function () {
+          var btn = document.getElementById('copy-btn');
+          btn.textContent = 'Copied!';
+          setTimeout(function () { btn.textContent = 'Copy code'; }, 2000);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

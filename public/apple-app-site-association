@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["96R4KRWZQN.self.PRO-version-0-0"],
+        "paths": ["/invite", "/invite/*"]
+      }
+    ]
+  }
+}

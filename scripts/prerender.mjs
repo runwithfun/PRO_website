@@ -24,7 +24,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const { render, faq, mcpFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
+const { render, faq, mcpFaq, compareFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
 // Preload основных шрифтов (латиница): DM Sans — текст, Syne — заголовки.
 // Имена файлов с хэшем Vite, поэтому ищем их в dist/assets.
 const fontPreloads = fs
@@ -109,7 +109,7 @@ function jsonLd(route) {
     },
   ];
   if (route.faq) {
-    const items = route.faq === 'mcp' ? mcpFaq : faq;
+    const items = { mcp: mcpFaq, compare: compareFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({

@@ -229,13 +229,14 @@ const FrameStyleFeatures = () => {
           <div className="pro-surface mx-auto max-w-3xl rounded-3xl p-10">
             <h2 className="font-display text-2xl font-bold text-white">Ready to experience P.R.O.?</h2>
             <p className="mt-3 text-gray-500">Download now — v2.0 coach upgrade in development.</p>
-            <button
-              type="button"
-              onClick={() => window.open('https://apps.apple.com/us/app/p-r-o/id6749865568', '_blank')}
+            <a
+              href="https://apps.apple.com/us/app/p-r-o/id6749865568"
+              target="_blank"
+              rel="noopener"
               className="mt-6 inline-flex rounded-full bg-brand-pink px-8 py-3 font-semibold text-white pro-glow"
             >
               App Store
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -15,13 +15,14 @@ export default function ModernCTA() {
           Download the live app today. Version 2.0 — redesigned coach, richer visualisations — is in active development.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
-            className="rounded-full bg-brand-pink px-8 py-3.5 font-semibold text-white pro-glow"
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
+            className="inline-block text-center rounded-full bg-brand-pink px-8 py-3.5 font-semibold text-white pro-glow"
           >
             App Store
-          </button>
+          </a>
           <a
             href="mailto:P.R.O.devel001@gmail.com"
             className="pro-chip rounded-full px-8 py-3.5 font-semibold"

@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PRO App</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment.
-      var pathSegmentsToKeep = 0;
-
-      var l = window.location;
-      var inviteMatch = l.pathname.match(/^\/invite\/([^/?#]+)\/?$/);
-      if (inviteMatch) {
-        l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-          '/invite-landing.html?code=' + encodeURIComponent(inviteMatch[1]) + l.hash
-        );
-      } else if (l.pathname === '/invite' || l.pathname === '/invite/') {
-        l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-          '/invite-landing.html' + l.hash
-        );
-      } else {
-        l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash
-        );
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Page not found — P.R.O.</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      // GitHub Pages отдаёт этот файл на любой несуществующий адрес.
+      // Ссылки-приглашения /invite и /invite/<код> переводим на invite-landing.html,
+      // всё остальное — честная 404 (раньше здесь был редирект SPA на главную,
+      // из-за которого поисковики видели все страницы сайта как 404).
+      (function (l) {
+        var m = l.pathname.match(/^\/invite\/([^/?#]+)\/?$/);
+        if (m) {
+          l.replace('/invite-landing.html?code=' + encodeURIComponent(m[1]) + l.hash);
+        } else if (l.pathname === '/invite' || l.pathname === '/invite/') {
+          l.replace('/invite-landing.html' + l.hash);
+        }
+      })(window.location);
     </script>
+    <style>
+      body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        background: #000; color: #fff; font-family: Inter, system-ui, -apple-system, sans-serif; text-align: center; padding: 24px; }
+      .code { color: #ec4899; font-weight: 700; letter-spacing: .2em; font-size: 12px; text-transform: uppercase; }
+      h1 { font-size: clamp(32px, 6vw, 56px); margin: 16px 0 8px; }
+      p { color: #9ca3af; margin: 0 0 28px; }
+      a { display: inline-block; background: #ec4899; color: #fff; text-decoration: none; font-weight: 600;
+        padding: 14px 28px; border-radius: 999px; }
+    </style>
   </head>
   <body>
+    <main>
+      <div class="code">Error 404</div>
+      <h1>Page not found</h1>
+      <p>The link is outdated or the address has a typo.</p>
+      <a href="/">Back to P.R.O.</a>
+    </main>
   </body>
-</html> 
+</html>

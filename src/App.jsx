@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { ROUTES } from './seo';
 import Home from './pages/Home';
 import Features from './pages/Features';
 import FAQ from './pages/FAQ';
@@ -8,10 +10,24 @@ import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
 import ScrollToTop from './components/ScrollToTop';
 
-export default function App() {
+// При переходах внутри сайта меняем заголовок вкладки; при первой загрузке
+// он уже стоит в пререндеренном HTML.
+function DocumentTitle() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const route = ROUTES.find((r) => r.path === pathname);
+    if (route) document.title = route.title;
+  }, [pathname]);
+  return null;
+}
+
+// Разметка и маршруты без роутера: в браузере их оборачивает BrowserRouter,
+// при пререндере (src/entry-server.jsx) — StaticRouter.
+export function AppShell() {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
+      <DocumentTitle />
       <div className="min-h-screen bg-black font-sans text-white">
         <ModernNav />
         <main>
@@ -25,6 +41,14 @@ export default function App() {
         </main>
         <ModernFooter />
       </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
     </BrowserRouter>
   );
 }

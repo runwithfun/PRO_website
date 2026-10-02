@@ -131,13 +131,14 @@ export default function ChatShowcase() {
           <p className="max-w-md text-sm text-gray-500">
             Sample data in the preview · your Apple Health history in the app
           </p>
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
-            className="shrink-0 rounded-full border border-brand-pink/50 bg-brand-pink px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-pink-deep"
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
+            className="inline-block text-center shrink-0 rounded-full border border-brand-pink/50 bg-brand-pink px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-pink-deep"
           >
             Try with your metrics
-          </button>
+          </a>
         </div>
       </div>
     </section>

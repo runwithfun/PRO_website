@@ -53,13 +53,14 @@ export default function ModernHero() {
           className="flex flex-col items-center justify-center gap-4 sm:flex-row animate-slide-up"
           style={{ animationDelay: '0.2s' }}
         >
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
             className="inline-flex items-center justify-center rounded-full border-2 border-pink-500 bg-gradient-to-r from-pink-500 to-pink-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition hover:scale-105"
           >
             Download for iOS
-          </button>
+          </a>
           <button
             type="button"
             onClick={scrollToChat}

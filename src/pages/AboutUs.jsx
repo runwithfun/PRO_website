@@ -79,13 +79,14 @@ function TrainingPlanBlock() {
             Custom training plans built from your history and goals — adjusting daily as load, recovery,
             and performance shift. Not a static PDF. A living plan inside the app.
           </p>
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
             className="mt-8 inline-flex rounded-full border border-brand-pink/50 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-pink/10"
           >
             Download on the App Store
-          </button>
+          </a>
         </div>
         <div className={`transition duration-700 delay-150 ${visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <img
@@ -142,13 +143,14 @@ export default function AboutUs() {
         lines={['ANALYSE', 'EVERY', 'SESSION']}
         accentIndex={1}
         cta={
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
-            className="rounded-full bg-brand-pink px-8 py-4 font-semibold text-white pro-glow transition hover:scale-105"
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
+            className="inline-block text-center rounded-full bg-brand-pink px-8 py-4 font-semibold text-white pro-glow transition hover:scale-105"
           >
             Get P.R.O.
-          </button>
+          </a>
         }
       />
 

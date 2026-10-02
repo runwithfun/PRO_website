@@ -22,11 +22,11 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
             {eyebrow}
           </p>
         )}
-        <div className="max-w-5xl">
+        <h1 className="max-w-5xl">
           {lines.map((line, i) => (
-            <p
+            <span
               key={line}
-              className={`font-display font-extrabold leading-[0.92] tracking-tighter transition duration-700 ${
+              className={`block font-display font-extrabold leading-[0.92] tracking-tighter transition duration-700 ${
                 i === accentIndex
                   ? 'text-[clamp(2.75rem,10vw,6.5rem)] text-brand-pink'
                   : 'text-[clamp(2.25rem,8vw,5rem)] text-white'
@@ -34,9 +34,9 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               {line}
-            </p>
+            </span>
           ))}
-        </div>
+        </h1>
         {description && (
           <p
             className={`mt-8 max-w-2xl text-lg leading-relaxed text-gray-500 transition duration-700 sm:text-xl ${

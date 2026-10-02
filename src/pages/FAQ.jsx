@@ -19,7 +19,7 @@ const TICKER = [
   '65+ FEATURES',
 ];
 
-const faq = [
+export const faq = [
   {
     q: 'What is P.R.O. 2.0?',
     a: 'A major update focused on the Coach Assistant — structured chat with tables, Mermaid diagrams, and answers from your real training data. It is in active development.',

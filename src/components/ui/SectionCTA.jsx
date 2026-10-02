@@ -33,13 +33,14 @@ export default function SectionCTA({
           </div>
         )}
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => window.open(APP_STORE, '_blank')}
+          <a
+            href={APP_STORE}
+            target="_blank"
+            rel="noopener"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-semibold text-brand-pink shadow-large transition hover:scale-105 hover:bg-gray-50"
           >
             Download current version
-          </button>
+          </a>
           <a
             href="mailto:P.R.O.devel001@gmail.com"
             className="inline-flex items-center justify-center rounded-full border-2 border-white/40 px-8 py-4 font-semibold text-white transition hover:border-white hover:bg-white/10"

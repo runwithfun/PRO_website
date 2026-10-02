@@ -4,13 +4,15 @@ const FRAME_SRC = `${import.meta.env.BASE_URL}screenshots/iphone-17-pro-silver-f
 
 /** Screen inset ratios measured from iphone-17-pro-silver-front.png (1180×2274): the white
  *  screen area is x 101–1086, y 74–2210, corner ≈180 px; the box overlaps it by ~2 px per
- *  side so no light edge shows through at fractional sizes. */
+ *  side so no light edge shows through at fractional sizes. The display corner is a squircle,
+ *  so a plain 120 px radius is used: it stays inside the white area and the black bezel hides
+ *  the overlap. */
 const SCREEN = {
   top: '3.17%',
   left: '8.39%',
   width: '83.9%',
   height: '94.15%',
-  borderRadius: '18.5% / 8.5%',
+  borderRadius: '12.1% / 5.6%',
 };
 
 export default function PhoneMockup({ children, className = '', maxWidth = 360 }) {

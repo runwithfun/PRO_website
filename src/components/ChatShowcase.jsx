@@ -55,7 +55,7 @@ function TipCard({ step, title, body, align = 'left', visible, delay = 0 }) {
   );
 }
 
-function TipColumn({ tips, align, visible, baseDelay = 0 }) {
+function TipColumn({ tips, align, label, visible, baseDelay = 0 }) {
   return (
     <div className={`flex flex-col gap-4 ${align === 'right' ? 'lg:items-end' : ''}`}>
       <p
@@ -64,7 +64,7 @@ function TipColumn({ tips, align, visible, baseDelay = 0 }) {
         } ${align === 'right' ? 'lg:text-right' : ''}`}
         style={{ transitionDelay: `${baseDelay}ms` }}
       >
-        {align === 'left' ? 'Try the demo →' : '← In the app'}
+        {label}
       </p>
       {tips.map((tip, i) => (
         <TipCard
@@ -104,7 +104,7 @@ export default function ChatShowcase() {
 
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-center lg:gap-6 xl:gap-10">
           <div className="hidden w-full max-w-[280px] lg:block lg:flex-1 lg:pt-8">
-            <TipColumn tips={TRY_TIPS} align="left" visible={visible} baseDelay={150} />
+            <TipColumn tips={TRY_TIPS} align="left" label="Try the demo →" visible={visible} baseDelay={150} />
           </div>
 
           <div className="w-[min(100%,360px)] shrink-0">
@@ -112,13 +112,13 @@ export default function ChatShowcase() {
           </div>
 
           <div className="hidden w-full max-w-[280px] lg:block lg:flex-1 lg:pt-8">
-            <TipColumn tips={APP_TIPS} align="right" visible={visible} baseDelay={200} />
+            <TipColumn tips={APP_TIPS} align="right" label="← In the app" visible={visible} baseDelay={200} />
           </div>
 
           <div className="w-full lg:hidden">
             <div className="grid gap-4 sm:grid-cols-2">
-              <TipColumn tips={TRY_TIPS} align="left" visible={visible} baseDelay={200} />
-              <TipColumn tips={APP_TIPS} align="left" visible={visible} baseDelay={280} />
+              <TipColumn tips={TRY_TIPS} align="left" label="Try the demo ↑" visible={visible} baseDelay={200} />
+              <TipColumn tips={APP_TIPS} align="left" label="In the app" visible={visible} baseDelay={280} />
             </div>
           </div>
         </div>

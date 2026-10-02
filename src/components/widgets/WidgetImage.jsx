@@ -1,12 +1,12 @@
-import React from 'react';
+import Picture from '../ui/Picture';
 
 export default function WidgetImage({ src, alt, className = '' }) {
   return (
-    <img
+    <Picture
       src={src}
       alt={alt}
-      loading="lazy"
-      className={`widget-card w-full rounded-3xl ${className}`}
+      sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw"
+      className={`widget-card h-auto w-full rounded-3xl ${className}`}
     />
   );
 }

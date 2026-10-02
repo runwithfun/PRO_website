@@ -24,7 +24,16 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const { render, faq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
-const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+// Preload основных шрифтов (латиница): DM Sans — текст, Syne — заголовки.
+// Имена файлов с хэшем Vite, поэтому ищем их в dist/assets.
+const fontPreloads = fs
+  .readdirSync(path.join(DIST, 'assets'))
+  .filter((f) => /^(dm-sans|syne)-latin-wght-normal-.*\.woff2$/.test(f))
+  .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
+  .join('\n    ');
+const template = fs
+  .readFileSync(path.join(DIST, 'index.html'), 'utf8')
+  .replace('</head>', `  ${fontPreloads}\n  </head>`);
 
 function jsonLd(route) {
   const graph = [

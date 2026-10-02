@@ -1,6 +1,6 @@
 import React from 'react';
+import Picture from './ui/Picture';
 
-const FRAME_SRC = `${import.meta.env.BASE_URL}screenshots/iphone-17-pro-silver-front.png`;
 
 /** Screen inset ratios measured from iphone-17-pro-silver-front.png (1180×2274): the white
  *  screen area is x 101–1086, y 74–2210, corner ≈180 px; the box overlaps it by ~2 px per
@@ -19,9 +19,10 @@ export default function PhoneMockup({ children, className = '', maxWidth = 360 }
   return (
     <div className={`phone-mockup relative mx-auto w-full min-w-[240px] ${className}`} style={{ maxWidth }}>
       <div className="relative w-full" style={{ aspectRatio: '1180 / 2274' }}>
-        <img
-          src={FRAME_SRC}
+        <Picture
+          src="screenshots/iphone-17-pro-silver-front.png"
           alt=""
+          sizes="(min-width: 768px) 360px, 80vw"
           aria-hidden
           className="pointer-events-none absolute inset-0 h-full w-full select-none"
           draggable={false}

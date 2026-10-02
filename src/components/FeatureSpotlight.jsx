@@ -1,5 +1,6 @@
 import React from 'react';
 import { useReveal } from '../hooks/useReveal';
+import Picture from './ui/Picture';
 
 const COLUMN_ALIGN = ['left', 'center', 'right'];
 
@@ -27,11 +28,11 @@ export default function FeatureSpotlight({ heroImage, heroAlt, sections }) {
               className="pointer-events-none absolute -inset-8 bg-brand-pink/10 blur-3xl lg:-inset-12"
               aria-hidden
             />
-            <img
+            <Picture
               src={heroImage}
               alt={heroAlt}
+              sizes="(min-width: 1280px) 1200px, 100vw"
               className="relative mx-auto block h-auto w-full drop-shadow-[0_32px_80px_rgba(212,45,120,0.22)]"
-              loading="lazy"
             />
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Picture from './ui/Picture';
 
 const screens = [
   {
@@ -35,10 +36,11 @@ export default function ModernAppShowcase() {
           {screens.map((s) => (
             <div key={s.label} className={`text-center ${s.featured ? 'md:-mt-4' : ''}`}>
               <div className="relative mx-auto max-w-[260px]">
-                <img
-                  src={`${import.meta.env.BASE_URL}screenshots/${s.src}`}
+                <Picture
+                  src={`screenshots/${s.src}`}
                   alt={s.label}
-                  className={`w-full rounded-[1.75rem] border border-white/10 ${
+                  sizes="260px"
+                  className={`h-auto w-full rounded-[1.75rem] border border-white/10 ${
                     s.featured ? 'pro-glow' : ''
                   }`}
                 />

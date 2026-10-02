@@ -1,4 +1,5 @@
 import React from 'react';
+import Picture from './ui/Picture';
 
 const shots = [
   'IMG_0872-9e87f036-fbbc-40a2-b519-0dd713d695bb.png',
@@ -18,11 +19,11 @@ function MarqueeTrack({ reverse = false }) {
     <div className={`marquee-track ${reverse ? 'marquee-reverse' : ''}`}>
       {items.map((src, i) => (
         <div key={`${src}-${i}`} className="marquee-item">
-          <img
-            src={`${import.meta.env.BASE_URL}screenshots/${src}`}
+          <Picture
+            src={`screenshots/${src}`}
             alt="P.R.O. app screenshot"
+            sizes="118px"
             className="h-64 w-auto rounded-2xl border border-white/10 object-cover shadow-2xl transition duration-500 hover:scale-[1.03] hover:border-brand-pink/40"
-            loading="lazy"
           />
         </div>
       ))}

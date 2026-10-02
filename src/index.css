@@ -4,7 +4,7 @@
   --color-brand-pink: #d42d78;
   --color-brand-pink-soft: #f06aa4;
   --color-brand-pink-deep: #9b1f57;
-  --font-display: Syne, Inter, system-ui, sans-serif;
+  --font-display: 'Syne Variable', 'Inter Variable', system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
 }
 
@@ -14,13 +14,46 @@
   }
 
   body {
-    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans Variable', 'Inter Variable', system-ui, sans-serif;
     color: #f5f5f5;
     background-color: #000000;
   }
 }
 
 @layer components {
+  /* Политика конфиденциальности: HTML из markdown (scripts/gen-content.mjs).
+     Те же стили, что раньше задавались компонентами react-markdown. */
+  .privacy-md h2 {
+    @apply mb-4 mt-12 border-t border-white/8 pt-10 font-display text-xl font-bold text-white sm:text-2xl;
+  }
+  .privacy-md h2:first-child {
+    @apply mt-0 border-0 pt-0;
+  }
+  .privacy-md h3 {
+    @apply mb-3 mt-8 font-display text-lg font-bold text-white;
+  }
+  .privacy-md p {
+    @apply mb-4 text-base leading-relaxed text-gray-400;
+  }
+  .privacy-md strong {
+    @apply font-semibold text-gray-200;
+  }
+  .privacy-md ul {
+    @apply mb-4 list-disc space-y-2 pl-5 text-gray-400;
+  }
+  .privacy-md li {
+    @apply leading-relaxed;
+  }
+  .privacy-md hr {
+    @apply my-10 border-brand-pink/20;
+  }
+  .privacy-md a {
+    @apply text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink;
+  }
+  .privacy-md .coach-md-table-wrap {
+    @apply mb-6 overflow-x-auto;
+  }
+
   .pro-page {
     background:
       radial-gradient(ellipse 60% 40% at 50% -10%, rgba(212, 45, 120, 0.18), transparent 55%),
@@ -185,6 +218,20 @@
   animation: fadeIn 0.5s ease-out forwards;
 }
 
+/* Первый экран: анимация стартует с отрисовкой HTML, без ожидания JS. */
+@keyframes heroIn {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.hero-in {
+  animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-fade {
+  animation: fadeIn 0.7s ease-out both;
+}
+
 .accent-orb {
   position: absolute;
   border-radius: 50%;
@@ -253,7 +300,9 @@
   .marquee-track,
   .ticker-track,
   .accent-orb,
-  .accent-ring {
+  .accent-ring,
+  .hero-in,
+  .hero-fade {
     animation: none;
   }
 }

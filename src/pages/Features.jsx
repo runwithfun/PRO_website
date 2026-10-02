@@ -9,7 +9,6 @@ import TuyoStatement from '../components/TuyoStatement';
 import TuyoFaq from '../components/TuyoFaq';
 import FeatureSpotlight from '../components/FeatureSpotlight';
 
-const base = import.meta.env.BASE_URL;
 
 const TICKER = [
   'WIDGET DASHBOARD',
@@ -110,7 +109,7 @@ export default function Features() {
       <ChatShowcase />
       <TuyoSpecSheet title="Capability breakdown" specs={SPECS} />
       <FeatureSpotlight
-        heroImage={`${base}screenshots/iphone-17-pro-silver-mockup-set-2.png`}
+        heroImage="screenshots/iphone-17-pro-silver-mockup-set-2.png"
         heroAlt="P.R.O. on iPhone — dashboard, analytics, and stats screens"
         sections={SPOTLIGHTS}
       />

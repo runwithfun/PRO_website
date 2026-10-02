@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
+import Picture from './ui/Picture';
 
 const pillars = [
   {
@@ -109,11 +110,12 @@ export default function MetricPillars() {
         >
           <div className="relative flex justify-center lg:justify-end">
             <div className={`absolute -inset-4 rounded-full bg-gradient-to-br ${pillar.color} opacity-20 blur-3xl`} />
-            <img
+            <Picture
               key={pillar.image}
-              src={`${import.meta.env.BASE_URL}screenshots/${pillar.image}`}
+              src={`screenshots/${pillar.image}`}
               alt={pillar.headline}
-              className="relative z-10 max-h-[520px] w-auto rounded-[2rem] border border-white/10 shadow-2xl animate-fade-in"
+              sizes="240px"
+              className="relative z-10 h-auto max-h-[520px] w-auto rounded-[2rem] border border-white/10 shadow-2xl animate-fade-in"
             />
           </div>
 

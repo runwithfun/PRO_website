@@ -52,8 +52,8 @@ export default {
         }
       },
       fontFamily: {
-        'sans': ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
-        'display': ['Syne', 'Inter', 'system-ui', 'sans-serif'],
+        'sans': ['DM Sans Variable', 'Inter Variable', 'system-ui', 'sans-serif'],
+        'display': ['Syne Variable', 'Inter Variable', 'system-ui', 'sans-serif'],
         'serif': ['Instrument Serif', 'Georgia', 'serif'],
       },
       fontSize: {

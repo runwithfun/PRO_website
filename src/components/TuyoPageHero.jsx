@@ -1,12 +1,10 @@
-import React from 'react';
-import { useReveal } from '../hooks/useReveal';
 
+// Первый экран страницы: появление на CSS-анимации (hero-in/hero-fade), а не на
+// IntersectionObserver — текст виден сразу после отрисовки HTML и не ждёт
+// загрузки JS (раньше заголовок оставался opacity-0 до гидрации и тормозил LCP).
 export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, description, children }) {
-  const { ref, visible } = useReveal(0.08);
-
   return (
     <section
-      ref={ref}
       className="relative flex min-h-[70vh] items-center overflow-hidden border-b border-white/5 bg-black pt-28 pb-16 sm:min-h-[75vh] sm:pb-24"
     >
       <div className="accent-orb accent-orb-pink -right-24 top-20 h-80 w-80 opacity-40" aria-hidden />
@@ -15,9 +13,7 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {eyebrow && (
           <p
-            className={`mb-6 text-xs font-bold uppercase tracking-[0.22em] text-brand-pink transition duration-700 ${
-              visible ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="hero-fade mb-6 text-xs font-bold uppercase tracking-[0.22em] text-brand-pink"
           >
             {eyebrow}
           </p>
@@ -26,12 +22,12 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
           {lines.map((line, i) => (
             <span
               key={line}
-              className={`block font-display font-extrabold leading-[0.92] tracking-tighter transition duration-700 ${
+              className={`hero-in block font-display font-extrabold leading-[0.92] tracking-tighter ${
                 i === accentIndex
                   ? 'text-[clamp(2.75rem,10vw,6.5rem)] text-brand-pink'
                   : 'text-[clamp(2.25rem,8vw,5rem)] text-white'
-              } ${visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-              style={{ transitionDelay: `${i * 80}ms` }}
+              }`}
+              style={{ animationDelay: `${i * 80}ms` }}
             >
               {line}
             </span>
@@ -39,18 +35,16 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
         </h1>
         {description && (
           <p
-            className={`mt-8 max-w-2xl text-lg leading-relaxed text-gray-500 transition duration-700 sm:text-xl ${
-              visible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transitionDelay: '280ms' }}
+            className="hero-fade mt-8 max-w-2xl text-lg leading-relaxed text-gray-500 sm:text-xl"
+            style={{ animationDelay: '280ms' }}
           >
             {description}
           </p>
         )}
         {children && (
           <div
-            className={`mt-10 transition duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}
-            style={{ transitionDelay: '360ms' }}
+            className="hero-fade mt-10"
+            style={{ animationDelay: '360ms' }}
           >
             {children}
           </div>

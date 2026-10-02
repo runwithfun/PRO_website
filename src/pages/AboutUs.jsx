@@ -6,6 +6,7 @@ import TuyoTriple from '../components/TuyoTriple';
 import TuyoSpecSheet from '../components/TuyoSpecSheet';
 import TuyoStatement from '../components/TuyoStatement';
 import { useReveal } from '../hooks/useReveal';
+import Picture from '../components/ui/Picture';
 
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -49,14 +50,21 @@ function VideoShowcase() {
           className={`relative transition duration-700 delay-100 ${visible ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-0'}`}
         >
           <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-brand-pink/30 via-transparent to-brand-pink/10 blur-xl" aria-hidden />
+          {/* Видео (MP4/H.264, 160 КБ) начинает грузиться, только когда блок
+              появился на экране; до этого виден постер того же размера. */}
           <video
-            className="relative w-full rounded-3xl border border-white/10 shadow-2xl"
-            autoPlay
+            key={visible ? 'play' : 'idle'}
+            className="relative h-auto w-full rounded-3xl border border-white/10 shadow-2xl"
+            width={1104}
+            height={684}
+            poster="/app_gallery-poster.webp"
+            preload={visible ? 'auto' : 'none'}
+            autoPlay={visible}
             loop
             muted
             playsInline
           >
-            <source src={`${import.meta.env.BASE_URL}app_gallery.mov`} type="video/quicktime" />
+            <source src="/app_gallery.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -89,13 +97,11 @@ function TrainingPlanBlock() {
           </a>
         </div>
         <div className={`transition duration-700 delay-150 ${visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <img
-            src={`${import.meta.env.BASE_URL}training-plan-feature.png`}
+          <Picture
+            src="training-plan-feature.png"
             alt="Custom training plan in P.R.O."
-            className="w-full rounded-3xl border border-white/10 shadow-2xl shadow-brand-pink/10"
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
+            sizes="(min-width: 1024px) 480px, 92vw"
+            className="h-auto w-full rounded-3xl border border-white/10 shadow-2xl shadow-brand-pink/10"
           />
         </div>
       </div>

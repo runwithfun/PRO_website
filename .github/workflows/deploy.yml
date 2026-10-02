@@ -36,6 +36,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Пережатые картинки (AVIF/WebP) считаются ~1 мин — кэшируем по исходникам.
+      - name: Cache optimized images
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/img
+            src/generated
+          key: images-${{ hashFiles('media/**', 'scripts/optimize-images.mjs') }}
+
       # Текущий sitemap с сайта — чтобы после деплоя отправить в IndexNow
       # только изменившиеся страницы.
       - name: Previous sitemap

@@ -7,18 +7,18 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 const TRY_TIPS = [
   {
     step: '01',
-    title: 'Tap a skill card',
-    body: 'Start with Analyze, Recovery, or Plan — each opens a coach answer with tables and charts.',
+    title: 'Tap a starter card',
+    body: 'Analyze, Plan, Recovery or Training — watch the coach read your data and answer with tables and charts.',
   },
   {
     step: '02',
-    title: 'Use the prompt chips',
-    body: 'Switch topics from the bar at the bottom. Every chip loads a new structured reply.',
+    title: 'Switch the model',
+    body: 'Tap the MODEL pill to pick Auto, GPT, Gemini, Claude, DeepSeek or Super Composer — just like in the app.',
   },
   {
     step: '03',
-    title: 'Tap table rows',
-    body: 'In recovery and analyze views, tap any row to inspect that signal and see the focus update.',
+    title: 'Follow up',
+    body: 'Use the chips under the input or the + button for ready-made questions about recovery, nutrition and plans.',
   },
 ];
 
@@ -107,7 +107,7 @@ export default function ChatShowcase() {
             <TipColumn tips={TRY_TIPS} align="left" visible={visible} baseDelay={150} />
           </div>
 
-          <div className="w-[min(100%,340px)] shrink-0">
+          <div className="w-[min(100%,360px)] shrink-0">
             <AppChatDemo />
           </div>
 

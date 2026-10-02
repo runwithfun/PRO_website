@@ -7,23 +7,20 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Marked } from 'marked';
 import { privacyPolicyMarkdown } from '../src/content/privacyPolicy.js';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'src', 'generated', 'privacy.js');
 
 const marked = new Marked({ gfm: true });
-marked.use({
-  renderer: {
-    // Широкие таблицы прокручиваются внутри обёртки, а не ломают страницу.
-    table(token) {
-      return `<div class="coach-md-table-wrap">${this.constructor.prototype.table.call(this, token)}</div>`;
-    },
-  },
-});
 
-const html = marked.parse(privacyPolicyMarkdown);
+// Широкие таблицы прокручиваются внутри обёртки, а не ломают страницу.
+const html = marked
+  .parse(privacyPolicyMarkdown)
+  .replace(/<table>/g, '<div class="coach-md-table-wrap"><table>')
+  .replace(/<\/table>/g, '</table></div>');
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, `// Сгенерировано scripts/gen-content.mjs — не править руками.\nexport default ${JSON.stringify(html)};\n`);
 console.log(`privacy: ${(html.length / 1024).toFixed(0)} КБ HTML`);

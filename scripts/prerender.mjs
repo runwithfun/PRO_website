@@ -12,10 +12,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
@@ -42,6 +43,31 @@ template = template.replace(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.
 });
 if (!template.includes('<style>')) throw new Error('prerender: не нашёл <link rel="stylesheet"> для встраивания CSS');
 
+// Факты о приложении берём из App Store при сборке, чтобы разметка не
+// расходилась со стором (версия, даты, продавец, скриншоты). Без сети —
+// разметка без этих полей.
+async function appStoreFacts() {
+  try {
+    const res = await fetch('https://itunes.apple.com/lookup?id=6749865568&country=us', {
+      signal: AbortSignal.timeout(8000),
+    });
+    const app = (await res.json()).results?.[0];
+    if (!app) return {};
+    return {
+      softwareVersion: app.version,
+      datePublished: app.releaseDate?.slice(0, 10),
+      dateModified: app.currentVersionReleaseDate?.slice(0, 10),
+      operatingSystem: app.minimumOsVersion ? `iOS ${app.minimumOsVersion} or later` : undefined,
+      screenshot: app.screenshotUrls?.slice(0, 4),
+      seller: app.sellerName,
+    };
+  } catch {
+    return {};
+  }
+}
+const store = await appStoreFacts();
+console.log(`App Store: версия ${store.softwareVersion ?? '—'}, продавец ${store.seller ?? '—'}`);
+
 function jsonLd(route) {
   const graph = [
     {
@@ -51,6 +77,7 @@ function jsonLd(route) {
       alternateName: ['PRO app', 'P.R.O. — Performance · Records · Optimisation'],
       url: `${SITE}/`,
       logo: `${SITE}/favicon.png`,
+      ...(store.seller && { legalName: store.seller }),
       sameAs: [APP_STORE],
     },
     {
@@ -69,7 +96,11 @@ function jsonLd(route) {
       description:
         'iOS sport statistics app with an AI coach: syncs with Apple Health and Apple Watch, builds widget dashboards, analyses training history across 50+ sports and answers training questions with your real data. Connects to ChatGPT and Claude via MCP.',
       applicationCategory: 'HealthApplication',
-      operatingSystem: 'iOS 18.5 or later',
+      operatingSystem: store.operatingSystem ?? 'iOS 18.5 or later',
+      ...(store.softwareVersion && { softwareVersion: store.softwareVersion }),
+      ...(store.datePublished && { datePublished: store.datePublished }),
+      ...(store.dateModified && { dateModified: store.dateModified }),
+      ...(store.screenshot?.length && { screenshot: store.screenshot }),
       url: `${SITE}/`,
       installUrl: APP_STORE,
       downloadUrl: APP_STORE,
@@ -121,21 +152,69 @@ for (const route of ROUTES) {
 }
 
 // sitemap.xml — только из реальных маршрутов, чтобы не было адресов с 404.
-// lastmod — время последнего коммита, который трогал исходники страницы
-// (дату сборки Google считает недостоверной). В CI нужен fetch-depth: 0.
-function lastmod(route) {
-  const paths = route.sources ?? ['src', 'index.html'];
+//
+// lastmod меняется, только когда реально изменился текст страницы: сравниваем
+// видимый текст (+ title/description) новой сборки с тем, что сейчас на сайте.
+// Совпал — оставляем прежний lastmod из живого sitemap, нет — ставим текущее
+// время. Если сайт недоступен (локальная сборка без сети) — дата последнего
+// коммита по исходникам страницы. Дату сборки Google считает недостоверной.
+const textHash = (html) =>
+  crypto
+    .createHash('sha256')
+    .update(
+      html
+        .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, ' ')
+        .replace(/<meta name="description" content="([^"]*)"[^>]*>/g, ' $1 ')
+        .replace(/<[^>]+>/g, ' ')
+        // Cloudflare на живом сайте подменяет e-mail на «[email protected]» — не считаем это изменением.
+        .replace(/\[email&#160;protected\]|\[email protected\]|[\w.+-]+@[\w-]+\.[\w.]+/g, 'EMAIL')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    )
+    .digest('hex');
+
+async function fetchText(url) {
   try {
-    const d = execFileSync('git', ['log', '-1', '--format=%cI', '--', ...paths], { cwd: ROOT, encoding: 'utf8' }).trim();
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    return res.ok ? await res.text() : null;
+  } catch {
+    return null;
+  }
+}
+
+function gitDate(route) {
+  try {
+    const d = execFileSync('git', ['log', '-1', '--format=%cI', '--', ...(route.sources ?? ['src', 'index.html'])], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    }).trim();
     if (d) return d;
   } catch {}
   return new Date().toISOString();
 }
+
+const liveSitemap = await fetchText(`${SITE}/sitemap.xml`);
+const liveLastmod = new Map(
+  [...(liveSitemap ?? '').matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)].map((m) => [m[1], m[2]]),
+);
+const now = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00');
+const entries = [];
+for (const route of ROUTES) {
+  const url = `${SITE}${route.path}`;
+  const live = await fetchText(url);
+  let mod;
+  if (live && liveLastmod.has(url)) {
+    const fresh = fs.readFileSync(path.join(DIST, route.file), 'utf8');
+    mod = textHash(live) === textHash(fresh) ? liveLastmod.get(url) : now;
+  } else {
+    mod = gitDate(route);
+  }
+  entries.push(`  <url><loc>${url}</loc><lastmod>${mod}</lastmod></url>`);
+  console.log(`sitemap ${route.path}: ${mod}`);
+}
 fs.writeFileSync(
   path.join(DIST, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${ROUTES.map(
-    (r) => `  <url><loc>${SITE}${r.path}</loc><lastmod>${lastmod(r)}</lastmod></url>`,
-  ).join('\n')}\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`,
 );
 
 fs.rmSync(path.join(ROOT, 'dist-ssr'), { recursive: true, force: true });

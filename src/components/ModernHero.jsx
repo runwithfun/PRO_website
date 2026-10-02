@@ -28,6 +28,7 @@ export default function ModernHero() {
 
       <div className="relative z-10 mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <pre
+          aria-hidden="true"
           className="mb-8 select-none font-mono text-2xl leading-none text-pink-600 opacity-80 sm:text-3xl md:text-4xl lg:text-5xl"
           style={{ fontFamily: 'monospace' }}
         >
@@ -45,8 +46,8 @@ export default function ModernHero() {
           className="mx-auto mb-10 mt-6 max-w-3xl text-xl leading-relaxed text-pink-800 sm:text-2xl animate-slide-up"
           style={{ animationDelay: '0.1s' }}
         >
-          Training history analysis, widget-rich dashboards, and an AI coach with tables,
-          diagrams, and answers from your real metrics.
+          P.R.O. is a free iOS AI coach that turns your Apple Health and Apple Watch data into
+          training history analysis, widget-rich dashboards and answers from your real metrics.
         </p>
 
         <div

@@ -11,7 +11,6 @@ export default function PrivacyPolicy() {
           <h1 className="mt-4 font-display text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-sm text-gray-500">P.R.O. App — Version 2.0</p>
           <p className="mt-1 text-sm text-gray-600">Last updated: June 2026</p>
           <p className="mt-6 text-base leading-relaxed text-gray-500">
             How HAOTONG TECHNOLOGY CO. LIMITED processes your data in the P.R.O. app and on this website.

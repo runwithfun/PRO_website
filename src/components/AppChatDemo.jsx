@@ -34,7 +34,7 @@ function ModelPill({ model, teaser, onClick }) {
         type="button"
         className={`cd-pill ${teaser.active ? 'is-active' : ''} ${glass.lensUrl ? 'has-lens' : ''} ${glass.specUrl ? 'has-spec' : ''}`}
         onClick={onClick}
-        aria-label={`Model: ${model.label}. Change model`}
+        aria-label={`Model ${model.label}, change model`}
         aria-haspopup="dialog"
       >
         {glass.specUrl && (
@@ -154,6 +154,12 @@ export default function AppChatDemo({ className = '' }) {
   const [modelId, setModelId] = useState('auto');
   const [sheet, setSheet] = useState(null); // 'model' | 'skills' | null
   const [drawer, setDrawer] = useState(false);
+  // Листы и панель истории монтируем только в браузере: в пререндеренный HTML
+  // они не попадают (для ботов это ~400 слов интерфейсного шума — список
+  // моделей, цены, история чатов), а CSS-анимация открытия сохраняется,
+  // потому что к моменту первого нажатия они уже в DOM.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [convId, setConvId] = useState(null);
   const [input, setInput] = useState('');
   const [touch, setTouch] = useState(false);
@@ -406,28 +412,34 @@ export default function AppChatDemo({ className = '' }) {
             <div className={`cd-drawer-scrim ${drawer ? 'is-open' : ''}`} onClick={() => setDrawer(false)} aria-hidden="true" />
           </div>
 
-          <HistoryDrawer
-            open={drawer}
-            currentId={convId}
-            onSelect={openConversation}
-            onNewChat={newChat}
-            onClose={() => setDrawer(false)}
-          />
+          {mounted && (
+            <HistoryDrawer
+              open={drawer}
+              currentId={convId}
+              onSelect={openConversation}
+              onNewChat={newChat}
+              onClose={() => setDrawer(false)}
+            />
+          )}
         </div>
 
-        <Sheet open={sheet === 'model'} label="Choose a model" onClose={() => setSheet(null)}>
-          <ModelSheetContent
-            open={sheet === 'model'}
-            selectedId={modelId}
-            onPick={(m) => {
-              setModelId(m.id);
-              setSheet(null);
-            }}
-          />
-        </Sheet>
-        <Sheet open={sheet === 'skills'} detent="medium" label="Skills" onClose={() => setSheet(null)}>
-          <SkillsSheetContent onPick={pickScript} />
-        </Sheet>
+        {mounted && (
+          <>
+            <Sheet open={sheet === 'model'} label="Choose a model" onClose={() => setSheet(null)}>
+              <ModelSheetContent
+                open={sheet === 'model'}
+                selectedId={modelId}
+                onPick={(m) => {
+                  setModelId(m.id);
+                  setSheet(null);
+                }}
+              />
+            </Sheet>
+            <Sheet open={sheet === 'skills'} detent="medium" label="Skills" onClose={() => setSheet(null)}>
+              <SkillsSheetContent onPick={pickScript} />
+            </Sheet>
+          </>
+        )}
         <StatusBar />
         <span className="cd-home" aria-hidden="true" />
         </div>

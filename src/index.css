@@ -54,6 +54,7 @@
     @apply my-10 border-brand-pink/20;
   }
   .privacy-md a {
+    overflow-wrap: anywhere;
     @apply text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink;
   }
   .privacy-md .coach-md-table-wrap {

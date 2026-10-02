@@ -9,9 +9,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const HOST = 'proapp.uk';
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'public');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'public');
 const ENDPOINTS = ['https://yandex.com/indexnow', 'https://api.indexnow.org/indexnow'];
 
 const [prevFile, nextFile] = process.argv.slice(2);

@@ -9,9 +9,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'media');
 const OUT = path.join(ROOT, 'public', 'img');
 const MANIFEST = path.join(ROOT, 'src', 'generated', 'images.json');
@@ -62,8 +63,8 @@ for (const file of walk(SRC)) {
   }
 
   manifest[key] = { base: `/img/${stem}`, width, height, widths, placeholder };
-  console.log(`${key}: ${width}×${height} → ${widths.join(', ')}`);
 }
+console.log(`images: ${Object.keys(manifest).length} картинок в public/img`);
 
 fs.mkdirSync(path.dirname(MANIFEST), { recursive: true });
 fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');

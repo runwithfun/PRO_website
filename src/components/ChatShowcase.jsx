@@ -92,7 +92,7 @@ export default function ChatShowcase() {
           className={`mb-12 text-center transition duration-700 ${visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-pink">Coach Assistant</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-display text-[1.625rem] font-extrabold text-white sm:text-4xl lg:text-5xl">
             Comprehensive answers,
             <span className="block text-gray-500">built from your data</span>
           </h2>

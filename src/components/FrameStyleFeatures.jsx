@@ -57,8 +57,8 @@ const FrameStyleFeatures = () => {
     {
       id: 'ai',
       title: 'AI-Powered Features',
-      subtitle: 'Comprehensive Coaching · v2.0 in development',
-      description: 'In P.R.O. 2.0, the Coach Assistant delivers report-style answers — comparison tables, inline diagrams, and personalised insights built from your workouts, heart rate, sleep, and goals.',
+      subtitle: 'AI coach · tables, charts, plans',
+      description: 'The AI coach delivers report-style answers — comparison tables, charts and personalised insights built from your workouts, heart rate, sleep and goals. Pick the AI model you prefer, and connect your data to ChatGPT or Claude via MCP.',
       services: [
         'Rich chat with tables & charts',
         'Personalised metric breakdowns',
@@ -228,7 +228,7 @@ const FrameStyleFeatures = () => {
         <div className="text-center">
           <div className="pro-surface mx-auto max-w-3xl rounded-3xl p-10">
             <h2 className="font-display text-2xl font-bold text-white">Ready to experience P.R.O.?</h2>
-            <p className="mt-3 text-gray-500">Download now — v2.0 coach upgrade in development.</p>
+            <p className="mt-3 text-gray-500">Free on the App Store for iPhone and iPad.</p>
             <a
               href="https://apps.apple.com/us/app/p-r-o/id6749865568"
               target="_blank"

@@ -12,7 +12,7 @@ export default function VersionBadge({ size = 'md', className = '' }) {
       className={`inline-flex items-center gap-2 rounded-full border border-brand-pink/50 bg-brand-pink/10 font-bold uppercase tracking-[0.12em] text-brand-pink-soft ${sizes[size]} ${className}`}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-brand-pink" />
-      v2.0 in development
+      Live on the App Store
     </span>
   );
 }

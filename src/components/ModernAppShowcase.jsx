@@ -10,13 +10,13 @@ const screens = [
   {
     src: 'IMG_0874-964f27b0-aae7-47de-950d-451c3e85e5e8.png',
     label: 'AI coach home',
-    tag: 'v2.0',
+    tag: 'AI coach',
     featured: true,
   },
   {
     src: 'IMG_0875-c056c5ee-fd98-4179-846a-b5157ee3729f.png',
     label: 'Structured chat',
-    tag: 'v2.0',
+    tag: 'AI coach',
   },
 ];
 
@@ -44,7 +44,7 @@ export default function ModernAppShowcase() {
                 />
                 <span
                   className={`absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold ${
-                    s.tag === 'v2.0'
+                    s.tag === 'AI coach'
                       ? 'border border-brand-pink/50 bg-black text-brand-pink-soft'
                       : 'bg-brand-pink text-white'
                   }`}
@@ -58,7 +58,7 @@ export default function ModernAppShowcase() {
         </div>
 
         <div className="pro-surface mt-16 rounded-3xl p-10 text-center">
-          <h3 className="font-display text-xl font-bold text-white">65+ features · v2.0 expanding the stack</h3>
+          <h3 className="font-display text-xl font-bold text-white">65+ features and growing</h3>
           <Link
             to="/features"
             className="mt-6 inline-block rounded-full border border-brand-pink/50 px-8 py-3 font-semibold text-white pro-chip"

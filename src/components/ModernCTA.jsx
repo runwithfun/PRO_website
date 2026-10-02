@@ -12,7 +12,7 @@ export default function ModernCTA() {
           Train smarter with P.R.O.
         </h2>
         <p className="mt-4 text-gray-400">
-          Download the live app today. Version 2.0 — redesigned coach, richer visualisations — is in active development.
+          Free on the App Store: an AI coach that knows your training, adaptive training plans, sleep score and a ChatGPT &amp; Claude connector — all from your Apple Health data.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a

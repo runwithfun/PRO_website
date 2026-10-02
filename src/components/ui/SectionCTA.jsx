@@ -45,7 +45,7 @@ export default function SectionCTA({
             href="mailto:P.R.O.devel001@gmail.com"
             className="inline-flex items-center justify-center rounded-full border-2 border-white/40 px-8 py-4 font-semibold text-white transition hover:border-white hover:bg-white/10"
           >
-            Get v2.0 updates
+            Contact the team
           </a>
         </div>
       </div>

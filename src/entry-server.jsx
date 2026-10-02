@@ -1,17 +1,23 @@
 import { StrictMode } from 'react';
-import { renderToString } from 'react-dom/server';
+// react-dom/static в Node — CommonJS: именованный импорт не работает.
+import ReactDOMStatic from 'react-dom/static';
 import { StaticRouter } from 'react-router';
 import { AppShell } from './App.jsx';
 
 export { faq } from './pages/FAQ.jsx';
+export { ROUTES } from './seo.js';
 
-export function render(url) {
-  return renderToString(
+// prerenderToNodeStream (а не renderToString) дожидается lazy-компонентов внутри
+// Suspense — в HTML попадает полная разметка, включая демо-чат.
+export async function render(url) {
+  const { prelude } = await ReactDOMStatic.prerenderToNodeStream(
     <StrictMode>
       <StaticRouter location={url}>
         <AppShell />
       </StaticRouter>
     </StrictMode>,
   );
+  let html = '';
+  for await (const chunk of prelude) html += chunk;
+  return html;
 }
-export { ROUTES } from './seo.js';

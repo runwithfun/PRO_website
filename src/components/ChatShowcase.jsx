@@ -1,6 +1,14 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { useReveal } from '../hooks/useReveal';
-import AppChatDemo from './AppChatDemo';
+// Стили демо остаются в основном CSS (он встроен в страницу), иначе блок,
+// уже отрисованный пререндером, мигал бы без стилей до загрузки чанка.
+import './chat-demo/chat-demo.css';
+
+// Код демо-чата (~45 КБ) — отдельным чанком: страницы без демо его не
+// качают, а на главной и /features он грузится параллельно, не мешая первой
+// отрисовке. HTML демо приходит из пререндера (react-dom/static дожидается
+// lazy), React гидрирует блок, когда чанк загрузится.
+const AppChatDemo = lazy(() => import('./AppChatDemo'));
 
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -108,7 +116,9 @@ export default function ChatShowcase() {
           </div>
 
           <div className="w-[min(100%,360px)] shrink-0">
-            <AppChatDemo />
+            <Suspense fallback={<div style={{ aspectRatio: '1180 / 2274' }} aria-hidden="true" />}>
+              <AppChatDemo />
+            </Suspense>
           </div>
 
           <div className="hidden w-full max-w-[280px] lg:block lg:flex-1 lg:pt-8">

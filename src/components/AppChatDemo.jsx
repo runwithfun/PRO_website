@@ -6,7 +6,6 @@ import { useLiquidGlass } from './chat-demo/liquidGlass';
 import { AnswerBlocks, AnswerText, LiveStatus, ToolTrace } from './chat-demo/Answer';
 import { HistoryDrawer, ModelGlyph, ModelSheetContent, Sheet, SkillsSheetContent } from './chat-demo/Sheets';
 import { CHIP_TO_SCRIPT, MODELS, SCRIPTS, TICKER_MODELS, WELCOME_CARDS } from './chat-demo/data';
-import './chat-demo/chat-demo.css';
 
 /*
  * Интерактивная копия экрана чата P.R.O. (ChatView, тёмная тема) внутри iPhone.

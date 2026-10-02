@@ -145,7 +145,7 @@ function head(route) {
 for (const route of ROUTES) {
   const html = template
     .replace(/<title>[\s\S]*?<\/title>\s*<meta name="description"[^>]*>/, head(route))
-    .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${await render(route.path)}</div>`);
   if (!html.includes('rel="canonical"')) throw new Error('index.html: не нашёл <title> + description');
   fs.writeFileSync(path.join(DIST, route.file), html);
   console.log(`${route.path} → ${route.file} (${(html.length / 1024).toFixed(0)} КБ)`);

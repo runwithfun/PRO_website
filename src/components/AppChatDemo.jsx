@@ -26,7 +26,7 @@ function ModelPill({ model, teaser, onClick }) {
     <div className="cd-pill-slot">
       <button
         type="button"
-        className={`cd-pill ${teaser.active ? 'is-active' : ''}`}
+        className={`cd-pill cd-glass-edge ${teaser.active ? 'is-active' : ''}`}
         onClick={onClick}
         aria-label={`Model: ${model.label}. Change model`}
         aria-haspopup="dialog"
@@ -296,7 +296,7 @@ export default function AppChatDemo({ className = '' }) {
     <div className={className} ref={rootRef}>
       <PhoneMockup>
         <div className="cd-screen">
-        <div className={`cd-root ${sheet === 'model' ? 'is-receded' : ''}`}>
+        <div className={`cd-root ${sheet === 'model' ? 'is-under-glass' : ''}`}>
           <div className={`cd-app ${drawer ? 'is-shifted' : ''}`}>
             <header className="cd-header">
               <div className="cd-header-side">
@@ -403,7 +403,7 @@ export default function AppChatDemo({ className = '' }) {
           />
         </div>
 
-        <Sheet open={sheet === 'model'} label="Choose a model" onClose={() => setSheet(null)}>
+        <Sheet open={sheet === 'model'} detent="glass" glass label="Choose a model" onClose={() => setSheet(null)}>
           <ModelSheetContent
             open={sheet === 'model'}
             selectedId={modelId}

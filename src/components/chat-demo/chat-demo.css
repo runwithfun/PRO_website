@@ -40,6 +40,17 @@
   --sys-teal: #40c8e0;
   --sys-gray: #8e8e93;
   --spring: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Liquid Glass: заливка, «блеск» сверху, линза у кромок, размытие фона */
+  --glass-fill: rgba(44, 44, 48, 0.36);
+  --glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 38%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.05) 100%);
+  --glass-blur: blur(calc(var(--u) * 22)) saturate(1.9) brightness(1.06);
+  --glass-lens:
+    inset 0 calc(var(--u) * 1) 0 rgba(255, 255, 255, 0.24),
+    inset 0 calc(var(--u) * -0.5) 0 rgba(255, 255, 255, 0.08),
+    inset 0 calc(var(--u) * 14) calc(var(--u) * 18) calc(var(--u) * -14) rgba(255, 255, 255, 0.12),
+    inset 0 calc(var(--u) * -10) calc(var(--u) * 16) calc(var(--u) * -12) rgba(255, 255, 255, 0.07),
+    inset calc(var(--u) * 10) 0 calc(var(--u) * 16) calc(var(--u) * -12) rgba(255, 255, 255, 0.05),
+    inset calc(var(--u) * -10) 0 calc(var(--u) * 16) calc(var(--u) * -12) rgba(255, 255, 255, 0.05);
 }
 
 :where(.cd-screen) *,
@@ -258,16 +269,11 @@
   padding: calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 7) calc(var(--u) * 6);
   border-radius: calc(var(--u) * 22);
   white-space: nowrap;
-  /* Liquid Glass (iOS 26) на чёрном */
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07));
-  box-shadow:
-    inset 0 calc(var(--u) * 0.6) 0 rgba(255, 255, 255, 0.22),
-    inset 0 calc(var(--u) * -0.5) 0 rgba(255, 255, 255, 0.06),
-    0 0 0 calc(var(--u) * 0.6) rgba(255, 255, 255, 0.1),
-    0 calc(var(--u) * 5) calc(var(--u) * 16) rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(calc(var(--u) * 14)) saturate(1.6);
-  backdrop-filter: blur(calc(var(--u) * 14)) saturate(1.6);
+  /* Liquid Glass (iOS 26) — тот же язык, что и у листа моделей (.cd-glass) */
+  background: var(--glass-sheen), var(--glass-fill);
+  box-shadow: var(--glass-lens), 0 calc(var(--u) * 5) calc(var(--u) * 16) rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   transition: padding 0.5s cubic-bezier(0.34, 1.3, 0.5, 1), transform 0.2s;
 }
 .cd-pill:active {
@@ -1432,6 +1438,178 @@
 .cd-qchip .cd-icon {
   width: calc(var(--u) * 12);
   height: calc(var(--u) * 12);
+}
+
+
+/* ── Liquid Glass (iOS 26) ───────────────────────────────────────────────────
+   Лист выбора модели — стеклянная поверхность поверх переписки: полупрозрачная
+   заливка, сильное размытие и насыщение фона, градиентная светлая кромка
+   (specular), внутреннее свечение у краёв (линза) и мягкая тень. Пилюля модели
+   использует те же токены. В приложении glassEffect пока только на пилюле —
+   лист сознательно сделан на шаг дальше, в языке системных поверхностей iOS 26. */
+
+/* Градиентная кромка-блик: светлее сверху-слева и снизу-справа, как у стекла. */
+.cd-glass::before,
+.cd-glass-edge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  padding: calc(var(--u) * 1);
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(255, 255, 255, 0.16) 18%,
+    rgba(255, 255, 255, 0.04) 42%,
+    rgba(255, 255, 255, 0.03) 62%,
+    rgba(255, 255, 255, 0.14) 86%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.cd-glass-edge::before {
+  padding: calc(var(--u) * 0.8);
+}
+
+.cd-scrim.cd-scrim-glass {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+/* Лист: «парит» над контентом, видно шапку и пилюлю. */
+.cd-sheet.cd-sheet-glass {
+  top: calc(var(--u) * 128);
+  left: calc(var(--u) * 8);
+  right: calc(var(--u) * 8);
+  bottom: calc(var(--u) * 8);
+  border-radius: calc(var(--u) * 44);
+}
+.cd-sheet.cd-glass {
+  --secondary: rgba(235, 235, 245, 0.72);
+  --tertiary: rgba(235, 235, 245, 0.42);
+  --sep: rgba(255, 255, 255, 0.16);
+  background: var(--glass-sheen), var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-lens), 0 calc(var(--u) * 18) calc(var(--u) * 50) rgba(0, 0, 0, 0.55), 0 calc(var(--u) * 2) calc(var(--u) * 8) rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transform: translateY(calc(100% + var(--u) * 24)) scale(0.94);
+  transform-origin: 50% 0;
+  /* Без opacity: прозрачность гасила бы и размытие фона — стекло «рассыпалось» при закрытии. */
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.7, 1);
+}
+/* Появление — пружина с лёгким перелётом, как у системных листов. */
+.cd-sheet.cd-glass.is-open {
+  transform: none;
+  transition: transform 0.62s cubic-bezier(0.2, 1.18, 0.32, 1);
+}
+.cd-sheet.cd-glass.is-dragging {
+  transition: none;
+}
+/* Линзовый блик у верхнего края: светлое пятно, которое «преломляет» фон. */
+.cd-sheet.cd-glass::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  left: 8%;
+  right: 8%;
+  top: calc(var(--u) * -30);
+  height: calc(var(--u) * 70);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+.cd-glass .cd-sheet-grab span {
+  background: rgba(255, 255, 255, 0.36);
+}
+.cd-glass .cd-msheet-head {
+  padding-top: calc(var(--u) * 24);
+}
+.cd-glass .cd-msheet-title,
+.cd-glass .cd-mrow-name {
+  text-shadow: 0 calc(var(--u) * 1) calc(var(--u) * 2) rgba(0, 0, 0, 0.25);
+}
+/* Прокрутка уходит под кромку мягко, а не обрезом. */
+.cd-glass .cd-sheet-scroll {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 calc(var(--u) * 14), #000 calc(100% - var(--u) * 24), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 calc(var(--u) * 14), #000 calc(100% - var(--u) * 24), transparent 100%);
+}
+.cd-glass .cd-msheet-list {
+  padding-bottom: calc(var(--u) * 28);
+}
+
+/* Карточки внутри — стеклянные слои: полупрозрачная заливка + собственная кромка. */
+.cd-glass .cd-mrow,
+.cd-glass .cd-byok {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    inset 0 0 0 calc(var(--u) * 0.8) rgba(255, 255, 255, 0.1),
+    inset 0 calc(var(--u) * 1) 0 rgba(255, 255, 255, 0.12);
+}
+.cd-glass .cd-mrow:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+}
+.cd-glass .cd-mrow.is-selected {
+  background: linear-gradient(180deg, rgba(212, 45, 120, 0.3), rgba(212, 45, 120, 0.16));
+  box-shadow:
+    inset 0 0 0 calc(var(--u) * 1.5) var(--accent),
+    inset 0 calc(var(--u) * 1) 0 rgba(255, 255, 255, 0.18),
+    0 calc(var(--u) * 4) calc(var(--u) * 18) rgba(212, 45, 120, 0.25);
+}
+.cd-glass .cd-mrow.is-fusion {
+  background: rgba(26, 7, 38, 0.55);
+  box-shadow:
+    inset 0 0 0 calc(var(--u) * 1) rgba(212, 45, 120, 0.5),
+    inset 0 calc(var(--u) * 1) 0 rgba(255, 255, 255, 0.16);
+}
+.cd-glass .cd-mrow.is-fusion.is-selected {
+  box-shadow: inset 0 0 0 calc(var(--u) * 1.5) var(--accent), inset 0 calc(var(--u) * 1) 0 rgba(255, 255, 255, 0.18);
+}
+.cd-glass .cd-strength {
+  background: rgba(255, 255, 255, 0.09);
+}
+.cd-glass .cd-radio {
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.3);
+}
+.cd-glass .cd-glyph.cd-brand-openai,
+.cd-glass .cd-glyph.cd-brand-qwen,
+.cd-glass .cd-glyph.cd-brand-moonshot {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Нет backdrop-filter — непрозрачная тёмная панель, чтобы текст читался. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cd-screen {
+    --glass-fill: rgba(30, 30, 32, 0.97);
+  }
+}
+/* Пользователь просит меньше прозрачности — убираем стекло совсем. */
+@media (prefers-reduced-transparency: reduce) {
+  .cd-screen {
+    --glass-fill: #1c1c1e;
+    --glass-sheen: linear-gradient(transparent, transparent);
+    --glass-blur: none;
+  }
+  .cd-pill {
+    --glass-fill: #2c2c2e;
+  }
+  .cd-glass .cd-mrow,
+  .cd-glass .cd-byok {
+    background: #2c2c2e;
+  }
+  .cd-glass .cd-mrow.is-selected {
+    background: #3a1a2a;
+  }
+  .cd-glass .cd-mrow.is-fusion {
+    background: #1a0726;
+  }
+  .cd-sheet.cd-glass::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

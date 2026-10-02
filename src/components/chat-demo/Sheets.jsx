@@ -13,9 +13,10 @@ import {
 } from './data';
 
 /* ── Лист iOS (.sheet + presentationDragIndicator) ────────────────────────────
-   Выезжает снизу, закрывается тапом по затемнению, Esc или свайпом вниз. */
+   Выезжает снизу, закрывается тапом по затемнению, Esc или свайпом вниз.
+   glass — стеклянная поверхность в духе Liquid Glass iOS 26 (лист моделей). */
 
-export function Sheet({ open, detent = 'large', label, onClose, children }) {
+export function Sheet({ open, detent = 'large', glass = false, label, onClose, children }) {
   const [drag, setDrag] = useState(0);
   const start = useRef(null);
   const panel = useRef(null);
@@ -59,10 +60,10 @@ export function Sheet({ open, detent = 'large', label, onClose, children }) {
 
   return (
     <>
-      <div className={`cd-scrim ${open ? 'is-open' : ''}`} onClick={onClose} aria-hidden="true" />
+      <div className={`cd-scrim ${glass ? 'cd-scrim-glass' : ''} ${open ? 'is-open' : ''}`} onClick={onClose} aria-hidden="true" />
       <div
         ref={panel}
-        className={`cd-sheet cd-sheet-${detent} ${open ? 'is-open' : ''} ${drag ? 'is-dragging' : ''}`}
+        className={`cd-sheet cd-sheet-${detent} ${glass ? 'cd-glass' : ''} ${open ? 'is-open' : ''} ${drag ? 'is-dragging' : ''}`}
         style={drag ? { transform: `translateY(${drag}px)` } : undefined}
         role="dialog"
         aria-modal="true"

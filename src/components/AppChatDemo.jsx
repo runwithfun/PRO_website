@@ -128,10 +128,13 @@ function useScrollIndicator(ref) {
   const update = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    const { scrollTop, scrollHeight, clientHeight } = el;
+    const { scrollTop, scrollHeight, clientHeight, clientWidth } = el;
     if (scrollHeight <= clientHeight + 1) return;
-    const h = Math.max(28, (clientHeight / scrollHeight) * clientHeight);
-    const top = (scrollTop / (scrollHeight - clientHeight)) * (clientHeight - h);
+    // Дорожка индикатора начинается под шапкой (121 pt из 402 pt ширины экрана).
+    const inset = (clientWidth / 402) * 121;
+    const track = clientHeight - inset - 3;
+    const h = Math.max(28, (clientHeight / scrollHeight) * track);
+    const top = (scrollTop / (scrollHeight - clientHeight)) * (track - h);
     setInd({ top, height: h, visible: true });
     clearTimeout(hide.current);
     hide.current = setTimeout(() => setInd((s) => ({ ...s, visible: false })), 700);

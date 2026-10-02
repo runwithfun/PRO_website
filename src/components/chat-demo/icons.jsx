@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 // Векторные аналоги SF Symbols, которые использует экран чата приложения.
 // Рисуются в currentColor; размер задаётся снаружи через CSS (width/height).
 
@@ -201,10 +203,45 @@ export default function Icon({ name, className = '' }) {
 
 /* ── Статус-бар iPhone ──────────────────────────────────────────────────────── */
 
+/** Время как в статус-баре iOS: часы без ведущего нуля, 12/24 по локали, без AM/PM. */
+function statusTime(date) {
+  const parts = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' }).formatToParts(date);
+  let out = '';
+  for (const p of parts) {
+    if (p.type === 'dayPeriod') continue;
+    out += p.type === 'hour' ? String(Number(p.value)) : p.value;
+  }
+  return out.trim();
+}
+
+/** Пререндер и первый рендер — «9:41» (как на промо-скриншотах Apple и без расхождения
+ *  при гидрации); после монтирования — реальное локальное время, обновляется ровно на
+ *  смене минуты. */
+function useStatusClock() {
+  const [time, setTime] = useState('9:41');
+  useEffect(() => {
+    let interval;
+    const tick = () => setTime(statusTime(new Date()));
+    tick();
+    const now = new Date();
+    const toNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+    const timeout = setTimeout(() => {
+      tick();
+      interval = setInterval(tick, 60_000);
+    }, toNextMinute);
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, []);
+  return time;
+}
+
 export function StatusBar() {
+  const time = useStatusClock();
   return (
     <div className="cd-status" aria-hidden="true">
-      <span className="cd-status-time">9:41</span>
+      <span className="cd-status-time">{time}</span>
       <span className="cd-island" />
       <span className="cd-status-right">
         {/* cellular */}

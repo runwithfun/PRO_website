@@ -24,7 +24,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const { render, faq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
+const { render, faq, mcpFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
 // Preload основных шрифтов (латиница): DM Sans — текст, Syne — заголовки.
 // Имена файлов с хэшем Vite, поэтому ищем их в dist/assets.
 const fontPreloads = fs
@@ -109,13 +109,37 @@ function jsonLd(route) {
     },
   ];
   if (route.faq) {
+    const items = route.faq === 'mcp' ? mcpFaq : faq;
     graph.push({
       '@type': 'FAQPage',
-      mainEntity: faq.map(({ q, a }) => ({
+      mainEntity: items.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: a },
       })),
+    });
+  }
+  if (route.path !== '/') {
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: route.title.split(' — ')[0], item: `${SITE}${route.path}` },
+      ],
+    });
+  }
+  if (route.path === '/apple-health-chatgpt-claude') {
+    graph.push({
+      '@type': 'HowTo',
+      name: 'Connect Apple Health to Claude with the P.R.O. MCP connector',
+      totalTime: 'PT2M',
+      tool: [{ '@type': 'HowToTool', name: 'P.R.O. app for iPhone' }],
+      step: [
+        'In the P.R.O. app, open Connect AI assistants and tap Get connection code.',
+        'In Claude, open Settings → Connectors → Add custom connector and paste https://mcp.proapp.uk.',
+        'On the P.R.O. authorization page, type the connection code from the app.',
+        'Ask Claude about your workouts, sleep and goals.',
+      ].map((text, i) => ({ '@type': 'HowToStep', position: i + 1, text })),
     });
   }
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;

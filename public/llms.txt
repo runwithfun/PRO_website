@@ -42,6 +42,7 @@ Not yet — Android is planned.
 - [Features](https://proapp.uk/features): full capability breakdown — dashboard, AI coach, analytics, 50+ sports, goals, personal records
 - [About](https://proapp.uk/about): product philosophy, spec sheet, training plans
 - [FAQ](https://proapp.uk/faq): product questions, coaching tips and support
+- [Connect Apple Health to ChatGPT & Claude](https://proapp.uk/apple-health-chatgpt-claude): step-by-step MCP connector guide — what the assistant can see, privacy, example questions
 
 ## App & legal
 

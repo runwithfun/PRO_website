@@ -6,6 +6,7 @@ import Features from './pages/Features';
 import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
+import AppleHealthMcp from './pages/AppleHealthMcp';
 import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
 import ScrollToTop from './components/ScrollToTop';
@@ -37,6 +38,7 @@ export function AppShell() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/apple-health-chatgpt-claude" element={<AppleHealthMcp />} />
           </Routes>
         </main>
         <ModernFooter />

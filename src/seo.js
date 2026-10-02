@@ -41,4 +41,13 @@ export const ROUTES = [
       'How P.R.O. handles your data: Apple Health access, on-device processing, what is stored, and your rights.',
     sources: ['src/pages/PrivacyPolicy.jsx', 'src/content/privacyPolicy.js'],
   },
+  {
+    path: '/apple-health-chatgpt-claude',
+    file: 'apple-health-chatgpt-claude.html',
+    title: 'Connect Apple Health to ChatGPT & Claude (MCP) — P.R.O.',
+    description:
+      'Step-by-step: give ChatGPT, Claude and other AI assistants access to your Apple Health and Apple Watch workouts, sleep and heart rate with the free P.R.O. app and its MCP connector.',
+    faq: 'mcp',
+    sources: ['src/pages/AppleHealthMcp.jsx'],
+  },
 ];

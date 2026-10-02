@@ -5,6 +5,7 @@ import { StaticRouter } from 'react-router';
 import { AppShell } from './App.jsx';
 
 export { faq } from './pages/FAQ.jsx';
+export { mcpFaq } from './pages/AppleHealthMcp.jsx';
 export { ROUTES } from './seo.js';
 
 // prerenderToNodeStream (а не renderToString) дожидается lazy-компонентов внутри

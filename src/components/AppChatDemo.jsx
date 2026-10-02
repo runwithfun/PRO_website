@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import PhoneMockup from './PhoneMockup';
 import Icon, { StatusBar } from './chat-demo/icons';
+import LensFilter from './chat-demo/LensFilter';
+import { useLiquidGlass } from './chat-demo/liquidGlass';
 import { AnswerBlocks, AnswerText, LiveStatus, ToolTrace } from './chat-demo/Answer';
 import { HistoryDrawer, ModelGlyph, ModelSheetContent, Sheet, SkillsSheetContent } from './chat-demo/Sheets';
 import { CHIP_TO_SCRIPT, MODELS, SCRIPTS, TICKER_MODELS, WELCOME_CARDS } from './chat-demo/data';
@@ -22,15 +24,22 @@ const reduceMotion = () => typeof window !== 'undefined' && window.matchMedia?.(
 
 function ModelPill({ model, teaser, onClick }) {
   const tick = teaser.active ? TICKER_MODELS[teaser.index % TICKER_MODELS.length] : null;
+  const pillRef = useRef(null);
+  const glass = useLiquidGlass(pillRef);
   return (
     <div className="cd-pill-slot">
+      <LensFilter w={glass.w} h={glass.h} lensUrl={glass.lensUrl} />
       <button
+        ref={pillRef}
         type="button"
-        className={`cd-pill ${teaser.active ? 'is-active' : ''}`}
+        className={`cd-pill ${teaser.active ? 'is-active' : ''} ${glass.lensUrl ? 'has-lens' : ''} ${glass.specUrl ? 'has-spec' : ''}`}
         onClick={onClick}
         aria-label={`Model: ${model.label}. Change model`}
         aria-haspopup="dialog"
       >
+        {glass.specUrl && (
+          <span className="cd-pill-spec" style={{ backgroundImage: `url(${glass.specUrl})` }} aria-hidden="true" />
+        )}
         <span className="cd-pill-main">
           <ModelGlyph model={model} size="sm" />
           <span className="cd-pill-copy">

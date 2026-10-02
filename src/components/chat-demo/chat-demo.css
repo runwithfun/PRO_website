@@ -250,31 +250,97 @@
   align-items: flex-start;
   position: relative;
 }
+/* Пилюля — Liquid Glass (iOS 26, glassEffect(.regular.interactive()) в
+   ChatChrome.swift). Слои: лёгкая светлая тонировка → фон под стеклом
+   (Chromium: SVG-рефракция с хроматической аберрацией, см. LiquidGlass.jsx;
+   остальные: blur + saturate) → блик по форме капсулы (картинка из
+   LiquidGlass.jsx; до её готовности — CSS-ободок) → содержимое. */
 .cd-pill {
   position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   gap: calc(var(--u) * 10);
   padding: calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 7) calc(var(--u) * 6);
   border-radius: calc(var(--u) * 22);
   white-space: nowrap;
-  /* Liquid Glass (iOS 26) на чёрном */
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.045));
   box-shadow:
-    inset 0 calc(var(--u) * 0.6) 0 rgba(255, 255, 255, 0.22),
-    inset 0 calc(var(--u) * -0.5) 0 rgba(255, 255, 255, 0.06),
-    0 0 0 calc(var(--u) * 0.6) rgba(255, 255, 255, 0.1),
-    0 calc(var(--u) * 5) calc(var(--u) * 16) rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(calc(var(--u) * 14)) saturate(1.6);
-  backdrop-filter: blur(calc(var(--u) * 14)) saturate(1.6);
-  transition: padding 0.5s cubic-bezier(0.34, 1.3, 0.5, 1), transform 0.2s;
+    inset 0 calc(var(--u) * 0.7) 0 rgba(255, 255, 255, 0.3),
+    inset 0 calc(var(--u) * -0.6) 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 calc(var(--u) * 0.6) rgba(255, 255, 255, 0.1),
+    inset 0 calc(var(--u) * 8) calc(var(--u) * 12) calc(var(--u) * -10) rgba(255, 255, 255, 0.1),
+    0 calc(var(--u) * 4) calc(var(--u) * 14) rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(calc(var(--u) * 10)) saturate(1.8) brightness(1.08);
+  backdrop-filter: blur(calc(var(--u) * 10)) saturate(1.8) brightness(1.08);
+  transition:
+    padding 0.5s cubic-bezier(0.34, 1.3, 0.5, 1),
+    transform 0.45s cubic-bezier(0.2, 1.4, 0.4, 1),
+    background 0.2s ease;
+}
+/* Chromium: настоящая рефракция фона через SVG-фильтр. */
+.cd-pill.has-lens {
+  -webkit-backdrop-filter: url(#cd-pill-lens);
+  backdrop-filter: url(#cd-pill-lens);
+}
+/* Блик готов — CSS-ободок убираем, остаётся тень и мягкая внутренняя засветка. */
+.cd-pill.has-spec {
+  box-shadow:
+    inset 0 calc(var(--u) * 8) calc(var(--u) * 12) calc(var(--u) * -10) rgba(255, 255, 255, 0.06),
+    0 calc(var(--u) * 4) calc(var(--u) * 14) rgba(0, 0, 0, 0.5);
+}
+.cd-pill-spec {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+.cd-pill > :not(.cd-pill-spec) {
+  position: relative;
+  z-index: 1;
+}
+/* interactive: стекло «оживает» под пальцем — чуть растёт и вспыхивает бликом. */
+.cd-pill:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+}
+.cd-pill:hover .cd-pill-spec {
+  opacity: 1;
 }
 .cd-pill:active {
-  transform: scale(0.97);
+  transform: scale(1.07);
+  transition-duration: 0.5s, 0.18s, 0.2s;
+}
+.cd-pill:active .cd-pill-spec {
+  opacity: 1;
+  filter: brightness(1.5);
 }
 .cd-pill.is-active {
   padding: calc(var(--u) * 10) calc(var(--u) * 12) calc(var(--u) * 10) calc(var(--u) * 6);
+}
+/* Читаемость поверх светлого фона (в iOS стекло само «подтемняет» подписи). */
+.cd-pill-copy,
+.cd-ticker-row {
+  text-shadow: 0 0 calc(var(--u) * 6) rgba(0, 0, 0, 0.35);
+}
+.cd-lens-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .cd-pill,
+  .cd-pill.has-lens {
+    background: #2c2c2e;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 .cd-pill-main {
   display: flex;

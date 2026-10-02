@@ -31,9 +31,16 @@ const fontPreloads = fs
   .filter((f) => /^(dm-sans|syne)-latin-wght-normal-.*\.woff2$/.test(f))
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
   .join('\n    ');
-const template = fs
+// CSS встраиваем в каждую страницу: без отдельного блокирующего запроса
+// первая отрисовка на мобильной сети наступает на один круг раньше.
+let template = fs
   .readFileSync(path.join(DIST, 'index.html'), 'utf8')
   .replace('</head>', `  ${fontPreloads}\n  </head>`);
+template = template.replace(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/, (m, href) => {
+  const css = fs.readFileSync(path.join(DIST, href)).toString();
+  return `<style>${css}</style>`;
+});
+if (!template.includes('<style>')) throw new Error('prerender: не нашёл <link rel="stylesheet"> для встраивания CSS');
 
 function jsonLd(route) {
   const graph = [

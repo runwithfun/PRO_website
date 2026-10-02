@@ -6,6 +6,12 @@
   --color-brand-pink-deep: #9b1f57;
   --font-display: 'Syne Variable', 'Inter Variable', system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
+
+  /* Серые для текста на чёрном фоне — чуть светлее стандартных Tailwind,
+     чтобы проходить WCAG AA (контраст ≥ 4.5 на фонах до #111). Используются
+     на сайте только для текста. */
+  --color-gray-500: #767f90;
+  --color-gray-600: #6e7f96;
 }
 
 @layer base {
@@ -305,4 +311,10 @@
   .hero-fade {
     animation: none;
   }
+}
+
+/* Розовый в мелком тексте (надзаголовки, подписи) — чуть светлее фирменного,
+   чтобы контраст на чёрном был ≥ 4.5. Фоны и кнопки (bg-brand-pink) не меняются. */
+.text-brand-pink {
+  color: #e73183;
 }

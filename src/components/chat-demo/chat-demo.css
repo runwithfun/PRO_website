@@ -24,6 +24,9 @@
   --label: #fff;
   --secondary: rgba(235, 235, 245, 0.6);
   --tertiary: rgba(235, 235, 245, 0.3);
+  /* Текст третьего уровня: в iOS это тот же tertiaryLabel (0.3), но на сайте
+     мелкие подписи должны проходить WCAG AA (контраст ≥ 4.5) — чуть светлее. */
+  --tertiary-text: rgba(235, 235, 245, 0.52);
   --accent: #d42d78;
   --link: #ff7ab8;
   --sep: rgba(84, 84, 88, 0.55);
@@ -413,7 +416,7 @@
   font-weight: 600;
   letter-spacing: calc(var(--u) * 0.5);
   line-height: calc(var(--u) * 11);
-  color: var(--tertiary);
+  color: var(--tertiary-text);
 }
 .cd-pill-label {
   font-size: calc(var(--u) * 14);
@@ -566,7 +569,7 @@
   font-weight: 600;
   letter-spacing: calc(var(--u) * 0.4);
   line-height: calc(var(--u) * 16);
-  color: var(--tertiary);
+  color: var(--tertiary-text);
 }
 .cd-grid {
   display: grid;
@@ -620,7 +623,7 @@
   font-size: calc(var(--u) * 11);
   line-height: calc(var(--u) * 13);
   letter-spacing: calc(var(--u) * 0.06);
-  color: var(--tertiary);
+  color: var(--tertiary-text);
   text-align: center;
 }
 .cd-disclaimer .cd-icon {
@@ -1333,7 +1336,7 @@
 }
 .cd-cost b {
   font-weight: 700;
-  color: var(--tertiary);
+  color: var(--tertiary-text);
 }
 .cd-cost b.is-on {
   color: #fff;
@@ -1451,7 +1454,7 @@
   letter-spacing: calc(var(--u) * 0.5);
   line-height: calc(var(--u) * 13);
   text-transform: uppercase;
-  color: var(--tertiary);
+  color: var(--tertiary-text);
   margin-bottom: calc(var(--u) * 8);
 }
 .cd-section-gap {
@@ -1507,7 +1510,7 @@
 .cd-action-chev {
   width: calc(var(--u) * 11);
   height: calc(var(--u) * 11);
-  color: var(--tertiary);
+  color: var(--tertiary-text);
 }
 .cd-action-div {
   position: absolute;

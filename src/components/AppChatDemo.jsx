@@ -33,7 +33,6 @@ function ModelPill({ model, teaser, onClick }) {
         type="button"
         className={`cd-pill ${teaser.active ? 'is-active' : ''} ${glass.lensUrl ? 'has-lens' : ''} ${glass.specUrl ? 'has-spec' : ''}`}
         onClick={onClick}
-        aria-label={`Model ${model.label}, change model`}
         aria-haspopup="dialog"
       >
         {glass.specUrl && (
@@ -42,8 +41,11 @@ function ModelPill({ model, teaser, onClick }) {
         <span className="cd-pill-main">
           <ModelGlyph model={model} size="sm" />
           <span className="cd-pill-copy">
-            <span className="cd-pill-cap">MODEL</span>
+            {/* Имя кнопки — её видимый текст («MODEL Auto») + скрытое пояснение:
+                так оно совпадает с тем, что видно (WCAG label-in-name). */}
+            <span className="cd-pill-cap">MODEL</span>{' '}
             <span className="cd-pill-label">{model.label}</span>
+            <span className="sr-only">, change model</span>
           </span>
         </span>
         {tick ? (

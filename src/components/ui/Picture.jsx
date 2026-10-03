@@ -35,7 +35,9 @@ export default function Picture({ src, alt, sizes = '100vw', priority = false, c
         alt={alt}
         width={img.width}
         height={img.height}
-        loading={priority ? 'eager' : 'lazy'}
+        // Картинки лёгкие (AVIF 5–40 КБ), поэтому грузим сразу: ленивую
+        // загрузку Safari начинает поздно, и картинки всплывали при прокрутке.
+        loading="eager"
         fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         className={className}

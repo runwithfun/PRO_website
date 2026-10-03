@@ -14,6 +14,9 @@ export function useReveal(threshold = 0.12) {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // На телефонах и планшетах блоки сразу на месте: проявление при прокрутке
+    // запаздывало за пальцем, и контент «догружался» на глазах.
+    if (window.matchMedia('(max-width: 1023px), (hover: none)').matches) return;
     const r = el.getBoundingClientRect();
     if (r.top < window.innerHeight && r.bottom > 0) return;
 

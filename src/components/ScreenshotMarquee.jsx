@@ -1,5 +1,6 @@
 import React from 'react';
 import Picture from './ui/Picture';
+import { usePauseOffscreen } from '../hooks/usePauseOffscreen';
 
 const shots = [
   'IMG_0872-9e87f036-fbbc-40a2-b519-0dd713d695bb.png',
@@ -32,8 +33,9 @@ function MarqueeTrack({ reverse = false }) {
 }
 
 export default function ScreenshotMarquee() {
+  const { ref, paused } = usePauseOffscreen();
   return (
-    <section className="relative overflow-hidden bg-black py-20">
+    <section ref={ref} className={`relative overflow-hidden bg-black py-20 ${paused ? 'is-paused' : ''}`}>
       <div className="accent-orb accent-orb-pink -left-32 top-10 h-72 w-72" aria-hidden />
       <div className="accent-orb accent-orb-soft right-0 bottom-0 h-96 w-96" aria-hidden />
 

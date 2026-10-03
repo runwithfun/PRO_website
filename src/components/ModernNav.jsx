@@ -29,10 +29,10 @@ export default function ModernNav() {
       <nav
         className={`pointer-events-auto mx-auto flex max-w-5xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-6 ${
           onHomeHero
-            ? 'border-pink-400/25 bg-white/55 shadow-lg shadow-pink-900/10 backdrop-blur-xl'
+            ? 'border-pink-400/25 bg-white/55 shadow-lg shadow-pink-900/10 backdrop-blur-xl max-lg:bg-white/90 max-lg:backdrop-blur-none'
             : scrolled
-              ? 'border-white/10 bg-black/85 shadow-2xl shadow-black/40 backdrop-blur-xl'
-              : 'border-white/10 bg-black/70 shadow-xl backdrop-blur-xl'
+              ? 'border-white/10 bg-black/85 shadow-2xl shadow-black/40 backdrop-blur-xl max-lg:bg-black/95 max-lg:backdrop-blur-none'
+              : 'border-white/10 bg-black/70 shadow-xl backdrop-blur-xl max-lg:bg-black/95 max-lg:backdrop-blur-none'
         }`}
       >
         <NavLink to="/" className="flex items-center gap-2.5">

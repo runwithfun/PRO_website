@@ -243,17 +243,39 @@
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(80px);
+  /* Мягкость — самим градиентом, без filter: blur(80px): размытие на
+     бесконечно анимированном слое Safari перерисовывал каждый кадр, на iPhone
+     это давало рывки при прокрутке. Анимация — только transform. */
+  will-change: transform;
   animation: floatSlow 9s ease-in-out infinite;
 }
 
 .accent-orb-pink {
-  background: radial-gradient(circle, rgba(212, 45, 120, 0.55), transparent 70%);
+  background: radial-gradient(circle closest-side, rgba(212, 45, 120, 0.34), rgba(212, 45, 120, 0.13) 55%, transparent);
 }
 
 .accent-orb-soft {
-  background: radial-gradient(circle, rgba(240, 106, 164, 0.35), transparent 70%);
+  background: radial-gradient(circle closest-side, rgba(240, 106, 164, 0.22), rgba(240, 106, 164, 0.08) 55%, transparent);
   animation: floatReverse 11s ease-in-out infinite;
+}
+
+/* Телефоны и планшеты: декоративные пятна не анимируем, бегущие строки
+   останавливаются вне экрана (класс is-paused ставит JS). */
+@media (max-width: 1023px), (hover: none) {
+  .accent-orb,
+  .accent-orb-soft {
+    animation: none;
+  }
+}
+
+.marquee-track,
+.ticker-track {
+  will-change: transform;
+}
+
+.is-paused .marquee-track,
+.is-paused .ticker-track {
+  animation-play-state: paused;
 }
 
 .accent-ring {

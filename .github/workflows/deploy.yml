@@ -55,6 +55,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Метка сборки: после деплоя ждём, пока GitHub Pages начнёт отдавать
+      # именно эту версию, и только потом сбрасываем кэш Cloudflare.
+      - name: Build marker
+        run: echo "${{ github.sha }}" > dist/build.txt
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -66,6 +71,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # HTML и картинки лежат в кэше Cloudflare до месяца (Cache Rules зоны
+      # proapp.uk) — после деплоя сбрасываем его целиком. Запрос с ?cb=…
+      # идёт мимо кэша Cloudflare прямо в GitHub Pages.
+      - name: Purge Cloudflare cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_PURGE_TOKEN }}
+          CF_ZONE: a43e4bdbea254b2a6ad7d6d83656359c
+        run: |
+          for i in $(seq 1 30); do
+            live=$(curl -fsS "https://proapp.uk/build.txt?cb=$RANDOM$i" || true)
+            [ "$live" = "${{ github.sha }}" ] && break
+            sleep 10
+          done
+          echo "origin: $live"
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
 
       - name: IndexNow (Bing, Yandex)
         continue-on-error: true

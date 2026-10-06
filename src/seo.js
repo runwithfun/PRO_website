@@ -38,8 +38,25 @@ export const ROUTES = [
     file: 'privacy.html',
     title: 'Privacy Policy — P.R.O.',
     description:
-      'How P.R.O. handles your data: Apple Health access, on-device processing, what is stored, and your rights.',
-    sources: ['src/pages/PrivacyPolicy.jsx', 'src/content/privacyPolicy.js'],
+      'How P.R.O. handles your data: Apple Health access, the AI coach, the ChatGPT/Claude/Perplexity connector (MCP), what is stored and shared, and your rights.',
+    sources: ['src/pages/PrivacyPolicy.jsx', 'src/components/LegalPage.jsx', 'src/content/privacyPolicy.js'],
+  },
+  {
+    path: '/terms',
+    file: 'terms.html',
+    title: 'Terms of Service — P.R.O.',
+    description:
+      'Terms for using the P.R.O. app, its AI coach and the MCP connector for ChatGPT, Claude and Perplexity: subscriptions via the App Store, acceptable use, AI disclaimers and account deletion.',
+    sources: ['src/pages/Terms.jsx', 'src/components/LegalPage.jsx', 'src/content/terms.js'],
+  },
+  {
+    path: '/support',
+    file: 'support.html',
+    title: 'Support — P.R.O.',
+    description:
+      'Contact P.R.O. support at mail@proapp.uk, and fix common issues: connecting ChatGPT, Claude or Perplexity, revoking access, missing data, account deletion and subscriptions.',
+    faq: 'support',
+    sources: ['src/pages/Support.jsx', 'src/content/support.js'],
   },
   {
     path: '/apple-health-chatgpt-claude',

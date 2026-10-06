@@ -24,7 +24,7 @@ export default function ModernCTA() {
             App Store
           </a>
           <a
-            href="mailto:P.R.O.devel001@gmail.com"
+            href="mailto:mail@proapp.uk"
             className="pro-chip rounded-full px-8 py-3.5 font-semibold"
           >
             Contact us

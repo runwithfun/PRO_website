@@ -1,16 +1,17 @@
 export const privacyPolicyMarkdown = `## Overview
 
-P.R.O. is a fitness tracking and performance analytics application. This Privacy Policy describes all personal data processing activities carried out by **HAOTONG TECHNOLOGY CO. LIMITED** in connection with the P.R.O. app and website.
+P.R.O. is a fitness tracking and performance analytics application. This Privacy Policy describes all personal data processing activities carried out by **HAOTONG TECHNOLOGY (HK) CO., LIMITED** in connection with the P.R.O. app and website.
 
-This policy is organized into two parts:
+This policy is organized into three parts:
 
 - **Part A** — Standard app usage (account creation and core fitness tracking)
 - **Part B** — Optional AI-powered features
+- **Part C** — Optional AI assistants and connectors (MCP)
 
-Part A applies to all users. Part B applies additionally if you choose to use AI features. If there is any conflict between the two parts, Part B prevails with respect to AI-related processing.
+Part A applies to all users. Part B applies additionally if you choose to use AI features in the app. Part C applies additionally if you connect P.R.O. to a third-party AI assistant such as Claude, ChatGPT or Perplexity. If there is any conflict, Part B prevails with respect to the in-app AI coach and Part C prevails with respect to connected AI assistants.
 
-**Data Controller:** HAOTONG TECHNOLOGY CO. LIMITED  
-**Privacy Contact:** [P.R.O.devel001@gmail.com](mailto:P.R.O.devel001@gmail.com)
+**Data Controller:** HAOTONG TECHNOLOGY (HK) CO., LIMITED  
+**Privacy Contact:** [mail@proapp.uk](mailto:mail@proapp.uk)
 
 ---
 
@@ -63,7 +64,7 @@ AI features in P.R.O. rely on independent third-party AI infrastructure. Dependi
 - **Auto mode** — requests are sent directly to [Nvidia NIM](https://build.nvidia.com/) (Nvidia Inference Microservices), not through OpenRouter.
 - **Other models** — requests are sent via [OpenRouter](https://openrouter.ai), an independent third-party AI API aggregation service, which routes the request to the selected backend AI model provider.
 
-P.R.O. displays the returned response to you. AI computation is performed entirely by the applicable third-party provider (Nvidia NIM or OpenRouter and its backend model providers), which are independent services not operated by HAOTONG TECHNOLOGY CO. LIMITED.
+P.R.O. displays the returned response to you. AI computation is performed entirely by the applicable third-party provider (Nvidia NIM or OpenRouter and its backend model providers), which are independent services not operated by HAOTONG TECHNOLOGY (HK) CO., LIMITED.
 
 ### B2. Data Transmitted
 
@@ -127,7 +128,73 @@ AI features are entirely optional and can be disabled at any time in **Settings 
 
 ### B7. AI Output Disclaimer
 
-AI-generated content provided through P.R.O. is for informational and advisory purposes only. It does not constitute medical, clinical, nutritional, or professional fitness advice. HAOTONG TECHNOLOGY CO. LIMITED makes no warranty as to the accuracy, completeness, or reliability of AI-generated outputs. Use of AI features and reliance on AI-generated content is at the user's sole risk.
+AI-generated content provided through P.R.O. is for informational and advisory purposes only. It does not constitute medical, clinical, nutritional, or professional fitness advice. HAOTONG TECHNOLOGY (HK) CO., LIMITED makes no warranty as to the accuracy, completeness, or reliability of AI-generated outputs. Use of AI features and reliance on AI-generated content is at the user's sole risk.
+
+---
+
+## Part C — AI Assistants and Connectors (MCP)
+
+### C1. What the Connector Is
+
+P.R.O. offers an optional connector based on the Model Context Protocol (MCP) at **https://mcp.proapp.uk**. It lets a third-party AI assistant that you choose, such as Anthropic Claude, OpenAI ChatGPT or Perplexity, read your P.R.O. data so it can answer questions about your training, sleep and goals in its own chat. The connector is off until you set it up, and you can use P.R.O. without it. Setup instructions are on the [connector guide](https://proapp.uk/apple-health-chatgpt-claude).
+
+### C2. How a Connection Is Authorized
+
+- The assistant connects through **OAuth 2.1** with dynamic client registration. You never give the assistant your P.R.O. password.
+- To approve a connection, you generate a **one-time six-character pairing code** in the P.R.O. app (**Settings → MCP Connect → Connect an assistant**). The code is valid for **10 minutes** and can be used **once**.
+- **No data is shared before you type that code** on the P.R.O. authorization page. Once you do, the assistant receives access tokens tied to your account.
+
+### C3. What the Assistant Can Read
+
+The assistant reads data only when you ask it something in that assistant and it decides to use the connector to answer. Depending on the categories you allow, it can read:
+
+| Category (as shown in the app) | Data |
+| --- | --- |
+| Profile | Name, sex, height, weight, age |
+| Goals | Goals you set in the app and your progress toward them |
+| Daily metrics | Daily totals synced from Apple Health: steps, active energy, distance, exercise minutes, flights climbed |
+| Workouts | Workout summaries (type, date, duration, distance, energy, heart rate, pace, cadence, power, source app), your activity streak, your active training plan and its change history |
+| Workout routes | The GPS route of a single workout, only when uploaded on request (see below) |
+| Sleep | Sleep hours and sleep score |
+| Heart rate & HRV | Resting and average heart rate, heart rate variability (HRV), and heart rate within workout summaries |
+| Coach memory | Coach notes you or the P.R.O. coach saved |
+
+**Detailed data on request.** When you ask for more detail about one day or one workout, the assistant can ask your iPhone to upload it: a heart-rate series, sleep stages, workout splits or a workout GPS route. The upload happens only after you open the P.R.O. app, and only for categories you allow. These detailed uploads are cached on our servers for **48 hours** so that a repeated question does not upload them again; after 48 hours they expire, are no longer available to any assistant and are deleted.
+
+### C4. What the Assistant Can Do
+
+- **Save a coach note**, only if you turned on **Let assistants write data** in the app. This setting is off by default.
+- **Request a fresh sync**, which asks the P.R.O. app to upload new Apple Health data the next time you open it.
+
+The connector cannot delete data, make payments, send messages on your behalf or change your account settings.
+
+### C5. Your Controls
+
+- **Granular permissions.** In **Settings → MCP Connect → Advanced data settings** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). A switched-off category is not returned to any connected assistant, effective immediately, and the assistant is told that you turned it off.
+- **Read-only by default.** Writing is possible only while **Let assistants write data** is on.
+- **Disconnecting.** You can remove the P.R.O. connector in your assistant's settings at any time. To make sure every access token issued to every assistant is revoked on our side, delete your account or email [mail@proapp.uk](mailto:mail@proapp.uk) and we will revoke them.
+- **Account deletion.** Deleting your account (**Settings → Delete Account**) deletes your data on our servers, including connector tokens, pairing codes and cached detailed uploads, and revokes all connector access.
+
+### C6. Who Receives the Data
+
+Data returned by the connector is sent to **the AI assistant you connected** and to no one else. That assistant is operated by an independent third party (for example Anthropic, OpenAI or Perplexity AI), not by HAOTONG TECHNOLOGY (HK) CO., LIMITED. Once data reaches the assistant, its storage, retention, use and any model training are governed by that provider's own terms and privacy policy, which you accepted when you signed up for it. Review them before connecting:
+
+- Anthropic (Claude): [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy)
+- OpenAI (ChatGPT): [openai.com/policies/privacy-policy](https://openai.com/policies/privacy-policy/)
+- Perplexity: [perplexity.ai/hub/legal/privacy-policy](https://www.perplexity.ai/hub/legal/privacy-policy)
+
+In line with Apple App Store Review Guideline 5.1.2(i), we disclose here that personal data, including health and fitness data, is shared with these third-party AI services, and we ask for your explicit permission through the pairing code before any data is shared.
+
+### C7. What We Do Not Do
+
+- We **do not sell** your data or share it for third-party advertising.
+- We **do not use** health or fitness data for advertising, marketing or data mining, in line with Apple App Store Review Guideline 5.1.3.
+- We **do not use** your data to train AI models.
+- We share connector data only with the assistant you connected, and only to answer your requests.
+
+### C8. Not Medical Advice
+
+P.R.O. and the connector provide wellness and fitness information only. P.R.O. is not a medical device, and nothing an assistant says based on P.R.O. data is medical advice, diagnosis or treatment. Talk to a qualified healthcare professional about medical questions and before starting or changing a training programme.
 
 ---
 
@@ -137,22 +204,22 @@ Regardless of jurisdiction, you may contact us to:
 
 - Access, correct, or delete the data we directly hold about you
 - Export your data (JSON or CSV)
-- Withdraw consent for AI features or marketing communications
+- Withdraw consent for AI features, connected AI assistants or marketing communications
 - Lodge a complaint with your local data protection authority
 
-Please note: Rights relating to data held by third-party providers (Nvidia NIM, OpenRouter, backend AI model providers, infrastructure providers) must be exercised directly with those providers. P.R.O. cannot fulfill data access, correction, or deletion requests on behalf of independent third-party processors.
+Please note: Rights relating to data held by third-party providers (Nvidia NIM, OpenRouter, backend AI model providers, AI assistants you connected through the P.R.O. connector, infrastructure providers) must be exercised directly with those providers. P.R.O. cannot fulfill data access, correction, or deletion requests on behalf of independent third-party processors.
 
-**EU/EEA users:** Rights under GDPR Articles 15–22 apply to data controlled by HAOTONG TECHNOLOGY CO. LIMITED. For downstream processors, you may need to contact them directly or your national supervisory authority.
+**EU/EEA users:** Rights under GDPR Articles 15–22 apply to data controlled by HAOTONG TECHNOLOGY (HK) CO., LIMITED. For downstream processors, you may need to contact them directly or your national supervisory authority.
 
-**California users:** Rights under CCPA/CPRA apply to data held by HAOTONG TECHNOLOGY CO. LIMITED. We do not sell personal data. For third-party processors, please refer to their respective privacy policies.
+**California users:** Rights under CCPA/CPRA apply to data held by HAOTONG TECHNOLOGY (HK) CO., LIMITED. We do not sell personal data. For third-party processors, please refer to their respective privacy policies.
 
-To exercise your rights with P.R.O.: [P.R.O.devel001@gmail.com](mailto:P.R.O.devel001@gmail.com) — we respond within 30 days.
+To exercise your rights with P.R.O.: [mail@proapp.uk](mailto:mail@proapp.uk) — we respond within 30 days.
 
 ---
 
 ## Limitation of Liability
 
-To the maximum extent permitted by applicable law, HAOTONG TECHNOLOGY CO. LIMITED disclaims all liability for:
+To the maximum extent permitted by applicable law, HAOTONG TECHNOLOGY (HK) CO., LIMITED disclaims all liability for:
 
 - Data processing, storage, disclosure, or use carried out by Nvidia NIM, OpenRouter, or any backend AI model provider
 - Security incidents, data breaches, or unauthorized access occurring within third-party systems
@@ -171,5 +238,5 @@ Material changes will be communicated via in-app notification and/or email at le
 
 ## Contact
 
-[P.R.O.devel001@gmail.com](mailto:P.R.O.devel001@gmail.com)
+[mail@proapp.uk](mailto:mail@proapp.uk)
 `;

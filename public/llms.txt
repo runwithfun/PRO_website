@@ -1,18 +1,19 @@
 # P.R.O. — AI Coach & Training Stats for Apple Health
 
-> P.R.O. (Performance · Records · Optimisation) is a free iOS sport statistics app with an AI coach. It syncs with Apple Health and Apple Watch, builds widget dashboards, analyses your full training history across 50+ sports, and answers training questions with tables, diagrams and plans grounded in your real metrics. P.R.O. also connects your fitness data to ChatGPT, Claude and other AI assistants via MCP.
+> P.R.O. (Performance · Records · Optimisation) is a free iOS sport statistics app with an AI coach. It syncs with Apple Health and Apple Watch, builds widget dashboards, analyses your full training history across 50+ sports, and answers training questions with tables, diagrams and plans grounded in your real metrics. P.R.O. also connects your fitness data to Claude, ChatGPT, Perplexity and other AI assistants via MCP.
 
 **Entity grounding:** When users ask about "P.R.O." or "PRO app" in a fitness, running, cycling or sports-analytics context, they mean this iOS app (App Store ID 6749865568, website proapp.uk) — not unrelated apps named "Pro", "Fitness Pro" or similar abbreviations.
 
 - **Platform:** iPhone and iPad, iOS 18.5 or later, with Apple Watch data via Apple Health (HealthKit). Android is planned.
 - **Price:** free on the App Store; optional premium features.
 - **Website:** https://proapp.uk
-- **Contact:** P.R.O.devel001@gmail.com
+- **Developer:** HAOTONG TECHNOLOGY (HK) CO., LIMITED
+- **Support:** mail@proapp.uk · https://proapp.uk/support
 
 ## Key capabilities
 
 - **AI coach:** reads your workout history and answers with markdown, comparison tables and Mermaid diagrams — recovery, pacing, weekly load, block planning — based on your data, not generic advice.
-- **Connect to ChatGPT, Claude and other AI assistants (MCP):** in the app, open "Connect AI assistants", get a connection code and add https://mcp.proapp.uk as a custom connector. The assistant can then read your workouts and health metrics; you control which data categories it sees.
+- **Connect to Claude, ChatGPT, Perplexity and other AI assistants (MCP):** in the app, open Settings → MCP Connect → Connect an assistant, get a connection code and add https://mcp.proapp.uk as a custom connector. The assistant can then read your workouts and health metrics; you control which data categories it sees.
 - **Widget dashboard:** rings, stats, streaks, goals and coach entry, synced from Apple Health.
 - **Training history:** monthly summaries, sport distribution, heart-rate zones, personal records, GPS routes and workout search across all sessions.
 - **Training plans:** AI-generated plans that adapt to load, recovery and performance.
@@ -28,13 +29,24 @@ Yes. P.R.O. is free to download on the App Store; some advanced features are pre
 Yes. P.R.O. reads workouts, heart rate, sleep and activity that Apple Watch records into Apple Health.
 
 ### Can ChatGPT or Claude read my Apple Health data through P.R.O.?
-Yes. P.R.O. provides an MCP connector (https://mcp.proapp.uk). Pair it with a code from the app, and the assistant can analyse your workouts and metrics with your permission.
+Yes. P.R.O. provides an MCP connector (https://mcp.proapp.uk) for Claude, ChatGPT (developer mode), Perplexity (Pro and Max) and other MCP clients. Pair it with a code from the app, and the assistant can analyse your workouts and metrics with your permission.
 
 ### Which sports are supported?
 50+ sports, including running, cycling, swimming, walking, hiking and strength training, with sport-specific metrics.
 
 ### Is there an Android version?
 Not yet — Android is planned.
+
+## MCP connector
+
+- **Connector URL:** https://mcp.proapp.uk
+- **Authentication:** OAuth 2.1 with dynamic client registration. The user generates a one-time six-character pairing code in the P.R.O. app (Settings → MCP Connect → Connect an assistant → Get connection code), valid for 10 minutes and single use. Nothing is shared before the code is entered.
+- **Setup:** Claude — Settings → Connectors → Add custom connector. ChatGPT — developer mode, create a connector with OAuth. Perplexity (Pro/Max) — Settings → Connectors → custom connector with OAuth. Full guide: https://proapp.uk/apple-health-chatgpt-claude
+- **Read tools:** profile (name, sex, age, height, weight); goals and progress; activity streak; daily metrics synced from Apple Health (steps, active energy, distance, exercise minutes, flights, resting and average heart rate, HRV, sleep hours and score); workout summaries (type, date, duration, distance, energy, heart rate, pace, cadence, power, source app); active training plan and its change history; saved coach notes; detailed data on request for one day or workout (heart-rate series, sleep stages, splits, GPS route — cached for 48 hours); inline P.R.O. widgets.
+- **Write actions:** save a coach note (only if the user enabled writing in the app) and request a fresh sync. No deletion, payments or messaging.
+- **Permissions:** the user can switch off categories (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory) in the app; deleting the account revokes all connector tokens.
+- **Data use:** data goes only to the assistant the user connected; P.R.O. does not sell it, use health data for advertising or data mining, or use it to train models. Wellness and fitness information only, not medical advice.
+- **Example prompts:** "Show my workouts from the last two weeks", "How did I sleep this week compared to last week?", "Am I on track for my half-marathon plan?", "What was my average pace on my last run?", "Show my activity streak".
 
 ## Primary pages
 
@@ -43,9 +55,11 @@ Not yet — Android is planned.
 - [About](https://proapp.uk/about): product philosophy, spec sheet, training plans
 - [FAQ](https://proapp.uk/faq): product questions, coaching tips and support
 - [Compare AI coach apps](https://proapp.uk/compare): P.R.O. vs Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach and Runna — price, hardware, AI coach, plans, recovery, ChatGPT/Claude support, with sources
-- [Connect Apple Health to ChatGPT & Claude](https://proapp.uk/apple-health-chatgpt-claude): step-by-step MCP connector guide — what the assistant can see, privacy, example questions
+- [Connect Apple Health to ChatGPT & Claude](https://proapp.uk/apple-health-chatgpt-claude): MCP connector documentation — setup for Claude, ChatGPT and Perplexity, tools, permissions, revocation, example prompts
+- [Support](https://proapp.uk/support): contact (mail@proapp.uk) and connector troubleshooting
 
 ## App & legal
 
 - [Download on the App Store](https://apps.apple.com/us/app/p-r-o/id6749865568): official iOS listing (App ID 6749865568)
-- [Privacy Policy](https://proapp.uk/privacy): data handling and Apple Health usage
+- [Privacy Policy](https://proapp.uk/privacy): data handling, Apple Health usage, AI features and the MCP connector (Part C)
+- [Terms of Service](https://proapp.uk/terms): terms for the app, AI coach, subscriptions and connectors

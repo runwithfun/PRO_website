@@ -3,35 +3,40 @@ import ModernCTA from '../components/ModernCTA';
 import TuyoPageHero from '../components/TuyoPageHero';
 import TuyoFaq from '../components/TuyoFaq';
 
-// Гайд «Apple Health → ChatGPT / Claude через MCP». Факты сверены с кодом:
-// FullApp/P.R.O./MCPConnectView.swift (экран, тексты, шаги, тумблер записи),
+// Гайд «Apple Health → ChatGPT / Claude / Perplexity через MCP» — он же публичная
+// документация коннектора для каталогов (Claude Connectors Directory, ChatGPT,
+// Perplexity). Факты сверены с кодом:
+// FullApp/P.R.O./MCPConnectView.swift и SettingsView.swift (Settings → MCP Connect,
+// тексты, шаги, тумблер записи), AgentPermissionsView.swift (категории),
 // SERVER/services/mcp/oauth.py (код привязки: 6 символов, 10 минут, одноразовый;
-// OAuth 2.1 + PKCE) и SERVER/services/mcp/permissions.py (категории доступа).
+// OAuth 2.1 + PKCE + DCR), SERVER/services/mcp/server.py (список тулов, запись —
+// только remember_fact), SERVER/services/agent/fetch.py (кэш детальных данных 48 ч).
 // Структура под цитирование ИИ: H2 — вопрос, ответ в первом предложении.
 
 const MCP_URL = 'https://mcp.proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
+const SUPPORT_EMAIL = 'mail@proapp.uk';
 
 export const mcpFaq = [
   {
     q: 'Can ChatGPT or Claude read my Apple Health data?',
-    a: 'Yes — through the free P.R.O. app, which connects your Apple Health and Apple Watch data to ChatGPT, Claude and other assistants that support custom MCP connectors. You add https://mcp.proapp.uk as a connector and confirm it with a one-time code from the app.',
+    a: 'Yes — through the free P.R.O. app, which connects your Apple Health and Apple Watch data to Claude, ChatGPT, Perplexity and other assistants that support custom MCP connectors. You add https://mcp.proapp.uk as a connector and confirm it with a one-time code from the app.',
   },
   {
     q: 'Is the P.R.O. MCP connector free?',
-    a: 'Yes. P.R.O. is free on the App Store and the connector is part of the app. Custom connectors in ChatGPT currently require a paid ChatGPT plan with developer mode; check your assistant’s plan for connector support.',
+    a: 'Yes. P.R.O. is free on the App Store and the connector is part of the app. Custom connectors currently need a supported assistant plan: ChatGPT uses developer mode on paid plans, and Perplexity offers custom connectors on Pro and Max. Check your assistant’s plan for connector support.',
   },
   {
     q: 'What data can the assistant see?',
-    a: 'Only the categories you allow: profile, goals, daily metrics (steps, energy), workouts, GPS routes, sleep, heart rate and the coach’s memory. Each category can be switched off in the P.R.O. app at any time.',
+    a: 'Only the categories you allow: profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, and coach memory. Each category can be switched off in the P.R.O. app at any time, and the assistant reads data only when you ask it something.',
   },
   {
     q: 'Can the assistant change anything in my account?',
-    a: 'Only if you turn on “Let assistants write data” in the app. Then it can, for example, set a goal or save a fact to the coach’s memory. With the toggle off, access is read-only.',
+    a: 'Only one thing, and only if you turn on “Let assistants write data” in the app: it can save a coach note. It can also ask your phone to sync fresh data. It cannot delete data, make payments or send messages.',
   },
   {
     q: 'Do I share my password with ChatGPT or Claude?',
-    a: 'No. The assistant signs in through OAuth: you type a six-character connection code from the P.R.O. app on the P.R.O. authorization page. The code works once and expires after 10 minutes.',
+    a: 'No. The assistant signs in through OAuth 2.1: you type a six-character connection code from the P.R.O. app on the P.R.O. authorization page. The code works once and expires after 10 minutes, and nothing is shared before you enter it.',
   },
   {
     q: 'Why is today’s data missing or a few hours old?',
@@ -39,8 +44,67 @@ export const mcpFaq = [
   },
   {
     q: 'How do I disconnect an assistant?',
-    a: 'Remove the P.R.O. connector in the assistant’s settings, or switch off the data categories in the P.R.O. app — a disabled category is not returned to any assistant.',
+    a: 'Remove the P.R.O. connector in the assistant’s settings, and switch off data categories in the P.R.O. app to block them immediately for every assistant. Deleting your P.R.O. account revokes all connector access; you can also email mail@proapp.uk to have every connector token revoked.',
   },
+];
+
+const TOOLS = [
+  { name: 'get_profile', title: 'Profile', what: 'Name, sex, age, height and weight.', access: 'Read' },
+  { name: 'get_goals', title: 'Goals and progress', what: 'Goals set in the app with targets and progress.', access: 'Read' },
+  {
+    name: 'get_daily_metrics',
+    title: 'Daily health metrics',
+    what: 'Steps, active energy, distance, exercise minutes, flights, resting and average heart rate, HRV, sleep hours and sleep score, per day.',
+    access: 'Read',
+  },
+  {
+    name: 'get_workouts',
+    title: 'Workouts',
+    what: 'Workout summaries: type, date, duration, distance, energy, heart rate, pace, cadence, power, source app.',
+    access: 'Read',
+  },
+  { name: 'get_streak', title: 'Activity streak', what: 'Current and longest run of active days.', access: 'Read' },
+  {
+    name: 'get_training_plan',
+    title: 'Training plan',
+    what: 'The active plan, upcoming sessions and the plan’s change history.',
+    access: 'Read',
+  },
+  { name: 'recall', title: 'Saved coach notes', what: 'Notes you or the P.R.O. coach saved.', access: 'Read' },
+  {
+    name: 'fetch_health_data',
+    title: 'Detailed health data',
+    what: 'On request, for one day or one workout: heart-rate series, sleep stages, workout splits, workout GPS route. Uploaded by the phone, cached for 48 hours.',
+    access: 'Read',
+  },
+  {
+    name: 'show_widget',
+    title: 'Show a P.R.O. widget',
+    what: 'Renders P.R.O. cards (today, sleep, heart, workouts, streak, goals…) inline in assistants that support MCP Apps.',
+    access: 'Read',
+  },
+  {
+    name: 'remember_fact',
+    title: 'Save a coach note',
+    what: 'Saves one durable note (an injury, equipment, a decision). Works only if writing is enabled in the app.',
+    access: 'Write (opt-in)',
+  },
+  {
+    name: 'request_sync',
+    title: 'Request a fresh sync',
+    what: 'Asks the P.R.O. app to upload new Apple Health data the next time you open it.',
+    access: 'Sync request',
+  },
+];
+
+const PROMPTS = [
+  'Show my workouts from the last two weeks.',
+  'How did I sleep this week compared to last week?',
+  'Am I on track for my half-marathon plan?',
+  'What was my average pace on my last run?',
+  'Show my activity streak.',
+  'How did my resting heart rate and HRV change on the days after long runs?',
+  'Show the heart-rate curve and splits of yesterday’s run.',
 ];
 
 function Step({ n, children }) {
@@ -54,6 +118,23 @@ function Step({ n, children }) {
   );
 }
 
+function Code({ children }) {
+  return <code className="rounded bg-white/5 px-1.5 py-0.5 text-gray-200">{children}</code>;
+}
+
+function B({ children }) {
+  return <strong className="text-gray-200">{children}</strong>;
+}
+
+function StepsSection({ title, children }) {
+  return (
+    <section className="mt-12">
+      <h2 className="mb-4 font-display text-xl font-bold text-white sm:text-2xl">{title}</h2>
+      <ol className="space-y-4">{children}</ol>
+    </section>
+  );
+}
+
 export default function AppleHealthMcp() {
   return (
     <div className="pro-page min-h-screen">
@@ -61,7 +142,7 @@ export default function AppleHealthMcp() {
         eyebrow="Guide · MCP"
         lines={['Apple Health', 'in ChatGPT', '& Claude.']}
         accentIndex={1}
-        description="Connect your Apple Health and Apple Watch data to ChatGPT, Claude and other AI assistants with the free P.R.O. app and its MCP connector — in about two minutes."
+        description="Connect your Apple Health and Apple Watch data to Claude, ChatGPT, Perplexity and other AI assistants with the free P.R.O. app and its MCP connector — in about two minutes."
       />
 
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
@@ -69,16 +150,62 @@ export default function AppleHealthMcp() {
           <h2>Can ChatGPT or Claude read Apple Health data?</h2>
           <p>
             Yes. Neither assistant can open Apple Health on its own, but the free <strong>P.R.O.</strong> iOS app
-            exposes your Apple Health and Apple Watch data through an MCP connector at{' '}
-            <code className="rounded bg-white/5 px-1.5 py-0.5 text-gray-200">{MCP_URL}</code>. Once connected, you can
-            ask the assistant about your workouts, sleep, heart rate and goals in its own chat, and it answers from your
-            real numbers instead of generic advice.
+            exposes your Apple Health and Apple Watch data through an MCP connector at <Code>{MCP_URL}</Code>. Once
+            connected, you can ask Claude, ChatGPT or Perplexity about your workouts, sleep, heart rate and goals in its
+            own chat, and it answers from your real numbers instead of generic advice.
           </p>
           <p>
-            MCP (Model Context Protocol) is the open standard that ChatGPT, Claude and other assistants use to plug in
-            external tools and data. P.R.O. implements it with OAuth sign-in, so you never share a password.
+            MCP (Model Context Protocol) is the open standard that AI assistants use to plug in external tools and data.
+            P.R.O. implements it with OAuth sign-in, so you never share a password.
           </p>
+        </section>
 
+        <section className="mt-10 rounded-2xl border border-white/8 bg-white/[0.02] p-6" aria-labelledby="connector-details">
+          <h2 id="connector-details" className="font-display text-lg font-bold text-white">
+            Connector details
+          </h2>
+          <dl className="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-[10rem_1fr]">
+            <dt className="text-gray-500">Connector URL</dt>
+            <dd className="text-gray-200">
+              <Code>{MCP_URL}</Code>
+            </dd>
+            <dt className="text-gray-500">Authentication</dt>
+            <dd className="text-gray-400">
+              OAuth 2.1 with dynamic client registration, approved with a one-time six-character code from the P.R.O.
+              app (valid 10 minutes, single use)
+            </dd>
+            <dt className="text-gray-500">Access</dt>
+            <dd className="text-gray-400">
+              Read-only by default; saving coach notes only if you enable writing. No deletion, payments or messaging.
+            </dd>
+            <dt className="text-gray-500">Works with</dt>
+            <dd className="text-gray-400">Claude, ChatGPT (developer mode), Perplexity (Pro and Max) and other MCP clients</dd>
+            <dt className="text-gray-500">Publisher</dt>
+            <dd className="text-gray-400">HAOTONG TECHNOLOGY (HK) CO., LIMITED</dd>
+            <dt className="text-gray-500">Support</dt>
+            <dd className="text-gray-400">
+              <a href={`mailto:${SUPPORT_EMAIL}`} className="text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink">
+                {SUPPORT_EMAIL}
+              </a>{' '}
+              ·{' '}
+              <Link to="/support" className="text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink">
+                Support page
+              </Link>
+            </dd>
+            <dt className="text-gray-500">Legal</dt>
+            <dd className="text-gray-400">
+              <Link to="/privacy" className="text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink">
+                Privacy Policy
+              </Link>{' '}
+              ·{' '}
+              <Link to="/terms" className="text-brand-pink-soft underline decoration-brand-pink/40 underline-offset-2 hover:text-brand-pink">
+                Terms of Service
+              </Link>
+            </dd>
+          </dl>
+        </section>
+
+        <section className="privacy-md mt-12">
           <h2>What do you need?</h2>
           <ul>
             <li>
@@ -90,79 +217,138 @@ export default function AppleHealthMcp() {
             </li>
             <li>Workouts, sleep and heart rate in Apple Health — for example, recorded by an Apple Watch.</li>
             <li>
-              An assistant that supports custom MCP connectors: Claude (Settings → Connectors) or ChatGPT on a plan with
-              developer mode.
+              An assistant that supports custom MCP connectors: Claude, ChatGPT on a plan with developer mode, or
+              Perplexity Pro or Max.
             </li>
           </ul>
         </section>
 
-        <section className="mt-12">
-          <h2 className="mb-4 font-display text-xl font-bold text-white sm:text-2xl">How do you connect Claude?</h2>
-          <ol className="space-y-4">
-            <Step n={1}>
-              In the P.R.O. app, open <strong className="text-gray-200">Connect AI assistants</strong> and tap{' '}
-              <strong className="text-gray-200">Get connection code</strong>. You get a six-character code that works
-              once and expires after 10 minutes.
-            </Step>
-            <Step n={2}>
-              In Claude, open <strong className="text-gray-200">Settings → Connectors → Add custom connector</strong> and
-              paste <code className="rounded bg-white/5 px-1.5 py-0.5 text-gray-200">{MCP_URL}</code>.
-            </Step>
-            <Step n={3}>
-              The P.R.O. authorization page opens. Type the connection code from the app and confirm.
-            </Step>
-            <Step n={4}>Done — Claude now sees your workouts, sleep and goals. Ask it something like “How was my training week?”.</Step>
-          </ol>
-        </section>
+        <StepsSection title="How do you get a connection code?">
+          <Step n={1}>
+            In the P.R.O. app, open <B>Settings → MCP Connect → Connect an assistant</B>.
+          </Step>
+          <Step n={2}>
+            Tap <B>Get connection code</B>. You get a six-character code that works once and expires after 10 minutes.
+            Nothing is shared with any assistant until you type this code on the P.R.O. authorization page.
+          </Step>
+        </StepsSection>
 
-        <section className="mt-12">
-          <h2 className="mb-4 font-display text-xl font-bold text-white sm:text-2xl">How do you connect ChatGPT?</h2>
-          <ol className="space-y-4">
-            <Step n={1}>
-              In ChatGPT settings, turn on <strong className="text-gray-200">developer mode</strong> for connectors
-              (available on paid plans; menu names change between ChatGPT versions).
-            </Step>
-            <Step n={2}>
-              Choose <strong className="text-gray-200">Add custom connector</strong>, enter the URL{' '}
-              <code className="rounded bg-white/5 px-1.5 py-0.5 text-gray-200">{MCP_URL}</code> and select OAuth
-              authentication.
-            </Step>
-            <Step n={3}>
-              Get a code in the P.R.O. app (<strong className="text-gray-200">Connect AI assistants → Get connection code</strong>)
-              and type it on the P.R.O. authorization page that ChatGPT opens.
-            </Step>
-            <Step n={4}>Enable the P.R.O. connector in a chat and ask about your training, sleep or heart rate.</Step>
-          </ol>
-        </section>
+        <StepsSection title="How do you connect Claude?">
+          <Step n={1}>
+            In Claude, open <B>Settings → Connectors → Add custom connector</B>.
+          </Step>
+          <Step n={2}>
+            Name it <B>P.R.O.</B>, paste <Code>{MCP_URL}</Code> as the URL and tap <B>Add</B>, then <B>Connect</B>.
+          </Step>
+          <Step n={3}>The P.R.O. authorization page opens. Type the connection code from the app and confirm.</Step>
+          <Step n={4}>
+            Done — make sure P.R.O. is enabled in the chat’s tools menu and ask something like “How was my training
+            week?”.
+          </Step>
+        </StepsSection>
+
+        <StepsSection title="How do you connect ChatGPT?">
+          <Step n={1}>
+            In ChatGPT settings, turn on <B>developer mode</B> for apps and connectors (available on paid plans; menu
+            names change between ChatGPT versions).
+          </Step>
+          <Step n={2}>
+            Create a connector, name it <B>P.R.O.</B>, enter the URL <Code>{MCP_URL}</Code> and choose <B>OAuth</B>{' '}
+            authentication.
+          </Step>
+          <Step n={3}>Type the connection code from the app on the P.R.O. authorization page that ChatGPT opens.</Step>
+          <Step n={4}>Enable the P.R.O. connector in a chat (developer mode) and ask about your training, sleep or heart rate.</Step>
+        </StepsSection>
+
+        <StepsSection title="How do you connect Perplexity?">
+          <Step n={1}>
+            On Perplexity Pro or Max, open <B>Settings → Connectors</B> and add a <B>custom connector</B> (remote MCP
+            server).
+          </Step>
+          <Step n={2}>
+            Name it <B>P.R.O.</B>, enter <Code>{MCP_URL}</Code> as the server URL and choose <B>OAuth</B>{' '}
+            authentication.
+          </Step>
+          <Step n={3}>Type the connection code from the app on the P.R.O. authorization page that opens.</Step>
+          <Step n={4}>Turn on P.R.O. in the sources or connectors menu of a thread and ask your question.</Step>
+        </StepsSection>
 
         <section className="privacy-md mt-12">
-          <h2>What can the assistant see and do?</h2>
+          <h2>What tools does the connector provide?</h2>
           <p>
-            The assistant can read only the categories you allow in the P.R.O. app: <strong>profile</strong>,{' '}
-            <strong>goals</strong>, <strong>daily metrics</strong> (steps, active energy), <strong>workouts</strong>,{' '}
-            <strong>GPS routes</strong>, <strong>sleep</strong>, <strong>heart rate</strong> and the coach’s{' '}
-            <strong>memory</strong>. A disabled category is not returned to any assistant.
+            The assistant chooses a tool when your question needs it. Every tool respects the data categories you allow
+            in the app.
           </p>
-          <p>
-            Access is read-only by default. If you turn on <strong>Let assistants write data</strong>, the assistant can
-            also set goals, save facts to the coach’s memory and rearrange the widgets on your P.R.O. dashboard.
-          </p>
+        </section>
+        <div className="coach-md-table-wrap mb-6 overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>What it returns or does</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TOOLS.map((t) => (
+                <tr key={t.name}>
+                  <td>
+                    <strong>{t.title}</strong>
+                    <br />
+                    <span className="font-mono text-xs text-gray-500">{t.name}</span>
+                  </td>
+                  <td>{t.what}</td>
+                  <td>{t.access}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
+        <section className="privacy-md mt-12">
           <h2>What can you ask?</h2>
           <ul>
-            <li>“Summarise my training this week and compare it with last week.”</li>
-            <li>“How did my sleep change on the days after long runs?”</li>
-            <li>“What was my average heart rate on my last five rides?”</li>
-            <li>“Am I on track for my monthly distance goal?”</li>
-            <li>“Build me a recovery week based on my recent load.”</li>
+            {PROMPTS.map((p) => (
+              <li key={p}>“{p}”</li>
+            ))}
+          </ul>
+
+          <h2>How do permissions and revocation work?</h2>
+          <ul>
+            <li>
+              <strong>Data categories.</strong> In <strong>Settings → MCP Connect → Advanced data settings</strong> you
+              can switch off profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, or coach
+              memory. A switched-off category is not returned to any assistant, effective immediately.
+            </li>
+            <li>
+              <strong>Read-only by default.</strong> The assistant can save coach notes only while{' '}
+              <strong>Let assistants write data</strong> is on.
+            </li>
+            <li>
+              <strong>On demand only.</strong> The assistant reads data only when you ask it something. Detailed data
+              (heart-rate series, sleep stages, splits, GPS route) is uploaded by your phone only on request and expires
+              after 48 hours.
+            </li>
+            <li>
+              <strong>Disconnect.</strong> Remove the P.R.O. connector in the assistant’s settings. Deleting your P.R.O.
+              account (<strong>Settings → Delete Account</strong>) revokes all connector access and deletes your data on
+              our servers; you can also email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> to have every
+              connector token revoked.
+            </li>
           </ul>
 
           <h2>Is it private?</h2>
           <p>
             You stay in control. The connection uses OAuth 2.1 with a one-time code, so the assistant never gets your
-            password, and you can switch off any data category or remove the connector at any time. The assistant reads
-            the data your iPhone syncs to P.R.O., which is why the newest workouts can appear a few hours later — open the
-            app to sync. Details are in the <Link to="/privacy">privacy policy</Link>.
+            password. Data goes only to the assistant you connected and is then covered by that provider’s own privacy
+            policy. P.R.O. does not sell your data, does not use health data for advertising or data mining, and does not
+            use it to train AI models. The assistant reads the data your iPhone syncs to P.R.O., which is why the newest
+            workouts can appear a few hours later — open the app to sync. Details are in Part C of the{' '}
+            <Link to="/privacy">privacy policy</Link> and in the <Link to="/terms">terms of service</Link>.
+          </p>
+          <p>
+            P.R.O. offers wellness and fitness information, not medical advice, and is not a medical device. Questions or
+            problems? See <Link to="/support">support</Link>.
           </p>
         </section>
       </article>

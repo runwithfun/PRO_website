@@ -24,7 +24,9 @@ export default function ModernFooter() {
             </div>
             <div className="space-y-2">
               <Link to="/privacy" className="block text-gray-500 hover:text-white">Privacy</Link>
-              <a href="mailto:P.R.O.devel001@gmail.com" className="block text-gray-500 hover:text-white">Contact</a>
+              <Link to="/terms" className="block text-gray-500 hover:text-white">Terms</Link>
+              <Link to="/support" className="block text-gray-500 hover:text-white">Support</Link>
+              <a href="mailto:mail@proapp.uk" className="block text-gray-500 hover:text-white">Contact</a>
               <a
                 href="https://apps.apple.com/us/app/p-r-o/id6749865568"
                 target="_blank"
@@ -36,7 +38,7 @@ export default function ModernFooter() {
             </div>
           </div>
         </div>
-        <p className="mt-10 text-center text-xs text-gray-600">© {year} P.R.O.</p>
+        <p className="mt-10 text-center text-xs text-gray-600">© {year} P.R.O. · HAOTONG TECHNOLOGY (HK) CO., LIMITED</p>
       </div>
     </footer>
   );

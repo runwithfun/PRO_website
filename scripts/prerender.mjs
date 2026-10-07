@@ -24,7 +24,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const { render, faq, mcpFaq, compareFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
+const { render, faq, mcpFaq, supportFaq, compareFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
 // Preload основных шрифтов (латиница): DM Sans — текст, Syne — заголовки.
 // Имена файлов с хэшем Vite, поэтому ищем их в dist/assets.
 const fontPreloads = fs
@@ -109,7 +109,7 @@ function jsonLd(route) {
     },
   ];
   if (route.faq) {
-    const items = { mcp: mcpFaq, compare: compareFaq }[route.faq] ?? faq;
+    const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({
@@ -135,7 +135,7 @@ function jsonLd(route) {
       totalTime: 'PT2M',
       tool: [{ '@type': 'HowToTool', name: 'P.R.O. app for iPhone' }],
       step: [
-        'In the P.R.O. app, open Connect AI assistants and tap Get connection code.',
+        'In the P.R.O. app, open Settings → MCP Connect → Connect an assistant and tap Get connection code.',
         'In Claude, open Settings → Connectors → Add custom connector and paste https://mcp.proapp.uk.',
         'On the P.R.O. authorization page, type the connection code from the app.',
         'Ask Claude about your workouts, sleep and goals.',

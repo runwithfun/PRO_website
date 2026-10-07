@@ -34,7 +34,7 @@ export const faq = [
   },
   {
     q: 'Can I connect P.R.O. to ChatGPT or Claude?',
-    a: 'Yes. In the app, open "Connect AI assistants", get a connection code and add https://mcp.proapp.uk as a custom connector. The assistant can then analyse your workouts and metrics; you decide which data categories it can see.',
+    a: 'Yes — Claude, ChatGPT, Perplexity and other assistants with custom MCP connectors. In the app, open Settings → MCP Connect → Connect an assistant, get a connection code and add https://mcp.proapp.uk as a custom connector. The assistant can then analyse your workouts and metrics; you decide which data categories it can see.',
   },
   {
     q: 'Does P.R.O. build training plans?',
@@ -46,7 +46,7 @@ export const faq = [
   },
   {
     q: 'How do I get support?',
-    a: 'Email P.R.O.devel001@gmail.com — we typically respond within 24 hours.',
+    a: 'Email mail@proapp.uk or visit proapp.uk/support — we typically respond within 24 hours.',
   },
 ];
 

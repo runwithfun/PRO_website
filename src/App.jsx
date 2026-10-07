@@ -8,6 +8,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import AppleHealthMcp from './pages/AppleHealthMcp';
 import Compare from './pages/Compare';
+import Terms from './pages/Terms';
+import Support from './pages/Support';
 import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
 import ScrollToTop from './components/ScrollToTop';
@@ -41,6 +43,8 @@ export function AppShell() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/apple-health-chatgpt-claude" element={<AppleHealthMcp />} />
             <Route path="/compare" element={<Compare />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
         </main>
         <ModernFooter />

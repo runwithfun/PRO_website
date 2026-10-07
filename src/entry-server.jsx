@@ -6,6 +6,7 @@ import { AppShell } from './App.jsx';
 
 export { faq } from './pages/FAQ.jsx';
 export { mcpFaq } from './pages/AppleHealthMcp.jsx';
+export { supportFaq } from './content/support.js';
 export { compareFaq } from './content/compare.js';
 export { ROUTES } from './seo.js';
 

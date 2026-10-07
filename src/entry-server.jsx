@@ -4,8 +4,8 @@ import ReactDOMStatic from 'react-dom/static';
 import { StaticRouter } from 'react-router';
 import { AppShell } from './App.jsx';
 
-export { faq } from './pages/FAQ.jsx';
-export { mcpFaq } from './pages/AppleHealthMcp.jsx';
+export { faq } from './content/faq.js';
+export { mcpFaq } from './content/mcpFaq.js';
 export { supportFaq } from './content/support.js';
 export { compareFaq } from './content/compare.js';
 export { ROUTES } from './seo.js';

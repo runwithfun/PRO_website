@@ -178,7 +178,9 @@ for (const route of ROUTES) {
 // sitemap.xml — только из реальных маршрутов, чтобы не было адресов с 404.
 //
 // lastmod меняется, только когда реально изменился текст страницы: сравниваем
-// видимый текст (+ title/description) новой сборки с тем, что сейчас на сайте.
+// текст <main> (+ title/description) новой сборки с тем, что сейчас на сайте.
+// Шапка и футер общие для всех страниц — их правка не повод отмечать
+// обновлёнными все страницы разом.
 // Совпал — оставляем прежний lastmod из живого sitemap, нет — ставим текущее
 // время. Если сайт недоступен (локальная сборка без сети) — дата последнего
 // коммита по исходникам страницы. Дату сборки Google считает недостоверной.
@@ -186,9 +188,13 @@ const textHash = (html) =>
   crypto
     .createHash('sha256')
     .update(
-      html
+      [
+        html.match(/<title>[\s\S]*?<\/title>/)?.[0] ?? '',
+        html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '',
+        html.match(/<main[\s>][\s\S]*<\/main>/)?.[0] ?? html,
+      ]
+        .join(' ')
         .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, ' ')
-        .replace(/<meta name="description" content="([^"]*)"[^>]*>/g, ' $1 ')
         .replace(/<[^>]+>/g, ' ')
         // Cloudflare на живом сайте подменяет e-mail на «[email protected]» — не считаем это изменением.
         .replace(/\[email&#160;protected\]|\[email protected\]|[\w.+-]+@[\w-]+\.[\w.]+/g, 'EMAIL')
@@ -206,22 +212,25 @@ async function fetchText(url) {
   }
 }
 
+// Все даты в sitemap — в UTC, в одном формате.
+const utc = (d) => d.toISOString().replace(/\.\d{3}Z$/, '+00:00');
+
 function gitDate(route) {
   try {
     const d = execFileSync('git', ['log', '-1', '--format=%cI', '--', ...(route.sources ?? ['src', 'index.html'])], {
       cwd: ROOT,
       encoding: 'utf8',
     }).trim();
-    if (d) return d;
+    if (d) return utc(new Date(d));
   } catch {}
-  return new Date().toISOString();
+  return utc(new Date());
 }
 
 const liveSitemap = await fetchText(`${SITE}/sitemap.xml`);
 const liveLastmod = new Map(
   [...(liveSitemap ?? '').matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)].map((m) => [m[1], m[2]]),
 );
-const now = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00');
+const now = utc(new Date());
 const entries = [];
 for (const route of ROUTES) {
   const url = `${SITE}${route.path}`;
@@ -229,7 +238,10 @@ for (const route of ROUTES) {
   let mod;
   if (live && liveLastmod.has(url)) {
     const fresh = fs.readFileSync(path.join(DIST, route.file), 'utf8');
-    mod = textHash(live) === textHash(fresh) ? liveLastmod.get(url) : now;
+    mod = textHash(live) === textHash(fresh) ? utc(new Date(liveLastmod.get(url))) : now;
+  } else if (liveSitemap) {
+    // Сайт доступен, а страницы в sitemap ещё нет — она новая, публикуется сейчас.
+    mod = now;
   } else {
     mod = gitDate(route);
   }

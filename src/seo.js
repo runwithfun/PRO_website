@@ -24,7 +24,7 @@ export const ROUTES = [
     description:
       'Answers about P.R.O.: how the AI coach uses your Apple Health data, supported devices, privacy, availability and support — plus free coaching tips.',
     faq: true,
-    sources: ['src/pages/FAQ.jsx', 'src/components/TuyoFaq.jsx', 'src/components/FaqCoachTips.jsx', 'src/components/FaqLockerRoom.jsx'],
+    sources: ['src/pages/FAQ.jsx', 'src/content/faq.js', 'src/components/TuyoFaq.jsx', 'src/components/FaqCoachTips.jsx', 'src/components/FaqLockerRoom.jsx'],
   },
   {
     path: '/about',
@@ -65,7 +65,7 @@ export const ROUTES = [
     description:
       'Step-by-step: give ChatGPT, Claude and other AI assistants access to your Apple Health and Apple Watch workouts, sleep and heart rate with the free P.R.O. app and its MCP connector.',
     faq: 'mcp',
-    sources: ['src/pages/AppleHealthMcp.jsx'],
+    sources: ['src/pages/AppleHealthMcp.jsx', 'src/content/mcpFaq.js'],
   },
   {
     path: '/compare',

@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dist-ssr', '.vite']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
@@ -25,5 +25,10 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
+  },
+  // Серверная точка входа пререндера: не горячо перезагружается, экспортирует данные.
+  {
+    files: ['src/entry-server.jsx'],
+    rules: { 'react-refresh/only-export-components': 'off' },
   },
 ])

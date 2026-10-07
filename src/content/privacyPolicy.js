@@ -37,7 +37,7 @@ Part A applies to all users. Part B applies additionally if you choose to use AI
 We do not sell your personal data. We share data only with:
 
 - **Infrastructure providers** (e.g., cloud hosting) — under contractual data protection obligations, for hosting and storage
-- **Analytics tools** (if applicable) — anonymized, aggregated data only, not linked to individual users
+- **Product analytics and monitoring** — [PostHog](https://posthog.com/privacy) (EU region) receives usage events such as which feature or API was used, linked to a pseudonymous account ID and, for connector requests, the IP address; [Langfuse](https://langfuse.com/privacy) (EU region) receives monitoring data about AI requests (see Part B). Neither receives your Apple Health data for analytics or advertising, and neither may use it for its own purposes
 - **Legal requirements** — if compelled by applicable law, court order, or regulatory authority
 
 We require all third-party service providers to maintain appropriate technical and organizational security measures. However, we cannot guarantee the security practices of third parties and disclaim responsibility for breaches or data incidents occurring within their systems.
@@ -61,10 +61,11 @@ We are not able to guarantee deletion of data already shared with third-party in
 
 AI features in P.R.O. rely on independent third-party AI infrastructure. Depending on the model you select:
 
-- **Auto mode** — requests are sent directly to [Nvidia NIM](https://build.nvidia.com/) (Nvidia Inference Microservices), not through OpenRouter.
-- **Other models** — requests are sent via [OpenRouter](https://openrouter.ai), an independent third-party AI API aggregation service, which routes the request to the selected backend AI model provider.
+- **Auto mode** — requests are sent via [OpenRouter](https://openrouter.ai), an independent third-party AI API aggregation service, to a model chosen by P.R.O. If OpenRouter is unavailable, the request is sent directly to [Nvidia NIM](https://build.nvidia.com/) (Nvidia Inference Microservices) as a backup.
+- **Training plans and metric analysis** — always sent via OpenRouter to a fixed model chosen by P.R.O., whatever model you selected for chat.
+- **Other models** — requests are sent via OpenRouter, which routes the request to the selected backend AI model provider.
 
-P.R.O. displays the returned response to you. AI computation is performed entirely by the applicable third-party provider (Nvidia NIM or OpenRouter and its backend model providers), which are independent services not operated by HAOTONG TECHNOLOGY (HK) CO., LIMITED.
+P.R.O. displays the returned response to you. AI computation is performed entirely by the applicable third-party provider (OpenRouter and its backend model providers, or Nvidia NIM as a backup), which are independent services not operated by HAOTONG TECHNOLOGY (HK) CO., LIMITED.
 
 ### B2. Data Transmitted
 
@@ -78,31 +79,32 @@ When you use an AI feature, the following processed data may be transmitted exte
 
 ### B3. Third-Party AI Processors
 
-**Nvidia NIM (Auto mode only)**
+**Nvidia NIM (backup for Auto mode)**
 
 | | |
 | --- | --- |
-| Role | Direct AI inference provider for Auto mode |
-| Used for | Auto model selection only — not routed through OpenRouter |
+| Role | Backup AI inference provider for Auto mode |
+| Used for | Auto mode requests only when OpenRouter is unavailable — sent directly, not through OpenRouter |
 | Privacy Policy | [nvidia.com privacy policy](https://www.nvidia.com/en-us/about-nvidia/privacy-policy/) |
 
-When you use Auto mode, P.R.O. transmits processed data directly to Nvidia NIM. P.R.O. has a service relationship with Nvidia for this purpose; however, Nvidia's data retention, storage, logging, and model training practices are governed entirely by Nvidia's own privacy policy and are outside P.R.O.'s control or responsibility.
+When Auto mode falls back to Nvidia NIM, P.R.O. transmits processed data directly to Nvidia NIM. P.R.O. has a service relationship with Nvidia for this purpose; however, Nvidia's data retention, storage, logging, and model training practices are governed entirely by Nvidia's own privacy policy and are outside P.R.O.'s control or responsibility.
 
-**OpenRouter (non-Auto models only)**
+**OpenRouter**
 
 | | |
 | --- | --- |
-| Role | AI API aggregator; sub-processor for user-selected models other than Auto |
+| Role | AI API aggregator; sub-processor for Auto mode, training plans, metric analysis and user-selected models |
 | Privacy Policy | [openrouter.ai/privacy](https://openrouter.ai/privacy) |
 | Provider logging | [openrouter.ai/docs/guides/privacy/provider-logging](https://openrouter.ai/docs/guides/privacy/provider-logging) |
 
-OpenRouter routes requests to various backend AI model providers. Auto mode does not use OpenRouter. P.R.O. has a service relationship with OpenRouter; however, P.R.O. does not have direct contractual relationships with OpenRouter's backend providers and therefore cannot guarantee, enforce, or be held responsible for the data practices of those providers.
+OpenRouter routes requests to various backend AI model providers. P.R.O. has a service relationship with OpenRouter; however, P.R.O. does not have direct contractual relationships with OpenRouter's backend providers and therefore cannot guarantee, enforce, or be held responsible for the data practices of those providers.
 
 **Backend AI Model Providers**
 
 | AI Mode | Backend Provider |
 | --- | --- |
-| Auto | Nvidia (directly via Nvidia NIM — not through OpenRouter) |
+| Auto | A model chosen by P.R.O., routed via OpenRouter; Nvidia (directly via Nvidia NIM) as a backup |
+| Training plans and metric analysis | A fixed model chosen by P.R.O., routed via OpenRouter |
 | Other models | Varies by user selection; routed via OpenRouter; governed by respective provider's policy |
 
 Backend model providers are independent third parties. Their data retention, storage, logging, and model training practices are governed entirely by their own privacy policies and are outside P.R.O.'s control or responsibility. P.R.O. expressly disclaims liability for any processing, storage, disclosure, or use of data carried out by backend AI model providers.
@@ -112,9 +114,20 @@ Relevant policies:
 - Nvidia: [nvidia.com privacy policy](https://www.nvidia.com/en-us/about-nvidia/privacy-policy/)
 - OpenRouter provider data practices: [openrouter.ai/docs/guides/privacy/provider-logging](https://openrouter.ai/docs/guides/privacy/provider-logging)
 
+**Langfuse (AI monitoring)**
+
+| | |
+| --- | --- |
+| Role | Observability processor for AI requests made by the in-app AI coach |
+| Data | Model, token counts, latency, cost and a pseudonymous account ID; the text of requests and responses may also be recorded to help us diagnose errors and answer quality |
+| Region | European Union ([cloud.langfuse.com](https://cloud.langfuse.com)) |
+| Privacy Policy | [langfuse.com/privacy](https://langfuse.com/privacy) |
+
+Langfuse acts only on our instructions and does not use this data for its own purposes. Requests made by AI assistants through the connector (Part C) are not sent to Langfuse.
+
 ### B4. Retention of AI Data
 
-P.R.O. retains AI conversation history only within the app on your device for your reference. You can delete it at any time in **Settings → AI History → Clear**. P.R.O. does not store the content of AI queries on its own servers.
+P.R.O. keeps your AI conversation history in the app on your device for your reference. You can delete it at any time in the chat history: swipe a conversation to delete it, or clear all conversations. On our servers we store only coach notes, short facts you or the coach chose to remember (for example an injury or your available equipment), until you delete them or your account. Monitoring records of AI requests are kept by Langfuse as described above.
 
 Nvidia NIM, OpenRouter, and backend model providers retain data per their own policies. P.R.O. has no ability to control, limit, or compel deletion of data once transmitted to those services.
 

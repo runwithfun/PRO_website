@@ -45,7 +45,7 @@ const TOOLS = [
   {
     name: 'fetch_health_data',
     title: 'Detailed health data',
-    what: 'On request, for one day or one workout: heart-rate series, sleep stages, workout splits, workout GPS route. Uploaded by the phone, cached for 48 hours.',
+    what: 'On request, for one day or one workout: full-day heart-rate series, stages or splits of an older night or workout, workout GPS route. Uploaded by the phone, cached for 48 hours.',
     access: 'Read',
   },
   {
@@ -297,8 +297,8 @@ export default function AppleHealthMcp() {
             </li>
             <li>
               <strong>On demand only.</strong> The assistant reads data only when you ask it something. Detailed data
-              (heart-rate series, sleep stages, splits, GPS route) is uploaded by your phone only on request and expires
-              after 48 hours.
+              (full-day heart-rate series, GPS route, stages or splits beyond the regular sync) is uploaded by your
+              phone only on request and expires after 48 hours.
             </li>
             <li>
               <strong>Disconnect.</strong> Remove the P.R.O. connector in the assistant’s settings. Deleting your P.R.O.

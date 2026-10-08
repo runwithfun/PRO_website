@@ -19,7 +19,7 @@ export const supportFaq = [
   },
   {
     q: 'Why is today’s data missing or a few hours old?',
-    a: 'The assistant reads the data your iPhone has synced to P.R.O., not Apple Health directly. Open the P.R.O. app to sync the latest workouts, sleep and metrics, then ask again. Detailed data such as heart-rate series, sleep stages or a GPS route is uploaded only after you open the app, so the first answer may say the data was requested.',
+    a: 'The assistant reads the data your iPhone has synced to P.R.O., not Apple Health directly. Open the P.R.O. app to sync the latest workouts, sleep and metrics, then ask again. Detailed data such as a full-day heart-rate series or a workout GPS route is uploaded only after you open the app, so the first answer may say the data was requested. Sleep stages and the heart-rate curve and splits of recent workouts arrive with the regular sync.',
   },
   {
     q: 'The assistant says a data category is turned off.',

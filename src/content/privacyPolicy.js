@@ -166,13 +166,13 @@ The assistant reads data only when you ask it something in that assistant and it
 | Profile | Name, sex, height, weight, age |
 | Goals | Goals you set in the app and your progress toward them |
 | Daily metrics | Daily totals synced from Apple Health: steps, active energy, distance, exercise minutes, flights climbed |
-| Workouts | Workout summaries (type, date, duration, distance, energy, heart rate, pace, cadence, power, source app), your activity streak, your active training plan and its change history |
-| Workout routes | The GPS route of a single workout, only when uploaded on request (see below) |
-| Sleep | Sleep hours and sleep score |
-| Heart rate & HRV | Resting and average heart rate, heart rate variability (HRV), and heart rate within workout summaries |
+| Workouts | Workout summaries (type, date, duration, distance, energy, heart rate, pace, cadence, power, source app); for workouts from the last 14 days, pace per kilometre and elevation gain; your activity streak, your active training plan and its change history |
+| Workout routes | The GPS route of a single workout, only when uploaded on request, including when the assistant shows the P.R.O. workout card (see below) |
+| Sleep | Sleep hours and sleep score; time in each sleep stage (deep, core, REM, awake), bedtime, wake time and the stage timeline of each night |
+| Heart rate & HRV | Resting and average heart rate, heart rate variability (HRV), heart rate within workout summaries, and the heart-rate curve of workouts from the last 14 days |
 | Coach memory | Coach notes you or the P.R.O. coach saved |
 
-**Detailed data on request.** When you ask for more detail about one day or one workout, the assistant can ask your iPhone to upload it: a heart-rate series, sleep stages, workout splits or a workout GPS route. The upload happens only after you open the P.R.O. app, and only for categories you allow. These detailed uploads are cached on our servers for **48 hours** so that a repeated question does not upload them again; after 48 hours they expire, are no longer available to any assistant and are deleted.
+**Detailed data on request.** Sleep stages and the heart-rate curve and splits of recent workouts are part of the regular sync listed above. Anything beyond that is uploaded only on request: when you ask for more detail about one day or one workout, or when the assistant shows the P.R.O. workout card, the assistant can ask your iPhone to upload a full-day heart-rate series, the stages or splits of an older night or workout, or a workout GPS route. The upload happens only after you open the P.R.O. app, and only for categories you allow. These detailed uploads are cached on our servers for **48 hours** so that a repeated question does not upload them again; after 48 hours they expire, are no longer available to any assistant and are deleted.
 
 ### C4. What the Assistant Can Do
 

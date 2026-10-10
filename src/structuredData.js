@@ -70,7 +70,7 @@ export function structuredData(route, store = {}) {
     graph.push({
       '@type': 'HowTo', '@id': `${SITE}/mcp-connect#howto`,
       name: 'How to connect P.R.O. to your AI assistant',
-      description: 'Install P.R.O. on iPhone, sign in and allow Apple Health access. On a computer, get the connection code in P.R.O. on iPhone: Settings → MCP Connect → Get connection code.',
+      description: 'Copy the MCP address and add a custom connector. Install P.R.O. on iPhone, sign in and get a code in Settings → MCP Connect → Get connection code. Paste the code to connect, choose access and start a conversation.',
       step: connectionSteps.map((step, i) => ({
         '@type': 'HowToStep', position: i + 1, name: step.title, text: step.text,
         url: `${SITE}/mcp-connect#connect-step-${i + 1}`,

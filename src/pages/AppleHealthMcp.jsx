@@ -8,7 +8,6 @@ import { mcpFaq } from '../content/mcpFaq';
 import { mcpTools } from '../content/mcpTools';
 import './mcp-connect.css';
 
-const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 export default function AppleHealthMcp() {
   const { hash } = useLocation();
   useEffect(() => {
@@ -20,18 +19,18 @@ export default function AppleHealthMcp() {
   return <div className="mcp-page">
     <header className="connect-intro connect-wrap">
       <h1>Your health.<br />Your favorite <em>AI.</em></h1>
-      <p className="connect-description">Connect Apple Health to ChatGPT, Claude, Codex or Grok.<br className="connect-desktop-break" /> Your workouts, sleep and progress — in the conversation.</p>
+      <p className="connect-description">Connect your health data to ChatGPT, Claude, Codex or Grok.<br className="connect-desktop-break" /> Your workouts, sleep and progress — in the conversation.</p>
     </header>
     <div className="connect-orbit-wrap"><HealthOrbit /></div>
     <section className="connect-wrap connect-section" id="how-to-connect" aria-labelledby="setup-heading">
-      <div className="connect-section-heading"><h2 id="setup-heading">One address. Four steps.</h2><p>Install <a href={APP_STORE} target="_blank" rel="noopener noreferrer">P.R.O. on your iPhone ↗</a>, sign in and allow the Apple Health data you want to use.</p></div>
+      <div className="connect-section-heading"><h2 id="setup-heading">Five simple steps.</h2></div>
       <ConnectionWalkthrough />
     </section>
     <section className="connect-wrap connect-section assistant-help" id="assistant-guides" aria-labelledby="assistant-heading">
       <div className="connect-section-heading"><p className="connect-eyebrow">A LITTLE MORE GUIDANCE</p><h2 id="assistant-heading">Find your assistant.</h2><p>The same connection. Slightly different menus.</p></div>
       {guides.map(g => <details className="assistant-guide" key={g.id} id={g.id}>
         <summary><AssistantIcon name={g.name} /><span><h3>Connect P.R.O. to {g.name}</h3><small>{g.platform}</small></span><span className="connect-expand" aria-hidden="true">+</span></summary>
-        <div className="assistant-guide-body"><p>{g.intro}</p><ol>{g.steps.map((s, i) => <li key={i}><strong>{s.title}</strong>{s.text && <p>{s.text}</p>}{s.pairing && <Link to="#connect-step-3">Approve access using the shared steps above ↑</Link>}{s.link && <a href={s.link} target="_blank" rel="noopener noreferrer">{s.linkText}</a>}</li>)}</ol><p className="guide-recorded">{g.verified}<a href={g.helpUrl} target="_blank" rel="noopener noreferrer">Official setup help ↗</a></p></div>
+        <div className="assistant-guide-body"><p>{g.intro}</p><ol>{g.steps.map((s, i) => <li key={i}><strong>{s.title}</strong>{s.text && <p>{s.text}</p>}{s.pairing && <Link to="#connect-step-3">Get your code using step 3 above ↑</Link>}{s.link && <a href={s.link} target="_blank" rel="noopener noreferrer">{s.linkText}</a>}</li>)}</ol><p className="guide-recorded">{g.verified}<a href={g.helpUrl} target="_blank" rel="noopener noreferrer">Official setup help ↗</a></p></div>
       </details>)}
       <details className="assistant-guide assistant-guide-other"><summary><span className="assistant-other-icon" aria-hidden="true">↗</span><span><h3>Another MCP-compatible agent</h3><small>Remote MCP · Streamable HTTP · OAuth</small></span><span className="connect-expand" aria-hidden="true">+</span></summary><div className="assistant-guide-body"><p>Use <code>{MCP_URL}</code> in a client that supports remote MCP over Streamable HTTP and OAuth. Other clients may work; only ChatGPT, Claude, Codex and Grok have been tested. Perplexity setup is still being verified.</p></div></details>
       <p className="connect-footnote">Custom connectors depend on your assistant’s plan and account permissions. ChatGPT and Codex setup was recorded with Pro. Interactive cards are confirmed in ChatGPT and Claude.</p>

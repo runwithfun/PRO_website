@@ -24,7 +24,7 @@ for (const route of ROUTES) {
   }
   if (route.path === '/mcp-connect') {
     const howto = graph.find(n => n['@type'] === 'HowTo');
-    assert.equal(howto.step.length, 4);
+    assert.equal(howto.step.length, 5);
     for (const step of howto.step) assert.ok(html.includes(step.text), `Missing visible instruction: ${step.name}`);
     const faq = graph.find(n => n['@type'] === 'FAQPage');
     assert.equal(faq.mainEntity.length, 10);

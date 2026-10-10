@@ -77,7 +77,7 @@
 .connection-step-button strong { display: block; font-size: 16px; font-weight: 500; letter-spacing: -.015em; }
 .connection-step-text { display: block; margin-top: 9px; color: var(--connect-muted); font-size: 12px; line-height: 1.8; max-width: 350px; }
 .connection-step-indicator { display: none; }
-.walk-demo { grid-column: 2; grid-row: 1 / 5; display: flex; flex-direction: column; border: 1px solid #ffffff12; border-radius: 16px; overflow: hidden; background: #111115; align-self: stretch; min-height: 400px; }
+.walk-demo { grid-column: 2; grid-row: 1 / 6; display: flex; flex-direction: column; border: 1px solid #ffffff12; border-radius: 16px; overflow: hidden; background: #111115; align-self: stretch; min-height: 400px; }
 .walk-demo[hidden] { display: none; }
 .walk-preview { display: flex; flex-direction: column; justify-content: center; flex: 1; padding: 30px; }
 .walk-preview-content { width: 100%; animation: walk-enter .35s ease-out both; }
@@ -87,6 +87,36 @@
 .walk-address { display: flex; align-items: center; flex-direction: column; padding-block: 20px; }.walk-address img { border-radius: 12px; }.walk-address>span { margin-top: 14px; font-size: 13px; color: #b0b0ba; }.walk-address code { display: block; font-size: 18px; letter-spacing: -.03em; margin: 24px 0; }.walk-address>button { border: 1px solid #ffffff20; background: #ffffff05; padding: 11px 15px; border-radius: 7px; font-size: 11px; cursor: pointer; }.walk-address>button:hover { background: #ffffff10; }.walk-address>p:empty { display: none; }.walk-address>p { text-align: center; font-size: 9px; color: #84848e; margin-top: 20px; }
 .walk-form { max-width: 300px; margin-inline: auto; }.walk-form-heading { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 25px; }.walk-field { margin-top: 15px; }.walk-field>span { display: block; font-size: 10px; color: #9d9da7; margin-bottom: 7px; }.walk-field>div { display: flex; justify-content: space-between; border: 1px solid #ffffff16; background: #ffffff03; border-radius: 7px; padding: 11px 12px; font-size: 12px; }.walk-field .walk-typing { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; animation: walk-type 1.5s steps(23) .3s both; }.walk-form>p { font-size: 9px; color: #8a8a95; line-height: 1.7; margin-top: 19px; }
 @keyframes walk-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.walk-app { max-width: 310px; margin-inline: auto; }
+.walk-app-download { display: flex; align-items: center; gap: 12px; }
+.walk-app-download img { border-radius: 12px; }
+.walk-app-download strong { font-size: 14px; font-weight: 500; }
+.walk-app-download small { display: block; color: var(--connect-muted); font-size: 10px; margin-top: 3px; }
+.walk-app-download a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-left: auto; padding: 10px 13px; border-radius: 22px; background: #ed62a414; color: #ef86b6; font-size: 11px; }
+.walk-app-download a:hover { background: #ed62a425; }
+.walk-app-setup { margin: 16px 0 24px; color: var(--connect-muted); font-size: 10px; }
+.walk-app-screen { padding: 20px 16px; border: 1px solid #ffffff10; border-radius: 16px; background: #17161d; }
+.walk-app-route { display: flex; align-items: center; justify-content: center; gap: 12px; color: #d3cdd9; font-size: 11px; margin-bottom: 24px; }
+.walk-app-route>span { color: #827a8c; }
+.walk-app-code { position: relative; height: 115px; }
+.walk-get-code { position: absolute; inset: 0 0 auto; display: block; text-align: center; padding: 18px 10px; border-radius: 13px; background: linear-gradient(110deg, #d42d78, #ae2a69); font-size: 12px; font-weight: 500; animation: app-code-request 6s both; }
+.walk-issued-code { animation: app-code-issued 6s both; }
+.walk-app-cells { display: flex; gap: 6px; }
+.walk-app-cells>span { display: grid; place-items: center; flex: 1; min-width: 0; height: 48px; border: 1px solid #d42d7870; border-radius: 10px; background: #222029; font-size: 22px; font-weight: 600; animation: app-code-tap 6s both; }
+.walk-app-expiry { display: flex; align-items: center; gap: 12px; margin-top: 12px; color: #a49cad; font-size: 10px; font-variant-numeric: tabular-nums; }
+.walk-app-expiry>i { height: 3px; flex: 1; border-radius: 3px; background: #d42d78; }
+.walk-copy-state { position: relative; text-align: center; font-size: 10px; margin-top: 12px; }
+.walk-copy-state>span, .walk-copy-state>strong { display: block; font-weight: 400; }
+.walk-copy-state>span { color: #a49cad; animation: app-copy-hint 6s both; }
+.walk-copy-state>strong { position: absolute; inset: 0; color: #ef86b6; animation: app-code-copied 6s both; }
+.walk-app-code-note { color: #8d8599; font-size: 9px; text-align: center; margin-top: 8px; }
+.walk-app-shortcut { color: var(--connect-muted); font-size: 10px; line-height: 1.8; margin-top: 20px; }
+.walk-app-shortcut strong { color: #ddd6e6; font-weight: 500; }
+@keyframes app-code-request { 0%, 22% { opacity: 1; } 30%, 100% { opacity: 0; } 15%, 22% { box-shadow: 0 0 0 4px #ed62a420; } }
+@keyframes app-code-issued { 0%, 26% { opacity: 0; transform: scale(.97); } 35%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes app-code-tap { 57%, 65% { border-color: #ef86b6; background: #ed62a41a; transform: scale(.96); } }
+@keyframes app-copy-hint { 0%, 65% { opacity: 1; } 72%, 100% { opacity: 0; } }
+@keyframes app-code-copied { 0%, 65% { opacity: 0; } 72%, 100% { opacity: 1; } }
 .walk-auth { max-width: 310px; margin-inline: auto; border: 1px solid #ffffff0c; border-radius: 12px; background: #15141a; overflow: hidden; }.walk-browser { padding: 11px 14px; background: #1b1a20; font-size: 8px; display: flex; justify-content: space-between; color: #9b98a4; }.walk-auth-body { padding: 25px 22px; }.walk-brand-dot { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .12em; color: #bbb4c4; }.walk-brand-dot:before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #d82e80; }.walk-auth h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.04em; font-weight: 500; margin: 16px 0 22px; }.walk-code-row { display: flex; align-items: center; justify-content: space-between; font-size: 9px; color: #c8c3d0; }.walk-faux-button { display: inline-block; background: #29262f; border: 1px solid #ffffff0c; border-radius: 6px; padding: 7px 9px; font-size: 9px; }.walk-open { color: #ed79ae; border-color: #d42d7860; background: transparent; }.walk-code { display: flex; align-items: center; justify-content: space-between; border: 1px solid #ffffff14; border-radius: 8px; padding: 9px; margin-top: 14px; }.walk-code>span:first-child { letter-spacing: .5em; font-size: 15px; color: #aaa2b8; margin-left: 14px; }.walk-connect { display: block; text-align: center; background: #d22c79; border: 0; font-size: 11px; margin-top: 12px; padding: 9px; }.walk-auth-body>p { text-align: center; font-size: 8px; margin-top: 14px; color: #9b94a6; }
 .walk-chat { max-width: 300px; margin-inline: auto; }.walk-chat-header { display: flex; align-items: center; gap: 9px; font-size: 11px; color: #c4c4cd; margin-bottom: 18px; }.walk-chat-header>i { width: 5px; height: 5px; border-radius: 50%; background: #39b76a; margin-left: auto; }.walk-message { font-size: 11px; padding: 13px 16px; background: #ffffff06; width: fit-content; margin-left: auto; margin-bottom: 0; border-radius: 12px 12px 2px 12px; }.walk-response { padding: 18px; border: 1px solid #ffffff12; border-radius: 10px; }.walk-chat-chart { height: 70px; display: flex; align-items: end; gap: 8px; }.walk-chat-chart>span { flex: 1; background: linear-gradient(0deg, #a642b0 0 24%, #3187d1 24% 72%, #d25d9e 72%); border-radius: 3px; transform-origin: bottom; animation: bar-enter .7s ease-out both; animation-delay: calc(var(--bar-i) * .08s); }.walk-response small { display: block; margin-top: 10px; color: #95919f; font-size: 8px; }
 @keyframes bar-enter { from { transform: scaleY(.02); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
@@ -115,6 +145,7 @@
 @keyframes auth-paste { 34%, 43% { box-shadow: 0 0 0 3px #ed62a425; color: #ed79ae; } }
 @keyframes auth-connect { 58%, 78% { box-shadow: 0 0 0 4px #ed62a425; filter: brightness(1.2); } }
 @media(prefers-reduced-motion: reduce) { .walk-code-value i { opacity: 0; } .walk-code-value b { opacity: 1; } }
+@media(prefers-reduced-motion: reduce) { .walk-get-code, .walk-copy-state>strong { display: none; } }
 
 @media(prefers-reduced-motion: reduce) { .orbit-bridge i { display: none; }.orbit-bridge:before { inset: 20px 0; background: linear-gradient(90deg, #ed62a480, #b6a5ff80); } }
 

@@ -3,7 +3,8 @@ export const MCP_URL = 'https://mcp.proapp.uk';
 export const connectionSteps = [
   { title: 'Copy the address.', text: 'Use https://mcp.proapp.uk. This is the same address for every supported assistant.' },
   { title: 'Add a custom connector.', text: 'In your assistant’s settings, add a custom MCP connection. Paste the server address and use OAuth when asked.' },
-  { title: 'Approve access in P.R.O.', text: 'On iPhone, tap Open P.R.O. on the authorization page. Return, tap Paste, then Connect. Choose the data you want to share.' },
+  { title: 'Get P.R.O. and copy your code.', text: 'Install P.R.O. on your iPhone, sign in and allow Apple Health access. Open Settings → MCP Connect, tap Get connection code, then tap the code to copy it.' },
+  { title: 'Paste the code. Connect.', text: 'Return to the P.R.O. authorization page. Paste or type your code, then select Connect. In P.R.O., choose what the assistant can access.' },
   { title: 'Start a conversation.', text: 'Open a chat with P.R.O. enabled and ask about your workouts, sleep or training progress.' },
 ];
 export const guides = [

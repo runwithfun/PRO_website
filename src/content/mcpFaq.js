@@ -26,6 +26,6 @@ export const mcpFaq = [
   },
   {
     q: 'How do I disconnect an assistant?',
-    a: 'Remove the P.R.O. connector in the assistant’s settings, and switch off data categories in the P.R.O. app to block them immediately for every assistant. Deleting your P.R.O. account revokes all connector access; you can also email mail@proapp.uk to have every connector token revoked.',
+    a: 'In the P.R.O. app, open Settings → Connected assistants and tap Disconnect. The assistant loses access immediately. Removing the connector in the assistant’s own settings alone does not revoke access.',
   },
 ];

@@ -301,10 +301,9 @@ export default function AppleHealthMcp() {
               phone only on request and expires after 48 hours.
             </li>
             <li>
-              <strong>Disconnect.</strong> Remove the P.R.O. connector in the assistant’s settings. Deleting your P.R.O.
-              account (<strong>Settings → Delete Account</strong>) revokes all connector access and deletes your data on
-              our servers; you can also email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> to have every
-              connector token revoked.
+              <strong>Disconnect.</strong> In the P.R.O. app, open <strong>Settings → Connected assistants</strong> and
+              tap <strong>Disconnect</strong>. The assistant loses access immediately. Removing the connector in the
+              assistant’s own settings alone does not revoke access.
             </li>
           </ul>
 

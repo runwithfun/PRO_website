@@ -15,7 +15,7 @@ export const supportFaq = [
   },
   {
     q: 'How do I disconnect an assistant or revoke its access?',
-    a: `Remove the P.R.O. connector in the assistant’s settings to stop using it. To block data immediately, switch off categories in Settings → MCP Connect → Advanced data settings — a switched-off category is not returned to any assistant. To revoke every access token issued to every assistant, delete your account or email ${SUPPORT_EMAIL} and we will revoke them.`,
+    a: 'In the P.R.O. app, open Settings → Connected assistants and tap Disconnect next to the assistant. Its access is revoked immediately. Removing the P.R.O. connector in the assistant’s own settings alone does not revoke access. To hide only some data, switch off categories in Settings → MCP Connect → Advanced data settings — a switched-off category is not returned to any assistant.',
   },
   {
     q: 'Why is today’s data missing or a few hours old?',

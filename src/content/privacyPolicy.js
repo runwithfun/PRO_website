@@ -185,7 +185,7 @@ The connector cannot delete data, make payments, send messages on your behalf or
 
 - **Granular permissions.** In **Settings → MCP Connect → Advanced data settings** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). A switched-off category is not returned to any connected assistant, effective immediately, and the assistant is told that you turned it off.
 - **Read-only by default.** Writing is possible only while **Let assistants write data** is on.
-- **Disconnecting.** You can remove the P.R.O. connector in your assistant's settings at any time. To make sure every access token issued to every assistant is revoked on our side, delete your account or email [mail@proapp.uk](mailto:mail@proapp.uk) and we will revoke them.
+- **Disconnecting.** In the app, open **Settings → Connected assistants** and tap **Disconnect** next to an assistant. This revokes that assistant's access on our side immediately. Removing the P.R.O. connector in the assistant's own settings alone does not revoke its access.
 - **Account deletion.** Deleting your account (**Settings → Delete Account**) deletes your data on our servers, including connector tokens, pairing codes and cached detailed uploads, and revokes all connector access.
 
 ### C6. Who Receives the Data

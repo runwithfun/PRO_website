@@ -7,16 +7,17 @@
     <title>Page not found — P.R.O.</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <script>
-      // GitHub Pages отдаёт этот файл на любой несуществующий адрес.
-      // Ссылки-приглашения /invite и /invite/<код> переводим на invite-landing.html,
-      // всё остальное — честная 404 (раньше здесь был редирект SPA на главную,
-      // из-за которого поисковики видели все страницы сайта как 404).
+      // GitHub Pages serves this file for any missing path.
+      // Old invite links /invite/<code> go to the real page /invite/?code=<code>
+      // (public/invite/index.html); everything else stays an honest 404.
       (function (l) {
         var m = l.pathname.match(/^\/invite\/([^/?#]+)\/?$/);
         if (m) {
-          l.replace('/invite-landing.html?code=' + encodeURIComponent(m[1]) + l.hash);
-        } else if (l.pathname === '/invite' || l.pathname === '/invite/') {
-          l.replace('/invite-landing.html' + l.hash);
+          var code = m[1];
+          try { code = decodeURIComponent(code); } catch (e) {}
+          l.replace('/invite/?code=' + encodeURIComponent(code) + l.hash);
+        } else if (l.pathname === '/invite') {
+          l.replace('/invite/' + l.search + l.hash);
         }
       })(window.location);
     </script>

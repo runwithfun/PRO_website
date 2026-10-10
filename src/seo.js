@@ -38,7 +38,7 @@ export const ROUTES = [
     file: 'privacy.html',
     title: 'Privacy Policy — P.R.O.',
     description:
-      'How P.R.O. handles your data: Apple Health access, the AI coach, the ChatGPT/Claude/Perplexity connector (MCP), what is stored and shared, and your rights.',
+      'How P.R.O. handles your data: Apple Health access, the AI coach, the MCP connector for AI assistants, what is stored and shared, and your rights.',
     sources: ['src/pages/PrivacyPolicy.jsx', 'src/components/LegalPage.jsx', 'src/content/privacyPolicy.js'],
   },
   {
@@ -46,7 +46,7 @@ export const ROUTES = [
     file: 'terms.html',
     title: 'Terms of Service — P.R.O.',
     description:
-      'Terms for using the P.R.O. app, its AI coach and the MCP connector for ChatGPT, Claude and Perplexity: subscriptions via the App Store, acceptable use, AI disclaimers and account deletion.',
+      'Terms for using the P.R.O. app, its AI coach and the MCP connector for AI assistants: subscriptions via the App Store, acceptable use, AI disclaimers and account deletion.',
     sources: ['src/pages/Terms.jsx', 'src/components/LegalPage.jsx', 'src/content/terms.js'],
   },
   {
@@ -54,18 +54,21 @@ export const ROUTES = [
     file: 'support.html',
     title: 'Support — P.R.O.',
     description:
-      'Contact P.R.O. support at mail@proapp.uk, and fix common issues: connecting ChatGPT, Claude or Perplexity, revoking access, missing data, account deletion and subscriptions.',
+      'Contact P.R.O. support at mail@proapp.uk, and fix common issues: connecting AI assistants, revoking access, missing data, account deletion and subscriptions.',
     faq: 'support',
     sources: ['src/pages/Support.jsx', 'src/content/support.js'],
   },
   {
-    path: '/apple-health-chatgpt-claude',
-    file: 'apple-health-chatgpt-claude.html',
-    title: 'Connect Apple Health to ChatGPT & Claude (MCP) — P.R.O.',
+    path: '/mcp-connect',
+    file: 'mcp-connect.html',
+    title: 'Connect Apple Health to Your AI Assistant via MCP — P.R.O.',
     description:
-      'Step-by-step: give ChatGPT, Claude and other AI assistants access to your Apple Health and Apple Watch workouts, sleep and heart rate with the free P.R.O. app and its MCP connector.',
+      'Connect P.R.O. to ChatGPT, Claude, Codex or Grok. A clear setup guide for sharing Apple Health workouts, sleep and heart rate with your permission.',
     faq: 'mcp',
-    sources: ['src/pages/AppleHealthMcp.jsx', 'src/content/mcpFaq.js'],
+    image: '/mcp-guide/social.jpg',
+    imageHeight: 630,
+    imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Codex and Grok',
+    sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'public/mcp-guide'],
   },
   {
     path: '/compare',
@@ -77,3 +80,5 @@ export const ROUTES = [
     sources: ['src/pages/Compare.jsx', 'src/content/compare.js'],
   },
 ];
+
+export const REDIRECTS = [{ from: '/apple-health-chatgpt-claude', to: '/mcp-connect' }];

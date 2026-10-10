@@ -24,8 +24,8 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
               key={line}
               className={`hero-in block font-display font-extrabold leading-[0.92] tracking-tighter ${
                 i === accentIndex
-                  ? 'text-[clamp(2.25rem,9.5vw,6.5rem)] text-brand-pink'
-                  : 'text-[clamp(2.25rem,8vw,5rem)] text-white'
+                  ? 'text-[clamp(1.875rem,9.5vw,6.5rem)] text-brand-pink'
+                  : 'text-[clamp(1.875rem,8vw,5rem)] text-white'
               }`}
               style={{ animationDelay: `${i * 80}ms` }}
             >

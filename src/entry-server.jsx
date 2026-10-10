@@ -8,7 +8,8 @@ export { faq } from './content/faq.js';
 export { mcpFaq } from './content/mcpFaq.js';
 export { supportFaq } from './content/support.js';
 export { compareFaq } from './content/compare.js';
-export { ROUTES } from './seo.js';
+export { ROUTES, REDIRECTS } from './seo.js';
+export { structuredData } from './structuredData.js';
 
 // prerenderToNodeStream (а не renderToString) дожидается lazy-компонентов внутри
 // Suspense — в HTML попадает полная разметка, включая демо-чат.

@@ -9,14 +9,14 @@ export default function TuyoStatement({ lines, accentIndex = 1, cta }) {
       ref={ref}
       className="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-black py-24"
     >
-      <div className="relative z-10 px-4 text-center">
+      <div className="relative z-10 w-full min-w-0 px-4 text-center">
         {lines.map((line, i) => (
           <p
             key={line}
             className={`font-display font-extrabold leading-[0.88] tracking-tighter transition duration-700 ${
               i === accentIndex
-                ? 'text-[clamp(3rem,14vw,8rem)] text-brand-pink'
-                : 'text-[clamp(2.5rem,11vw,6.5rem)] text-white/12'
+                ? 'text-[clamp(2rem,9vw,8rem)] lg:text-[clamp(3rem,14vw,8rem)] text-brand-pink'
+                : 'text-[clamp(1.75rem,7.5vw,6.5rem)] lg:text-[clamp(2.5rem,11vw,6.5rem)] text-white/12'
             } ${visible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
             style={{ transitionDelay: `${i * 100}ms` }}
           >

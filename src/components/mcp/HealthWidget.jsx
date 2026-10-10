@@ -1,0 +1,30 @@
+// Square HTML/SVG adaptations of pro-directory-kit/claude/dark cards.
+// All values are illustrative samples from those cards, never a live connection.
+const pink = '#df4092';
+const colors = ['#bb57ee', '#168bff', '#ff3e72', '#ffb029'];
+const heart = [28, 55, 55, 74, 74, 99, 112, 118, 131, 121, 140, 128, 120, 139, 139, 138, 131, 149, 166, 133, 140, 131, 138, 134, 142, 154, 151, 141, 142, 165];
+function Line({ values = heart, color = pink }) {
+  const points = values.map((v, i) => `${8 + i * 154 / (values.length - 1)},${70 - v * .3}`).join(' ');
+  return <svg viewBox="0 0 170 82" className="widget-chart" aria-hidden="true"><path d="M8 20H162M8 45H162M8 70H162" stroke="#ffffff08" /><polygon points={`8,78 ${points} 162,78`} fill={color} opacity=".08" /><polyline points={points} fill="none" stroke={color} strokeWidth="2.3" strokeLinejoin="round" strokeLinecap="round" /></svg>;
+}
+function Bars({ values, sleep = false }) {
+  return <div className={`widget-bars ${sleep ? 'widget-sleep-bars' : ''}`}>{values.map((height, i) => <span key={i} style={{ height: `${height}%`, background: sleep ? undefined : i === values.length - 1 ? pink : '#297944' }}>{sleep && <><i /><i /><i /></>}</span>)}</div>;
+}
+const titles = { sleep: 'Sleep', workout: 'Last run', load: 'Training load', streak: 'Activity streak', plan: 'Training plan', heart: 'Heart rate', route: 'Your route', pace: 'Pace by km', recovery: 'Recovery', goals: 'Your goal', hrv: 'HRV', week: 'This week' };
+export default function HealthWidget({ type }) {
+  return <div className={`health-widget health-widget-${type}`}>
+    <div className="widget-top"><span>{titles[type]}</span><span className="widget-pro">PRO</span></div>
+    {type === 'sleep' && <><div className="widget-number">7<span>h</span>24<span>m</span><small className="widget-score">93</small></div><div className="widget-sub">Last night</div><Bars sleep values={[79, 90, 74, 87, 77, 68, 83]} /><div className="widget-legend">{['Deep', 'Light', 'REM'].map((t, i) => <span key={t}><i style={{ background: colors[i] }} />{t}</span>)}</div></>}
+    {type === 'workout' && <><div className="widget-number">8.92<span>km</span></div><div className="widget-sub">Thursday · 48 min</div><Line color="#ff4757" /><div className="widget-footer"><span>5′26″ / km</span><span>164 bpm</span></div></>}
+    {type === 'load' && <><div className="widget-number">1.0<span className="widget-good">Optimal</span></div><div className="widget-sub">Load ratio</div><div className="widget-load-scale"><i /></div><div className="widget-two"><span><b>493</b>Last 7 days</span><span><b>494</b>4-week avg</span></div></>}
+    {type === 'streak' && <><div className="widget-number">14<span>days</span></div><div className="widget-sub">Keep showing up.</div><div className="widget-heatmap">{Array.from({ length: 49 }, (_, i) => <i key={i} style={{ opacity: [0, 8, 13, 14, 24, 34, 42].includes(i) ? .12 : .4 + (i % 4) * .2 }} />)}</div></>}
+    {type === 'plan' && <><div className="widget-number">38<span>%</span></div><div className="widget-sub">Half marathon · 10 weeks</div><div className="widget-progress"><i /></div><div className="widget-session"><b>Today</b><span>Recovery ride</span><small>55 min <i /></small></div><div className="widget-footer"><span className="widget-good">On track</span><span>19 / 50 sessions</span></div></>}
+    {type === 'heart' && <><div className="widget-number">164<span>bpm</span></div><div className="widget-sub">Average · last run</div><Line color="#ff4757" /><div className="widget-footer"><span>Heart rate</span><span>Max 178</span></div></>}
+    {type === 'route' && <><div className="widget-route-map"><svg viewBox="0 0 170 110" aria-hidden="true"><defs><pattern id="route-grid" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r=".8" fill="#ffffff16" /></pattern><linearGradient id="route-color"><stop stopColor="#3bc565" /><stop offset="1" stopColor={pink} /></linearGradient></defs><rect width="170" height="110" fill="url(#route-grid)"/><path d="M104 88C67 104 56 79 49 63S43 27 68 18S119 20 113 48S139 53 128 79S102 93 104 88Z" fill="none" stroke="url(#route-color)" strokeWidth="3.5" /><circle cx="126" cy="69" r="5" fill="#3bc565" stroke={pink} strokeWidth="3" /></svg></div><div className="widget-footer"><span>8.92 km</span><span>↗ 47 m</span></div></>}
+    {type === 'pace' && <><div className="widget-number">5′26″<span>/km</span></div><div className="widget-sub">Average pace</div><Bars values={[34, 32, 67, 31, 73, 71, 46, 94]} /><div className="widget-footer"><span>1</span><span>Fastest 5′11″</span><span>8</span></div></>}
+    {type === 'recovery' && <><div className="widget-number widget-good">Ready<span>↗</span></div><div className="widget-sub">Your body, in balance.</div><div className="widget-recovery"><span><b>+19%</b>HRV vs. your norm</span><span><b>−0.8 <small>bpm</small></b>Resting heart rate</span></div><div className="widget-footer"><span>Sleep</span><span>7.4 h</span></div></>}
+    {type === 'goals' && <><div className="widget-goal-ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff08" strokeWidth="7"/><circle cx="50" cy="50" r="40" fill="none" stroke={pink} strokeWidth="7" strokeDasharray="96 252" strokeLinecap="round" transform="rotate(-90 50 50)"/></svg><b>38<span>%</span></b></div><div className="widget-footer"><span>Half marathon</span><span>On track</span></div></>}
+    {type === 'hrv' && <><div className="widget-number">+19<span>%</span></div><div className="widget-sub">Compared to your norm</div><Line values={[50, 70, 63, 82, 70, 94, 98, 88, 110, 119, 108, 130, 145]} color="#44c976" /><div className="widget-footer"><span>HRV trend</span><span className="widget-good">Ready</span></div></>}
+    {type === 'week' && <><div className="widget-number">4<span>sessions</span></div><div className="widget-sub">Last 7 days</div><Bars values={[30, 52, 15, 72, 24, 92, 19]} /><div className="widget-footer"><span>Training load</span><span>493</span></div></>}
+  </div>;
+}

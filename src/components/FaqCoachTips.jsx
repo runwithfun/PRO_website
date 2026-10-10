@@ -54,7 +54,7 @@ export default function FaqCoachTips() {
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
         <div className={`transition duration-700 ${visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-pink">Coach&apos;s corner</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-white sm:text-4xl">
+          <h2 className="mt-3 font-display text-[clamp(1.625rem,8vw,1.875rem)] font-extrabold text-white sm:text-4xl">
             Free advice.
             <span className="block text-gray-500">No subscription required.</span>
           </h2>

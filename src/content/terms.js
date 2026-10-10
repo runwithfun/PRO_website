@@ -37,14 +37,14 @@ Some features require a paid subscription, which you buy through the **Apple App
 
 ## 6. Connectors to Third-Party AI Assistants
 
-The Service lets you connect your P.R.O. data to third-party AI assistants, such as Anthropic Claude, OpenAI ChatGPT or Perplexity, through our MCP connector.
+The Service lets you connect your P.R.O. data to third-party AI assistants, such as Anthropic Claude, OpenAI ChatGPT, Codex or Grok, through our MCP connector.
 
 - **Your choice and responsibility.** A connection is created only when you enter a one-time pairing code from the app. You decide which assistant to connect and which data categories it may read, and you are responsible for that choice.
 - **Third-party terms apply.** AI assistants are operated by independent companies. Their terms and privacy policies govern how they process the data they receive from the connector. We are not responsible for their services, outputs, availability or data practices.
 - **Revocation.** You can switch off data categories for assistants in the app at any time, revoke an assistant's access immediately with **Disconnect** in **Settings → Connected assistants**, or delete your account to revoke all connector access. Removing the connector in the assistant's own settings alone does not revoke its access.
 - **Write access.** An assistant can save coach notes only if you turn on writing in the app. You are responsible for content an assistant saves on your instruction.
 
-Details are in Part C of our [Privacy Policy](https://proapp.uk/privacy) and in the [connector guide](https://proapp.uk/apple-health-chatgpt-claude).
+Details are in Part C of our [Privacy Policy](https://proapp.uk/privacy) and in the [connector guide](https://proapp.uk/mcp-connect).
 
 ## 7. Acceptable Use
 

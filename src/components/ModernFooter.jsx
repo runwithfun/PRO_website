@@ -19,7 +19,7 @@ export default function ModernFooter() {
               <Link to="/features" className="block text-gray-500 hover:text-white">Features</Link>
               <Link to="/about" className="block text-gray-500 hover:text-white">About</Link>
               <Link to="/faq" className="block text-gray-500 hover:text-white">FAQ</Link>
-              <Link to="/apple-health-chatgpt-claude" className="block text-gray-500 hover:text-white">Apple Health in ChatGPT &amp; Claude</Link>
+              <Link to="/mcp-connect" className="block text-gray-500 hover:text-white">Connect your AI assistant</Link>
               <Link to="/compare" className="block text-gray-500 hover:text-white">Compare AI coach apps</Link>
             </div>
             <div className="space-y-2">

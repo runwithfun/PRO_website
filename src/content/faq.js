@@ -14,7 +14,7 @@ export const faq = [
   },
   {
     q: 'Can I connect P.R.O. to ChatGPT or Claude?',
-    a: 'Yes — Claude, ChatGPT, Perplexity and other assistants with custom MCP connectors. In the app, open Settings → MCP Connect → Connect an assistant, get a connection code and add https://mcp.proapp.uk as a custom connector. The assistant can then analyse your workouts and metrics; you decide which data categories it can see.',
+    a: 'Yes — ChatGPT, Claude, Codex and Grok have been tested. Add https://mcp.proapp.uk as a custom MCP connection, then approve access with a one-time code from P.R.O. Other clients need remote MCP and OAuth support; Perplexity setup is still being verified. The assistant can then analyse your workouts and metrics; you decide which data categories it can see.',
   },
   {
     q: 'Does P.R.O. build training plans?',

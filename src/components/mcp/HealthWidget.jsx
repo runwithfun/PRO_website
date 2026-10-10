@@ -12,7 +12,7 @@ function Bars({ values, sleep = false }) {
 }
 const titles = { sleep: 'Sleep', workout: 'Last run', load: 'Training load', streak: 'Activity streak', plan: 'Training plan', heart: 'Heart rate', route: 'Your route', pace: 'Pace by km', recovery: 'Recovery', goals: 'Your goal', hrv: 'HRV', week: 'This week' };
 export default function HealthWidget({ type }) {
-  return <div className={`health-widget widget-${type}`}>
+  return <div className={`health-widget health-widget-${type}`}>
     <div className="widget-top"><span>{titles[type]}</span><span className="widget-pro">PRO</span></div>
     {type === 'sleep' && <><div className="widget-number">7<span>h</span>24<span>m</span><small className="widget-score">93</small></div><div className="widget-sub">Last night</div><Bars sleep values={[79, 90, 74, 87, 77, 68, 83]} /><div className="widget-legend">{['Deep', 'Light', 'REM'].map((t, i) => <span key={t}><i style={{ background: colors[i] }} />{t}</span>)}</div></>}
     {type === 'workout' && <><div className="widget-number">8.92<span>km</span></div><div className="widget-sub">Thursday · 48 min</div><Line color="#ff4757" /><div className="widget-footer"><span>5′26″ / km</span><span>164 bpm</span></div></>}

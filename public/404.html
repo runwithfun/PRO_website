@@ -9,7 +9,8 @@
     <script>
       // GitHub Pages serves this file for any missing path.
       // Old invite links /invite/<code> go to the real page /invite/?code=<code>
-      // (public/invite/index.html); everything else stays an honest 404.
+      // (public/invite/index.html); app links /open/<section> that iOS didn't hand to the
+      // app go to /open/?to=<section>; everything else stays an honest 404.
       (function (l) {
         var m = l.pathname.match(/^\/invite\/([^/?#]+)\/?$/);
         if (m) {
@@ -18,6 +19,8 @@
           l.replace('/invite/?code=' + encodeURIComponent(code) + l.hash);
         } else if (l.pathname === '/invite') {
           l.replace('/invite/' + l.search + l.hash);
+        } else if (/^\/open\/.+/.test(l.pathname)) {
+          l.replace('/open/?to=' + encodeURIComponent(l.pathname.slice(6).replace(/\/$/, '')));
         }
       })(window.location);
     </script>

@@ -18,8 +18,11 @@ export default function AppleHealthMcp() {
   }, [hash]);
   return <div className="mcp-page">
     <header className="connect-intro connect-wrap">
-      <h1>Your health.<br />Your favorite <em>AI.</em></h1>
-      <p className="connect-description">Connect your health data to ChatGPT, Claude, Codex or Grok.<br className="connect-desktop-break" /> Your workouts, sleep and progress — in the conversation.</p>
+      <h1 className="font-display font-extrabold">
+        <span className="hero-in connect-title-line">Your health.</span>
+        <span className="hero-in connect-title-line text-brand-pink" style={{ animationDelay: '80ms' }}>Your favorite AI.</span>
+      </h1>
+      <p className="connect-description hero-fade text-gray-500" style={{ animationDelay: '280ms' }}>Connect your health data to ChatGPT, Claude, Codex or Grok.<br className="connect-desktop-break" /> Your workouts, sleep and progress — in the conversation.</p>
     </header>
     <div className="connect-orbit-wrap"><HealthOrbit /></div>
     <section className="connect-wrap connect-section" id="how-to-connect" aria-labelledby="setup-heading">

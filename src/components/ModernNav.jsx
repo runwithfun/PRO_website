@@ -20,6 +20,7 @@ export default function ModernNav() {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/features', label: 'Features' },
+    { path: '/mcp-connect', label: 'Connect AI' },
     { path: '/faq', label: 'FAQ' },
     { path: '/privacy', label: 'Privacy' },
   ];
@@ -79,17 +80,26 @@ export default function ModernNav() {
         </div>
 
         <button
+          id="mobile-menu-toggle"
           type="button"
-          className={`lg:hidden ${onHomeHero ? 'text-pink-900' : 'text-gray-300'}`}
+          className={`flex h-11 w-11 items-center justify-center rounded-xl text-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-pink lg:hidden ${onHomeHero ? 'text-pink-900' : 'text-gray-300'}`}
           onClick={() => setOpen(!open)}
+          onKeyDown={event => { if (event.key === 'Escape') setOpen(false); }}
           aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           ☰
         </button>
       </nav>
 
       {open && (
-        <div className="pointer-events-auto mx-auto mt-2 max-w-5xl rounded-2xl border border-white/10 bg-black/95 px-4 py-3 backdrop-blur-xl lg:hidden">
+        <div id="mobile-navigation" onKeyDown={event => {
+          if (event.key === 'Escape') {
+            setOpen(false);
+            document.getElementById('mobile-menu-toggle')?.focus();
+          }
+        }} className="pointer-events-auto mx-auto mt-2 max-w-5xl rounded-2xl border border-white/10 bg-black/95 px-4 py-3 backdrop-blur-xl lg:hidden">
           {links.map((l) => (
             <NavLink
               key={l.path}
@@ -100,6 +110,9 @@ export default function ModernNav() {
               {l.label}
             </NavLink>
           ))}
+          <a href={APP_STORE} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="mt-3 flex min-h-11 items-center justify-center rounded-xl bg-brand-pink px-4 py-3 text-sm font-semibold text-white">
+            Download for iOS
+          </a>
         </div>
       )}
     </header>

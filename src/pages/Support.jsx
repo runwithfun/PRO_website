@@ -10,7 +10,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const LINKS = [
   { to: '/faq', label: 'FAQ', note: 'Product questions and coaching tips' },
-  { to: '/apple-health-chatgpt-claude', label: 'Connector guide', note: 'Set up P.R.O. in Claude, ChatGPT and Perplexity' },
+  { to: '/mcp-connect', label: 'Connector guide', note: 'Set up ChatGPT, Claude, Codex or Grok' },
   { to: '/privacy', label: 'Privacy Policy', note: 'What we collect and share, and your rights' },
   { to: '/terms', label: 'Terms of Service', note: 'The rules for using P.R.O.' },
 ];
@@ -64,7 +64,7 @@ export default function Support() {
           <p>
             The P.R.O. connector URL is{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-gray-200">{MCP_URL}</code>. Full setup steps for
-            each assistant are in the <Link to="/apple-health-chatgpt-claude">connector guide</Link>.
+            each assistant are in the <Link to="/mcp-connect">connector guide</Link>.
           </p>
           {supportFaq.map((item) => (
             <section key={item.q}>

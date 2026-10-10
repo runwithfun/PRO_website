@@ -8,7 +8,7 @@ This policy is organized into three parts:
 - **Part B** — Optional AI-powered features
 - **Part C** — Optional AI assistants and connectors (MCP)
 
-Part A applies to all users. Part B applies additionally if you choose to use AI features in the app. Part C applies additionally if you connect P.R.O. to a third-party AI assistant such as Claude, ChatGPT or Perplexity. If there is any conflict, Part B prevails with respect to the in-app AI coach and Part C prevails with respect to connected AI assistants.
+Part A applies to all users. Part B applies additionally if you choose to use AI features in the app. Part C applies additionally if you connect P.R.O. to a third-party AI assistant such as Claude, ChatGPT, Codex or Grok. If there is any conflict, Part B prevails with respect to the in-app AI coach and Part C prevails with respect to connected AI assistants.
 
 **Data Controller:** HAOTONG TECHNOLOGY (HK) CO., LIMITED  
 **Privacy Contact:** [mail@proapp.uk](mailto:mail@proapp.uk)
@@ -149,7 +149,7 @@ AI-generated content provided through P.R.O. is for informational and advisory p
 
 ### C1. What the Connector Is
 
-P.R.O. offers an optional connector based on the Model Context Protocol (MCP) at **https://mcp.proapp.uk**. It lets a third-party AI assistant that you choose, such as Anthropic Claude, OpenAI ChatGPT or Perplexity, read your P.R.O. data so it can answer questions about your training, sleep and goals in its own chat. The connector is off until you set it up, and you can use P.R.O. without it. Setup instructions are on the [connector guide](https://proapp.uk/apple-health-chatgpt-claude).
+P.R.O. offers an optional connector based on the Model Context Protocol (MCP) at **https://mcp.proapp.uk**. It lets a third-party AI assistant that you choose, such as Anthropic Claude, OpenAI ChatGPT, Codex or Grok, read your P.R.O. data so it can answer questions about your training, sleep and goals in its own chat. The connector is off until you set it up, and you can use P.R.O. without it. Setup instructions are on the [connector guide](https://proapp.uk/mcp-connect).
 
 ### C2. How a Connection Is Authorized
 

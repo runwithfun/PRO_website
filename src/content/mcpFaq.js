@@ -1,31 +1,13 @@
-// FAQ гайда /apple-health-chatgpt-claude: страница и разметка FAQPage в пререндере.
+// Visible FAQ and structured data share this source.
 export const mcpFaq = [
-  {
-    q: 'Can ChatGPT or Claude read my Apple Health data?',
-    a: 'Yes — through the free P.R.O. app, which connects your Apple Health and Apple Watch data to Claude, ChatGPT, Perplexity and other assistants that support custom MCP connectors. You add https://mcp.proapp.uk as a connector and confirm it with a one-time code from the app.',
-  },
-  {
-    q: 'Is the P.R.O. MCP connector free?',
-    a: 'Yes. P.R.O. is free on the App Store and the connector is part of the app. Custom connectors currently need a supported assistant plan: ChatGPT uses developer mode on paid plans, and Perplexity offers custom connectors on Pro and Max. Check your assistant’s plan for connector support.',
-  },
-  {
-    q: 'What data can the assistant see?',
-    a: 'Only the categories you allow: profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, and coach memory. Each category can be switched off in the P.R.O. app at any time, and the assistant reads data only when you ask it something.',
-  },
-  {
-    q: 'Can the assistant change anything in my account?',
-    a: 'Only one thing, and only if you turn on “Let assistants write data” in the app: it can save a coach note. It can also ask your phone to sync fresh data. It cannot delete data, make payments or send messages.',
-  },
-  {
-    q: 'Do I share my password with ChatGPT or Claude?',
-    a: 'No. The assistant signs in through OAuth 2.1: you type a six-character connection code from the P.R.O. app on the P.R.O. authorization page. The code works once and expires after 10 minutes, and nothing is shared before you enter it.',
-  },
-  {
-    q: 'Why is today’s data missing or a few hours old?',
-    a: 'The assistant reads the data your iPhone has synced to P.R.O., so it can lag behind Apple Health by a few hours. Open the P.R.O. app to sync the latest workouts, sleep and metrics.',
-  },
-  {
-    q: 'How do I disconnect an assistant?',
-    a: 'In the P.R.O. app, open Settings → Connected assistants and tap Disconnect. The assistant loses access immediately. Removing the connector in the assistant’s own settings alone does not revoke access.',
-  },
+  { q: 'How does P.R.O. connect Apple Health to an AI assistant?', a: 'P.R.O. syncs the Apple Health categories you allow and exposes them through its MCP connector at https://mcp.proapp.uk. Add the connector in your assistant and approve access with a one-time code from P.R.O. The assistant can then answer questions using your synced workouts, sleep and metrics.' },
+  { q: 'Which AI assistants have been tested?', a: 'ChatGPT, Claude, Codex and Grok. Interactive P.R.O. cards are confirmed in ChatGPT and Claude. Other clients need remote MCP over Streamable HTTP and OAuth support. Perplexity setup is still being verified.' },
+  { q: 'Can I set up the connection in the ChatGPT iPhone app?', a: 'The recorded ChatGPT iPhone interface has no option to add a custom MCP server. Set up P.R.O. on chatgpt.com first; the connection then works in the iPhone app too. The guide was recorded on October 8, 2026.' },
+  { q: 'Is the P.R.O. connector free?', a: 'The connector is included in P.R.O., which is free to download. Your AI assistant may require a plan or workspace permission that supports custom MCP connections. ChatGPT and Codex connections were tested with a Pro account; this does not establish support for every plan.' },
+  { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. In the recorded Mac app, MCP servers added in Settings → Plugins → MCPs belong to Codex in Work. Regular ChatGPT chats need the separate setup on chatgpt.com.' },
+  { q: 'What if my connection code expires?', a: 'Generate a new six-character code in P.R.O. and enter it on the authorization page. Each code works once and expires after 10 minutes. On iPhone, Open P.R.O. takes you to the code flow; on a computer, get the code from the app on your iPhone.' },
+  { q: 'What data can the assistant access?', a: 'Only the categories you allow: profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, and coach memory. Review the switches in the connection confirmation and change access later in P.R.O.' },
+  { q: 'Can an assistant change my data?', a: 'Saving coach notes is optional and off by default. The connector also supports a request for a fresh sync. It does not provide tools for deleting your data, making payments or sending messages.' },
+  { q: 'Why is my latest workout missing?', a: 'The assistant reads data synced from your iPhone to P.R.O. Open P.R.O. to sync the latest workouts and metrics, and check Apple Health and assistant access permissions. Detailed routes and other data may require an on-demand request from the assistant.' },
+  { q: 'How do I disconnect an assistant?', a: 'In P.R.O., open Settings → Connected assistants → Disconnect. Removing the connector only inside the assistant does not revoke its P.R.O. access. You can also keep the connection and switch off individual data categories.' },
 ];

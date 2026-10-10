@@ -24,7 +24,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const { render, faq, mcpFaq, supportFaq, compareFaq, ROUTES } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
+const { render, ROUTES, REDIRECTS, structuredData } = await import(pathToFileURL(path.join(ROOT, 'dist-ssr', 'entry-server.js')).href);
 // Preload основных шрифтов (латиница): DM Sans — текст, Syne — заголовки.
 // Имена файлов с хэшем Vite, поэтому ищем их в dist/assets.
 const fontPreloads = fs
@@ -69,80 +69,7 @@ const store = await appStoreFacts();
 console.log(`App Store: версия ${store.softwareVersion ?? '—'}, продавец ${store.seller ?? '—'}`);
 
 function jsonLd(route) {
-  const graph = [
-    {
-      '@type': 'Organization',
-      '@id': `${SITE}/#org`,
-      name: 'P.R.O.',
-      alternateName: ['PRO app', 'P.R.O. — Performance · Records · Optimisation'],
-      url: `${SITE}/`,
-      logo: `${SITE}/favicon.png`,
-      ...(store.seller && { legalName: store.seller }),
-      sameAs: [APP_STORE],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE}/#website`,
-      url: `${SITE}/`,
-      name: 'P.R.O.',
-      inLanguage: 'en',
-      publisher: { '@id': `${SITE}/#org` },
-    },
-    {
-      '@type': 'MobileApplication',
-      '@id': `${SITE}/#app`,
-      name: 'P.R.O.',
-      alternateName: 'P.R.O. AI Coach for Apple Health',
-      description:
-        'iOS sport statistics app with an AI coach: syncs with Apple Health and Apple Watch, builds widget dashboards, analyses training history across 50+ sports and answers training questions with your real data. Connects to ChatGPT and Claude via MCP.',
-      applicationCategory: 'HealthApplication',
-      operatingSystem: store.operatingSystem ?? 'iOS 18.5 or later',
-      ...(store.softwareVersion && { softwareVersion: store.softwareVersion }),
-      ...(store.datePublished && { datePublished: store.datePublished }),
-      ...(store.dateModified && { dateModified: store.dateModified }),
-      ...(store.screenshot?.length && { screenshot: store.screenshot }),
-      url: `${SITE}/`,
-      installUrl: APP_STORE,
-      downloadUrl: APP_STORE,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      publisher: { '@id': `${SITE}/#org` },
-    },
-  ];
-  if (route.faq) {
-    const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq }[route.faq] ?? faq;
-    graph.push({
-      '@type': 'FAQPage',
-      mainEntity: items.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    });
-  }
-  if (route.path !== '/') {
-    graph.push({
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
-        { '@type': 'ListItem', position: 2, name: route.title.split(' — ')[0], item: `${SITE}${route.path}` },
-      ],
-    });
-  }
-  if (route.path === '/apple-health-chatgpt-claude') {
-    graph.push({
-      '@type': 'HowTo',
-      name: 'Connect Apple Health to Claude with the P.R.O. MCP connector',
-      totalTime: 'PT2M',
-      tool: [{ '@type': 'HowToTool', name: 'P.R.O. app for iPhone' }],
-      step: [
-        'In the P.R.O. app, open Settings → MCP Connect → Connect an assistant and tap Get connection code.',
-        'In Claude, open Settings → Connectors → Add custom connector and paste https://mcp.proapp.uk.',
-        'On the P.R.O. authorization page, type the connection code from the app.',
-        'Ask Claude about your workouts, sleep and goals.',
-      ].map((text, i) => ({ '@type': 'HowToStep', position: i + 1, text })),
-    });
-  }
-  return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
+  return `<script type="application/ld+json" data-seo-schema>${JSON.stringify(structuredData(route, store)).replace(/</g, '\\u003c')}</script>`;
 }
 
 function head(route) {
@@ -158,9 +85,10 @@ function head(route) {
     `<meta property="og:title" content="${esc(route.title)}" />`,
     `<meta property="og:description" content="${esc(route.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${SITE}/og.jpg" />`,
+    `<meta property="og:image" content="${SITE}${route.image ?? "/og.jpg"}" />`,
     '<meta property="og:image:width" content="1200" />',
-    '<meta property="og:image:height" content="650" />',
+    `<meta property="og:image:height" content="${route.imageHeight ?? 650}" />`,
+    `<meta property="og:image:alt" content="${esc(route.imageAlt ?? 'P.R.O. — AI coach and training stats for Apple Health')}" />`,
     '<meta name="twitter:card" content="summary_large_image" />',
     jsonLd(route),
   ].join('\n    ');
@@ -173,6 +101,14 @@ for (const route of ROUTES) {
   if (!html.includes('rel="canonical"')) throw new Error('index.html: не нашёл <title> + description');
   fs.writeFileSync(path.join(DIST, route.file), html);
   console.log(`${route.path} → ${route.file} (${(html.length / 1024).toFixed(0)} КБ)`);
+}
+
+// GitHub Pages cannot set HTTP status redirects. A static canonical redirect
+// preserves old inbound links; an HTTP 301 can additionally be set at Cloudflare.
+for (const { from, to } of REDIRECTS) {
+  const url = `${SITE}${to}`;
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P.R.O. connector guide</title><link rel="canonical" href="${url}"><meta http-equiv="refresh" content="0;url=${url}"><script>location.replace(${JSON.stringify(to)} + location.search + location.hash)</script></head><body><p>The guide has moved. <a href="${url}">Connect P.R.O. to your AI assistant</a>.</p></body></html>`;
+  fs.writeFileSync(path.join(DIST, `${from.slice(1)}.html`), html);
 }
 
 // sitemap.xml — только из реальных маршрутов, чтобы не было адресов с 404.

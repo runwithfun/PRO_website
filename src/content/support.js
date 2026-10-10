@@ -6,8 +6,8 @@ export const SUPPORT_EMAIL = 'mail@proapp.uk';
 
 export const supportFaq = [
   {
-    q: 'How do I connect P.R.O. to Claude, ChatGPT or Perplexity?',
-    a: `In the P.R.O. app, open Settings → MCP Connect → Connect an assistant and tap Get connection code. In your assistant, add a custom connector with the URL ${MCP_URL}, then type the six-character code on the P.R.O. authorization page that opens. The code works once and expires after 10 minutes.`,
+    q: 'How do I connect P.R.O. to an AI assistant?',
+    a: `In ChatGPT, Claude, Codex or Grok, add a custom MCP connection with the URL ${MCP_URL}. On the P.R.O. authorization page on iPhone, tap Open P.R.O., return and tap Paste, then Connect. On a computer, get a code in P.R.O. on your iPhone and enter it on the computer. The code works once and expires after 10 minutes.`,
   },
   {
     q: 'The connection code does not work.',

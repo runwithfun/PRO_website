@@ -119,7 +119,7 @@ export default function Compare() {
           <h2>Which apps work with ChatGPT or Claude?</h2>
           <p>
             As of {CHECKED}, P.R.O. is the only app in this comparison with an official connector for ChatGPT and
-            Claude. See <Link to="/apple-health-chatgpt-claude">how to connect Apple Health to ChatGPT and Claude</Link>.
+            Claude. See <Link to="/mcp-connect">how to connect Apple Health to ChatGPT and Claude</Link>.
           </p>
 
           <h2>Sources</h2>

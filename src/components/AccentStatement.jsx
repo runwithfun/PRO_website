@@ -18,12 +18,12 @@ export default function AccentStatement() {
         <div className="accent-orb accent-orb-pink inset-0" />
       </div>
 
-      <div className="relative z-10 px-4 text-center">
+      <div className="relative z-10 w-full min-w-0 px-4 text-center">
         {words.map((word, i) => (
           <p
             key={word}
             className={`font-display font-extrabold leading-[0.9] tracking-tighter transition duration-700 ${
-              i === 1 ? 'text-brand-pink text-[clamp(3.5rem,14vw,9rem)]' : 'text-white/10 text-[clamp(3rem,12vw,7.5rem)]'
+              i === 1 ? 'text-brand-pink text-[clamp(2rem,9vw,9rem)] lg:text-[clamp(3.5rem,14vw,9rem)]' : 'text-white/10 text-[clamp(1.25rem,7vw,7.5rem)]'
             } ${visible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
             style={{ transitionDelay: `${i * 120}ms` }}
           >

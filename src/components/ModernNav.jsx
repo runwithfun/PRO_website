@@ -25,10 +25,21 @@ export default function ModernNav() {
     { path: '/privacy', label: 'Privacy' },
   ];
 
+  const brand = (
+    <>
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-pink">
+        <span className="font-display text-sm font-bold text-white">P</span>
+      </span>
+      <span className={`font-display text-lg font-extrabold ${onHomeHero ? 'text-pink-900' : 'text-white'}`}>
+        P.R.O.
+      </span>
+    </>
+  );
+
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-6">
       <nav
-        className={`pointer-events-auto mx-auto flex max-w-5xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-6 ${
+        className={`pointer-events-auto mx-auto flex max-w-5xl items-center justify-between rounded-2xl border transition-all duration-500 lg:px-6 lg:py-2.5 ${
           onHomeHero
             ? 'border-pink-400/25 bg-white/55 shadow-lg shadow-pink-900/10 backdrop-blur-xl max-lg:bg-white/90 max-lg:backdrop-blur-none'
             : scrolled
@@ -36,15 +47,8 @@ export default function ModernNav() {
               : 'border-white/10 bg-black/70 shadow-xl backdrop-blur-xl max-lg:bg-black/95 max-lg:backdrop-blur-none'
         }`}
       >
-        <NavLink to="/" className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-pink">
-            <span className="font-display text-sm font-bold text-white">P</span>
-          </div>
-          <span
-            className={`font-display text-lg font-extrabold ${onHomeHero ? 'text-pink-900' : 'text-white'}`}
-          >
-            P.R.O.
-          </span>
+        <NavLink to="/" className="hidden items-center gap-2.5 lg:flex">
+          {brand}
         </NavLink>
 
         <div className="hidden items-center gap-0.5 lg:flex">
@@ -82,14 +86,15 @@ export default function ModernNav() {
         <button
           id="mobile-menu-toggle"
           type="button"
-          className={`flex h-11 w-11 items-center justify-center rounded-xl text-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-pink lg:hidden ${onHomeHero ? 'text-pink-900' : 'text-gray-300'}`}
-          onClick={() => setOpen(!open)}
+          className={`flex w-full items-center justify-between rounded-2xl px-4 py-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-pink sm:px-6 lg:hidden ${onHomeHero ? 'text-pink-900' : 'text-gray-300'}`}
+          onClick={() => setOpen(value => !value)}
           onKeyDown={event => { if (event.key === 'Escape') setOpen(false); }}
           aria-label="Menu"
           aria-expanded={open}
           aria-controls="mobile-navigation"
         >
-          ☰
+          <span className="flex items-center gap-2.5" aria-hidden="true">{brand}</span>
+          <span className="flex h-11 w-11 items-center justify-center text-xl" aria-hidden="true">{open ? '×' : '☰'}</span>
         </button>
       </nav>
 

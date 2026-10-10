@@ -15,7 +15,7 @@ export const supportFaq = [
   },
   {
     q: 'How do I disconnect an assistant or revoke its access?',
-    a: 'In the P.R.O. app, open Settings → Connected assistants and tap Disconnect next to the assistant. Its access is revoked immediately. Removing the P.R.O. connector in the assistant’s own settings alone does not revoke access. To hide only some data, switch off categories in Settings → MCP Connect → Advanced data settings — a switched-off category is not returned to any assistant.',
+    a: 'Open Settings → MCP Connect in P.R.O. Under Connected, tap × beside the assistant and confirm Disconnect. This revokes access immediately; removing the connector only inside the assistant does not. To hide individual categories, open Data the assistant can read on the MCP Connect screen.',
   },
   {
     q: 'Why is today’s data missing or a few hours old?',
@@ -23,11 +23,11 @@ export const supportFaq = [
   },
   {
     q: 'The assistant says a data category is turned off.',
-    a: 'That category is switched off for AI assistants in the P.R.O. app, and the assistant respects it. Turn it back on in Settings → MCP Connect → Advanced data settings if you want the assistant to see it.',
+    a: 'That category is switched off in P.R.O. To share it, open Settings → MCP Connect → Data the assistant can read and enable the category.',
   },
   {
     q: 'The assistant cannot save a coach note.',
-    a: 'Writing is off by default. Turn on Let assistants write data in Settings → MCP Connect if you want assistants to save coach notes. Assistants cannot delete data, make payments or send messages.',
+    a: 'Writing is off by default. Turn on Allow saving coach notes in Settings → MCP Connect if you want assistants to save notes. Assistants cannot delete data, make payments or send messages.',
   },
   {
     q: 'How do I delete my account and data?',

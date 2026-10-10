@@ -2,37 +2,13 @@ import { useState, useSyncExternalStore } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MCP_URL, connectionSteps as steps } from '../../content/mcpGuides';
 import ConversationDemo from './ConversationDemo';
+import AppCodeIllustration from './AppCodeIllustration';
 
-const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 const hydrationStatus = {
   subscribe: () => () => {},
   getSnapshot: () => true,
   getServerSnapshot: () => false,
 };
-
-function AppCodeIllustration() {
-  return <div className="walk-app" aria-label="Illustration of getting a connection code in P.R.O.">
-    <div className="walk-app-download">
-      <img src="/mcp-guide/pro-icon-256.png" width="44" height="44" alt="P.R.O. icon" />
-      <span><strong>P.R.O.</strong><small>For iPhone</small></span>
-      <a href={APP_STORE} target="_blank" rel="noopener noreferrer">Download ↗</a>
-    </div>
-    <p className="walk-app-setup">Sign in. Allow Apple Health access.</p>
-    <div className="walk-app-screen">
-      <p className="walk-app-route">Settings <span aria-hidden="true">›</span> MCP Connect</p>
-      <div className="walk-app-code" aria-hidden="true">
-        <span className="walk-get-code">Get connection code</span>
-        <div className="walk-issued-code">
-          <div className="walk-app-cells">{'ABC234'.split('').map((char, i) => <span key={i}>{char}</span>)}</div>
-          <div className="walk-app-expiry"><i /><span>10:00</span></div>
-          <div className="walk-copy-state"><span>Tap the code to copy</span><strong>Copied ✓</strong></div>
-        </div>
-      </div>
-      <p className="walk-app-code-note">One-time code · valid for 10 minutes</p>
-    </div>
-    <p className="walk-app-shortcut">On iPhone, <strong>Open P.R.O.</strong> on the authorization page gets and copies the code for you.</p>
-  </div>;
-}
 
 function StepIllustration({ step, active, copied, failed, copy }) {
   return <div className={`walk-preview walk-preview-${step}`}>

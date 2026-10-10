@@ -34,7 +34,7 @@ for (const route of ROUTES) {
       assert.ok(html.includes(escape(question.acceptedAnswer.text)), `FAQ differs from visible answer: ${question.name}`);
     }
     for (const match of html.matchAll(/<img[^>]*src="([^"]+)"/g)) {
-      assert.ok(/^\/(chat-logos\/|mcp-guide\/pro-icon-256\.png)/.test(match[1]), `Unexpected photo on connector page: ${match[1]}`);
+      assert.ok(/^\/(chat-logos\/|mcp-guide\/pro-(?:icon-256|wordmark)\.png)/.test(match[1]), `Unexpected photo on connector page: ${match[1]}`);
     }
     const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
     assert.ok(sitemap.includes('https://proapp.uk/mcp-connect</loc>'));

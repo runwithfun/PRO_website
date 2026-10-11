@@ -27,7 +27,7 @@ export const supportFaq = [
   },
   {
     q: 'The assistant cannot save a coach note.',
-    a: 'Writing is off by default. Turn on Allow saving coach notes in Settings → MCP Connect if you want assistants to save notes. Assistants cannot delete data, make payments or send messages.',
+    a: 'Saving coach notes is off by default. Turn on Allow saving coach notes in Settings → MCP Connect if you want assistants to save notes. Pending plan proposals are separate and change your plan only after you accept them in P.R.O. Assistants cannot delete data, make payments or send messages.',
   },
   {
     q: 'How do I delete my account and data?',

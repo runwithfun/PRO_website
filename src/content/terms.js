@@ -2,7 +2,7 @@
 // scripts/gen-content.mjs, страница — src/pages/Terms.jsx.
 export const termsMarkdown = `## 1. About These Terms
 
-These Terms of Service ("Terms") govern your use of the P.R.O. mobile app, the P.R.O. connector for AI assistants at https://mcp.proapp.uk and the website proapp.uk (together, the "Service"). The Service is operated by **HAOTONG TECHNOLOGY (HK) CO., LIMITED** ("we", "us", "our").
+These Terms of Service ("Terms") govern your use of the P.R.O. mobile app, the P.R.O. connector for AI assistants at https://mcp.proapp.uk and the website proapp.uk (together, the "Service"). The app and website are operated by **HAOTONG TECHNOLOGY (HK) CO., LIMITED**. The MCP connector is operated by **Dorokhov Daniil, an independent developer based in Armenia**. In these Terms, "we", "us" and "our" refer to the operator of the relevant part of the Service.
 
 By creating an account, downloading or using the Service, you agree to these Terms and to our [Privacy Policy](https://proapp.uk/privacy). If you do not agree, do not use the Service.
 
@@ -41,8 +41,8 @@ The Service lets you connect your P.R.O. data to third-party AI assistants, such
 
 - **Your choice and responsibility.** A connection is created only when you enter a one-time pairing code from the app. You decide which assistant to connect and which data categories it may read, and you are responsible for that choice.
 - **Third-party terms apply.** AI assistants are operated by independent companies. Their terms and privacy policies govern how they process the data they receive from the connector. We are not responsible for their services, outputs, availability or data practices.
-- **Revocation.** You can switch off data categories for assistants in the app at any time, revoke an assistant's access immediately with **Disconnect** in **Settings → Connected assistants**, or delete your account to revoke all connector access. Removing the connector in the assistant's own settings alone does not revoke its access.
-- **Write access.** An assistant can save coach notes only if you turn on writing in the app. You are responsible for content an assistant saves on your instruction.
+- **Revocation.** You can switch off data categories in **Settings → MCP Connect → Data the assistant can read**. Under **Connected** on the MCP Connect screen, tap **×** beside an assistant and confirm **Disconnect** to revoke its access. Saved changes apply to the next connector request. Deleting your account revokes all connector access. Removing the connector in the assistant's own settings alone does not revoke its access.
+- **Coach notes and plan proposals.** An assistant can save coach notes only if you turn on **Allow saving coach notes** in the app; a new note can supersede an earlier active note. Pending plan proposals are separate from this switch: a new proposal supersedes older pending proposals, but your plan changes only when you accept changes in P.R.O. You are responsible for content an assistant saves on your instruction.
 
 Details are in Part C of our [Privacy Policy](https://proapp.uk/privacy) and in the [connector guide](https://proapp.uk/mcp-connect).
 

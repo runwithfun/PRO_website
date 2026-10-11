@@ -1,6 +1,6 @@
 export const privacyPolicyMarkdown = `## Overview
 
-P.R.O. is a fitness tracking and performance analytics application. This Privacy Policy describes all personal data processing activities carried out by **HAOTONG TECHNOLOGY (HK) CO., LIMITED** in connection with the P.R.O. app and website.
+P.R.O. is a fitness tracking and performance analytics application. This Privacy Policy describes personal data processing by **HAOTONG TECHNOLOGY (HK) CO., LIMITED** for the P.R.O. app and website, and by **Dorokhov Daniil** for the optional MCP connector described in Part C.
 
 This policy is organized into three parts:
 
@@ -10,7 +10,10 @@ This policy is organized into three parts:
 
 Part A applies to all users. Part B applies additionally if you choose to use AI features in the app. Part C applies additionally if you connect P.R.O. to a third-party AI assistant such as Claude, ChatGPT, Codex or Grok. If there is any conflict, Part B prevails with respect to the in-app AI coach and Part C prevails with respect to connected AI assistants.
 
-**Data Controller:** HAOTONG TECHNOLOGY (HK) CO., LIMITED  
+**Data Controller — app and website:** HAOTONG TECHNOLOGY (HK) CO., LIMITED
+
+**Data Controller — MCP connector (Part C):** Dorokhov Daniil, Armenia
+
 **Privacy Contact:** [mail@proapp.uk](mailto:mail@proapp.uk)
 
 ---
@@ -149,12 +152,12 @@ AI-generated content provided through P.R.O. is for informational and advisory p
 
 ### C1. What the Connector Is
 
-P.R.O. offers an optional connector based on the Model Context Protocol (MCP) at **https://mcp.proapp.uk**. It lets a third-party AI assistant that you choose, such as Anthropic Claude, OpenAI ChatGPT, Codex or Grok, read your P.R.O. data so it can answer questions about your training, sleep and goals in its own chat. The connector is off until you set it up, and you can use P.R.O. without it. Setup instructions are on the [connector guide](https://proapp.uk/mcp-connect).
+The optional connector based on the Model Context Protocol (MCP) at **https://mcp.proapp.uk** is operated by **Dorokhov Daniil, an independent developer based in Armenia**. HAOTONG TECHNOLOGY (HK) CO., LIMITED remains the operator of the P.R.O. app and website. The connector lets a third-party AI assistant that you choose, such as Anthropic Claude, OpenAI ChatGPT, Codex or Grok, read your permitted P.R.O. data so it can answer questions about your training, sleep and goals in its own chat. The connector is off until you set it up, and you can use P.R.O. without it. Setup instructions are on the [connector guide](https://proapp.uk/mcp-connect).
 
 ### C2. How a Connection Is Authorized
 
 - The assistant connects through **OAuth 2.1** with dynamic client registration. You never give the assistant your P.R.O. password.
-- To approve a connection, you generate a **one-time six-character pairing code** in the P.R.O. app (**Settings → MCP Connect → Connect an assistant**). The code is valid for **10 minutes** and can be used **once**.
+- To approve a connection, you generate a **one-time six-character pairing code** in the P.R.O. app (**Settings → MCP Connect → Get connection code**). The code is valid for **10 minutes** and can be used **once**.
 - **No data is shared before you type that code** on the P.R.O. authorization page. Once you do, the assistant receives access tokens tied to your account.
 
 ### C3. What the Assistant Can Read
@@ -176,21 +179,22 @@ The assistant reads data only when you ask it something in that assistant and it
 
 ### C4. What the Assistant Can Do
 
-- **Save a coach note**, only if you turned on **Let assistants write data** in the app. This setting is off by default.
+- **Save a coach note**, only if you turned on **Allow saving coach notes** in the app. This setting is off by default. A new note can supersede an earlier active note; earlier versions are retained.
+- **Suggest training plan changes.** Suggestions are saved as pending proposals. They do not change your plan until you accept changes in P.R.O. A new proposal supersedes older pending proposals.
 - **Request a fresh sync**, which asks the P.R.O. app to upload new Apple Health data the next time you open it.
 
 The connector cannot delete data, make payments, send messages on your behalf or change your account settings.
 
 ### C5. Your Controls
 
-- **Granular permissions.** In **Settings → MCP Connect → Advanced data settings** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). A switched-off category is not returned to any connected assistant, effective immediately, and the assistant is told that you turned it off.
-- **Read-only by default.** Writing is possible only while **Let assistants write data** is on.
-- **Disconnecting.** In the app, open **Settings → Connected assistants** and tap **Disconnect** next to an assistant. This revokes that assistant's access on our side immediately. Removing the P.R.O. connector in the assistant's own settings alone does not revoke its access.
+- **Granular permissions.** In **Settings → MCP Connect → Data the assistant can read** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). Saved changes apply to the next connector request. A switched-off category is not returned to any connected assistant, and the assistant is told that you turned it off.
+- **Coach-note writing is off by default.** Saving notes requires **Allow saving coach notes**. Pending plan proposals are separate from this switch and require your acceptance in P.R.O. before changing the plan.
+- **Disconnecting.** In the app, open **Settings → MCP Connect**. Under **Connected**, tap **×** beside an assistant and confirm **Disconnect**. This blocks that assistant's next connector request. Removing the P.R.O. connector in the assistant's own settings alone does not revoke its access. Changes to permissions or connections cannot retrieve data already returned to the assistant.
 - **Account deletion.** Deleting your account (**Settings → Delete Account**) deletes your data on our servers, including connector tokens, pairing codes and cached detailed uploads, and revokes all connector access.
 
 ### C6. Who Receives the Data
 
-Data returned by the connector is sent to **the AI assistant you connected** and to no one else. That assistant is operated by an independent third party (for example Anthropic, OpenAI or Perplexity AI), not by HAOTONG TECHNOLOGY (HK) CO., LIMITED. Once data reaches the assistant, its storage, retention, use and any model training are governed by that provider's own terms and privacy policy, which you accepted when you signed up for it. Review them before connecting:
+To fulfil your connector requests, the P.R.O. data you permit is processed by **Dorokhov Daniil as the MCP operator** and returned to **the AI assistant you connected**. HAOTONG TECHNOLOGY (HK) CO., LIMITED remains responsible for processing data in the P.R.O. app. The assistant is operated by an independent third party (for example Anthropic, OpenAI or Perplexity AI). Once data reaches the assistant, its storage, retention, use and any model training are governed by that provider's own terms and privacy policy, which you accepted when you signed up for it. Review them before connecting:
 
 - Anthropic (Claude): [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy)
 - OpenAI (ChatGPT): [openai.com/policies/privacy-policy](https://openai.com/policies/privacy-policy/)

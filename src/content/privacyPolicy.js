@@ -157,7 +157,7 @@ The optional connector based on the Model Context Protocol (MCP) at **https://mc
 ### C2. How a Connection Is Authorized
 
 - The assistant connects through **OAuth 2.1** with dynamic client registration. You never give the assistant your P.R.O. password.
-- To approve a connection, you generate a **one-time six-character pairing code** in the P.R.O. app (**Settings → MCP Connect → Connect an assistant**). The code is valid for **10 minutes** and can be used **once**.
+- To approve a connection, you generate a **one-time six-character pairing code** in the P.R.O. app (**Settings → MCP Connect → Get connection code**). The code is valid for **10 minutes** and can be used **once**.
 - **No data is shared before you type that code** on the P.R.O. authorization page. Once you do, the assistant receives access tokens tied to your account.
 
 ### C3. What the Assistant Can Read
@@ -179,7 +179,7 @@ The assistant reads data only when you ask it something in that assistant and it
 
 ### C4. What the Assistant Can Do
 
-- **Save a coach note**, only if you turned on **Let assistants write data** in the app. This setting is off by default. A new note can supersede an earlier active note; earlier versions are retained.
+- **Save a coach note**, only if you turned on **Allow saving coach notes** in the app. This setting is off by default. A new note can supersede an earlier active note; earlier versions are retained.
 - **Suggest training plan changes.** Suggestions are saved as pending proposals. They do not change your plan until you accept changes in P.R.O. A new proposal supersedes older pending proposals.
 - **Request a fresh sync**, which asks the P.R.O. app to upload new Apple Health data the next time you open it.
 
@@ -187,9 +187,9 @@ The connector cannot delete data, make payments, send messages on your behalf or
 
 ### C5. Your Controls
 
-- **Granular permissions.** In **Settings → MCP Connect → Advanced data settings** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). Saved changes apply to the next connector request. A switched-off category is not returned to any connected assistant, and the assistant is told that you turned it off.
-- **Coach-note writing is off by default.** Saving notes requires **Let assistants write data**. Pending plan proposals are separate from this switch and require your acceptance in P.R.O. before changing the plan.
-- **Disconnecting.** In the app, open **Settings → Connected assistants** and tap **Disconnect** next to an assistant. This blocks that assistant's next connector request. Removing the P.R.O. connector in the assistant's own settings alone does not revoke its access. Changes to permissions or connections cannot retrieve data already returned to the assistant.
+- **Granular permissions.** In **Settings → MCP Connect → Data the assistant can read** you can switch off any category (profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, coach memory). Saved changes apply to the next connector request. A switched-off category is not returned to any connected assistant, and the assistant is told that you turned it off.
+- **Coach-note writing is off by default.** Saving notes requires **Allow saving coach notes**. Pending plan proposals are separate from this switch and require your acceptance in P.R.O. before changing the plan.
+- **Disconnecting.** In the app, open **Settings → MCP Connect**. Under **Connected**, tap **×** beside an assistant and confirm **Disconnect**. This blocks that assistant's next connector request. Removing the P.R.O. connector in the assistant's own settings alone does not revoke its access. Changes to permissions or connections cannot retrieve data already returned to the assistant.
 - **Account deletion.** Deleting your account (**Settings → Delete Account**) deletes your data on our servers, including connector tokens, pairing codes and cached detailed uploads, and revokes all connector access.
 
 ### C6. Who Receives the Data

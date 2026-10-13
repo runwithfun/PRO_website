@@ -59,6 +59,9 @@ Not yet — Android is planned.
 - [FAQ](https://proapp.uk/faq): product questions, coaching tips and support
 - [Compare AI coach apps](https://proapp.uk/compare): P.R.O. vs Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach and Runna — price, hardware, AI coach, plans, recovery, ChatGPT/Claude support, with sources
 - [Connect Apple Health to your AI assistant](https://proapp.uk/mcp-connect): an animated five-step connection guide, additional setup help for ChatGPT, Claude and Grok, permissions, revocation and available MCP tools. ChatGPT, Claude, Codex and Grok connections have been tested. Recorded October 8–10, 2026; setup help supplemented by official assistant documentation.
+- [Connect Apple Health to ChatGPT](https://proapp.uk/apple-health-chatgpt): step-by-step setup on chatgpt.com with screenshots, ChatGPT Health (US only) vs the P.R.O. connector, example questions and P.R.O. cards in ChatGPT.
+- [Connect Apple Health to Claude](https://proapp.uk/apple-health-claude): custom connector setup in the Claude app with screenshots, Claude's own Apple Health beta (US, Pro and Max) vs the P.R.O. connector, example questions.
+- [Connect Apple Health to Grok](https://proapp.uk/apple-health-grok): Grok has no built-in Apple Health integration; custom connector setup on iPhone and grok.com with screenshots.
 - [Support](https://proapp.uk/support): contact (mail@proapp.uk) and connector troubleshooting
 
 ## App & legal

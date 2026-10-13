@@ -1,3 +1,4 @@
+import { assistantGuides } from './content/assistantGuides.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
 // заголовок вкладки менялся при переходах внутри сайта.
@@ -70,6 +71,14 @@ export const ROUTES = [
     imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Codex and Grok',
     sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'public/mcp-guide'],
   },
+  ...assistantGuides.map((g) => ({
+    path: g.path,
+    file: `${g.path.slice(1)}.html`,
+    title: g.title,
+    description: g.description,
+    assistant: g.id,
+    sources: ['src/pages/AssistantGuide.jsx', 'src/pages/assistant-guide.css', 'src/content/assistantGuides.js', 'src/content/mcpGuides.js', `media/mcp/${g.id}`],
+  })),
   {
     path: '/compare',
     file: 'compare.html',

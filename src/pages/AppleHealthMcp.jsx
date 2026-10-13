@@ -1,24 +1,28 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import HealthOrbit from '../components/mcp/HealthOrbit';
 import ConnectionWalkthrough from '../components/mcp/ConnectionWalkthrough';
 import AssistantIcon from '../components/mcp/AssistantIcon';
 import { guides, MCP_URL } from '../content/mcpGuides';
 import { mcpFaq } from '../content/mcpFaq';
 import { mcpTools } from '../content/mcpTools';
+import { assistantGuides } from '../content/assistantGuides';
+
+const guidePaths = Object.fromEntries(assistantGuides.map((x) => [x.id, x.path]));
 import './mcp-connect.css';
 
 export default function AppleHealthMcp() {
   const { hash } = useLocation();
+  const navigate = useNavigate();
+  // Old links such as /mcp-connect#chatgpt now lead to the assistant's own page.
   useEffect(() => {
-    const id = hash.slice(1);
-    if (!guides.some(g => g.id === id)) return;
-    const panel = document.getElementById(id);
-    panel.open = true;
-  }, [hash]);
+    const path = guidePaths[hash.slice(1)];
+    if (path) navigate(path, { replace: true });
+  }, [hash, navigate]);
   return <div className="mcp-page">
     <header className="connect-intro mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
       <h1 className="font-display font-extrabold">
+        <span className="hero-in connect-h1-topic">Connect Apple Health to ChatGPT, Claude &amp; Grok</span>
         <span className="hero-in connect-title-line">Your health.</span>
         <span className="hero-in connect-title-line text-brand-pink" style={{ animationDelay: '80ms' }}>Your favorite AI.</span>
       </h1>
@@ -31,10 +35,9 @@ export default function AppleHealthMcp() {
     </section>
     <section className="connect-wrap connect-section assistant-help" id="assistant-guides" aria-labelledby="assistant-heading">
       <div className="connect-section-heading"><h2 id="assistant-heading">Find your assistant.</h2><p>Extra help for each app.</p></div>
-      {guides.map(g => <details className="assistant-guide" key={g.id} id={g.id}>
-        <summary><AssistantIcon name={g.name} /><span><h3>Connect P.R.O. to {g.name}</h3><small>{g.platform}</small></span><span className="connect-expand" aria-hidden="true">+</span></summary>
-        <div className="assistant-guide-body"><p>{g.intro}</p><ol>{g.steps.map((s, i) => <li key={i}><strong>{s.title}</strong>{s.text && <p>{s.text}</p>}{s.pairing && <Link to="#connect-step-3">Get your code using step 3 above ↑</Link>}{s.link && <a href={s.link} target="_blank" rel="noopener noreferrer">{s.linkText}</a>}</li>)}</ol><p className="guide-recorded">{g.verified}<a href={g.helpUrl} target="_blank" rel="noopener noreferrer">Official setup help ↗</a></p></div>
-      </details>)}
+      {guides.map(g => guidePaths[g.id] && <Link className="assistant-guide assistant-guide-link" key={g.id} id={g.id} to={guidePaths[g.id]}>
+        <AssistantIcon name={g.name} /><span><h3>Connect P.R.O. to {g.name}</h3><small>{g.platform}</small></span><span className="connect-expand" aria-hidden="true">→</span>
+      </Link>)}
       <details className="assistant-guide assistant-guide-other"><summary><span className="assistant-other-icon" aria-hidden="true">↗</span><span><h3>Another MCP-compatible agent</h3><small>Remote MCP · Streamable HTTP · OAuth</small></span><span className="connect-expand" aria-hidden="true">+</span></summary><div className="assistant-guide-body"><p>Use <code>{MCP_URL}</code> in a client that supports remote MCP over Streamable HTTP and OAuth. Other clients may work; only ChatGPT, Claude, Codex and Grok have been tested. Perplexity setup is still being verified.</p></div></details>
     </section>
     <section className="connect-wrap connect-section connect-questions" aria-labelledby="questions-heading">

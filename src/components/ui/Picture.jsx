@@ -11,7 +11,7 @@ import images from '../../generated/images.json';
 // ячейками и добавляют лишние отступы (gap) между картинками.
 const HIDDEN = { display: 'none' };
 
-export default function Picture({ src, alt, sizes = '100vw', priority = false, className = '', style, ...rest }) {
+export default function Picture({ src, alt, sizes = '100vw', priority = false, lazy = false, className = '', style, ...rest }) {
   const img = images[src];
   if (!img) throw new Error(`Picture: нет «${src}» в media/ (запусти scripts/optimize-images.mjs)`);
 
@@ -37,7 +37,8 @@ export default function Picture({ src, alt, sizes = '100vw', priority = false, c
         height={img.height}
         // Картинки лёгкие (AVIF 5–40 КБ), поэтому грузим сразу: ленивую
         // загрузку Safari начинает поздно, и картинки всплывали при прокрутке.
-        loading="eager"
+        // lazy — только для длинных страниц со множеством скриншотов ниже экрана.
+        loading={lazy ? 'lazy' : 'eager'}
         fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         className={className}

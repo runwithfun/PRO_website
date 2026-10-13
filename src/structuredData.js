@@ -1,6 +1,7 @@
 import { faq } from './content/faq.js';
 import { mcpFaq } from './content/mcpFaq.js';
 import { connectionSteps } from './content/mcpGuides.js';
+import { assistantGuides } from './content/assistantGuides.js';
 import { supportFaq } from './content/support.js';
 import { compareFaq } from './content/compare.js';
 const SITE = 'https://proapp.uk';
@@ -46,6 +47,21 @@ export function structuredData(route, store = {}) {
       publisher: { '@id': `${SITE}/#org` },
     },
   ];
+  const ag = route.assistant && assistantGuides.find((g) => g.id === route.assistant);
+  if (ag) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: ag.faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    });
+    graph.push({
+      '@type': 'HowTo', '@id': `${SITE}${route.path}#howto`,
+      name: `How to connect Apple Health to ${ag.name}`,
+      description: ag.answer.join(' '),
+      totalTime: 'PT2M',
+      tool: [{ '@type': 'HowToTool', name: 'P.R.O. app for iPhone' }, { '@type': 'HowToTool', name: ag.name }],
+      step: ag.guide.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.title, text: s.text ?? s.title })),
+    });
+  }
   if (route.faq) {
     const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq }[route.faq] ?? faq;
     graph.push({
@@ -60,10 +76,16 @@ export function structuredData(route, store = {}) {
   if (route.path !== '/') {
     graph.push({
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
-        { '@type': 'ListItem', position: 2, name: route.title.split(' — ')[0], item: `${SITE}${route.path}` },
-      ],
+      itemListElement: ag
+        ? [
+            { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
+            { '@type': 'ListItem', position: 2, name: 'Connect AI assistants', item: `${SITE}/mcp-connect` },
+            { '@type': 'ListItem', position: 3, name: ag.name, item: `${SITE}${route.path}` },
+          ]
+        : [
+            { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
+            { '@type': 'ListItem', position: 2, name: route.title.split(' — ')[0], item: `${SITE}${route.path}` },
+          ],
     });
   }
   if (route.path === '/mcp-connect') {
@@ -82,6 +104,7 @@ export function structuredData(route, store = {}) {
     name: route.title, description: route.description, inLanguage: 'en',
     isPartOf: { '@id': `${SITE}/#website` },
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` } }),
+    ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };
 }

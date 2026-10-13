@@ -15,6 +15,13 @@
 .connect-intro h1 { container-type: inline-size; font-size: clamp(30px, 8vw, 80px); line-height: .92; letter-spacing: -.05em; }
 .connect-title-line.text-brand-pink { font-size: min(104px, 8.2cqw); white-space: nowrap; }
 .connect-title-line { display: block; }
+.connect-h1-topic { display: block; font-family: 'DM Sans Variable', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; line-height: 1.5; color: var(--connect-muted); margin-bottom: 26px; }
+.assistant-guide-link { display: flex; align-items: center; gap: 17px; padding: 23px 0; transition: color .2s; }
+.assistant-guide-link:last-of-type { border-bottom: 0; }
+.assistant-guide-link small { display: block; font-size: 10px; color: #92929c; margin-top: 5px; }
+@media(max-width: 640px) { .assistant-guide-link small { font-size: 9px; } .assistant-guide-link { gap: 12px; } }
+.assistant-guide-link:hover h3, .assistant-guide-link:hover .connect-expand { color: var(--connect-pink); }
+.assistant-guide-body a.guide-full { display: inline-block; margin-top: 14px; font-size: 13px; color: #f5f5f6; }
 .connect-description { margin: 32px 0 23px; max-width: 672px; font-size: 20px; line-height: 1.625; }
 .connect-orbit-wrap { max-width: 1100px; margin: -95px auto 0; }
 .health-orbit { --orbit-scale: 1; position: relative; }

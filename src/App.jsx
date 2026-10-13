@@ -8,6 +8,8 @@ import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import AppleHealthMcp from './pages/AppleHealthMcp';
+import AssistantGuide from './pages/AssistantGuide';
+import { assistantGuides } from './content/assistantGuides';
 import Compare from './pages/Compare';
 import Terms from './pages/Terms';
 import Support from './pages/Support';
@@ -70,6 +72,7 @@ export function AppShell() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/mcp-connect" element={<AppleHealthMcp />} />
             <Route path="/apple-health-chatgpt-claude" element={<LegacyConnectorRedirect />} />
+            {assistantGuides.map((g) => <Route key={g.id} path={g.path} element={<AssistantGuide id={g.id} />} />)}
             <Route path="/compare" element={<Compare />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/support" element={<Support />} />

@@ -33,11 +33,7 @@ export default function McpDemo() {
     });
   }
 
-  return <section className="connect-wrap connect-section connect-demo" id="demo" aria-labelledby="demo-heading">
-    <div className="connect-section-heading">
-      <h2 id="demo-heading">See it in action.</h2>
-      <p>A real conversation in ChatGPT, using sample data.</p>
-    </div>
+  return <section className="connect-wrap connect-section connect-demo" id="demo" aria-label="P.R.O. demo in ChatGPT">
     <figure className="mcp-demo-figure">
       <div className="mcp-demo-player" style={{ aspectRatio: `${mcpDemo.width} / ${mcpDemo.height}` }}>
         <video

@@ -247,7 +247,7 @@
 .walk-recovery-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 8px; color: #96919e; }
 .walk-recovery-metrics b { display: block; color: #eeeaf3; font-size: 16px; font-weight: 500; margin-bottom: 5px; }
 .walk-recovery-metrics small { display: inline; color: #b3acbf; font-size: 9px; }
-.connect-demo { max-width: 850px; }
+.connect-demo { max-width: 850px; padding-top: 0; border-top: 0; }
 .mcp-demo-figure { max-width: 620px; }
 .mcp-demo-player { position: relative; overflow: hidden; border: 1px solid #ffffff16; border-radius: 16px; background: #101012; }
 .mcp-demo-player:focus-within { outline: 2px solid var(--connect-pink); outline-offset: 4px; }

@@ -47,7 +47,6 @@ export default function McpDemo() {
           tabIndex={started ? 0 : -1}
           aria-hidden={!started}
           aria-label="P.R.O. demo in ChatGPT, using sample data. No audio."
-          aria-describedby="demo-description"
           onPlay={() => setPlaybackHelp('')}
           onError={() => setPlaybackHelp('The video could not load. You can open the recording directly below.')}
         />
@@ -59,18 +58,17 @@ export default function McpDemo() {
           </span>
         </button>}
       </div>
-      <figcaption id="demo-description">
-        <span>Sample data · No audio</span>
+      <figcaption>
+        <details className="mcp-demo-walkthrough">
+          <summary>Read the walkthrough</summary>
+          <ol>
+            {mcpDemo.walkthrough.map(({ title, text }) => <li key={title}><strong>{title}.</strong> {text}</li>)}
+          </ol>
+        </details>
         <a href={mcpDemo.video} target="_blank" rel="noopener">Open video ↗</a>
       </figcaption>
       {playbackHelp && <p className="mcp-demo-status" role="status">{playbackHelp}</p>}
-      <noscript><p className="mcp-demo-status"><a href={mcpDemo.video}>Watch the demo video</a> or read the walkthrough below.</p></noscript>
+      <noscript><p className="mcp-demo-status"><a href={mcpDemo.video}>Watch the demo video</a> or read the walkthrough above.</p></noscript>
     </figure>
-    <details className="connect-question mcp-demo-walkthrough">
-      <summary>Read the walkthrough<span aria-hidden="true">+</span></summary>
-      <ol>
-        {mcpDemo.walkthrough.map(({ title, text }) => <li key={title}><strong>{title}.</strong> {text}</li>)}
-      </ol>
-    </details>
   </section>;
 }

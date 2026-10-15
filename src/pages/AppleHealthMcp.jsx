@@ -34,6 +34,7 @@ export default function AppleHealthMcp() {
       <div className="connect-section-heading"><h2 id="setup-heading">Five simple steps.</h2></div>
       <ConnectionWalkthrough />
     </section>
+    <McpDemo />
     <section className="connect-wrap connect-section assistant-help" id="assistant-guides" aria-labelledby="assistant-heading">
       <div className="connect-section-heading"><h2 id="assistant-heading">Find your assistant.</h2><p>Extra help for each app.</p></div>
       {guides.map(g => guidePaths[g.id] && <Link className="assistant-guide assistant-guide-link" key={g.id} id={g.id} to={guidePaths[g.id]}>
@@ -47,6 +48,5 @@ export default function AppleHealthMcp() {
       <details className="connect-question"><summary>Technical reference: available MCP tools<span aria-hidden="true">+</span></summary><p>Remote Streamable HTTP at <code>{MCP_URL}</code>, with OAuth 2.1. Data tools respect your access settings.</p><div className="connect-tools"><table><caption>P.R.O. connector tools and access</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Access</th></tr></thead><tbody>{mcpTools.map(t => <tr key={t.name}><th scope="row"><code>{t.name}</code></th><td>{t.what}</td><td>{t.access}</td></tr>)}</tbody></table></div></details>
       <div className="connect-end"><p>Setup recorded October 8–10, 2026. Interfaces can change.<br />P.R.O. provides fitness and wellness information, not medical advice.</p><div><Link to="/support">Get help ↗</Link><Link to="/privacy">Privacy ↗</Link></div></div>
     </section>
-    <McpDemo />
   </div>;
 }

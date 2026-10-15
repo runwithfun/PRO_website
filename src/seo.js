@@ -69,7 +69,7 @@ export const ROUTES = [
     image: '/mcp-guide/social.jpg',
     imageHeight: 630,
     imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Codex and Grok',
-    sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'public/mcp-guide'],
+    sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'src/content/mcpDemo.js', 'public/demo', 'public/mcp-guide'],
   },
   ...assistantGuides.map((g) => ({
     path: g.path,

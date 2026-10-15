@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import HealthOrbit from '../components/mcp/HealthOrbit';
 import ConnectionWalkthrough from '../components/mcp/ConnectionWalkthrough';
 import AssistantIcon from '../components/mcp/AssistantIcon';
+import McpDemo from '../components/mcp/McpDemo';
 import { guides, MCP_URL } from '../content/mcpGuides';
 import { mcpFaq } from '../content/mcpFaq';
 import { mcpTools } from '../content/mcpTools';
@@ -46,5 +47,6 @@ export default function AppleHealthMcp() {
       <details className="connect-question"><summary>Technical reference: available MCP tools<span aria-hidden="true">+</span></summary><p>Remote Streamable HTTP at <code>{MCP_URL}</code>, with OAuth 2.1. Data tools respect your access settings.</p><div className="connect-tools"><table><caption>P.R.O. connector tools and access</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Access</th></tr></thead><tbody>{mcpTools.map(t => <tr key={t.name}><th scope="row"><code>{t.name}</code></th><td>{t.what}</td><td>{t.access}</td></tr>)}</tbody></table></div></details>
       <div className="connect-end"><p>Setup recorded October 8–10, 2026. Interfaces can change.<br />P.R.O. provides fitness and wellness information, not medical advice.</p><div><Link to="/support">Get help ↗</Link><Link to="/privacy">Privacy ↗</Link></div></div>
     </section>
+    <McpDemo />
   </div>;
 }

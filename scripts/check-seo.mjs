@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { ROUTES, REDIRECTS } from '../src/seo.js';
+import { mcpDemo } from '../src/content/mcpDemo.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -34,8 +35,17 @@ for (const route of ROUTES) {
       assert.ok(html.includes(escape(question.acceptedAnswer.text)), `FAQ differs from visible answer: ${question.name}`);
     }
     for (const match of html.matchAll(/<img[^>]*src="([^"]+)"/g)) {
-      assert.ok(/^\/(chat-logos\/|mcp-guide\/pro-(?:icon-256|wordmark)\.png)/.test(match[1]), `Unexpected photo on connector page: ${match[1]}`);
+      assert.ok(match[1] === mcpDemo.poster || /^\/(chat-logos\/|mcp-guide\/pro-(?:icon-256|wordmark)\.png)/.test(match[1]), `Unexpected photo on connector page: ${match[1]}`);
     }
+    const demo = graph.find(n => n['@type'] === 'VideoObject');
+    assert.equal(demo?.contentUrl, `https://proapp.uk${mcpDemo.video}`);
+    assert.equal(demo?.thumbnailUrl, `https://proapp.uk${mcpDemo.poster}`);
+    assert.ok(ids.has('demo'), 'Demo has a shareable anchor');
+    const player = html.match(/<video\b[^>]*>/)?.[0];
+    assert.ok(player, 'Demo player is present in static HTML');
+    assert.ok(player.includes('preload="none"'), 'Demo does not preload video');
+    assert.ok(!/\bsrc=/.test(player), 'No video source before user interaction');
+    assert.ok(!/\bautoplay\b/.test(player), 'Demo starts only on user request');
     const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
     assert.ok(sitemap.includes('https://proapp.uk/mcp-connect</loc>'));
     assert.ok(!sitemap.includes('/apple-health-chatgpt-claude'));

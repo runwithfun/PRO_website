@@ -4,6 +4,7 @@ import { connectionSteps } from './content/mcpGuides.js';
 import { assistantGuides } from './content/assistantGuides.js';
 import { supportFaq } from './content/support.js';
 import { compareFaq } from './content/compare.js';
+import { mcpDemo } from './content/mcpDemo.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -90,6 +91,15 @@ export function structuredData(route, store = {}) {
   }
   if (route.path === '/mcp-connect') {
     graph.push({
+      '@type': 'VideoObject', '@id': `${SITE}/mcp-connect#demo-video`,
+      name: mcpDemo.title, description: mcpDemo.description,
+      thumbnailUrl: `${SITE}${mcpDemo.poster}`, contentUrl: `${SITE}${mcpDemo.video}`,
+      url: `${SITE}/mcp-connect#demo`, uploadDate: mcpDemo.uploadDate,
+      duration: mcpDemo.duration, inLanguage: 'en',
+      isPartOf: { '@id': `${SITE}/mcp-connect#webpage` },
+      about: { '@id': `${SITE}/#app` }, publisher: { '@id': `${SITE}/#org` },
+    });
+    graph.push({
       '@type': 'HowTo', '@id': `${SITE}/mcp-connect#howto`,
       name: 'How to connect P.R.O. to your AI assistant',
       description: 'Copy the MCP address and add a custom connector. Install P.R.O. on iPhone, sign in and get a code in Settings → MCP Connect → Get connection code. Paste the code to connect, choose access and start a conversation.',
@@ -103,7 +113,7 @@ export function structuredData(route, store = {}) {
     '@type': 'WebPage', '@id': `${SITE}${route.path}#webpage`, url: `${SITE}${route.path}`,
     name: route.title, description: route.description, inLanguage: 'en',
     isPartOf: { '@id': `${SITE}/#website` },
-    ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` } }),
+    ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };

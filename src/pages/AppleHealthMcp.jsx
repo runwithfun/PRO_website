@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import HealthOrbit from '../components/mcp/HealthOrbit';
 import ConnectionWalkthrough from '../components/mcp/ConnectionWalkthrough';
 import AssistantIcon from '../components/mcp/AssistantIcon';
+import McpDemo from '../components/mcp/McpDemo';
 import { guides, MCP_URL } from '../content/mcpGuides';
 import { mcpFaq } from '../content/mcpFaq';
 import { mcpTools } from '../content/mcpTools';
@@ -33,6 +34,7 @@ export default function AppleHealthMcp() {
       <div className="connect-section-heading"><h2 id="setup-heading">Five simple steps.</h2></div>
       <ConnectionWalkthrough />
     </section>
+    <McpDemo />
     <section className="connect-wrap connect-section assistant-help" id="assistant-guides" aria-labelledby="assistant-heading">
       <div className="connect-section-heading"><h2 id="assistant-heading">Find your assistant.</h2><p>Extra help for each app.</p></div>
       {guides.map(g => guidePaths[g.id] && <Link className="assistant-guide assistant-guide-link" key={g.id} id={g.id} to={guidePaths[g.id]}>

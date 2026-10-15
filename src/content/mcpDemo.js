@@ -1,0 +1,20 @@
+export const mcpDemo = {
+  title: 'P.R.O. in ChatGPT — a real conversation',
+  description: 'An uncut ChatGPT demo using sample P.R.O. data: sleep cards, weekly comparisons, training-plan proposals and workout routes.',
+  video: '/demo/pro-chatgpt-v1.mp4',
+  poster: '/demo/pro-chatgpt-v1.webp',
+  width: 890,
+  height: 974,
+  duration: 'PT2M8S',
+  durationLabel: '2:08',
+  uploadDate: '2026-10-15',
+  walkthrough: [
+    { title: 'Sleep', text: 'Ask about last night and the rest of the week. Open a sleep card, switch between nights and explore the sleep stages.' },
+    { title: 'Weekly review', text: 'Compare training, activity and sleep across two weeks using the data returned by P.R.O.' },
+    { title: 'Training plan', text: 'See upcoming sessions and the recorded reasons for earlier plan changes.' },
+    { title: 'Suggested changes', text: 'Ask for an easier session. The assistant shows a pending proposal; the plan changes only after you accept it in P.R.O.' },
+    { title: 'Privacy', text: 'A request for a coworker’s health data without their permission is refused.' },
+    { title: 'Running history', text: 'Review synced running history by month, then open a workout’s details and route.' },
+    { title: 'Limits', text: 'The assistant explains that the connector cannot delete Apple Health history.' },
+  ],
+};

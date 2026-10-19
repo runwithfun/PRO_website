@@ -374,6 +374,7 @@
       color: rgba(255, 255, 255, 0.7);
     }
   </style>
+    <script defer src="/analytics.js"></script>
 </head>
 <body>
   <div class="orb orb-a" aria-hidden="true"></div>
@@ -401,7 +402,7 @@
         <a class="btn-primary" id="store-link" href="https://apps.apple.com/us/app/p-r-o/id6749865568">Download on the App Store</a>
         <p class="hint" id="store-hint" hidden>Tapping this also copies your invite link. After installing, paste it in the app when it asks for an invite.</p>
         <a class="btn-secondary" id="open-link" href="proapp://invite" hidden>Open in P.R.O.</a>
-        <button class="btn-secondary" id="copy-btn" type="button" hidden>Copy code</button>
+        <button class="btn-secondary" id="copy-btn" type="button" data-analytics="invite_code_copied" hidden>Copy code</button>
       </div>
 
       <div class="steps-callout" role="note">

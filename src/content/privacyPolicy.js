@@ -41,6 +41,7 @@ We do not sell your personal data. We share data only with:
 
 - **Infrastructure providers** (e.g., cloud hosting) — under contractual data protection obligations, for hosting and storage
 - **Product analytics and monitoring** — [PostHog](https://posthog.com/privacy) (EU region) receives usage events such as which feature or API was used, linked to a pseudonymous account ID and, for connector requests, the IP address; [Langfuse](https://langfuse.com/privacy) (EU region) receives monitoring data about AI requests (see Part B). Neither receives your Apple Health data for analytics or advertising, and neither may use it for its own purposes
+- **Self-hosted product analytics** — our own OpenPanel instance (not a third party) receives app and website usage events through our server: screens and actions in the app, pages and clicks on proapp.uk, your account email and name, a random installation or visitor ID, device model, OS and app version, and the IP address with the approximate location derived from it. It is used to find problems and improve P.R.O., is never used for advertising, and is erased when you delete your account
 - **Legal requirements** — if compelled by applicable law, court order, or regulatory authority
 
 We require all third-party service providers to maintain appropriate technical and organizational security measures. However, we cannot guarantee the security practices of third parties and disclaim responsibility for breaches or data incidents occurring within their systems.

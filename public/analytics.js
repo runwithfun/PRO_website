@@ -1,3 +1,4 @@
+/* eslint-disable no-empty, no-unused-vars -- best-effort catches are intentional */
 /*
  * P.R.O. website analytics — our own small script, no third-party browser SDK.
  * Events go to POST https://api.proapp.uk/analytics/public; the P.R.O. server forwards them

@@ -52,15 +52,25 @@
     return (p.charAt(0) === '/' ? p : '/' + p).slice(0, 200);
   }
 
-  function context() {
-    var out = {}, q;
+  // Campaign of this visit: read once from the landing URL and kept for the whole tab
+  // session, so events after in-site navigation still carry it.
+  var CAMPAIGN_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ref', 'code'];
+  var campaign = (function () {
+    var out = {}, q, saved;
+    try { saved = JSON.parse(w.sessionStorage.getItem('pro_campaign') || '{}'); } catch (e) { saved = {}; }
     try { q = new URLSearchParams(w.location.search); } catch (e) { q = null; }
-    if (q) {
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ref', 'code'].forEach(function (k) {
-        var v = q.get(k);
-        if (v) out[k] = v.slice(0, 120);
-      });
-    }
+    CAMPAIGN_KEYS.forEach(function (k) {
+      var v = q && q.get(k);
+      if (v) out[k] = v.slice(0, 120);
+    });
+    if (!Object.keys(out).length) out = saved || {};
+    try { w.sessionStorage.setItem('pro_campaign', JSON.stringify(out)); } catch (e) {}
+    return out;
+  })();
+
+  function context() {
+    var out = {}, k;
+    for (k in campaign) if (Object.prototype.hasOwnProperty.call(campaign, k)) out[k] = campaign[k];
     out.language = (w.navigator.language || '').slice(0, 35);
     out.screen = (w.screen ? w.screen.width + 'x' + w.screen.height : '');
     out.viewport = w.innerWidth + 'x' + w.innerHeight;
@@ -69,11 +79,11 @@
     return out;
   }
 
-  function track(name, props) {
+  function track(name, props, atPath) {
     if (!NAME.test(name)) return;
     var p = context(), k;
     for (k in props || {}) if (Object.prototype.hasOwnProperty.call(props, k)) p[k] = props[k];
-    queue.push({ event_id: uuid(), name: name, path: cleanPath(w.location.pathname), properties: p,
+    queue.push({ event_id: uuid(), name: name, path: cleanPath(atPath || w.location.pathname), properties: p,
                  occurred_at_ms: Date.now(), sequence: ++seq });
     if (queue.length > 200) queue.splice(0, queue.length - 200);
     schedule();
@@ -110,7 +120,7 @@
   function pageView() {
     var path = cleanPath(w.location.pathname);
     if (path === lastPath) return;
-    if (lastPath !== null) track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), from: lastPath });
+    if (lastPath !== null) track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), to: path }, lastPath);
     lastPath = path;
     pageStart = Date.now();
     depthSent = {};
@@ -150,7 +160,7 @@
 
   d.addEventListener('visibilitychange', function () {
     if (d.visibilityState === 'hidden') {
-      track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), from: lastPath });
+      track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000) }, lastPath);
       lastPath = null;
       flush(true);
     } else if (lastPath === null) {

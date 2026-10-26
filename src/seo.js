@@ -80,6 +80,24 @@ export const ROUTES = [
     sources: ['src/pages/AssistantGuide.jsx', 'src/pages/assistant-guide.css', 'src/content/assistantGuides.js', 'src/content/mcpGuides.js', `media/mcp/${g.id}`],
   })),
   {
+    path: '/what-is-a-good-hrv',
+    file: 'what-is-a-good-hrv.html',
+    title: 'What Is a Good HRV on Apple Watch? Normal HRV by Age — P.R.O.',
+    description:
+      'What counts as a good HRV on Apple Watch: SDNN vs RMSSD, Recovery HRV, normal HRV by age and sex from ECG studies, and a free checker to compare your number with your age and your own baseline.',
+    faq: 'hrv',
+    sources: ['src/pages/GoodHrv.jsx', 'src/content/hrv.js', 'src/pages/tools.css'],
+  },
+  {
+    path: '/zone-2-calculator',
+    file: 'zone-2-calculator.html',
+    title: 'Zone 2 Heart Rate Calculator — Apple Watch, Karvonen, MAF | P.R.O.',
+    description:
+      'Free Zone 2 heart rate calculator: compare 60–70% of max HR, Tanaka, Gulati for women, heart rate reserve (Karvonen) and MAF side by side, see Zone 2 by age, and set your zones on Apple Watch.',
+    faq: 'zone2',
+    sources: ['src/pages/Zone2Calculator.jsx', 'src/content/zone2.js', 'src/pages/tools.css'],
+  },
+  {
     path: '/compare',
     file: 'compare.html',
     title: 'P.R.O. vs Athlytic, Bevel, WHOOP Coach & Runna — AI Coach Apps Compared',

@@ -13,7 +13,7 @@
 ## Key capabilities
 
 - **AI coach:** reads your workout history and answers with markdown, comparison tables and Mermaid diagrams — recovery, pacing, weekly load, block planning — based on your data, not generic advice.
-- **Connect your favorite AI assistant (MCP):** add https://mcp.proapp.uk in ChatGPT, Claude, Codex or Grok and approve the connection in P.R.O. You choose the permitted data categories. Interactive cards are confirmed in ChatGPT and Claude; Perplexity setup is still being verified.
+- **Connect your favorite AI assistant (MCP):** add https://mcp.proapp.uk in ChatGPT, Claude, Gemini, Perplexity, Codex or Grok and approve the connection in P.R.O. You choose the permitted data categories. Interactive cards are confirmed in ChatGPT, Claude and Gemini; Perplexity answers in text with its own charts.
 - **Widget dashboard:** rings, stats, streaks, goals and coach entry, synced from Apple Health.
 - **Training history:** monthly summaries, sport distribution, heart-rate zones, personal records, GPS routes and workout search across all sessions.
 - **Training plans:** AI-generated plans that adapt to load, recovery and performance.
@@ -29,7 +29,7 @@ Yes. P.R.O. is free to download on the App Store; some advanced features are pre
 Yes. P.R.O. reads workouts, heart rate, sleep and activity that Apple Watch records into Apple Health.
 
 ### Can ChatGPT or Claude read my Apple Health data through P.R.O.?
-Yes. P.R.O. provides an MCP connector (https://mcp.proapp.uk) for ChatGPT, Claude, Codex and Grok. Pair it with a code from the app, and the assistant can analyse your workouts and metrics with your permission.
+Yes. P.R.O. provides an MCP connector (https://mcp.proapp.uk) for ChatGPT, Claude, Gemini, Perplexity, Codex and Grok. Pair it with a code from the app, and the assistant can analyse your workouts and metrics with your permission.
 
 ### Which sports are supported?
 50+ sports, including running, cycling, swimming, walking, hiking and strength training, with sport-specific metrics.
@@ -58,12 +58,14 @@ Not yet — Android is planned.
 - [About](https://proapp.uk/about): product philosophy, spec sheet, training plans
 - [FAQ](https://proapp.uk/faq): product questions, coaching tips and support
 - [Compare AI coach apps](https://proapp.uk/compare): P.R.O. vs Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach and Runna — price, hardware, AI coach, plans, recovery, ChatGPT/Claude support, with sources
-- [Connect Apple Health to your AI assistant](https://proapp.uk/mcp-connect): an animated five-step connection guide, additional setup help for ChatGPT, Claude and Grok, permissions, revocation and available MCP tools. ChatGPT, Claude, Codex and Grok connections have been tested. Recorded October 8–10, 2026; setup help supplemented by official assistant documentation.
+- [Connect Apple Health to your AI assistant](https://proapp.uk/mcp-connect): an animated five-step connection guide, step-by-step pages for ChatGPT, Claude, Gemini, Perplexity, Codex and Grok, permissions, revocation and available MCP tools. ChatGPT, Claude, Codex and Grok connections have been tested. Recorded October 8–10, 2026; setup help supplemented by official assistant documentation.
 - [P.R.O. demo in ChatGPT](https://proapp.uk/mcp-connect#demo): an uncut 2-minute conversation using sample data, with sleep cards, weekly comparisons, pending training-plan proposals, workout routes and a readable walkthrough.
 - [Connect Apple Health to ChatGPT](https://proapp.uk/apple-health-chatgpt): step-by-step setup on chatgpt.com with screenshots, ChatGPT Health (US only) vs the P.R.O. connector, example questions and P.R.O. cards in ChatGPT.
 - [Connect Apple Health to Claude](https://proapp.uk/apple-health-claude): custom connector setup in the Claude app with screenshots, Claude's own Apple Health beta (US, Pro and Max) vs the P.R.O. connector, example questions.
 - [Connect Apple Health to Grok](https://proapp.uk/apple-health-grok): Grok has no built-in Apple Health integration; custom connector setup on iPhone and grok.com with screenshots.
 - [Connect Apple Health to Codex](https://proapp.uk/apple-health-codex): add P.R.O. as an MCP server in the ChatGPT app for Mac (Codex, Work tab) with screenshots; Codex can then analyse and chart workouts, sleep, heart rate and HRV with code.
+- [Connect Apple Health to Perplexity](https://proapp.uk/apple-health-perplexity): custom remote connector on perplexity.ai; Perplexity Health (US) vs the P.R.O. connector; Perplexity answers in text and draws its own charts.
+- [Connect Apple Health to Gemini](https://proapp.uk/apple-health-gemini): Gemini has no built-in Apple Health integration; add P.R.O. as a custom app at gemini.google.com (Google offers custom apps in the US); interactive P.R.O. cards in Gemini.
 - [Support](https://proapp.uk/support): contact (mail@proapp.uk) and connector troubleshooting
 
 ## App & legal

@@ -64,11 +64,11 @@ export const ROUTES = [
     file: 'mcp-connect.html',
     title: 'Connect Apple Health to Your AI Assistant via MCP — P.R.O.',
     description:
-      'Connect P.R.O. to ChatGPT, Claude, Codex or Grok. A clear setup guide for sharing Apple Health workouts, sleep and heart rate with your permission.',
+      'Connect P.R.O. to ChatGPT, Claude, Gemini, Perplexity, Codex or Grok. A clear setup guide for sharing Apple Health workouts, sleep and heart rate with your permission.',
     faq: 'mcp',
     image: '/mcp-guide/social.jpg',
     imageHeight: 630,
-    imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Codex and Grok',
+    imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Gemini, Perplexity, Codex and Grok',
     sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'src/content/mcpDemo.js', 'public/demo', 'public/mcp-guide'],
   },
   ...assistantGuides.map((g) => ({

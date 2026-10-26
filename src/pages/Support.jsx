@@ -10,7 +10,7 @@ const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
 const LINKS = [
   { to: '/faq', label: 'FAQ', note: 'Product questions and coaching tips' },
-  { to: '/mcp-connect', label: 'Connector guide', note: 'Set up ChatGPT, Claude, Codex or Grok' },
+  { to: '/mcp-connect', label: 'Connector guide', note: 'Set up ChatGPT, Claude, Gemini, Perplexity, Codex or Grok' },
   { to: '/privacy', label: 'Privacy Policy', note: 'What we collect and share, and your rights' },
   { to: '/terms', label: 'Terms of Service', note: 'The rules for using P.R.O.' },
 ];

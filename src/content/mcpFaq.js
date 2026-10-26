@@ -1,7 +1,7 @@
 // Visible FAQ and structured data share this source.
 export const mcpFaq = [
   { q: 'How does P.R.O. connect Apple Health to an AI assistant?', a: 'P.R.O. syncs the Apple Health categories you allow and exposes them through its MCP connector at https://mcp.proapp.uk. Add the connector in your assistant and approve access with a one-time code from P.R.O. The assistant can then answer questions using your synced workouts, sleep and metrics.' },
-  { q: 'Which AI assistants have been tested?', a: 'ChatGPT, Claude, Codex and Grok. Interactive P.R.O. cards are confirmed in ChatGPT and Claude. Other clients need remote MCP over Streamable HTTP and OAuth support. Perplexity setup is still being verified.' },
+  { q: 'Which AI assistants have been tested?', a: 'ChatGPT, Claude, Codex, Grok, Perplexity and Gemini. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini; Perplexity answers in text and draws its own charts. Other clients need remote MCP over Streamable HTTP and OAuth support.' },
   { q: 'Can I set up the connection in the ChatGPT iPhone app?', a: 'Add the custom connector on chatgpt.com first; it then works in the iPhone app too. The recorded iPhone interface does not offer custom MCP server setup.' },
   { q: 'Is the P.R.O. connector free?', a: 'The connector is included in P.R.O., which is free to download. Your assistant’s plan and workspace permissions must allow custom MCP connections. ChatGPT and Codex were tested with Pro; other plans have not been verified.' },
   { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. In the recorded Mac app, MCP servers added in Settings → Plugins → MCPs belong to Codex in Work. Regular ChatGPT chats need the separate setup on chatgpt.com.' },

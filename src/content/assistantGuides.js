@@ -172,6 +172,68 @@ export const assistantGuides = [
       { q: 'What can Grok see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, and coach memory. You can change this any time in Settings → MCP Connect.' },
     ],
   },
+  {
+    id: 'codex',
+    name: 'Codex',
+    platform: 'ChatGPT for Mac · Work tab',
+    path: '/apple-health-codex',
+    title: 'How to Connect Apple Health to Codex — P.R.O.',
+    description:
+      'Give Codex in the ChatGPT app for Mac your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP server, then let it analyse and chart them. Step-by-step with screenshots.',
+    answer: [
+      'Codex can’t open Apple Health on its own. Add the free P.R.O. app as an MCP server in the ChatGPT app for Mac, and Codex — the agent in the Work tab — can read your workouts, sleep, heart rate and HRV, then analyse them with code, build charts and export tables.',
+      'Setup takes about two minutes. It connects Codex only; regular ChatGPT chats have their own setup.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'The ChatGPT app for Mac with the Chat and Work tabs. Codex is the Work tab.',
+      'A ChatGPT plan that includes Codex and custom MCP servers. We recorded the steps on ChatGPT Pro.',
+    ],
+    guide: {
+      intro: 'In the ChatGPT app for Mac, add P.R.O. as an MCP server under Settings → Plugins, then sign in with a one-time code from your iPhone.',
+      verified: 'Recorded in ChatGPT for Mac · October 8, 2026',
+      helpUrl: 'https://developers.openai.com/codex/mcp',
+      steps: [
+        { title: 'Open Settings in the ChatGPT app for Mac.', text: 'Click your avatar in the bottom-left corner and choose Settings, or press ⌘,.' },
+        { title: 'Open Plugins under Integrations.', text: 'The page says “Manage plugins, skills, and MCPs”, with the tabs Plugins, Apps, MCPs and Skills.' },
+        { title: 'Select Add, then Add MCP server.', text: 'Not Create plugin — that opens a chat with the Plugin Creator instead of a form.' },
+        { title: 'Enter P.R.O. as the name and switch the type to Streamable HTTP.', text: 'The form starts on STDIO with a command and arguments; ignore those.' },
+        { title: 'Enter https://mcp.proapp.uk as the URL and select Save.', text: 'Leave the bearer token and headers empty: P.R.O. signs you in with a one-time code instead.' },
+        { title: 'Open the MCPs tab and select Authenticate next to P.R.O.', text: 'Your browser opens the P.R.O. sign-in page. It says “Connect Codex to your P.R.O. data”.', pairing: true },
+        { title: 'Close the browser tab when it says Authentication complete.', text: 'Back in Settings → Plugins → MCPs, the Authenticate button is gone and P.R.O. is switched on.' },
+        { title: 'Ask Codex in the Work tab.', text: 'In P.R.O. on your iPhone, Settings → MCP Connect now lists Codex under Connected.' },
+      ],
+    },
+    recorded: 'October 8, 2026',
+    shots: {
+      2: { src: 'mcp/codex/plugins-page.png', alt: 'ChatGPT for Mac Settings with Plugins selected under Integrations and the Add button top right', caption: 'Settings → Integrations → Plugins.' },
+      3: { src: 'mcp/codex/add-menu.png', alt: 'Add menu in ChatGPT for Mac Plugins with Add MCP server', caption: 'Add → Add MCP server.' },
+      5: { src: 'mcp/codex/server-form.png', alt: 'Connect to a custom MCP form: name P.R.O., type Streamable HTTP, URL https://mcp.proapp.uk', caption: 'Name, Streamable HTTP and the P.R.O. address. Nothing else to fill in.' },
+      6: { src: 'mcp/codex/authenticate.png', alt: 'P.R.O. server row in the MCPs tab with an Authenticate button', caption: 'P.R.O. in the MCPs list, waiting for Authenticate.' },
+      7: { src: 'mcp/codex/sign-in.png', alt: 'P.R.O. sign-in page: Connect Codex to your P.R.O. data, with a pairing code field and Connect button', caption: 'Type the six-character code from P.R.O. and select Connect.' },
+      8: { src: 'mcp/codex/app-connected.png', alt: 'P.R.O. MCP Connect screen on iPhone listing Codex under Connected', caption: 'In P.R.O., Codex appears under Connected.' },
+    },
+    prompts: [
+      'Load my runs from the last six months and chart weekly distance and pace.',
+      'Export my workouts to a CSV and summarise them by sport.',
+      'Find weeks where my resting heart rate rose after hard sessions.',
+      'Compare my sleep before and after I started evening runs.',
+      'Write a script that flags days my HRV was well below my 30-day average.',
+    ],
+    cards: [],
+    trouble: [
+      ['A chat with the Plugin Creator opened.', 'You picked Create plugin in the Add menu. Close that chat and choose Add MCP server instead.'],
+      ['P.R.O. doesn’t answer in a regular chat.', 'Servers added here belong to Codex in the Work tab. For regular ChatGPT chats, add P.R.O. on chatgpt.com — see the ChatGPT guide.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+    ],
+    faq: [
+      { q: 'Can Codex read my Apple Health data?', a: 'Yes, through the free P.R.O. app: add https://mcp.proapp.uk as an MCP server in the ChatGPT app for Mac and confirm it with a one-time code from P.R.O. Codex then reads the workouts, sleep, heart rate and HRV you allow.' },
+      { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. MCP servers added in the Mac app’s Settings → Plugins → MCPs belong to Codex in the Work tab. Regular ChatGPT chats need the separate setup on chatgpt.com.' },
+      { q: 'Why use Codex instead of a chat for health data?', a: 'Codex can write and run code on your data: build charts, export tables, compute rolling averages or check how one metric moves with another. A chat answers questions; Codex can do the analysis.' },
+      { q: 'Which plan do I need?', a: 'A ChatGPT plan that includes Codex and lets you add MCP servers. We recorded the steps on ChatGPT Pro. P.R.O. and its connector are free.' },
+    ],
+  },
 ];
 
 export const assistantGuideByPath = Object.fromEntries(assistantGuides.map((g) => [g.path, g]));

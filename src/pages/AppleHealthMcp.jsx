@@ -40,6 +40,9 @@ export default function AppleHealthMcp() {
       {guides.map(g => guidePaths[g.id] && <Link className="assistant-guide assistant-guide-link" key={g.id} id={g.id} to={guidePaths[g.id]}>
         <AssistantIcon name={g.name} /><span><h3>Connect P.R.O. to {g.name}</h3><small>{g.platform}</small></span><span className="connect-expand" aria-hidden="true">→</span>
       </Link>)}
+      {assistantGuides.filter(x => !guides.some(g => g.id === x.id)).map(x => <Link className="assistant-guide assistant-guide-link" key={x.id} id={x.id} to={x.path}>
+        <AssistantIcon name={x.name} /><span><h3>Connect P.R.O. to {x.name}</h3><small>{x.platform}</small></span><span className="connect-expand" aria-hidden="true">→</span>
+      </Link>)}
       <details className="assistant-guide assistant-guide-other"><summary><span className="assistant-other-icon" aria-hidden="true">↗</span><span><h3>Another MCP-compatible agent</h3><small>Remote MCP · Streamable HTTP · OAuth</small></span><span className="connect-expand" aria-hidden="true">+</span></summary><div className="assistant-guide-body"><p>Use <code>{MCP_URL}</code> in a client that supports remote MCP over Streamable HTTP and OAuth. Other clients may work; only ChatGPT, Claude, Codex and Grok have been tested. Perplexity setup is still being verified.</p></div></details>
     </section>
     <section className="connect-wrap connect-section connect-questions" aria-labelledby="questions-heading">

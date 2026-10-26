@@ -63,6 +63,7 @@ Not yet — Android is planned.
 - [Connect Apple Health to ChatGPT](https://proapp.uk/apple-health-chatgpt): step-by-step setup on chatgpt.com with screenshots, ChatGPT Health (US only) vs the P.R.O. connector, example questions and P.R.O. cards in ChatGPT.
 - [Connect Apple Health to Claude](https://proapp.uk/apple-health-claude): custom connector setup in the Claude app with screenshots, Claude's own Apple Health beta (US, Pro and Max) vs the P.R.O. connector, example questions.
 - [Connect Apple Health to Grok](https://proapp.uk/apple-health-grok): Grok has no built-in Apple Health integration; custom connector setup on iPhone and grok.com with screenshots.
+- [Connect Apple Health to Codex](https://proapp.uk/apple-health-codex): add P.R.O. as an MCP server in the ChatGPT app for Mac (Codex, Work tab) with screenshots; Codex can then analyse and chart workouts, sleep, heart rate and HRV with code.
 - [Support](https://proapp.uk/support): contact (mail@proapp.uk) and connector troubleshooting
 
 ## App & legal

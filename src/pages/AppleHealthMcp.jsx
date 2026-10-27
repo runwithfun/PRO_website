@@ -38,7 +38,7 @@ export default function AppleHealthMcp() {
     </section>
     <McpDemo />
     <section className="connect-wrap connect-section assistant-help" id="assistant-guides" aria-labelledby="assistant-heading">
-      <div className="connect-section-heading"><h2 id="assistant-heading">Find your assistant.</h2><p>Extra help for each app. Outside the US? See <Link to="/apple-health-ai-outside-us">what works in the UK, EU, Canada and beyond</Link>.</p></div>
+      <div className="connect-section-heading"><h2 id="assistant-heading">Find your assistant.</h2><p>Extra help for each app. Outside the US? See <Link to="/apple-health-ai-outside-us">what works in the UK, EU, Canada and beyond</Link>. Using Claude Desktop, Cursor or Claude Code? See the <Link to="/apple-health-mcp">Apple Health MCP server</Link> guide.</p></div>
       {guides.map(g => guidePaths[g.id] && <Link className="assistant-guide assistant-guide-link" key={g.id} id={g.id} to={guidePaths[g.id]}>
         <AssistantIcon name={g.name} /><span><h3>Connect P.R.O. to {g.name}</h3><small>{g.platform}</small></span><span className="connect-expand" aria-hidden="true">→</span>
       </Link>)}

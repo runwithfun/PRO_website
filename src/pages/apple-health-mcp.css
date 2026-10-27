@@ -1,0 +1,26 @@
+.ahm-page .connect-section { max-width: 1000px; }
+.ahm-page .ag-facts { max-width: 900px; }
+.ahm-compare table { min-width: 860px; }
+.ahm-compare thead th small { display: block; margin-top: 4px; font-size: 10px; font-weight: 400; color: #8e8e98; overflow-wrap: anywhere; }
+.ahm-compare tbody th { width: 16%; }
+.ahm-clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ahm-client { min-width: 0; border: 1px solid var(--connect-line); border-radius: 16px; background: #111115; padding: 20px 22px; display: flex; flex-direction: column; }
+.ahm-client-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ahm-client-head h3 { font-size: 15px; font-weight: 500; letter-spacing: -.01em; color: #f0f0f3; }
+.ahm-badge { display: inline-block; margin-top: 4px; font-size: 10px; letter-spacing: .04em; color: #8e8e98; }
+.ahm-badge.is-tested { color: #34c759; }
+.ahm-client ol { list-style: decimal; padding-left: 18px; font-size: 13px; line-height: 1.7; color: var(--connect-muted); }
+.ahm-client li + li { margin-top: 6px; }
+.ahm-client pre { margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; background: #0a0a0d; border: 1px solid #ffffff17; overflow-x: auto; font-size: 12px; line-height: 1.6; color: #e2e2e8; }
+.ahm-client p { margin-top: 10px; font-size: 12px; line-height: 1.7; color: #8e8e98; }
+.ahm-client a { margin-top: auto; padding-top: 12px; font-size: 12px; color: #d7d7df; text-decoration: underline; text-underline-offset: 3px; }
+.ahm-flow { counter-reset: flow; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; }
+.ahm-flow li { counter-increment: flow; border: 1px solid var(--connect-line); border-radius: 14px; padding: 16px; background: #111115; font-size: 13px; line-height: 1.65; color: var(--connect-muted); }
+.ahm-flow li::before { content: counter(flow); display: block; margin-bottom: 6px; color: var(--connect-pink); font-weight: 600; }
+.ahm-flow strong { color: #e6e6eb; font-weight: 500; }
+@media (max-width: 760px) {
+  .ahm-clients, .ahm-flow { grid-template-columns: minmax(0, 1fr); }
+  .ahm-compare table { min-width: 0; }
+}
+.tool-prose .ahm-flow { list-style: none; padding-left: 0; }
+.tool-prose .ahm-flow li { margin-top: 0; }

@@ -12,6 +12,7 @@ import AssistantGuide from './pages/AssistantGuide';
 import GoodHrv from './pages/GoodHrv';
 import Zone2Calculator from './pages/Zone2Calculator';
 import OutsideUs from './pages/OutsideUs';
+import AppleHealthMcpServer from './pages/AppleHealthMcpServer';
 import { assistantGuides } from './content/assistantGuides';
 import Compare from './pages/Compare';
 import Terms from './pages/Terms';
@@ -80,6 +81,7 @@ export function AppShell() {
             <Route path="/what-is-a-good-hrv" element={<GoodHrv />} />
             <Route path="/zone-2-calculator" element={<Zone2Calculator />} />
             <Route path="/apple-health-ai-outside-us" element={<OutsideUs />} />
+            <Route path="/apple-health-mcp" element={<AppleHealthMcpServer />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/support" element={<Support />} />
           </Routes>

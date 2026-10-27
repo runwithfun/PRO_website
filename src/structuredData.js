@@ -7,6 +7,7 @@ import { compareFaq } from './content/compare.js';
 import { hrvFaq } from './content/hrv.js';
 import { zone2Faq } from './content/zone2.js';
 import { outsideUsFaq } from './content/outsideUs.js';
+import { ahmFaq } from './content/appleHealthMcp.js';
 import { mcpDemo } from './content/mcpDemo.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
@@ -67,7 +68,7 @@ export function structuredData(route, store = {}) {
     });
   }
   if (route.faq) {
-    const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, outsideUs: outsideUsFaq }[route.faq] ?? faq;
+    const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({

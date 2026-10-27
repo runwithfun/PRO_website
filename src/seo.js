@@ -107,6 +107,15 @@ export const ROUTES = [
     sources: ['src/pages/OutsideUs.jsx', 'src/content/outsideUs.js', 'src/pages/tools.css', 'src/pages/assistant-guide.css'],
   },
   {
+    path: '/apple-health-mcp',
+    file: 'apple-health-mcp.html',
+    title: 'Apple Health MCP Server — Hosted HealthKit MCP for Claude, ChatGPT, Cursor & Codex | P.R.O.',
+    description:
+      'A hosted Apple Health MCP server at https://mcp.proapp.uk: the free P.R.O. iPhone app syncs HealthKit, you sign in with OAuth — no export.xml, Mac or terminal. Setup for Claude Desktop, ChatGPT, Cursor, Codex and Claude Code.',
+    faq: 'appleHealthMcp',
+    sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
+  },
+  {
     path: '/compare',
     file: 'compare.html',
     title: 'P.R.O. vs Athlytic, Bevel, WHOOP Coach & Runna — AI Coach Apps Compared',

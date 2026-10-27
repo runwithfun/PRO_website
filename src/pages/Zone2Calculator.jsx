@@ -24,7 +24,8 @@ function Calculator() {
   const lo = list.length ? Math.min(...list.map((m) => m.range[0])) - 8 : 0;
   const hi = list.length ? Math.max(...list.map((m) => m.range[1])) + 8 : 1;
   const pos = (x) => `${((x - lo) / (hi - lo)) * 100}%`;
-  const overlap = list.length ? [Math.max(...list.map((m) => m.range[0])), Math.min(...list.map((m) => m.range[1]))] : null;
+  const pct = list.filter((m) => !m.family);
+  const overlap = pct.length ? [Math.max(...pct.map((m) => m.range[0])), Math.min(...pct.map((m) => m.range[1]))] : null;
   const maxForZones = known ?? (a ? hrmax.classic(a) : 0);
   return (
     <div className="tool-card tool-card-wide" aria-labelledby="z2-tool-title">
@@ -47,11 +48,11 @@ function Calculator() {
               <span className="tool-method-bpm">{m.range[0]}–{m.range[1]}</span>
             </div>)}
           </div>
-          <p className="tool-note">{overlap[0] <= overlap[1] ? <>All methods agree on <strong>{overlap[0]}–{overlap[1]} bpm</strong>, a safe place to start.</> : <>The methods don’t overlap here — start with the main range and confirm it with the talk test.</>} Formulas can be off by about ±11 bpm for an individual, so use the talk test to fine-tune.</p>
+          <p className="tool-note">{pct.length > 1 && overlap[0] <= overlap[1] ? <>The percent-of-max formulas agree on <strong>{overlap[0]}–{overlap[1]} bpm</strong>, a safe place to start. </> : null}{rhr ? 'Heart rate reserve and MAF give' : 'MAF gives'} higher numbers, closer to lab results in trained people: maximal fat burning at about 72% of max and the first ventilatory threshold at about 81%. Age formulas can be off by 7–11 bpm or more for an individual, so use the talk test to fine-tune.</p>
           <div className="tool-table tool-zones"><table>
             <caption className="sr-only">Five heart rate zones from a maximum heart rate of {Math.round(maxForZones)} bpm</caption>
             <thead><tr><th scope="col">Zone</th><th scope="col">bpm</th><th scope="col">How it feels</th></tr></thead>
-            <tbody>{ZONES.map((z) => { const [l, h] = pctRange(maxForZones, z.lo, z.hi); return <tr key={z.z} className={z.z === 2 ? 'is-z2' : ''}><th scope="row">{z.z} · {z.name}</th><td>{l}–{z.z === 5 ? h : h - 1}</td><td>{z.feel}</td></tr>; })}</tbody>
+            <tbody>{ZONES.map((z) => { const [l, h] = pctRange(maxForZones, z.lo, z.hi); return <tr key={z.z} className={z.z === 2 ? 'is-z2' : ''}><th scope="row">{z.z} · {z.name}</th><td>{l}–{h}</td><td>{z.feel}</td></tr>; })}</tbody>
           </table></div>
           <p className="tool-small">Zones as percent of a max heart rate of {Math.round(maxForZones)} bpm ({known ? 'your known max' : '220 − age'}), the same model P.R.O. uses by default.</p>
         </div>
@@ -86,29 +87,30 @@ export default function Zone2Calculator() {
         <ul>
           <li><strong>Percent of max</strong> (60–70%) depends only on your maximum heart rate. 220 − age is the classic estimate; Tanaka (208 − 0.7 × age) fits older adults better.</li>
           <li><strong>Heart rate reserve (Karvonen)</strong> adds your resting heart rate: resting + (max − resting) × 60–70%. It is more personal and usually gives higher numbers.</li>
-          <li><strong>MAF</strong> (180 − age) is an aerobic ceiling from coach Phil Maffetone; it hasn’t been validated in research but is popular with runners.</li>
-          <li><strong>Lab tests</strong> (lactate around 2 mmol/L or the first ventilatory threshold) are the gold standard; fixed percentages only approximate them.</li>
+          <li><strong>MAF</strong> (180 − age) is an aerobic ceiling from coach Phil Maffetone, with adjustments for health and training history; it hasn’t been validated in research but is popular with runners.</li>
+          <li><strong>Lab tests</strong> (lactate around 2 mmol/L or the first ventilatory threshold) are the gold standard; fixed percentages only approximate them. In 50 trained cyclists the first ventilatory threshold averaged 81% of measured max heart rate, with big differences between people (Meixner 2025).</li>
         </ul>
 
         <h2 id="apple-watch">How does Apple Watch calculate heart rate zones?</h2>
         <p className="tool-lead">Apple Watch sets five heart rate zones automatically from your age and heart rate data in Health, and you can set zones 2–4 yourself.</p>
         <ol>
           <li>Make sure your date of birth is set in the Health app — zones need it.</li>
-          <li>On Apple Watch open Settings → Workout → Heart Rate Zones (or the Watch app on iPhone → Workout → Heart Rate Zones).</li>
+          <li>On Apple Watch open Settings → Workout → Heart Rate Zones (or the Apple Watch app on iPhone → My Watch → Workout → Heart Rate Zones).</li>
           <li>Choose Manual to enter your own Zone 2 limits, for example the range from this calculator.</li>
+          <li>Optional: in the Workout app, add a heart rate alert for that range to your workout’s alerts, so the watch taps you when you drift out of Zone 2. Apple’s own example is 133–141 bpm for an outdoor run; menu names differ slightly between watchOS versions.</li>
         </ol>
-        <p>During a workout, the Workout app can show a Heart Rate Zones view with the time you spend in each zone. Apple doesn’t publish its exact zone percentages, so its Zone 2 may differ from this calculator.</p>
+        <p>During a workout, the Workout app can show a Heart Rate Zones view with the time you spend in each zone. Apple says its zones are a percentage of your maximum heart rate, personalised with your health data, but doesn’t say how it estimates that maximum — so its Zone 2 may differ from this calculator. These steps match watchOS 26 and 27.</p>
 
         <h2 id="women">Zone 2 heart rate for women</h2>
         <p className="tool-lead">The same methods apply; the Gulati formula (206 − 0.88 × age), built from data on 5,437 women, gives a maximum and Zone 2 a few beats lower than 220 − age.</p>
 
         <h2 id="how-much">How much Zone 2 per week?</h2>
-        <p className="tool-lead">The WHO recommends 150–300 minutes of moderate activity a week; many coaches suggest about three hours of Zone 2 over three to four sessions.</p>
+        <p className="tool-lead">The WHO recommends 150–300 minutes of moderate activity (or 75–150 minutes vigorous) a week plus two days of strength training; many coaches suggest about three hours of Zone 2 over three to four sessions.</p>
         <p>Zone 2 is popular for building an aerobic base and for longevity, but a 2025 review found no evidence that it is uniquely better than higher intensities for fitness. Most plans combine plenty of easy Zone 2 with one or two harder sessions.</p>
 
         <h2 id="talk-test">Check it with the talk test</h2>
         <p className="tool-lead">In Zone 2 you can speak in full sentences but wouldn’t want to sing; if you can only say a few words, slow down.</p>
-        <p>Formulas can be off by about ±11 bpm for an individual, so let the talk test have the final word. Heart rate formulas don’t apply if you take beta-blockers or have a heart condition — ask your doctor for your zones.</p>
+        <p>Age formulas can be off by 7–11 bpm or more for an individual, so let the talk test have the final word. Heart rate formulas don’t apply if you take beta-blockers or have a heart condition — ask your doctor for your zones.</p>
 
         <div className="tool-cta">
           <p><strong>P.R.O.</strong> reads your workouts and heart rate from Apple Health, shows the heart rate zones of every workout and lets you set your own zones — and its AI coach answers questions about your training with your real numbers.</p>

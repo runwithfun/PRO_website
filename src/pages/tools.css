@@ -26,6 +26,7 @@
 .tool-small a, .tool-prose a, .tool-note a { text-decoration: underline; text-underline-offset: 3px; color: #d7d7df; }
 .tool-scale { position: relative; height: 10px; margin-top: 16px; border-radius: 999px; background: #232329; }
 .tool-scale-band { position: absolute; top: 0; height: 100%; border-radius: 999px; background: #34c75966; }
+.tool-scale-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; border-radius: 2px; background: #34c759; }
 .tool-scale-dot { position: absolute; top: 50%; width: 16px; height: 16px; margin-left: -8px; transform: translateY(-50%); border-radius: 50%; background: var(--connect-pink); box-shadow: 0 0 0 3px #111115; }
 .tool-methods { margin-top: 18px; display: grid; gap: 10px; }
 .tool-method { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr) 72px; gap: 12px; align-items: center; font-size: 13px; }

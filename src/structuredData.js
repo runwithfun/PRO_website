@@ -9,6 +9,8 @@ import { zone2Faq } from './content/zone2.js';
 import { outsideUsFaq } from './content/outsideUs.js';
 import { ahmFaq } from './content/appleHealthMcp.js';
 import { mcpDemo } from './content/mcpDemo.js';
+import { deviceGuides } from './content/deviceGuides.js';
+import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -67,8 +69,30 @@ export function structuredData(route, store = {}) {
       step: ag.guide.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.title, text: s.text ?? s.title })),
     });
   }
+  const dg = route.device && deviceGuides.find((g) => g.id === route.device);
+  if (dg) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: dg.faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    });
+    graph.push({
+      '@type': 'HowTo', '@id': `${SITE}${route.path}#howto`,
+      name: `How to sync ${dg.name} with Apple Health`,
+      description: dg.answer.join(' '),
+      tool: [...(dg.app ? [{ '@type': 'HowToTool', name: `${dg.app} app for iPhone` }] : []), { '@type': 'HowToTool', name: 'Health app on iPhone' }],
+      step: dg.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.title, text: s.text, url: `${SITE}${route.path}#step-${i + 1}` })),
+    });
+  }
+  if (route.path === HUB_PATH) {
+    graph.push({
+      '@type': 'ItemList', '@id': `${SITE}${HUB_PATH}#devices`,
+      name: 'How to sync fitness trackers with Apple Health',
+      numberOfItems: deviceGuides.length,
+      itemListElement: deviceGuides.map((g, i) => ({ '@type': 'ListItem', position: i + 1, name: `How to sync ${g.name} with Apple Health`, url: `${SITE}${g.path}` })),
+    });
+  }
   if (route.faq) {
-    const items = { mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq }[route.faq] ?? faq;
+    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({
@@ -81,7 +105,13 @@ export function structuredData(route, store = {}) {
   if (route.path !== '/') {
     graph.push({
       '@type': 'BreadcrumbList',
-      itemListElement: ag
+      itemListElement: dg || route.path === HUB_PATH
+        ? [
+            { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
+            { '@type': 'ListItem', position: 2, name: 'Apple Health sync', item: `${SITE}${HUB_PATH}` },
+            ...(dg ? [{ '@type': 'ListItem', position: 3, name: dg.name, item: `${SITE}${route.path}` }] : []),
+          ]
+        : ag
         ? [
             { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
             { '@type': 'ListItem', position: 2, name: 'Connect AI assistants', item: `${SITE}/mcp-connect` },
@@ -119,6 +149,8 @@ export function structuredData(route, store = {}) {
     isPartOf: { '@id': `${SITE}/#website` },
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
+    ...(dg && { mainEntity: { '@id': `${SITE}${route.path}#howto` }, dateModified: dg.checked }),
+    ...(route.path === HUB_PATH && { mainEntity: { '@id': `${SITE}${HUB_PATH}#devices` } }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };
 }

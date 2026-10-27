@@ -21,6 +21,7 @@ export default function ModernFooter() {
               <Link to="/faq" className="block text-gray-500 hover:text-white">FAQ</Link>
               <Link to="/mcp-connect" className="block text-gray-500 hover:text-white">Connect your AI assistant</Link>
               <Link to="/apple-health-mcp" className="block text-gray-500 hover:text-white">Apple Health MCP server</Link>
+              <Link to="/apple-health-sync" className="block text-gray-500 hover:text-white">Sync any tracker with Apple Health</Link>
               <Link to="/compare" className="block text-gray-500 hover:text-white">Compare AI coach apps</Link>
               <Link to="/apple-health-ai-outside-us" className="block text-gray-500 hover:text-white">Apple Health AI outside the US</Link>
               <Link to="/what-is-a-good-hrv" className="block text-gray-500 hover:text-white">What is a good HRV?</Link>

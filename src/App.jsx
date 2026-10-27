@@ -14,6 +14,10 @@ import Zone2Calculator from './pages/Zone2Calculator';
 import OutsideUs from './pages/OutsideUs';
 import AppleHealthMcpServer from './pages/AppleHealthMcpServer';
 import { assistantGuides } from './content/assistantGuides';
+import AppleHealthSync from './pages/AppleHealthSync';
+import DeviceGuide from './pages/DeviceGuide';
+import { deviceGuides } from './content/deviceGuides';
+import { HUB_PATH } from './content/appleHealthSync';
 import Compare from './pages/Compare';
 import Terms from './pages/Terms';
 import Support from './pages/Support';
@@ -78,6 +82,8 @@ export function AppShell() {
             <Route path="/apple-health-chatgpt-claude" element={<LegacyConnectorRedirect />} />
             {assistantGuides.map((g) => <Route key={g.id} path={g.path} element={<AssistantGuide id={g.id} />} />)}
             <Route path="/compare" element={<Compare />} />
+            <Route path={HUB_PATH} element={<AppleHealthSync />} />
+            {deviceGuides.map((g) => <Route key={g.id} path={g.path} element={<DeviceGuide id={g.id} />} />)}
             <Route path="/what-is-a-good-hrv" element={<GoodHrv />} />
             <Route path="/zone-2-calculator" element={<Zone2Calculator />} />
             <Route path="/apple-health-ai-outside-us" element={<OutsideUs />} />

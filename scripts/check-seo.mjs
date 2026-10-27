@@ -4,9 +4,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ROUTES, REDIRECTS } from '../src/seo.js';
 import { mcpDemo } from '../src/content/mcpDemo.js';
+import { deviceGuides } from '../src/content/deviceGuides.js';
+import { HUB_PATH } from '../src/content/appleHealthSync.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
+const escape = text => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
 for (const route of ROUTES) {
   const html = fs.readFileSync(path.join(dist, route.file), 'utf8');
   assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, `${route.path}: one h1`);
@@ -23,6 +27,25 @@ for (const route of ROUTES) {
     if (ROUTES.some(r => r.path === file) || REDIRECTS.some(r => r.from === file)) continue;
     assert.ok(fs.existsSync(path.join(dist, file)), `${route.path}: missing local asset ${file}`);
   }
+  if (route.device) {
+    const guide = deviceGuides.find(g => g.id === route.device);
+    const howto = graph.find(n => n['@type'] === 'HowTo');
+    assert.equal(howto.step.length, guide.steps.length, `${route.path}: HowTo steps`);
+    for (const step of howto.step) assert.ok(html.includes(escape(step.text)), `${route.path}: missing visible step ${step.name}`);
+    const faq = graph.find(n => n['@type'] === 'FAQPage');
+    for (const question of faq.mainEntity) {
+      assert.ok(html.includes(escape(question.name)) && html.includes(escape(question.acceptedAnswer.text)), `${route.path}: FAQ differs from visible answer: ${question.name}`);
+    }
+    assert.equal(graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.length, 3, `${route.path}: breadcrumbs`);
+    assert.ok(!/<img\b/.test(html.match(/<main[\s>][\s\S]*<\/main>/)[0]), `${route.path}: guides use drawn mock-ups, not images`);
+  }
+  if (route.path === HUB_PATH) {
+    const list = graph.find(n => n['@type'] === 'ItemList');
+    assert.equal(list.itemListElement.length, deviceGuides.length, 'Hub lists every device guide');
+    for (const guide of deviceGuides) assert.ok(html.includes(`href="${guide.path}"`), `Hub links to ${guide.path}`);
+    assert.ok(graph.some(n => n['@type'] === 'FAQPage'), 'Hub has FAQPage');
+  }
+  if (route.path !== '/') assert.ok(sitemap.includes(`https://proapp.uk${route.path}</loc>`), `${route.path}: in sitemap`);
   if (route.path === '/mcp-connect') {
     const howto = graph.find(n => n['@type'] === 'HowTo');
     assert.equal(howto.step.length, 5);
@@ -30,7 +53,6 @@ for (const route of ROUTES) {
     const faq = graph.find(n => n['@type'] === 'FAQPage');
     assert.equal(faq.mainEntity.length, 10);
     for (const question of faq.mainEntity) {
-      const escape = text => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
       assert.ok(html.includes(escape(question.name)), `Missing visible FAQ: ${question.name}`);
       assert.ok(html.includes(escape(question.acceptedAnswer.text)), `FAQ differs from visible answer: ${question.name}`);
     }
@@ -46,7 +68,6 @@ for (const route of ROUTES) {
     assert.ok(player.includes('preload="none"'), 'Demo does not preload video');
     assert.ok(!/\bsrc=/.test(player), 'No video source before user interaction');
     assert.ok(!/\bautoplay\b/.test(player), 'Demo starts only on user request');
-    const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
     assert.ok(sitemap.includes('https://proapp.uk/mcp-connect</loc>'));
     assert.ok(!sitemap.includes('/apple-health-chatgpt-claude'));
   }

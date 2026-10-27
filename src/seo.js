@@ -1,4 +1,6 @@
 import { assistantGuides } from './content/assistantGuides.js';
+import { deviceGuides } from './content/deviceGuides.js';
+import { HUB_PATH, hubTitle, hubDescription, guideDescription } from './content/appleHealthSync.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
 // заголовок вкладки менялся при переходах внутри сайта.
@@ -78,6 +80,22 @@ export const ROUTES = [
     description: g.description,
     assistant: g.id,
     sources: ['src/pages/AssistantGuide.jsx', 'src/pages/assistant-guide.css', 'src/content/assistantGuides.js', 'src/content/mcpGuides.js', `media/mcp/${g.id}`],
+  })),
+  {
+    path: HUB_PATH,
+    file: `${HUB_PATH.slice(1)}.html`,
+    title: hubTitle,
+    description: hubDescription,
+    faq: 'appleHealthSync',
+    sources: ['src/pages/AppleHealthSync.jsx', 'src/pages/device-guide.css', 'src/components/DeviceSync.jsx', 'src/content/appleHealthSync.js', 'src/content/deviceGuides.js'],
+  },
+  ...deviceGuides.map((g) => ({
+    path: g.path,
+    file: `${g.path.slice(1)}.html`,
+    title: `How to Sync ${g.name} with Apple Health (${g.checked.slice(0, 4)}) — P.R.O.`,
+    description: guideDescription(g),
+    device: g.id,
+    sources: ['src/pages/DeviceGuide.jsx', 'src/pages/device-guide.css', 'src/components/DeviceSync.jsx', 'src/content/appleHealthSync.js', 'src/content/deviceGuides.js'],
   })),
   {
     path: '/what-is-a-good-hrv',

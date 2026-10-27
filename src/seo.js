@@ -7,9 +7,9 @@ export const ROUTES = [
   {
     path: '/',
     file: 'index.html',
-    title: 'P.R.O. — AI Coach & Training Stats for Apple Watch',
+    title: 'P.R.O. — AI Running & Fitness Coach for Apple Watch',
     description:
-      'P.R.O. turns Apple Health and Apple Watch data into widget dashboards, training history analytics and an AI coach that answers with your real numbers. Free on the App Store.',
+      'Free AI running and fitness coach for Apple Watch: P.R.O. reads your runs, HRV and sleep from Apple Health, builds adaptive training plans and connects to ChatGPT and Claude.',
   },
   {
     path: '/features',

@@ -36,9 +36,9 @@ export default function ModernHero() {
         </pre>
 
         <h1 className="animate-slide-up text-4xl font-bold leading-tight text-pink-900 sm:text-5xl lg:text-6xl xl:text-7xl">
-          Your Ultimate
+          AI Running &amp; Fitness Coach{' '}
           <span className="block bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent">
-            Sport Statistics App
+            for Apple Watch
           </span>
         </h1>
 
@@ -46,8 +46,8 @@ export default function ModernHero() {
           className="mx-auto mb-10 mt-6 max-w-3xl text-xl leading-relaxed text-pink-800 sm:text-2xl animate-slide-up"
           style={{ animationDelay: '0.1s' }}
         >
-          P.R.O. is a free iOS AI coach that turns your Apple Health and Apple Watch data into
-          training history analysis, widget-rich dashboards and answers from your real metrics.
+          P.R.O. is a free iOS AI coach that reads your runs, workouts, HRV and sleep from Apple Health,
+          builds adaptive training plans and answers with your real numbers.
         </p>
 
         <div

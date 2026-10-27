@@ -125,7 +125,8 @@ export default function Compare() {
             Readiness is free and built into watchOS 27, but only on Apple Watch Series 12 and Ultra 4: a daily 0–10
             score from your recent activity, vitals and sleep, with a recommendation from Recover to Go For It. It has
             no chat or training plans. P.R.O. works with any Apple Watch that writes to Apple Health and adds an AI
-            coach and adaptive plans.
+            coach and adaptive plans. See{' '}
+            <Link to="/apple-watch-readiness-score">how to get a readiness read on an older Apple Watch</Link>.
           </p>
 
           <h2>P.R.O. vs ChatGPT Health</h2>

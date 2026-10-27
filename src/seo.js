@@ -116,6 +116,15 @@ export const ROUTES = [
     sources: ['src/pages/Zone2Calculator.jsx', 'src/content/zone2.js', 'src/pages/tools.css'],
   },
   {
+    path: '/apple-watch-readiness-score',
+    file: 'apple-watch-readiness-score.html',
+    title: 'Apple Watch Readiness Score on Older Watches — P.R.O.',
+    description:
+      'Apple’s Readiness is only on Series 12 and Ultra 4. Get a free readiness read on Series 9–11, Ultra or SE — in the app or in ChatGPT and Claude via MCP.',
+    faq: 'readiness',
+    sources: ['src/pages/AppleWatchReadiness.jsx', 'src/content/readiness.js', 'src/pages/tools.css'],
+  },
+  {
     path: '/apple-health-ai-outside-us',
     file: 'apple-health-ai-outside-us.html',
     title: 'ChatGPT Health & Claude Apple Health Outside the US: UK, EU, Canada — P.R.O.',

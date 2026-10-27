@@ -192,3 +192,28 @@
 @media (prefers-reduced-motion: reduce) {
   .z2-zone, .z2-lab, .z2-grid, .z2-row-bar, .z2-axis span, .z2-seg button { transition: none; }
 }
+
+/* Readiness page: status pill and signal list */
+.rd-wide { grid-column: 1 / -1; }
+.rd-status { display: inline-block; margin-right: 6px; padding: 4px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; vertical-align: 1px; }
+.rd-status.is-ready { background: #34c75922; color: #7ee39a; }
+.rd-status.is-caution { background: #ff9f0a1f; color: #ffc46b; }
+.rd-status.is-recover { background: #ff453a24; color: #ff8a80; }
+.rd-checks { display: grid; gap: 8px; margin-top: 14px; }
+.rd-checks li { display: flex; gap: 10px; align-items: baseline; font-size: 13px; line-height: 1.6; color: #b5b5bd; }
+.rd-checks li > span:first-child { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 11px; font-weight: 700; }
+.rd-checks li.is-ok > span:first-child { background: #34c75922; color: #7ee39a; }
+.rd-checks li.is-flag > span:first-child { background: #ff9f0a1f; color: #ffc46b; }
+.rd-checks strong { color: #e8e8ee; font-weight: 500; }
+.rd-checks em { font-style: normal; color: #8e8e98; }
+.rd-mcp { border: 1px solid #ed62a440; border-radius: 22px; padding: 28px; background: linear-gradient(180deg, #ed62a412, #ed62a405); }
+.rd-mcp h2 { margin-top: 0 !important; }
+.rd-mcp .connect-eyebrow { margin-bottom: 12px; color: var(--connect-pink); }
+.rd-chat { display: grid; gap: 10px; margin: 20px 0 8px; }
+.rd-chat-you, .rd-chat-ai { max-width: 88%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.65; }
+.rd-chat-you { justify-self: end; border-bottom-right-radius: 6px; background: #ed62a4cc; color: #fff !important; }
+.rd-chat-ai { justify-self: start; border-bottom-left-radius: 6px; background: #1d1d23; color: #d7d7de !important; }
+.rd-chat-ai strong { color: #ffc46b; font-weight: 600; }
+.rd-mcp-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 6px; }
+.rd-mcp-links a:not(.tool-btn) { margin-top: 14px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; color: #d7d7df; }
+@media (max-width: 480px) { .rd-mcp { padding: 20px; } .rd-chat-you, .rd-chat-ai { max-width: 100%; } }

@@ -11,6 +11,7 @@ import AppleHealthMcp from './pages/AppleHealthMcp';
 import AssistantGuide from './pages/AssistantGuide';
 import GoodHrv from './pages/GoodHrv';
 import Zone2Calculator from './pages/Zone2Calculator';
+import AppleWatchReadiness from './pages/AppleWatchReadiness';
 import OutsideUs from './pages/OutsideUs';
 import AppleHealthMcpServer from './pages/AppleHealthMcpServer';
 import { assistantGuides } from './content/assistantGuides';
@@ -86,6 +87,7 @@ export function AppShell() {
             {deviceGuides.map((g) => <Route key={g.id} path={g.path} element={<DeviceGuide id={g.id} />} />)}
             <Route path="/what-is-a-good-hrv" element={<GoodHrv />} />
             <Route path="/zone-2-calculator" element={<Zone2Calculator />} />
+            <Route path="/apple-watch-readiness-score" element={<AppleWatchReadiness />} />
             <Route path="/apple-health-ai-outside-us" element={<OutsideUs />} />
             <Route path="/apple-health-mcp" element={<AppleHealthMcpServer />} />
             <Route path="/terms" element={<Terms />} />

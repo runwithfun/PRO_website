@@ -277,6 +277,7 @@ export default function GoodHrv() {
             <tr><th scope="row">Older models</th><td>Yes, on the latest watchOS they support</td><td>No</td></tr>
           </tbody>
         </table></div>
+        <p>No Series 12? See <Link to="/apple-watch-readiness-score">how to get a readiness read on an older Apple Watch</Link> from your HRV, resting heart rate and sleep.</p>
 
         <h2 id="norms">Normal HRV by age and gender</h2>
         <p className="tool-lead">HRV falls with age: in a population study of 1,906 adults, average SDNN dropped from about 50 ms at 25–34 to about 29 ms at 65–74.</p>

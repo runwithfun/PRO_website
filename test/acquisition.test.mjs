@@ -38,3 +38,12 @@ if(product!=='fita')test('SPA query-only arrivals count and page_leave keeps its
   const events=a.events();assert.equal(events.filter(e=>e.name==='page_view').length,2);
   assert.equal(source(events.find(e=>e.name==='page_leave').properties),'one');assert.equal(source(events.at(-1).properties),'two');
 });
+test('an untagged referral link is the referral channel; its own tags win',async()=>{
+  for(const path of ['invite/?code=K7MPX3','invite/K7MPX3']){
+    const a=page(path);await a.flush();const p=a.events()[0].properties;
+    assert.equal(source(p),'referral',path);assert.equal(p.utm_medium,'invite');assert.equal(p.utm_campaign,'invite');
+  }
+  const tagged=page('invite/?code=K7MPX3&utm_source=telegram');await tagged.flush();
+  assert.equal(source(tagged.events()[0].properties),'telegram');
+  const plain=page('features?code=K7MPX3');await plain.flush();assert.equal(source(plain.events()[0].properties),undefined);
+});

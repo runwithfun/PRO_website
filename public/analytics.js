@@ -87,6 +87,12 @@
           values[key] = query.get(key);
         });
       } catch (e) {}
+      // A referral link (/invite/?code=…) without its own tags is the referral channel.
+      var invite = w.location.pathname.match(/^\/invite(?:\/([A-Za-z0-9]{4,12}))?\/?$/);
+      if (!tagged && invite && campaignSlug((query && query.get('code')) || invite[1])) {
+        values = { utm_source: 'referral', utm_medium: 'invite', utm_campaign: 'invite' };
+        tagged = true;
+      }
       if (tagged) campaign = cleanCampaign(values);
       campaignSearch = search;
     }

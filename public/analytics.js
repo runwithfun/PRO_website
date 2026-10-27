@@ -190,7 +190,8 @@
     var named = el.getAttribute('data-analytics');
     if (named) { track(named, { label: label }); return; }
     var href = el.getAttribute('href') || '';
-    if (/apps\.apple\.com/.test(href)) track('app_store_clicked', { label: label, href: href.slice(0, 200) });
+    // Only P.R.O.'s own listing counts as a store click: comparison pages link to other apps too.
+    if (/apps\.apple\.com\/.*id6749865568/.test(href)) track('app_store_clicked', { label: label, href: href.slice(0, 200) });
     else if (/^proapp:/.test(href) || /\/open\//.test(href)) track('open_in_app_clicked', { label: label, href: href.slice(0, 200) });
     else if (/\/apple-health-|\/mcp-connect/.test(href)) track('guide_link_clicked', { label: label, href: href.slice(0, 200) });
     else if (/^https?:\/\//.test(href) && href.indexOf(w.location.host) < 0) {

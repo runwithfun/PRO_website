@@ -101,8 +101,74 @@
     return cleanCampaign(campaign);
   }
 
+  // Everything else a visit can tell about where it came from, kept raw so channels can be
+  // decided later: ad click ids (the visit came from an ad even when its UTM got lost), the
+  // in-app browser (those apps usually strip the referrer), the very first touch of this
+  // browser, the visit number and the names (not values) of the landing link's parameters.
+  var CLICK_IDS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid', 'twclid', 'rdt_cid', 'li_fat_id',
+                   'igsh', 'yclid', 'epik', 'sccid', 'dclid'];
+  var CLICK_VALUE = /^[A-Za-z0-9_.\-]{1,300}$/;
+  var IN_APP = [[/Instagram/, 'instagram'], [/FBAN|FBAV|FB_IAB/, 'facebook'], [/Barcelona/, 'threads'],
+                [/musical_ly|BytedanceWebview|TikTok/i, 'tiktok'], [/Twitter/, 'x'], [/Reddit/i, 'reddit'],
+                [/LinkedInApp/, 'linkedin'], [/Snapchat/, 'snapchat'], [/Pinterest/, 'pinterest'],
+                [/\bLine\//, 'line'], [/Telegram/, 'telegram'], [/GSA\//, 'google_app']];
+  var VISIT_TTL = 30 * 60 * 1000;
+  function inAppBrowser() {
+    var ua = (w.navigator && w.navigator.userAgent) || '';
+    for (var i = 0; i < IN_APP.length; i++) if (IN_APP[i][0].test(ua)) return IN_APP[i][1];
+    return '';
+  }
+  function referrerHost() {
+    try {
+      var host = d.referrer ? new w.URL(d.referrer).hostname.toLowerCase() : '';
+      return host && HOSTS.indexOf(host) < 0 ? host.slice(0, 120) : '';
+    } catch (e) { return ''; }
+  }
+  function storedJSON(store, key) { try { return JSON.parse(store.getItem(key) || 'null'); } catch (e) { return null; } }
+  function saveJSON(store, key, value) { try { store.setItem(key, JSON.stringify(value)); } catch (e) {} }
+  // A visit starts after 30 minutes without events; its landing facts are fixed for the visit.
+  function visitContext(campaign) {
+    var now = Date.now(), visit = storedJSON(w.sessionStorage, 'pro_visit_v1');
+    if (!visit || now < visit.at || now - visit.at >= VISIT_TTL) {
+      var count = 0;
+      try { count = parseInt(w.localStorage.getItem('pro_visits') || '0', 10) || 0; } catch (e) {}
+      count += 1;
+      try { w.localStorage.setItem('pro_visits', String(count)); } catch (e) {}
+      var click = {}, keys = [];
+      try {
+        var q = new w.URLSearchParams(w.location.search);
+        q.forEach(function (value, key) { if (keys.length < 12 && /^[A-Za-z0-9_.-]{1,40}$/.test(key) && keys.indexOf(key) < 0) keys.push(key.toLowerCase()); });
+        for (var i = 0; i < CLICK_IDS.length && !click.type; i++) {
+          var v = q.get(CLICK_IDS[i]);
+          if (v && CLICK_VALUE.test(v)) click = { type: CLICK_IDS[i], value: v.slice(0, 300) };
+        }
+      } catch (e) {}
+      visit = { number: count, click: click, params: keys.join(','), landing: cleanPath(w.location.pathname), referrer: referrerHost() };
+    }
+    visit.at = now;
+    saveJSON(w.sessionStorage, 'pro_visit_v1', visit);
+    var first = storedJSON(w.localStorage, 'pro_first_touch_v1');
+    if (!first || typeof first.at !== 'number') {
+      first = { at: now, source: campaign.utm_source || (visit.click.type ? 'click:' + visit.click.type : '') || visit.referrer || 'direct',
+                medium: campaign.utm_medium || '', campaign: campaign.utm_campaign || '', referrer: visit.referrer, landing: visit.landing };
+      saveJSON(w.localStorage, 'pro_first_touch_v1', first);
+    }
+    var out = { visit_number: visit.number, landing_path: visit.landing, days_since_first_visit: Math.max(0, Math.floor((now - first.at) / 86400000)) };
+    if (visit.params) out.landing_params = visit.params;
+    if (visit.referrer) out.referrer_host = visit.referrer;
+    if (visit.click.type) { out.click_id_type = visit.click.type; out.click_id = visit.click.value; }
+    var app = inAppBrowser();
+    if (app) out.in_app_browser = app;
+    ['source', 'medium', 'campaign', 'referrer', 'landing'].forEach(function (key) {
+      if (first[key]) out['first_' + key] = String(first[key]).slice(0, 120);
+    });
+    return out;
+  }
+
   function context() {
     var out = campaignContext();
+    var extra = visitContext(out), key;
+    for (key in extra) if (Object.prototype.hasOwnProperty.call(extra, key)) out[key] = extra[key];
     try {
       var linkParams = new w.URLSearchParams(w.location.search);
       ['ref', 'code'].forEach(function (key) {

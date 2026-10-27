@@ -98,6 +98,15 @@ export const ROUTES = [
     sources: ['src/pages/Zone2Calculator.jsx', 'src/content/zone2.js', 'src/pages/tools.css'],
   },
   {
+    path: '/apple-health-ai-outside-us',
+    file: 'apple-health-ai-outside-us.html',
+    title: 'ChatGPT Health & Claude Apple Health Outside the US: UK, EU, Canada — P.R.O.',
+    description:
+      'ChatGPT Health, Claude’s Apple Health beta, Perplexity Health and Copilot Health are US only as of October 2026. How to connect Apple Health to ChatGPT, Claude, Perplexity, Grok or Codex from the UK, EU, Canada, Australia or India.',
+    faq: 'outsideUs',
+    sources: ['src/pages/OutsideUs.jsx', 'src/content/outsideUs.js', 'src/pages/tools.css', 'src/pages/assistant-guide.css'],
+  },
+  {
     path: '/compare',
     file: 'compare.html',
     title: 'P.R.O. vs Athlytic, Bevel, WHOOP Coach & Runna — AI Coach Apps Compared',

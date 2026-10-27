@@ -87,7 +87,7 @@ export default function AssistantGuide({ id }) {
       <div className="connect-section-heading"><h2 id="faq-heading">If something goes wrong</h2></div>
       {g.trouble.map(([q, a]) => <details className="connect-question" key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}
       <h2 className="ag-subhead">Questions about {g.name} and Apple Health</h2>
-      {g.faq.map((item) => <details className="connect-question" key={item.q}><summary>{item.q}<span aria-hidden="true">+</span></summary><p>{item.a}</p></details>)}
+      {g.faq.map((item) => <details className="connect-question" key={item.q}><summary>{item.q}<span aria-hidden="true">+</span></summary><p>{item.a}{item.more && <> <Link className="ag-faq-more" to={item.more.to}>{item.more.text} →</Link></>}</p></details>)}
       <div className="connect-end">
         <p>P.R.O. reads only the Apple Health categories you allow and you can disconnect {g.name} any time in Settings → MCP Connect.<br />P.R.O. provides fitness and wellness information, not medical advice.</p>
         <div><Link to="/support">Get help ↗</Link><Link to="/privacy">Privacy ↗</Link></div>

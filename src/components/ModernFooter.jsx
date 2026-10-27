@@ -21,6 +21,7 @@ export default function ModernFooter() {
               <Link to="/faq" className="block text-gray-500 hover:text-white">FAQ</Link>
               <Link to="/mcp-connect" className="block text-gray-500 hover:text-white">Connect your AI assistant</Link>
               <Link to="/compare" className="block text-gray-500 hover:text-white">Compare AI coach apps</Link>
+              <Link to="/apple-health-ai-outside-us" className="block text-gray-500 hover:text-white">Apple Health AI outside the US</Link>
               <Link to="/what-is-a-good-hrv" className="block text-gray-500 hover:text-white">What is a good HRV?</Link>
               <Link to="/zone-2-calculator" className="block text-gray-500 hover:text-white">Zone 2 calculator</Link>
             </div>

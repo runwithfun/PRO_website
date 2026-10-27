@@ -56,6 +56,7 @@
 .ag-other-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .ag-other-links a { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 14px; border: 1px solid var(--connect-line); font-size: 13px; transition: border-color .2s; }
 .ag-other-links a:hover { border-color: #ed62a466; }
+.ag-faq-more { color: #d7d7df; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 760px) {
   .ag-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ag-other-links { grid-template-columns: 1fr; }

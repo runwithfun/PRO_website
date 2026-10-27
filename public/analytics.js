@@ -106,7 +106,7 @@
   // in-app browser (those apps usually strip the referrer), the very first touch of this
   // browser, the visit number and the names (not values) of the landing link's parameters.
   var CLICK_IDS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid', 'twclid', 'rdt_cid', 'li_fat_id',
-                   'igsh', 'yclid', 'epik', 'sccid', 'dclid'];
+                   'igsh', 'yclid', 'epik', 'sccid', 'dclid', 'oppref', 'olref'];  // oppref/olref: ChatGPT ads
   var CLICK_VALUE = /^[A-Za-z0-9_.\-]{1,300}$/;
   var IN_APP = [[/Instagram/, 'instagram'], [/FBAN|FBAV|FB_IAB/, 'facebook'], [/Barcelona/, 'threads'],
                 [/musical_ly|BytedanceWebview|TikTok/i, 'tiktok'], [/Twitter/, 'x'], [/Reddit/i, 'reddit'],

@@ -59,3 +59,9 @@ test('a visit keeps raw acquisition facts: ad click id, landing params, first to
   assert.equal(u.first_source,'click:gclid');assert.equal(u.utm_source,undefined,'click ids never invent a UTM source');
   const bad=page('?fbclid=%3Cscript%3E');await bad.flush();assert.equal(bad.events()[0].properties.click_id,undefined);
 });
+test('ChatGPT ad click ids are kept like other ad click ids',async()=>{
+  const a=page('?utm_source=gpt&utm_campaign=1026&oppref=Ab1_x-2&olref=Zz9');await a.flush();
+  const p=a.events()[0].properties;
+  assert.equal(p.click_id_type,'oppref');assert.equal(p.click_id,'Ab1_x-2');assert.equal(p.landing_params,'utm_source,utm_campaign,oppref,olref');
+});
+

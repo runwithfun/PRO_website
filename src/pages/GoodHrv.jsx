@@ -290,6 +290,7 @@ export default function GoodHrv() {
         <h2 id="vs-whoop">Why is Apple Watch HRV lower than WHOOP or Oura?</h2>
         <p className="tool-lead">Because they measure different things at different times: Apple Watch takes SDNN readings while you are still, often during the day; WHOOP and Oura average RMSSD over your sleep, when HRV is highest.</p>
         <p>HRV follows a daily rhythm — highest early in the morning, lower in the evening (Fitbit data from 8 million people). Longer recordings also produce higher values. Recovery HRV on Series 12 and Ultra 4 is an overnight RMSSD too, so it lands much closer to WHOOP and Oura. Compare each device only with itself.</p>
+        <p>Keep in mind that <Link to="/whoop-apple-health">WHOOP</Link>, <Link to="/oura-apple-health">Oura</Link>, <Link to="/garmin-apple-health">Garmin</Link>, Polar and Fitbit don’t write their HRV to Apple Health at all — so the HRV you see in Health usually comes from Apple Watch. See <Link to="/apple-health-sync">what each tracker syncs to Apple Health</Link>.</p>
 
         <h2 id="low">Why is my HRV low or dropping?</h2>
         <p className="tool-lead">The usual causes are poor or short sleep, alcohol, illness, hard training without recovery, stress and the time of day.</p>

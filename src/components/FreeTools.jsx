@@ -47,10 +47,23 @@ function AiPreview() {
   );
 }
 
+function SyncPreview() {
+  return (
+    <div aria-hidden className="mt-6 flex flex-wrap gap-2">
+      {['Garmin', 'WHOOP', 'Oura', 'Polar', 'COROS', 'Fitbit'].map((d) => (
+        <span key={d} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-300">
+          <span className="text-emerald-400">✓</span> {d}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 const TOOLS = [
   { to: '/what-is-a-good-hrv', eyebrow: 'HRV checker', title: 'Is your HRV normal for your age?', preview: <HrvPreview /> },
   { to: '/zone-2-calculator', eyebrow: 'Zone 2 calculator', title: 'Find your Zone 2 heart rate.', preview: <Zone2Preview /> },
   { to: '/mcp-connect', eyebrow: 'AI connector', title: 'Ask ChatGPT or Claude about your Apple Health.', preview: <AiPreview /> },
+  { to: '/apple-health-sync', eyebrow: 'Device sync', title: 'Sync your tracker with Apple Health.', preview: <SyncPreview /> },
 ];
 
 export default function FreeTools({ title = 'Check your numbers.' }) {
@@ -60,7 +73,7 @@ export default function FreeTools({ title = 'Check your numbers.' }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-pink">Free tools</p>
         <h2 id="free-tools-title" className="mt-3 font-display text-3xl font-extrabold text-white sm:text-4xl">{title}</h2>
-        <div className="-mx-4 mt-10 flex snap-x snap-mandatory scroll-px-4 gap-3 sm:scroll-px-6 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0">
+        <div className="-mx-4 mt-10 flex snap-x snap-mandatory scroll-px-4 gap-3 sm:scroll-px-6 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0">
           {TOOLS.map(({ to, eyebrow, title: t, preview }, i) => (
             <Link
               key={to}

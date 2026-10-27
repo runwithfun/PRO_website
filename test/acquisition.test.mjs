@@ -47,3 +47,15 @@ test('an untagged referral link is the referral channel; its own tags win',async
   assert.equal(source(tagged.events()[0].properties),'telegram');
   const plain=page('features?code=K7MPX3');await plain.flush();assert.equal(source(plain.events()[0].properties),undefined);
 });
+test('a visit keeps raw acquisition facts: ad click id, landing params, first touch and visit number',async()=>{
+  const session=storage(),a=page('?fbclid=IwAR0abc_DEF-1.2&utm_source=instagram&x=1',session);await a.flush();
+  const p=a.events()[0].properties;
+  assert.equal(p.click_id_type,'fbclid');assert.equal(p.click_id,'IwAR0abc_DEF-1.2');
+  assert.equal(p.landing_params,'fbclid,utm_source,x');assert.equal(p.landing_path,'/');assert.equal(p.visit_number,1);
+  assert.equal(p.first_source,'instagram');assert.equal(p.days_since_first_visit,0);
+  a.navigate('features');await a.flush();const later=a.events().at(-1).properties;
+  assert.equal(later.click_id_type,'fbclid','the click id stays for the whole visit');assert.equal(later.visit_number,1);
+  const untagged=page('?gclid=Cj0KCQ');await untagged.flush();const u=untagged.events()[0].properties;
+  assert.equal(u.first_source,'click:gclid');assert.equal(u.utm_source,undefined,'click ids never invent a UTM source');
+  const bad=page('?fbclid=%3Cscript%3E');await bad.flush();assert.equal(bad.events()[0].properties.click_id,undefined);
+});

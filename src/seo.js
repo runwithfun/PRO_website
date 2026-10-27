@@ -82,7 +82,7 @@ export const ROUTES = [
   {
     path: '/what-is-a-good-hrv',
     file: 'what-is-a-good-hrv.html',
-    title: 'What Is a Good HRV on Apple Watch? Normal HRV by Age — P.R.O.',
+    title: 'What Is a Good HRV on Apple Watch? HRV by Age Chart — P.R.O.',
     description:
       'What counts as a good HRV on Apple Watch: SDNN vs RMSSD, Recovery HRV, normal HRV by age and sex from ECG studies, and a free checker to compare your number with your age and your own baseline.',
     faq: 'hrv',

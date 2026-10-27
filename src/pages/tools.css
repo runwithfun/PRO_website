@@ -65,3 +65,56 @@
 .tool-table thead th { font-weight: 500; font-size: 12px; color: #a5a5ad; }
 .tool-table tbody th { font-weight: 500; color: #e6e6eb; white-space: nowrap; }
 .tool-table td { color: #cfcfd6; }
+
+/* HRV page: chart by age and the "Is X ms a good HRV?" grid */
+.hrv-stack { display: grid; gap: 18px; }
+.hrv-pct { margin-top: 6px; font-size: 14px; line-height: 1.6; color: #cfcfd6; }
+.hrv-pct span { color: #8e8e98; }
+.hrv-chart { margin-top: 20px; }
+.hrv-chart-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.hrv-chart-title { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #9a9aa4; }
+.hrv-toggle { display: inline-flex; padding: 3px; border: 1px solid #ffffff1c; border-radius: 999px; background: #1a1a20; }
+.hrv-toggle button { font: 500 13px/1 'DM Sans Variable', sans-serif; padding: 7px 14px; border-radius: 999px; color: #a5a5ad; background: transparent; cursor: pointer; }
+.hrv-toggle button[aria-pressed="true"] { background: #2c2c34; color: #fff; }
+.hrv-toggle button:focus-visible { outline: 2px solid var(--connect-pink); outline-offset: 1px; }
+.hrv-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hrv-grid-line { stroke: #ffffff12; }
+.hrv-axis { fill: #8e8e98; font: 11px 'DM Sans Variable', sans-serif; font-variant-numeric: tabular-nums; }
+.hrv-axis.is-you { fill: #e6e6eb; font-weight: 600; }
+.hrv-band { fill: #34c75922; }
+.hrv-band.is-you { fill: #34c75942; }
+.hrv-mean { stroke: #34c759; stroke-width: 2.5; stroke-linecap: round; }
+.hrv-trend { fill: none; stroke: #34c75966; stroke-width: 1.5; stroke-dasharray: 3 4; }
+.hrv-you { transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+.hrv-you circle { fill: var(--connect-pink); stroke: #111115; stroke-width: 3; }
+.hrv-you text { fill: #fff; font: 600 12px 'DM Sans Variable', sans-serif; paint-order: stroke; stroke: #111115; stroke-width: 4px; stroke-linejoin: round; }
+.hrv-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; font-size: 12px; line-height: 1.5; color: #9a9aa4; }
+.hrv-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.hrv-legend i { flex: none; display: inline-block; width: 14px; height: 10px; border-radius: 3px; }
+.hrv-legend .hrv-key-mean { height: 3px; border-radius: 2px; background: #34c759; }
+.hrv-legend .hrv-key-band { background: #34c75942; }
+.hrv-legend .hrv-key-you { width: 10px; height: 10px; border-radius: 50%; background: var(--connect-pink); }
+.hrv-legend .hrv-key-below { background: #ff9f0a40; }
+.hrv-legend .hrv-key-typical { background: #34c75940; }
+.hrv-legend .hrv-key-above { background: #64d2ff40; }
+.hrv-grid-legend { flex-direction: column; gap: 6px; }
+.hrv-table table { min-width: 0; table-layout: fixed; border-collapse: separate; border-spacing: 3px; }
+.hrv-table th, .hrv-table td { padding: 9px 2px; border-bottom: 0; text-align: center; vertical-align: middle; }
+.hrv-table thead th:first-child, .hrv-table tbody th { width: 52px; text-align: left; padding-left: 0; }
+.hrv-table tr.is-you th { color: var(--connect-pink); }
+.hrv-cell { border-radius: 6px; font-size: 12px; font-weight: 500; }
+.hrv-cell.is-below { background: #ff9f0a1f; color: #ffc46b; }
+.hrv-cell.is-typical { background: #34c75922; color: #7ee39a; }
+.hrv-cell.is-above { background: #64d2ff1c; color: #a3e0ff; }
+.hrv-table tr.is-you .hrv-cell { box-shadow: inset 0 0 0 1px #ffffff40; }
+@media (max-width: 480px) {
+  .hrv-card { padding: 18px; }
+  .hrv-table table { border-spacing: 2px; }
+  .hrv-table th, .hrv-table td { padding: 8px 0; font-size: 10.5px; }
+  .hrv-table thead th:first-child, .hrv-table tbody th { width: 40px; }
+  .hrv-cell { font-size: 10.5px; letter-spacing: -.01em; }
+}
+@media (prefers-reduced-motion: reduce) { .hrv-you { transition: none; } }
+@media (max-width: 480px) {
+  .hrv-unit { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}

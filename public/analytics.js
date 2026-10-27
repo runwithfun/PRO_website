@@ -52,25 +52,58 @@
     return (p.charAt(0) === '/' ? p : '/' + p).slice(0, 200);
   }
 
-  // Campaign of this visit: read once from the landing URL and kept for the whole tab
-  // session, so events after in-site navigation still carry it.
-  var CAMPAIGN_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ref', 'code'];
-  var campaign = (function () {
-    var out = {}, q, saved;
-    try { saved = JSON.parse(w.sessionStorage.getItem('pro_campaign') || '{}'); } catch (e) { saved = {}; }
-    try { q = new URLSearchParams(w.location.search); } catch (e) { q = null; }
-    CAMPAIGN_KEYS.forEach(function (k) {
-      var v = q && q.get(k);
-      if (v) out[k] = v.slice(0, 120);
+  // Only campaign slugs are retained. A visit expires after 30 minutes of inactivity;
+  // a newly tagged landing replaces the complete campaign, never mixes two campaigns.
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var CAMPAIGN_TTL = 30 * 60 * 1000;
+  var campaign = {}, campaignAt = 0, campaignSearch = null;
+  function campaignSlug(value) {
+    return typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/.test(value) ? value.toLowerCase() : null;
+  }
+  function cleanCampaign(value) {
+    var out = {};
+    UTM_KEYS.forEach(function (key) {
+      var v = campaignSlug(value && value[key]);
+      if (v) out[key] = v;
     });
-    if (!Object.keys(out).length) out = saved || {};
-    try { w.sessionStorage.setItem('pro_campaign', JSON.stringify(out)); } catch (e) {}
     return out;
-  })();
+  }
+  try {
+    var savedCampaign = JSON.parse(w.sessionStorage.getItem('pro_acquisition_v1') || 'null');
+    if (savedCampaign && Date.now() >= savedCampaign.at && Date.now() - savedCampaign.at < CAMPAIGN_TTL) {
+      campaign = cleanCampaign(savedCampaign.values);
+      campaignAt = savedCampaign.at;
+    }
+  } catch (e) {}
+  function campaignContext() {
+    var now = Date.now(), search = w.location.search || '';
+    if (now < campaignAt || now - campaignAt >= CAMPAIGN_TTL) campaign = {};
+    if (search !== campaignSearch) {
+      var values = {}, tagged = false;
+      try {
+        var query = new w.URLSearchParams(search);
+        UTM_KEYS.forEach(function (key) {
+          if (query.has(key)) tagged = true;
+          values[key] = query.get(key);
+        });
+      } catch (e) {}
+      if (tagged) campaign = cleanCampaign(values);
+      campaignSearch = search;
+    }
+    campaignAt = now;
+    try { w.sessionStorage.setItem('pro_acquisition_v1', JSON.stringify({ at: now, values: campaign })); } catch (e) {}
+    return cleanCampaign(campaign);
+  }
 
   function context() {
-    var out = {}, k;
-    for (k in campaign) if (Object.prototype.hasOwnProperty.call(campaign, k)) out[k] = campaign[k];
+    var out = campaignContext();
+    try {
+      var linkParams = new w.URLSearchParams(w.location.search);
+      ['ref', 'code'].forEach(function (key) {
+        var value = campaignSlug(linkParams.get(key));
+        if (value) out[key] = value;
+      });
+    } catch (e) {}
     out.language = (w.navigator.language || '').slice(0, 35);
     out.screen = (w.screen ? w.screen.width + 'x' + w.screen.height : '');
     out.viewport = w.innerWidth + 'x' + w.innerHeight;
@@ -82,6 +115,9 @@
   function track(name, props, atPath) {
     if (!NAME.test(name)) return;
     var p = context(), k;
+    if (name === 'page_leave' && atPath) {
+      UTM_KEYS.forEach(function (key) { delete p[key]; });
+    }
     for (k in props || {}) if (Object.prototype.hasOwnProperty.call(props, k)) p[k] = props[k];
     queue.push({ event_id: uuid(), name: name, path: cleanPath(atPath || w.location.pathname), properties: p,
                  occurred_at_ms: Date.now(), sequence: ++seq });
@@ -116,12 +152,17 @@
   // page_view on load and on every SPA navigation; page_leave with the time spent.
   var pageStart = Date.now();
   var lastPath = null;
+  var lastSearch = null;
+  var lastPageCampaign = {};
   var depthSent = {};
   function pageView() {
     var path = cleanPath(w.location.pathname);
-    if (path === lastPath) return;
-    if (lastPath !== null) track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), to: path }, lastPath);
+    var search = w.location.search || '';
+    if (path === lastPath && search === lastSearch) return;
+    if (lastPath !== null) track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), to: path, ...lastPageCampaign }, lastPath);
     lastPath = path;
+    lastSearch = search;
+    lastPageCampaign = campaignContext();
     pageStart = Date.now();
     depthSent = {};
     track('page_view', {});
@@ -160,7 +201,7 @@
 
   d.addEventListener('visibilitychange', function () {
     if (d.visibilityState === 'hidden') {
-      track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000) }, lastPath);
+      track('page_leave', { seconds: Math.round((Date.now() - pageStart) / 1000), ...lastPageCampaign }, lastPath);
       lastPath = null;
       flush(true);
     } else if (lastPath === null) {

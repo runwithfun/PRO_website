@@ -10,7 +10,8 @@ function page(search='',session=storage(),now=1700000000000) {
   const calls=[],timers=[],handlers={};let seq=0;
   const loc=new URL('https://'+host+'/'+search);
   const doc={readyState:'complete',referrer:'',title:'Home',visibilityState:'visible',documentElement:{scrollHeight:1000},currentScript:{getAttribute:k=>({'data-api':'https://api.appfita.ru','data-collect':'1'})[k]},querySelectorAll:()=>[],querySelector:()=>null,addEventListener:(n,f)=>{handlers[n]=f}};
-  const win={document:doc,location:loc,localStorage:storage(),sessionStorage:session,URL,URLSearchParams,navigator:{language:'en'},screen:{width:100,height:100},innerWidth:100,innerHeight:100,history:{pushState(){},replaceState(){}},addEventListener:(n,f)=>{handlers[n]=f},crypto:{randomUUID:()=>`00000000-0000-4000-8000-${String(++seq).padStart(12,'0')}`},setTimeout:f=>{timers.push(f);return timers.length},fetch:async(url,opts)=>{calls.push(JSON.parse(opts.body));return{status:204}}};
+  const win={document:doc,location:loc,localStorage:storage(),sessionStorage:session==='blocked'?storage():session,URL,URLSearchParams,navigator:{language:'en'},screen:{width:100,height:100},innerWidth:100,innerHeight:100,history:{pushState(){},replaceState(){}},addEventListener:(n,f)=>{handlers[n]=f},crypto:{randomUUID:()=>`00000000-0000-4000-8000-${String(++seq).padStart(12,'0')}`},setTimeout:f=>{timers.push(f);return timers.length},fetch:async(url,opts)=>{calls.push(JSON.parse(opts.body));return{status:204}}};
+  if(session==='blocked')for(const name of ['localStorage','sessionStorage'])Object.defineProperty(win,name,{get(){throw new Error('SecurityError')}});
   const clock=class extends Date{static now(){return now}};
   vm.runInNewContext(code,{window:win,URL,URLSearchParams,Date:clock,Intl,Uint8Array,Blob,setTimeout:win.setTimeout,clearTimeout(){}});
   const flush=async()=>{let guard=0;while(timers.length&&guard++<10){timers.shift()();await Promise.resolve()}};
@@ -63,5 +64,9 @@ test('ChatGPT ad click ids are kept like other ad click ids',async()=>{
   const a=page('?utm_source=gpt&utm_campaign=1026&oppref=Ab1_x-2&olref=Zz9');await a.flush();
   const p=a.events()[0].properties;
   assert.equal(p.click_id_type,'oppref');assert.equal(p.click_id,'Ab1_x-2');assert.equal(p.landing_params,'utm_source,utm_campaign,oppref,olref');
+});
+test('a browser that blocks storage still sends events',async()=>{
+  const a=page('?utm_source=gpt&fbclid=x1','blocked');await a.flush();
+  assert.ok(a.events().some(e=>e.name==='page_view'));assert.equal(a.events()[0].properties.click_id,'x1');
 });
 

@@ -7,6 +7,7 @@ import AccentStatement from '../components/AccentStatement';
 import HistoryShowcase from '../components/HistoryShowcase';
 import ModernAppShowcase from '../components/ModernAppShowcase';
 import ModernCTA from '../components/ModernCTA';
+import FreeTools from '../components/FreeTools';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <AccentStatement />
       <HistoryShowcase />
       <ModernAppShowcase />
+      <FreeTools />
       <ModernCTA />
     </>
   );

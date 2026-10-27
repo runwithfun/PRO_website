@@ -31,6 +31,11 @@ export default function Compare() {
             Series 12 or Ultra 4, Apple’s own Readiness score is built in; in the US, ChatGPT Health can read Apple
             Health directly.
           </p>
+          <p>
+            Replacing one app? See our <Link to="/whoop-alternative">WHOOP alternative</Link> guide (WHOOP’s
+            three-year cost and how to switch) and <Link to="/runna-alternative">Runna alternative</Link> guide
+            (running plans from $2.99/month, Garmin Coach, Nike Run Club and Strava).
+          </p>
         </div>
       </section>
 

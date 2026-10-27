@@ -12,6 +12,7 @@ import { ahmFaq } from './content/appleHealthMcp.js';
 import { mcpDemo } from './content/mcpDemo.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
+import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -93,7 +94,7 @@ export function structuredData(route, store = {}) {
     });
   }
   if (route.faq) {
-    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq }[route.faq] ?? faq;
+    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({

@@ -1,0 +1,33 @@
+/* "X alternative" pages: MCP highlight block and a comparison table with P.R.O. in the first column. */
+.alt-page .connect-intro .tool-btn { margin-top: 28px; }
+.alt-mcp { border: 1px solid #ed62a440; border-radius: 22px; padding: 32px; background: linear-gradient(180deg, #ed62a414, #ed62a405 60%, transparent); }
+.alt-mcp .connect-eyebrow { color: var(--connect-pink); margin-bottom: 14px; }
+.alt-mcp-lead { margin-top: 16px; max-width: 720px; font-size: 16px; line-height: 1.75; color: #d7d7de; }
+.alt-mcp-icons { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 24px 0 26px; }
+.alt-mcp-icons li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #e2e2e8; }
+.alt-mcp-icons .assistant-icon { width: 30px; height: 30px; }
+.alt-mcp-icons .assistant-icon img { width: 18px; height: 18px; }
+.alt-mcp-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #8e8e98; margin-bottom: 10px; }
+.alt-mcp-prompt { margin: 0 0 16px; padding: 18px 20px; border-radius: 14px; background: #0b0b0e; border: 1px solid #ffffff1a; font-size: 16px; line-height: 1.65; color: #f2f2f5; }
+.alt-mcp-after { margin-top: 20px; max-width: 720px; font-size: 14px; line-height: 1.75; color: var(--connect-muted); }
+.alt-mcp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 6px; }
+.alt-link { margin-top: 14px; font-size: 14px; color: #e2e2e8; text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 641px) {
+  .alt-table table { min-width: 860px; }
+  .alt-table tbody th { width: 16%; }
+}
+.alt-table thead th:last-child { color: #f0f0f3; }
+.alt-table td:last-child { color: var(--connect-muted); }
+.alt-table thead th.is-pro { color: var(--connect-pink); }
+.alt-table td.is-pro { color: #e2e2e8; background: #ed62a40a; }
+.alt-table tr.is-mcp th, .alt-table tr.is-mcp td { border-bottom-color: #ed62a440; }
+.alt-table tr.is-mcp th { color: var(--connect-pink); }
+.alt-page .tool-prose ol.ag-steps { list-style: none; padding-left: 0; margin-top: 20px; }
+.alt-step-links { margin-top: 6px; font-size: 12px; }
+.alt-step-links a { display: inline; margin: 0; }
+@media (max-width: 640px) {
+  .alt-mcp { padding: 22px 18px; }
+  .alt-table td:last-child::before { color: #8e8e98; }
+  .alt-table td.is-pro::before { color: var(--connect-pink); }
+  .alt-table td.is-pro { background: transparent; }
+}

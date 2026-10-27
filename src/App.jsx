@@ -20,6 +20,8 @@ import DeviceGuide from './pages/DeviceGuide';
 import { deviceGuides } from './content/deviceGuides';
 import { HUB_PATH } from './content/appleHealthSync';
 import Compare from './pages/Compare';
+import Alternative from './pages/Alternative';
+import { alternatives } from './content/alternatives';
 import Terms from './pages/Terms';
 import Support from './pages/Support';
 import ModernNav from './components/ModernNav';
@@ -83,6 +85,7 @@ export function AppShell() {
             <Route path="/apple-health-chatgpt-claude" element={<LegacyConnectorRedirect />} />
             {assistantGuides.map((g) => <Route key={g.id} path={g.path} element={<AssistantGuide id={g.id} />} />)}
             <Route path="/compare" element={<Compare />} />
+            {alternatives.map((a) => <Route key={a.id} path={a.path} element={<Alternative id={a.id} />} />)}
             <Route path={HUB_PATH} element={<AppleHealthSync />} />
             {deviceGuides.map((g) => <Route key={g.id} path={g.path} element={<DeviceGuide id={g.id} />} />)}
             <Route path="/what-is-a-good-hrv" element={<GoodHrv />} />

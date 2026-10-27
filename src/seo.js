@@ -1,6 +1,7 @@
 import { assistantGuides } from './content/assistantGuides.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubTitle, hubDescription, guideDescription } from './content/appleHealthSync.js';
+import { alternatives } from './content/alternatives.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
 // заголовок вкладки менялся при переходах внутри сайта.
@@ -142,6 +143,14 @@ export const ROUTES = [
     faq: 'appleHealthMcp',
     sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
   },
+  ...alternatives.map((a) => ({
+    path: a.path,
+    file: `${a.path.slice(1)}.html`,
+    title: a.title,
+    description: a.description,
+    faq: a.faqKey,
+    sources: ['src/pages/Alternative.jsx', 'src/pages/alternatives.css', 'src/content/alternatives.js'],
+  })),
   {
     path: '/compare',
     file: 'compare.html',

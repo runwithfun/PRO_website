@@ -8,6 +8,7 @@ import TuyoSpecSheet from '../components/TuyoSpecSheet';
 import TuyoStatement from '../components/TuyoStatement';
 import TuyoFaq from '../components/TuyoFaq';
 import FeatureSpotlight from '../components/FeatureSpotlight';
+import FreeTools from '../components/FreeTools';
 
 
 const TICKER = [
@@ -113,6 +114,7 @@ export default function Features() {
         heroAlt="P.R.O. on iPhone — dashboard, analytics, and stats screens"
         sections={SPOTLIGHTS}
       />
+      <FreeTools />
       <TuyoFaq title="Common questions" items={FAQ} />
 
       <TuyoStatement

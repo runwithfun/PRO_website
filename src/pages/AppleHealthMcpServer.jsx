@@ -25,7 +25,7 @@ function ClientCard({ c }) {
     <div className="ahm-client-head">
       {c.id === 'cursor' ? <span className="assistant-icon" aria-hidden="true"><span className="assistant-other-icon">↗</span></span> : <AssistantIcon name={c.icon ?? c.name} />}
       <div><h3>{c.name}</h3>
-        <span className={`ahm-badge${c.status === 'tested' ? ' is-tested' : ''}`}>{c.status === 'tested' ? 'Tested by us' : `Per ${c.vendor} docs, not yet tested by us`}</span></div>
+        <span className={`ahm-badge${c.status === 'tested' ? ' is-tested' : ''}`}>{c.status === 'tested' ? 'Tested by us' : `Per ${c.vendor} docs`}</span></div>
     </div>
     <ol>{c.steps.map((s) => <li key={s}>{s}</li>)}</ol>
     {c.code && <pre><code>{c.code}</code></pre>}
@@ -44,14 +44,14 @@ export default function AppleHealthMcpServer() {
       <p className="connect-eyebrow">GUIDE · MODEL CONTEXT PROTOCOL</p>
       <h1 className="font-display font-extrabold tool-h1 hero-in">Apple Health MCP server</h1>
       <div className="ag-answer hero-fade" style={{ animationDelay: '120ms' }}>
-        <p>Apple doesn’t ship an MCP server for Apple Health, and HealthKit data lives on your iPhone, so every Apple Health MCP server needs either an iPhone app or a Health export. <strong>P.R.O.</strong> is the app route: the free iPhone app syncs the Apple Health categories you allow, and a hosted remote MCP server at <strong>{MCP_URL}</strong> serves them to ChatGPT, Claude, Codex, Grok, Perplexity and Gemini, and to remote-MCP clients such as Claude Desktop, Cursor and Claude Code — with OAuth sign-in, no export.xml, no Mac and no terminal.</p>
+        <p>Apple doesn’t ship an MCP server for Apple Health, and HealthKit data lives on your iPhone, so every Apple Health MCP server needs either an iPhone app or a Health export. <strong>P.R.O.</strong> is the app route: the free iPhone app syncs the Apple Health categories you allow, and a hosted remote MCP server at <strong>{MCP_URL}</strong> serves them to ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini — with OAuth sign-in, no export.xml, no Mac and no terminal. The connector is free.</p>
         <p>It works with whatever writes to Apple Health — Apple Watch, Garmin, WHOOP, Oura or any other device or app that syncs there. You add the address once in your assistant, confirm with a one-time code from P.R.O., and choose which data the assistant can read.</p>
       </div>
       <dl className="ag-facts hero-fade" style={{ animationDelay: '200ms' }}>
         <div><dt>Server address</dt><dd><CopyAddress /></dd></div>
         <div><dt>Transport</dt><dd>Remote MCP, Streamable HTTP</dd></div>
         <div><dt>Sign-in</dt><dd>OAuth 2.1 with a one-time code from P.R.O.</dd></div>
-        <div><dt>Needs</dt><dd>iPhone with P.R.O. (free)</dd></div>
+        <div><dt>Price</dt><dd>Free — iPhone with P.R.O.</dd></div>
       </dl>
       <p className="tool-reviewed">Last reviewed {AHM_CHECKED} · Sources below</p>
     </header>
@@ -68,14 +68,14 @@ export default function AppleHealthMcpServer() {
     </section>
 
     <section className="connect-wrap connect-section" aria-labelledby="compare">
-      <div className="connect-section-heading"><h2 id="compare">Hosted vs export-based Apple Health MCP servers</h2><p>Four ways to get Apple Health into an MCP client, from each project’s own docs. Checked {AHM_CHECKED}; prices can change.</p></div>
+      <div className="connect-section-heading"><h2 id="compare">Why a hosted Apple Health MCP server</h2><p>P.R.O. compared with export-based and local Apple Health MCP servers, from each project’s own docs. Checked {AHM_CHECKED}; prices can change.</p></div>
       <div className="ag-table ahm-compare"><table>
         <caption className="sr-only">Apple Health MCP server types compared</caption>
         <thead><tr><th scope="col"><span className="sr-only">Feature</span></th>{ahmColumns.map((c, i) => <th scope="col" key={c}>{c}<small>{ahmColumnNotes[i]}</small></th>)}</tr></thead>
         <tbody>{ahmCompare.map(([k, ...cells]) => <tr key={k}><th scope="row">{k}</th>{cells.map((v, i) => <td key={i} data-label={ahmColumns[i]}>{v}</td>)}</tr>)}</tbody>
       </table></div>
       <div className="tool-prose">
-        <p className="tool-small">Local servers keep your data on your own machines and suit you if you work at a computer and don’t need your assistant on the phone. A hosted server suits you if you want the same, regularly synced data in phone and web assistants. P.R.O. isn’t the only hosted option: athletedata.health also runs a hosted Apple Health MCP server with its own iOS app.</p>
+        <p className="tool-small">With P.R.O. there is nothing to export or run: your Apple Health data stays current, the same connection works on your phone, on the web and in desktop tools, and you decide category by category what each assistant can read.</p>
       </div>
     </section>
 
@@ -107,7 +107,7 @@ export default function AppleHealthMcpServer() {
       </ol>
       <p>Your P.R.O. data is not sold, not used for advertising or data mining, and not used to train models by P.R.O. or the MCP operator. Account deletion removes connector tokens, pairing codes and cached detailed uploads. Details are in <Link to="/privacy">Privacy Policy Part C</Link>. P.R.O. provides fitness and wellness information, not medical advice.</p>
       <div className="tool-cta">
-        <p><strong>P.R.O.</strong> is a free iPhone app with an AI coach, widget dashboards and training history for 50+ sports — and the Apple Health MCP server is included.</p>
+        <p><strong>P.R.O.</strong> is a free iPhone app with an AI coach, widget dashboards and training history for 50+ sports — and the Apple Health MCP server is included for free.</p>
         <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
       </div>
     </section>

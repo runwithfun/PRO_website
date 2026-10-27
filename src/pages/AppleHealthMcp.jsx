@@ -24,7 +24,9 @@ export default function AppleHealthMcp() {
     <header className="connect-intro mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
       <h1 className="font-display font-extrabold">
         <span className="hero-in connect-h1-topic">Connect Apple Health to ChatGPT, Claude, Gemini &amp; more</span>
-        <span className="hero-in connect-title-line">Your health.</span>
+        {/* Separators keep the extracted heading text readable; block spans hide them visually. */}
+        <span className="sr-only">: </span>
+        <span className="hero-in connect-title-line">Your health.</span>{' '}
         <span className="hero-in connect-title-line text-brand-pink" style={{ animationDelay: '80ms' }}>Your favorite AI.</span>
       </h1>
       <p className="connect-description hero-fade text-gray-500" style={{ animationDelay: '280ms' }}>Connect your health data to ChatGPT, Claude, Gemini, Perplexity, Codex or Grok. Your workouts, sleep and progress — in the conversation.</p>

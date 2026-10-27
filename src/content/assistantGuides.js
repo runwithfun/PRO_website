@@ -1,14 +1,31 @@
 // One page per assistant: /apple-health-chatgpt, /apple-health-claude, /apple-health-grok.
 // Steps reuse the recorded guides in mcpGuides.js; screenshots live in media/mcp/<id>/.
-// Facts about built-in integrations were checked on October 13, 2026:
-// ChatGPT Health — Apple Health for US users from July 23, 2026; the EEA, Switzerland and the UK
-//   were excluded at launch (OpenAI announcement as reported by MacRumors, Neowin).
-// Claude Apple Health — https://support.claude.com/en/articles/11869619 (beta, US, Pro and Max, iOS app).
+// Facts about built-in integrations were checked on October 13, 2026, and re-checked on
+// October 27, 2026 for ChatGPT, Claude, Codex and Gemini:
+// ChatGPT Health — https://openai.com/index/introducing-chatgpt-health/ (early access from
+//   January 7, 2026 outside the EEA, Switzerland and the UK; launch to US users on July 23, 2026)
+//   and https://help.openai.com/en/articles/20001036 (US only; Free, Go, Plus and Pro; web and iOS).
+// Claude Apple Health — https://support.claude.com/en/articles/11869619 (beta, US, Pro and Max,
+//   native iOS charts); custom connectors — https://support.claude.com/en/articles/11175166
+//   (Free, Pro, Max, Team and Enterprise; Free is limited to one custom connector).
+// Codex — https://learn.chatgpt.com/docs/extend/mcp and https://help.openai.com/en/articles/20001275.
+// Google Health Coach — https://support.google.com/googlehealth/answer/16961408 (needs a Fitbit or
+//   Pixel Watch and Google Health Premium).
 import { guides, MCP_URL } from './mcpGuides.js';
 
 const guide = (id) => guides.find((g) => g.id === id);
 
 export const CHECKED = 'October 13, 2026';
+const RECHECKED = 'October 27, 2026';
+
+// Every assistant P.R.O. has a tested setup page for, in one order for all pages.
+const ASSISTANTS = ['ChatGPT', 'Claude', 'Grok', 'Codex', 'Perplexity', 'Gemini'];
+const listOf = (names) => (names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0]);
+const alsoWorksIn = (self) => {
+  const others = ASSISTANTS.filter((n) => n !== self);
+  const gemini = others.includes('Gemini') ? ' (Gemini offers custom apps only in the US)' : '';
+  return 'The same connection also works in ' + listOf(others) + gemini + '.';
+};
 
 export const assistantGuides = [
   {
@@ -24,12 +41,13 @@ export const assistantGuides = [
     ],
     builtIn: {
       name: 'ChatGPT Health',
+      checked: RECHECKED,
       rows: [
-        ['Where it works', 'United States only. At launch it excluded the EEA, Switzerland and the UK.', 'Wherever your ChatGPT plan can add custom MCP servers.'],
-        ['ChatGPT plans', 'Free, Go, Plus and Pro, for users 18+.', 'Plans that can add custom MCP servers. Recorded on Pro.'],
+        ['Where it works', 'United States only since the launch on July 23, 2026. The early-access beta that opened on January 7, 2026 excluded the EEA, Switzerland and the UK.', 'Wherever your ChatGPT plan can add custom MCP servers.'],
+        ['ChatGPT plans', 'Free, Go, Plus and Pro, on the web and in the iOS app. Connecting Apple Health needs the iPhone app.', 'Plans that can add custom MCP servers. Recorded on Pro.'],
         ['What ChatGPT reads', 'The Apple Health data you share in its Health space.', 'Workouts with routes and pace, sleep stages, heart rate and HRV, daily metrics, goals and your training plan.'],
-        ['In the chat', 'Text answers.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
-        ['Other assistants', 'ChatGPT only.', 'The same connection works in Claude, Grok and Codex.'],
+        ['In the chat', 'Answers in any chat; the Health tab shows your data and trends, with interactive charts.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
+        ['Other assistants', 'ChatGPT only.', alsoWorksIn('ChatGPT')],
       ],
     },
     before: [
@@ -66,8 +84,8 @@ export const assistantGuides = [
     ],
     faq: [
       { q: 'Can ChatGPT read my Apple Health data?', a: 'Yes. In the US, ChatGPT Health can read Apple Health from the ChatGPT iPhone app. In other countries, or if you want training plans and interactive workout cards, connect the free P.R.O. app as a custom MCP connector at https://mcp.proapp.uk.' },
-      { q: 'What is the difference between ChatGPT Health and P.R.O.?', a: 'ChatGPT Health is OpenAI’s built-in health space, available in the US. P.R.O. is a free iPhone app that syncs Apple Health and serves it to ChatGPT through an MCP connector: it works outside the US, adds interactive cards for workouts, sleep and training plans, and the same connection also works in Claude and Grok.' },
-      { q: 'Does ChatGPT Health work in the UK or the EU?', a: 'At launch OpenAI excluded the EEA, Switzerland and the UK from ChatGPT Health. The P.R.O. connector works there as long as your ChatGPT plan can add custom MCP servers.' },
+      { q: 'What is the difference between ChatGPT Health and P.R.O.?', a: 'ChatGPT Health is OpenAI’s built-in health space, available in the US. P.R.O. is a free iPhone app that syncs Apple Health and serves it to ChatGPT through an MCP connector: it works outside the US, adds interactive cards for workouts, sleep and training plans, and you choose which data categories ChatGPT can see. ' + alsoWorksIn('ChatGPT') },
+      { q: 'Does ChatGPT Health work in the UK or the EU?', a: 'No. The early-access beta that opened on January 7, 2026 excluded the EEA, Switzerland and the UK, and since the launch on July 23, 2026 Health in ChatGPT is available only to users in the US (OpenAI Help, checked October 27, 2026). The P.R.O. connector works there as long as your ChatGPT plan can add custom MCP servers.' },
       { q: 'Can I set it up in the ChatGPT iPhone app?', a: 'Not directly: the iPhone app has no option to add a custom MCP server. Add P.R.O. once on chatgpt.com — Safari on iPhone works — and the connection then appears in the iPhone app as well.' },
       { q: 'Which ChatGPT plan do I need?', a: 'One that lets you add custom MCP servers in Settings → Plugins. We recorded the setup on ChatGPT Pro; other plans have not been verified. The P.R.O. app and connector are free.' },
       { q: 'Is my health data used to train ChatGPT?', a: 'P.R.O. only answers the requests ChatGPT makes while you chat, for the categories you allow. Those answers become part of your ChatGPT conversation, so ChatGPT’s data controls apply — you can turn off “Improve the model for everyone” in ChatGPT settings.' },
@@ -86,18 +104,20 @@ export const assistantGuides = [
     ],
     builtIn: {
       name: 'Claude’s Apple Health integration',
+      checked: RECHECKED,
       rows: [
         ['Status', 'Beta.', 'Available now.'],
         ['Where it works', 'United States only.', 'Wherever your Claude plan supports custom connectors.'],
-        ['Claude plans', 'Pro and Max.', 'Plans with custom connectors.'],
+        ['Claude plans', 'Pro and Max.', 'Free, Pro, Max, Team and Enterprise, per Claude Help. Free is limited to one custom connector.'],
         ['Apps', 'Claude iPhone app.', 'Claude on iPhone (recorded), claude.ai and Claude desktop.'],
-        ['In the chat', 'Text answers from the health data you share.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
+        ['In the chat', 'Answers with native iOS charts — bar and line charts and progress indicators — from the health data you share.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
         ['Training plans and coach notes', 'Not part of the integration.', 'Your P.R.O. training plan; coach notes if you allow them.'],
+        ['Other assistants', 'Claude only.', alsoWorksIn('Claude')],
       ],
     },
     before: [
       'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
-      'The Claude app with a plan that supports custom connectors.',
+      'The Claude app. Custom connectors are on every Claude plan, including Free (one custom connector), per Claude Help.',
     ],
     guide: guide('claude'),
     recorded: 'October 10, 2026',
@@ -126,7 +146,7 @@ export const assistantGuides = [
     faq: [
       { q: 'Can Claude read my Apple Health data?', a: 'Yes. Claude’s own Apple Health integration is a beta for US Pro and Max users in the Claude iPhone app. In other countries, or for training plans and interactive workout cards, add the free P.R.O. app as a custom connector at https://mcp.proapp.uk.' },
       { q: 'Does Claude’s Apple Health integration work outside the US?', a: 'Not yet: Anthropic describes it as a beta for US users on Pro and Max plans. The P.R.O. connector is not limited to the US.' },
-      { q: 'Do I need Claude Pro?', a: 'You need a Claude plan that supports custom connectors. The P.R.O. app and its connector are free.' },
+      { q: 'Do I need Claude Pro?', a: 'No. Per Claude Help (checked October 27, 2026), custom connectors are available on Free, Pro, Max, Team and Enterprise plans; Free users are limited to one custom connector. Claude’s own Apple Health beta needs Pro or Max. The P.R.O. app and its connector are free.' },
       { q: 'Can Claude change my Apple Health data?', a: 'No. P.R.O. never writes to Apple Health. If you allow it, Claude can save short coach notes inside P.R.O.; that option is off by default.' },
       { q: 'How do I remove Claude’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Claude and confirm Disconnect. Removing the connector only inside Claude does not revoke its P.R.O. access.' },
     ],
@@ -175,34 +195,40 @@ export const assistantGuides = [
   {
     id: 'codex',
     name: 'Codex',
-    platform: 'ChatGPT for Mac · Work tab',
+    platform: 'ChatGPT desktop app · Codex',
     path: '/apple-health-codex',
     title: 'How to Connect Apple Health to Codex — P.R.O.',
     description:
-      'Give Codex in the ChatGPT app for Mac your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP server, then let it analyse and chart them. Step-by-step with screenshots.',
+      'Give Codex in the ChatGPT desktop app your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP server, then let it analyse and chart them. Screenshots plus the Codex CLI command.',
     answer: [
-      'Codex can’t open Apple Health on its own. Add the free P.R.O. app as an MCP server in the ChatGPT app for Mac, and Codex — the agent in the Work tab — can read your workouts, sleep, heart rate and HRV, then analyse them with code, build charts and export tables.',
-      'Setup takes about two minutes. It connects Codex only; regular ChatGPT chats have their own setup.',
+      'Codex can’t open Apple Health on its own. Add the free P.R.O. app as an MCP server in the ChatGPT desktop app, and Codex can read your workouts, sleep, heart rate and HRV, then analyse them with code, build charts and export tables.',
+      'Setup takes about two minutes. The server is saved in Codex’s own settings, which the Codex CLI and IDE extension share; regular ChatGPT chats have their own setup.',
     ],
     builtIn: null,
     before: [
       'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
-      'The ChatGPT app for Mac with the Chat and Work tabs. Codex is the Work tab.',
+      'The ChatGPT desktop app. We recorded on a Mac, when Codex ran in the Work tab; OpenAI now describes Codex as a separate view you pick from the app’s menu.',
       'A ChatGPT plan that includes Codex and custom MCP servers. We recorded the steps on ChatGPT Pro.',
     ],
     guide: {
-      intro: 'In the ChatGPT app for Mac, add P.R.O. as an MCP server under Settings → Plugins, then sign in with a one-time code from your iPhone.',
+      intro: 'In the ChatGPT desktop app, add P.R.O. as an MCP server in Settings, then sign in with a one-time code from your iPhone.',
       verified: 'Recorded in ChatGPT for Mac · October 8, 2026',
-      helpUrl: 'https://developers.openai.com/codex/mcp',
+      helpUrl: 'https://learn.chatgpt.com/docs/extend/mcp',
+      note: 'OpenAI’s docs describe the same form as Settings → MCP servers → Add server: enter a name, choose Streamable HTTP, enter the URL, save, then select Restart and Authenticate. If your app shows MCP servers instead of Plugins, follow that path — the form and the address are the same.',
+      cli: {
+        intro: 'Prefer the terminal? With the Codex CLI, add the server and sign in. The desktop app, the CLI and the IDE extension share this configuration.',
+        commands: ['codex mcp add pro --url ' + MCP_URL, 'codex mcp login pro'],
+        after: 'The login command opens the P.R.O. sign-in page in your browser. We recorded the desktop app; the CLI commands follow OpenAI’s docs.',
+      },
       steps: [
         { title: 'Open Settings in the ChatGPT app for Mac.', text: 'Click your avatar in the bottom-left corner and choose Settings, or press ⌘,.' },
         { title: 'Open Plugins under Integrations.', text: 'The page says “Manage plugins, skills, and MCPs”, with the tabs Plugins, Apps, MCPs and Skills.' },
         { title: 'Select Add, then Add MCP server.', text: 'Not Create plugin — that opens a chat with the Plugin Creator instead of a form.' },
         { title: 'Enter P.R.O. as the name and switch the type to Streamable HTTP.', text: 'The form starts on STDIO with a command and arguments; ignore those.' },
-        { title: 'Enter https://mcp.proapp.uk as the URL and select Save.', text: 'Leave the bearer token and headers empty: P.R.O. signs you in with a one-time code instead.' },
+        { title: 'Enter https://mcp.proapp.uk as the URL and select Save.', text: 'Leave the bearer token and headers empty: P.R.O. signs you in with a one-time code instead. If the app offers Restart after saving, select it — OpenAI’s docs include that step.' },
         { title: 'Open the MCPs tab and select Authenticate next to P.R.O.', text: 'Your browser opens the P.R.O. sign-in page. It says “Connect Codex to your P.R.O. data”.', pairing: true },
         { title: 'Close the browser tab when it says Authentication complete.', text: 'Back in Settings → Plugins → MCPs, the Authenticate button is gone and P.R.O. is switched on.' },
-        { title: 'Ask Codex in the Work tab.', text: 'In P.R.O. on your iPhone, Settings → MCP Connect now lists Codex under Connected.' },
+        { title: 'Ask Codex.', text: 'In P.R.O. on your iPhone, Settings → MCP Connect now lists Codex under Connected.' },
       ],
     },
     recorded: 'October 8, 2026',
@@ -224,12 +250,15 @@ export const assistantGuides = [
     cards: [],
     trouble: [
       ['A chat with the Plugin Creator opened.', 'You picked Create plugin in the Add menu. Close that chat and choose Add MCP server instead.'],
-      ['P.R.O. doesn’t answer in a regular chat.', 'Servers added here belong to Codex in the Work tab. For regular ChatGPT chats, add P.R.O. on chatgpt.com — see the ChatGPT guide.'],
+      ['P.R.O. doesn’t answer in a regular chat.', 'Servers added here belong to Codex. For regular ChatGPT chats, add P.R.O. on chatgpt.com — see the ChatGPT guide.'],
+      ['P.R.O. is listed but Codex doesn’t see its tools.', 'Select Restart in the MCP settings, or quit and reopen the app, then check that P.R.O. no longer shows Authenticate.'],
       ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
     ],
     faq: [
       { q: 'Can Codex read my Apple Health data?', a: 'Yes, through the free P.R.O. app: add https://mcp.proapp.uk as an MCP server in the ChatGPT app for Mac and confirm it with a one-time code from P.R.O. Codex then reads the workouts, sleep, heart rate and HRV you allow.' },
-      { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. MCP servers added in the Mac app’s Settings → Plugins → MCPs belong to Codex in the Work tab. Regular ChatGPT chats need the separate setup on chatgpt.com.' },
+      { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. MCP servers added in the desktop app’s settings belong to Codex and are shared with the Codex CLI and IDE extension. Regular ChatGPT chats use plugins added on chatgpt.com — see the ChatGPT guide.' },
+      { q: 'Is Codex the same as ChatGPT Work?', a: 'No. According to OpenAI Help (checked October 27, 2026), ChatGPT now has Chat and Work modes, and Codex is a separate view in the desktop app for coding and data work. When we recorded this guide on October 8, 2026, the Mac app showed Chat and Work tabs, and Codex ran in the Work tab. We have tested P.R.O. in Codex; we have not yet verified it in ChatGPT Work.' },
+      { q: 'Can I add P.R.O. from the Codex CLI?', a: 'Yes. Run codex mcp add pro --url https://mcp.proapp.uk, then codex mcp login pro to sign in with a one-time code. The CLI, the IDE extension and the desktop app share this configuration.' },
       { q: 'Why use Codex instead of a chat for health data?', a: 'Codex can write and run code on your data: build charts, export tables, compute rolling averages or check how one metric moves with another. A chat answers questions; Codex can do the analysis.' },
       { q: 'Which plan do I need?', a: 'A ChatGPT plan that includes Codex and lets you add MCP servers. We recorded the steps on ChatGPT Pro. P.R.O. and its connector are free.' },
     ],
@@ -253,7 +282,7 @@ export const assistantGuides = [
         ['Perplexity plans', 'Pro and Max.', 'Plans with custom connectors (Pro, Max, Enterprise).'],
         ['What Perplexity reads', 'Apple Health, plus medical records, lab results and some other wearables.', 'Workouts with routes and pace, sleep stages, heart rate and HRV, daily metrics, goals and your training plan.'],
         ['Training plans and coach notes', 'Not part of it.', 'Your P.R.O. training plan; coach notes if you allow them.'],
-        ['Other assistants', 'Perplexity only.', 'The same connection works in ChatGPT, Claude, Gemini, Grok and Codex.'],
+        ['Other assistants', 'Perplexity only.', alsoWorksIn('Perplexity')],
       ],
     },
     before: [
@@ -345,9 +374,9 @@ export const assistantGuides = [
     ],
     faq: [
       { q: 'Can Gemini read my Apple Health data?', a: 'Not on its own — Gemini has no built-in Apple Health integration. The free P.R.O. app connects Apple Health to Gemini as a custom app at https://mcp.proapp.uk.' },
-      { q: 'What about the Google Health app?', a: 'Google’s Health app can import Apple Health on iPhone, but its Gemini-powered coach needs a Fitbit or Pixel Watch and a Premium subscription. With P.R.O. you use the Apple Watch data you already have in the Gemini chat.' },
+      { q: 'What about the Google Health app?', a: 'The Google Health app (formerly Fitbit) can import Apple Health on iPhone. Its Gemini-powered Google Health Coach lives in that app, not in the Gemini chat, and per Google Health Help (checked October 27, 2026) it needs a paired Fitbit or Pixel Watch and a Google Health Premium subscription; Google says support for other devices is coming. With P.R.O. you use the Apple Watch data you already have in the Gemini chat.' },
       { q: 'Can I connect P.R.O. in the Gemini iPhone app?', a: 'Add it once at gemini.google.com in a browser; after that it’s available in the Gemini app on iPhone too.' },
-      { q: 'Is it available outside the US?', a: 'Not yet: Google currently offers custom apps in Gemini only in the US, to adults with a personal Google account. P.R.O. works with ChatGPT, Claude and Grok in other countries.' },
+      { q: 'Is it available outside the US?', a: 'Not yet: Google currently offers custom apps in Gemini only in the US, to adults with a personal Google account. P.R.O. works with ChatGPT, Claude, Grok, Codex and Perplexity in other countries.' },
       { q: 'How do I remove Gemini’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Gemini and confirm Disconnect. In Gemini, Settings → Connected Apps → More details → Disconnect or Remove app.' },
     ],
   },

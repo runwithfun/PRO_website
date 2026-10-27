@@ -1,9 +1,9 @@
-// Сравнение AI-коучей для Apple Health. Каждый факт проверен 2026-10-03 по
-// официальным источникам (App Store, сайты и справка разработчиков) — ссылки
-// в `sources`. Цены — US App Store / сайт разработчика на дату проверки.
+// Сравнение AI-коучей для Apple Health. Впервые проверено 2026-10-03, повторно —
+// 2026-10-27 по официальным источникам (App Store, сайты и справка разработчиков) —
+// ссылки в `sources`. Цены — US App Store / сайт разработчика на дату проверки.
 // Обновлять раз в квартал: дата проверки показывается на странице.
 
-export const CHECKED = '3 October 2026';
+export const CHECKED = '27 October 2026';
 
 export const ROWS = [
   ['price', 'Price'],
@@ -20,14 +20,14 @@ export const APPS = [
   {
     id: 'pro',
     name: 'P.R.O.',
-    price: 'Free; optional Pro from $2.99/mo',
+    price: 'Free; optional Pro, Pro+ and Premium from $2.99/mo or $29.99/yr',
     hardware: 'None — Apple Watch optional, via Apple Health',
     platforms: 'iPhone, iPad (iOS 18.5+)',
     coach: 'Yes — chat with tables & charts, choice of AI model',
     plans: 'Yes — adaptive plans + home-screen widget',
     readiness: 'Daily readiness guidance in the plan',
     sleep: 'Yes — sleep score',
-    mcp: 'Yes — official connector (mcp.proapp.uk)',
+    mcp: 'Yes — official connector (mcp.proapp.uk) for ChatGPT, Claude, Grok, Codex, Perplexity and Gemini; works outside the US; you choose the data categories',
     url: 'https://apps.apple.com/us/app/p-r-o/id6749865568',
   },
   {
@@ -85,8 +85,8 @@ export const APPS = [
   {
     id: 'google',
     name: 'Google Health Coach',
-    price: 'Premium $9.99/mo or $99/yr',
-    hardware: 'Coach needs Fitbit or Pixel Watch',
+    price: 'Google Health Premium $9.99/mo or $99/yr (App Store also lists $79.99/yr); included with Google AI Pro and Ultra',
+    hardware: 'Coach needs a Fitbit or Pixel Watch; other devices “coming soon” per Google',
     platforms: 'iOS, Android',
     coach: 'Yes — Gemini coach (Fitbit/Pixel Watch only)',
     plans: 'Yes — weekly plans',
@@ -108,6 +108,32 @@ export const APPS = [
     mcp: 'No (Strava’s connector covers Strava data)',
     url: 'https://apps.apple.com/us/app/runna-running-plans-coach/id1594204443',
   },
+  {
+    id: 'apple',
+    name: 'Apple Readiness',
+    price: 'Free — built into watchOS 27',
+    hardware: 'Apple Watch Series 12 or Ultra 4 only',
+    platforms: 'Apple Watch; score also in Fitness on iPhone',
+    coach: 'No chat',
+    plans: '—',
+    readiness: 'Yes — daily 0–10 score (activity, vitals, sleep)',
+    sleep: 'Yes — sleep score',
+    mcp: 'No',
+    url: 'https://support.apple.com/guide/watch/readiness-flx4gnzby346/watchos',
+  },
+  {
+    id: 'chatgpt',
+    name: 'ChatGPT Health',
+    price: 'Included in ChatGPT Free, Go, Plus and Pro',
+    hardware: 'iPhone to connect Apple Health; Apple Watch optional',
+    platforms: 'ChatGPT web and iOS — US only (since July 23, 2026)',
+    coach: 'Yes — ChatGPT answers from Apple Health and US medical records',
+    plans: 'On request in the chat; no plan tracking',
+    readiness: '—',
+    sleep: 'Sleep and activity trends from Apple Health',
+    mcp: 'Built into ChatGPT (US only); not available in Claude or other assistants',
+    url: 'https://help.openai.com/en/articles/20001036',
+  },
 ];
 
 export const SOURCES = [
@@ -120,8 +146,13 @@ export const SOURCES = [
   ['Gentler Streak — App Store', 'https://apps.apple.com/us/app/gentler-streak-workout-tracker/id1576857102'],
   ['Google Health Coach — Google blog', 'https://blog.google/products-and-platforms/products/google-health/google-health-coach/'],
   ['Google Health Coach — device support', 'https://support.google.com/googlehealth/answer/16961408?hl=en'],
+  ['Google Health (Fitbit) — App Store', 'https://apps.apple.com/us/app/google-health-fitbit/id462638897'],
   ['Runna — App Store', 'https://apps.apple.com/us/app/runna-running-plans-coach/id1594204443'],
   ['Runna — website', 'https://www.runna.com/'],
+  ['Apple Readiness — Apple Watch User Guide', 'https://support.apple.com/guide/watch/readiness-flx4gnzby346/watchos'],
+  ['Apple Readiness — Apple Newsroom, September 9, 2026', 'https://www.apple.com/newsroom/2026/09/apple-advances-health-and-fitness-capabilities-using-apple-intelligence/'],
+  ['ChatGPT Health — OpenAI Help', 'https://help.openai.com/en/articles/20001036'],
+  ['ChatGPT Health — OpenAI announcement and July 23, 2026 update', 'https://openai.com/index/introducing-chatgpt-health/'],
 ];
 
 export const compareFaq = [
@@ -139,6 +170,6 @@ export const compareFaq = [
   },
   {
     q: 'Which fitness apps work with ChatGPT or Claude?',
-    a: 'P.R.O. has an official MCP connector (mcp.proapp.uk) that lets ChatGPT, Claude and other assistants read your Apple Health workouts, sleep and heart rate with your permission. As of October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak or Google Health Coach.',
+    a: 'In the US, ChatGPT Health (since July 2026) and Claude’s Apple Health beta (Pro and Max) read Apple Health directly, and independent MCP servers exist for some wearables. P.R.O. has an official MCP connector (mcp.proapp.uk) that works outside the US, in ChatGPT, Claude, Grok, Perplexity, Gemini and Codex, and lets you choose which data categories the assistant sees. As of 27 October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak, Google Health Coach or Runna.',
   },
 ];

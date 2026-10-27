@@ -2,6 +2,8 @@
 // Первый экран страницы: появление на CSS-анимации (hero-in/hero-fade), а не на
 // IntersectionObserver — текст виден сразу после отрисовки HTML и не ждёт
 // загрузки JS (раньше заголовок оставался opacity-0 до гидрации и тормозил LCP).
+import { Fragment } from 'react';
+
 export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, description, children }) {
   return (
     <section
@@ -20,17 +22,20 @@ export default function TuyoPageHero({ eyebrow, lines, accentIndex = 1, descript
         )}
         <h1 className="max-w-5xl">
           {lines.map((line, i) => (
-            <span
-              key={line}
-              className={`hero-in block font-display font-extrabold leading-[0.92] tracking-tighter ${
-                i === accentIndex
-                  ? 'text-[clamp(1.875rem,9.5vw,6.5rem)] text-brand-pink'
-                  : 'text-[clamp(1.875rem,8vw,5rem)] text-white'
-              }`}
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
-              {line}
-            </span>
+            // The space keeps extracted heading text readable; block spans hide it visually.
+            <Fragment key={line}>
+              {i > 0 && ' '}
+              <span
+                className={`hero-in block font-display font-extrabold leading-[0.92] tracking-tighter ${
+                  i === accentIndex
+                    ? 'text-[clamp(1.875rem,9.5vw,6.5rem)] text-brand-pink'
+                    : 'text-[clamp(1.875rem,8vw,5rem)] text-white'
+                }`}
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                {line}
+              </span>
+            </Fragment>
           ))}
         </h1>
         {description && (

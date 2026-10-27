@@ -15,7 +15,7 @@ export default function Compare() {
         eyebrow={`Comparison · checked ${CHECKED}`}
         lines={['AI coach apps', 'for Apple Watch,', 'compared.']}
         accentIndex={1}
-        description="P.R.O. vs Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach and Runna: price, hardware, AI coach, training plans, recovery scores and ChatGPT/Claude support — with sources."
+        description="P.R.O. vs Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach, Runna, Apple’s Readiness and ChatGPT Health: price, hardware, AI coach, training plans, recovery scores and ChatGPT/Claude support — with sources."
       />
 
       <section className="mx-auto max-w-3xl px-4 pt-16 sm:px-6 sm:pt-20">
@@ -27,7 +27,9 @@ export default function Compare() {
             $2.99/month. Choose <strong>Athlytic</strong> for a focused recovery score processed on your device,{' '}
             <strong>WHOOP</strong> if you want a dedicated 24/7 band, <strong>Bevel</strong> if you also wear Oura or
             Garmin, <strong>Gentler Streak</strong> for a gentle, fully on-device approach and <strong>Runna</strong> for
-            structured running plans. Google Health Coach requires a Fitbit or Pixel Watch.
+            structured running plans. Google Health Coach requires a Fitbit or Pixel Watch. If you own an Apple Watch
+            Series 12 or Ultra 4, Apple’s own Readiness score is built in; in the US, ChatGPT Health can read Apple
+            Health directly.
           </p>
         </div>
       </section>
@@ -35,7 +37,7 @@ export default function Compare() {
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <h2 className="mb-6 font-display text-xl font-bold text-white sm:text-2xl">Feature comparison</h2>
         <div className="overflow-x-auto rounded-3xl border border-white/10" tabIndex={0} aria-label="Comparison table, scrolls horizontally">
-          <table className="w-full min-w-[960px] border-collapse text-left text-sm">
+          <table className="w-full min-w-[1200px] border-collapse text-left text-sm">
             <caption className="sr-only">AI coach apps for Apple Watch compared, checked {CHECKED}</caption>
             <thead>
               <tr className="border-b border-white/10">
@@ -106,8 +108,10 @@ export default function Compare() {
 
           <h2>P.R.O. vs Google Health Coach</h2>
           <p>
-            Google Health Coach, built with Gemini, works only with a Fitbit or Pixel Watch, so Apple Watch owners
-            cannot use it. P.R.O. is built for Apple Health and Apple Watch.
+            Google Health Coach, built with Gemini, runs in the Google Health app (formerly Fitbit). The Google Health
+            app can import Apple Health, but as of {CHECKED} Google’s help says the coach needs a paired Fitbit or Pixel
+            Watch and a Google Health Premium subscription; Google says support for other devices is coming. P.R.O. is
+            built for Apple Health and Apple Watch.
           </p>
 
           <h2>P.R.O. vs Runna</h2>
@@ -116,10 +120,29 @@ export default function Compare() {
             a chat. P.R.O. covers 50+ sports, sleep and heart rate, and lets you ask questions about any of it.
           </p>
 
+          <h2>P.R.O. vs Apple’s Readiness</h2>
+          <p>
+            Readiness is free and built into watchOS 27, but only on Apple Watch Series 12 and Ultra 4: a daily 0–10
+            score from your recent activity, vitals and sleep, with a recommendation from Recover to Go For It. It has
+            no chat or training plans. P.R.O. works with any Apple Watch that writes to Apple Health and adds an AI
+            coach and adaptive plans.
+          </p>
+
+          <h2>P.R.O. vs ChatGPT Health</h2>
+          <p>
+            ChatGPT Health connects Apple Health to ChatGPT directly and is included in ChatGPT Free, Go, Plus and Pro —
+            but only in the US, since its launch on July 23, 2026, and only in ChatGPT. It can also use US medical
+            records. P.R.O. works outside the US, in ChatGPT, Claude, Grok, Perplexity, Gemini and Codex, adds your
+            training plan, and lets you choose which data categories the assistant sees.
+          </p>
+
           <h2>Which apps work with ChatGPT or Claude?</h2>
           <p>
-            As of {CHECKED}, P.R.O. is the only app in this comparison with an official connector for ChatGPT and
-            Claude. See <Link to="/mcp-connect">how to connect Apple Health to ChatGPT and Claude</Link>.
+            As of {CHECKED}, ChatGPT Health reads Apple Health directly in the US, Claude has an Apple Health beta for
+            US Pro and Max users, and independent MCP servers exist for some wearables. We found no official connector
+            for the other coach apps compared here. P.R.O.’s connector works outside the US, in ChatGPT, Claude, Grok,
+            Perplexity, Gemini and Codex, and you choose which data categories the assistant sees. See{' '}
+            <Link to="/mcp-connect">how to connect Apple Health to your AI assistant</Link>.
           </p>
 
           <h2>Sources</h2>

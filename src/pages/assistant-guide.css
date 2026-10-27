@@ -40,6 +40,11 @@
 .ag-shot img { width: 100%; height: auto; border-radius: 14px; border: 1px solid #ffffff17; }
 .ag-shot img[width="920"] { max-width: 300px; }
 .ag-shot figcaption, .ag-card figcaption { margin-top: 8px; font-size: 11px; color: #8f8f99; }
+.ag-note { margin: 4px 0 0 48px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--connect-line); font-size: 13px; line-height: 1.75; color: var(--connect-muted); }
+.ag-cli { margin-top: 28px; border: 1px solid var(--connect-line); border-radius: 16px; padding: 20px 22px; background: #111115; }
+.ag-cli h3 { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.ag-cli p { font-size: 13px; line-height: 1.75; color: var(--connect-muted); }
+.ag-cli pre { margin: 12px 0; padding: 12px 14px; border-radius: 12px; background: #0a0a0d; border: 1px solid #ffffff17; overflow-x: auto; font-size: 13px; line-height: 1.7; color: #e2e2e8; }
 .assistant-page .guide-recorded a { text-decoration: underline; text-underline-offset: 3px; color: #c5c5d0; }
 .ag-prompts { display: flex; flex-wrap: wrap; gap: 10px; }
 .ag-prompts li { padding: 10px 15px; border-radius: 999px; background: #18181d; border: 1px solid var(--connect-line); font-size: 13px; color: #e2e2e8; }
@@ -70,5 +75,6 @@
   .ag-title .ag-title-icon img { width: 26px; height: 26px; }
   .ag-answer { font-size: 16px; }
   .ag-steps > li { padding-left: 42px; }
+  .ag-note { margin-left: 0; }
   .ag-shot img[width="920"] { max-width: 240px; }
 }

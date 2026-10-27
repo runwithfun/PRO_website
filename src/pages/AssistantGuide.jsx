@@ -45,7 +45,7 @@ export default function AssistantGuide({ id }) {
     </header>
 
     {g.builtIn && <section className="connect-wrap connect-section" aria-labelledby="ways-heading">
-      <div className="connect-section-heading"><h2 id="ways-heading">{g.builtIn.name} or P.R.O.?</h2><p>Both bring Apple Health into {g.name}. They differ in where they work and what you get. Checked {CHECKED}.</p></div>
+      <div className="connect-section-heading"><h2 id="ways-heading">{g.builtIn.name} or P.R.O.?</h2><p>Both bring Apple Health into {g.name}. They differ in where they work and what you get. Checked {g.builtIn.checked || CHECKED}.</p></div>
       <div className="ag-table"><table>
         <caption className="sr-only">{g.builtIn.name} compared with the P.R.O. connector</caption>
         <thead><tr><th scope="col"><span className="sr-only">Feature</span></th><th scope="col">{g.builtIn.name}</th><th scope="col">P.R.O. connector</th></tr></thead>
@@ -64,6 +64,10 @@ export default function AssistantGuide({ id }) {
         </div>
         {g.shots[i + 1] && <Shot shot={g.shots[i + 1]} />}
       </li>)}</ol>
+      {g.guide.note && <p className="ag-note">{g.guide.note}</p>}
+      {g.guide.cli && <div className="ag-cli"><h3>Set up from the command line</h3><p>{g.guide.cli.intro}</p>
+        <pre><code>{g.guide.cli.commands.join('\n')}</code></pre>
+        <p>{g.guide.cli.after}</p></div>}
       <p className="guide-recorded">{g.guide.verified}. Interfaces change; if a menu looks different, see <a href={g.guide.helpUrl} target="_blank" rel="noopener noreferrer">{g.name}’s own setup help ↗</a></p>
     </section>
 

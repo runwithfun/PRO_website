@@ -102,7 +102,7 @@ export const ROUTES = [
     file: 'compare.html',
     title: 'P.R.O. vs Athlytic, Bevel, WHOOP Coach & Runna — AI Coach Apps Compared',
     description:
-      'Honest comparison of AI coach apps for Apple Watch: P.R.O., Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach and Runna — price, hardware, AI chat, training plans, recovery scores, ChatGPT/Claude support.',
+      'Honest comparison of AI coach apps for Apple Watch: P.R.O., Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach, Runna, Apple Readiness and ChatGPT Health — price, hardware, AI chat, plans, recovery, ChatGPT/Claude support.',
     faq: 'compare',
     sources: ['src/pages/Compare.jsx', 'src/content/compare.js'],
   },

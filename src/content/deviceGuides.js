@@ -20,7 +20,7 @@ export const deviceGuides = [
     "syncs": [
       {
         "type": "Workouts",
-        "ok": "partial",
+        "ok": true,
         "note": "Activities uploaded to Garmin Connect are written with duration, distance and calories, but only high/low heart rate (Apple's chart may show 'Chart Unavailable'). GPS routes: no."
       },
       {
@@ -1460,7 +1460,7 @@ export const deviceGuides = [
         "name": "Merge: Connect Android Watches",
         "pricing": "Subscription: $3.99/month or $35.99/year (Basic), $5.99/month or $59.99/year (Pro), 14-day trial",
         "url": "https://apps.apple.com/us/app/merge-connect-android-watches/id6698894276",
-        "note": "Unofficial; needs an Android phone for first activation; App Store rating 3.3 with battery-drain complaints"
+        "note": "Unofficial; needs an Android phone for first activation"
       }
     ],
     "afterSetup": "With Samsung Health for iOS, data reaches Apple Health only when the app syncs, and users report gaps. Merge runs as a background Bluetooth connection with the watch in range; Samsung features such as ECG, blood pressure and LTE activation do not work without an Android phone.",
@@ -2310,6 +2310,1186 @@ export const deviceGuides = [
       ],
       [
         "Apple Support: Manage data sources in Health",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "ultrahuman",
+    "name": "Ultrahuman Ring",
+    "path": "/ultrahuman-apple-health",
+    "app": "Ultrahuman",
+    "method": "native",
+    "checked": "2026-10-27",
+    "answer": [
+      "Yes. The Ultrahuman iPhone app writes Ring AIR / Ring PRO data to Apple Health once you allow it in the Health app. Ultrahuman names workouts, sleep, menstrual data, HRV, skin temperature, energy expenditure, and logged caffeine and water; M1 users also get glucose.",
+      "Key caveats: Ultrahuman's own scores (Sleep Index, Movement Index, Recovery) stay in the app, its HRV (RMSSD) won't match Apple's SDNN, and ring steps can double-count with an Apple Watch unless you set source priority."
+    ],
+    "requirements": [
+      "iPhone with the latest Ultrahuman app (iOS 16 or later)",
+      "Ultrahuman Ring AIR or Ring PRO paired to the app (M1 CGM for glucose)",
+      "Ultrahuman allowed to write categories in Apple Health"
+    ],
+    "syncs": [
+      {
+        "type": "Workouts",
+        "ok": true,
+        "note": "Ultrahuman lists workouts among Apple Health sync data; app 4.3.1 improved workout upload reliability. GPS routes: not documented."
+      },
+      {
+        "type": "Steps",
+        "ok": "partial",
+        "note": "Reported to sync by reviewers and users (who report double counting with Apple Watch); Ultrahuman does not itemise steps in its docs."
+      },
+      {
+        "type": "Active energy",
+        "ok": true,
+        "note": "Ultrahuman names energy expenditure as available in Apple Health."
+      },
+      {
+        "type": "Heart rate",
+        "ok": "partial",
+        "note": "Reported by third-party guides; not itemised by Ultrahuman."
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": "partial",
+        "note": "Reported by third-party guides; not itemised by Ultrahuman."
+      },
+      {
+        "type": "HRV",
+        "ok": true,
+        "note": "Ultrahuman confirms HRV in Apple Health. The app shows RMSSD while Apple Health uses SDNN, so values differ."
+      },
+      {
+        "type": "Sleep",
+        "ok": true,
+        "note": "Ultrahuman lists sleep data; third-party guides report stages (awake/REM/core/deep)."
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": "partial",
+        "note": "Claimed by an integration vendor only; not confirmed by Ultrahuman."
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false,
+        "note": "Not documented."
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": false
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": true,
+        "note": "Ultrahuman lists menstrual data among synced data (Cycle & Ovulation feature)."
+      },
+      {
+        "type": "Body temperature",
+        "ok": true,
+        "note": "Skin temperature, per Ultrahuman."
+      },
+      {
+        "type": "Nutrition (caffeine, water)",
+        "ok": true,
+        "note": "Caffeine and water logged in the app are written to Apple Health (app 4.2.0)."
+      },
+      {
+        "type": "Blood glucose",
+        "ok": true,
+        "note": "Only with the Ultrahuman M1 CGM."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Update the Ultrahuman app",
+        "text": "App Store → Ultrahuman → Update. Make sure the ring is paired and has synced at least once.",
+        "ui": "install"
+      },
+      {
+        "title": "Allow the permission prompt",
+        "text": "When the Ultrahuman app asks for Apple Health access, tap Turn On All (or pick categories) and then Allow.",
+        "ui": "permissions"
+      },
+      {
+        "title": "Or turn it on from the Health app",
+        "text": "Health app → profile picture (top right) → Privacy: Apps → Ultrahuman → Turn On All (Ultrahuman's own instructions).",
+        "menu": [
+          "Health app",
+          "profile picture",
+          "Privacy: Apps",
+          "Ultrahuman",
+          "Turn On All"
+        ]
+      },
+      {
+        "title": "Give it time",
+        "text": "Wear the ring overnight and open the Ultrahuman app in the morning so the night's data uploads. HRV-based guidance needs about 3 days of baseline.",
+        "menu": [
+          "Ultrahuman app"
+        ]
+      }
+    ],
+    "afterSetup": "The ring sends data to the Ultrahuman app over Bluetooth, and the app writes it to Apple Health afterwards. Sleep shows up the morning after a night's wear. Opening the app forces a sync, so keep Background App Refresh on for Ultrahuman. The integration only writes: Ultrahuman doesn't read steps from other devices out of Apple Health. Workouts from other apps come in through Ultrahuman's own Connect Other Apps menu instead.",
+    "duplicates": "If you also wear an Apple Watch, steps and active energy can be counted twice. Health app → Browse → Activity → Steps (repeat for Active Energy) → Data Sources & Access → Edit → drag the device you trust most (usually Apple Watch for steps) to the top → Done. Priority only removes overlap for numeric data like steps and energy. Workouts are separate records, so if the watch and the ring log the same session, turn off Workouts for one of them: Health app → profile → Privacy: Apps → Ultrahuman (or the other app) → Workouts off.",
+    "trouble": [
+      {
+        "q": "Ultrahuman data stopped appearing in Apple Health",
+        "a": "Open the Ultrahuman app and let the ring sync, then check Health app → profile → Privacy: Apps → Ultrahuman and make sure the categories are on. Turn on Background App Refresh for Ultrahuman. Toggling the permissions off and on again often restarts the sync."
+      },
+      {
+        "q": "HRV in Apple Health doesn't match the Ultrahuman app",
+        "a": "That's expected. Ultrahuman shows RMSSD and Apple Health stores SDNN. Compare each number only with its own history."
+      },
+      {
+        "q": "Steps are doubled or don't match Apple Watch",
+        "a": "Set source priority for Steps in Health (Browse → Activity → Steps → Data Sources & Access → Edit) or turn off Steps for Ultrahuman in Health."
+      },
+      {
+        "q": "Sleep Index, Recovery or Movement scores are missing in Health",
+        "a": "That's expected. These are Ultrahuman's own scores and Apple Health has no data types for them. Only the raw data (sleep, HRV, temperature and so on) is shared."
+      },
+      {
+        "q": "Workouts don't upload to Apple Health",
+        "a": "Update to the latest app version (4.3.1 fixed workout uploads), make sure Workouts is allowed for Ultrahuman in Health, and open the app after the session so it can sync. If it still fails, contact support@ultrahuman.com."
+      },
+      {
+        "q": "Ring won't sync with the app",
+        "a": "Put the ring on its charger, turn Bluetooth off and on, force-close and reopen the Ultrahuman app (Ultrahuman's own pairing advice)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Ultrahuman Ring sync with Apple Health?",
+        "a": "Yes. Ultrahuman has a native integration that writes workouts, sleep, menstrual data, HRV, temperature, energy expenditure and logged caffeine/water to Apple Health."
+      },
+      {
+        "q": "Does Ultrahuman send HRV to Apple Health?",
+        "a": "Yes, but the value differs from the app: Ultrahuman shows RMSSD and Apple Health uses SDNN."
+      },
+      {
+        "q": "Does Ultrahuman read data from Apple Health?",
+        "a": "Not for steps or health metrics: the Apple Health link writes data out. You connect other workout sources through Ultrahuman's Connect Other Apps menu."
+      },
+      {
+        "q": "Can I use Ultrahuman and Apple Watch together?",
+        "a": "Yes. Let Apple Watch be the top source for steps and energy in Health, and use the ring mainly for sleep, HRV and temperature."
+      },
+      {
+        "q": "Do Ultrahuman sleep stages show in Apple Health?",
+        "a": "Sleep data syncs, and third-party guides report stages (awake, REM, core, deep). Ultrahuman's Sleep Index score doesn't sync."
+      }
+    ],
+    "sources": [
+      [
+        "Ultrahuman blog: How to connect Ultrahuman Ring AIR and Apple Health (May 2025)",
+        "https://www.ultrahuman.com/blog/how-to-access-your-hrv-data-on-apple-health/"
+      ],
+      [
+        "Ultrahuman: integrations (workout, sleep, menstrual data with Apple Health)",
+        "https://www.ultrahuman.com/us/pricing/"
+      ],
+      [
+        "Ultrahuman on the App Store (release notes: caffeine/water to Health, workout uploads)",
+        "https://apps.apple.com/us/app/ultrahuman/id1491286709"
+      ],
+      [
+        "Ultrahuman: Workout heart rate explainer (Connect Other Apps)",
+        "https://www.ultrahuman.com/science/explainers/workout-heart-rate/"
+      ],
+      [
+        "Ultrahuman: Getting started with the Ultrahuman Ring",
+        "https://www.ultrahuman.com/blog/getting-started-with-the-ultrahuman-ring-onboarding-guide/"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "wahoo",
+    "name": "Wahoo",
+    "path": "/wahoo-apple-health",
+    "app": "Wahoo app (ELEMNT app for older units)",
+    "method": "native",
+    "checked": "2026-10-27",
+    "answer": [
+      "Yes. The Wahoo iPhone app lists Apple Health (iOS only) as an authorized app. Rides from ELEMNT ACE, BOLT 3 and ROAM 3, KICKR sessions and Wahoo Apple Watch workouts are written to Health as workouts with duration, distance, calories and heart rate. Older ELEMNT, BOLT 1/2 and ROAM 1/2 units share through the ELEMNT companion app, and ELEMNT RIVAL also pushes steps and sleep.",
+      "Key caveats: auto-share is off by default, SYSTM does not write to Apple Health, and a ride that also reaches Health through Strava appears twice."
+    ],
+    "requirements": [
+      "iPhone with the Wahoo app (ELEMNT ACE, BOLT 3, ROAM 3, KICKR, TICKR, Wahoo app for Apple Watch) or the ELEMNT app (ELEMNT, BOLT 1/2, ROAM 1/2, RIVAL)",
+      "A Wahoo account (rides sync through the Wahoo Cloud)",
+      "Apple Health authorized in the app, with auto-share on"
+    ],
+    "syncs": [
+      {
+        "type": "Workouts",
+        "ok": true,
+        "note": "Rides, runs and trainer sessions with moving time (not elapsed time), distance and calories. GPS routes: not documented. Power and cadence aren't documented as exported."
+      },
+      {
+        "type": "Steps",
+        "ok": "partial",
+        "note": "Only from the ELEMNT RIVAL watch via the ELEMNT app."
+      },
+      {
+        "type": "Active energy",
+        "ok": true,
+        "note": "Workout calories."
+      },
+      {
+        "type": "Heart rate",
+        "ok": true,
+        "note": "Heart rate samples recorded during the workout (from TICKR or another strap)."
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": false
+      },
+      {
+        "type": "HRV",
+        "ok": false
+      },
+      {
+        "type": "Sleep",
+        "ok": "partial",
+        "note": "Only ELEMNT RIVAL sleep data, via the ELEMNT app (added in app 1.64.0)."
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": false
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": false,
+        "note": "The apps read height and weight from Health for your profile; they don't write them."
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": false
+      }
+    ],
+    "steps": [
+      {
+        "title": "Open Authorized Apps (Wahoo app)",
+        "text": "Wahoo app → Today tab → profile icon (top left) → Account page → Authorized Apps.",
+        "menu": [
+          "Wahoo app",
+          "Today tab",
+          "profile icon",
+          "Account page",
+          "Authorized Apps"
+        ]
+      },
+      {
+        "title": "Authorize Apple Health",
+        "text": "Under Available apps, tap Apple Health (iOS only), then allow the categories on the Apple Health permission screen (Turn On All recommended) → Allow.",
+        "ui": "permissions"
+      },
+      {
+        "title": "Turn on auto-share",
+        "text": "Tap the down arrow next to Apple Health and toggle Auto-share on. It's off by default, so skipping this step means rides won't flow.",
+        "ui": "toggle"
+      },
+      {
+        "title": "Older ELEMNT / BOLT 1/2 / ROAM 1/2 / RIVAL",
+        "text": "ELEMNT app → Profile tab → Authorized apps → pick the partner to authorize. Then Settings tab → Automatic upload must be on, with that partner toggled on in the submenu.",
+        "menu": [
+          "ELEMNT app",
+          "Profile tab",
+          "Authorized apps"
+        ]
+      },
+      {
+        "title": "TICKR heart-rate straps",
+        "text": "TICKR doesn't sync to Health by itself. Pair it with the Wahoo app, an ELEMNT, or an Apple Watch (Watch Settings → Bluetooth → Health Devices) and the recording app saves the heart rate.",
+        "menu": [
+          "or an Apple Watch",
+          "Bluetooth",
+          "Health Devices)"
+        ]
+      }
+    ],
+    "afterSetup": "After a ride, the ELEMNT uploads it to the Wahoo app over Bluetooth or straight to the Wahoo Cloud over Wi-Fi. The app then shares it to Apple Health. To force it, open the Wahoo app → History and pull down to sync. Nothing is shared in real time. The ELEMNT RIVAL watch pushes steps and sleep to Health at intervals during the day. Old rides aren't back-filled; you can share them by hand from History → ••• → Share activity.",
+    "duplicates": "The usual duplicate is one ride arriving twice: Wahoo writes it to Health, Wahoo also auto-uploads it to Strava, and Strava's Send to Health writes it again (without the route). Pick one writer. Either leave Wahoo → Apple Health on and turn off Strava → Settings → Manage Apps and Devices → Health → Send to Health, or turn off Apple Health in Wahoo. If you also start an Apple Watch Workout on the same ride, turn off Workouts for one of the two in Health app → profile → Privacy: Apps. For RIVAL steps, Wahoo says to open Health → Steps → Data Sources & Access and move ELEMNT to the top. Source priority dedups steps and calories, not whole workouts.",
+    "trouble": [
+      {
+        "q": "Rides don't appear in Apple Health",
+        "a": "Check Wahoo app → profile icon → Authorized Apps → Apple Health shows as authorized, with Auto-share on. Pull down on the History tab to sync the ride from the ELEMNT, and make sure Workouts is allowed under Health → profile → Privacy: Apps → Wahoo. If it still fails, deauthorize and re-authorize Apple Health in the Wahoo app. Wahoo fixed several 'workouts fail to be written to Apple Health' bugs in app 6.84.1, so update first."
+      },
+      {
+        "q": "SYSTM workouts never reach Apple Health",
+        "a": "Wahoo says SYSTM doesn't share with Apple Health. Connect SYSTM to Strava (or another Health-enabled app) and let that app write to Health, or record the session in the Wahoo app."
+      },
+      {
+        "q": "Heart rate in Health has odd values or timestamps",
+        "a": "Users have reported shifted heart-rate timestamps after some app versions. Update the Wahoo app. The ride file in Wahoo/Strava is still correct; delete the bad workout in Health if needed."
+      },
+      {
+        "q": "Can I use Apple Watch as a heart-rate monitor for ELEMNT/KICKR?",
+        "a": "No. Wahoo says Apple Watch doesn't broadcast heart rate over standard Bluetooth/ANT+, so use a TICKR or another chest strap. You can also record with the Wahoo app for Apple Watch (watchOS 11+, iOS 18+)."
+      },
+      {
+        "q": "RIVAL steps don't count in Health",
+        "a": "Health → Browse → Activity → Steps → Data Sources & Access → Edit → move ELEMNT to the top. Users still report patchy RIVAL step sync, so open the ELEMNT app regularly."
+      },
+      {
+        "q": "Ride shows up twice (Wahoo + Strava)",
+        "a": "Turn off Strava's Send to Health, or turn off Apple Health in Wahoo, then delete the extra workout in Health → Browse → Activity → Workouts → Show All Data."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Wahoo ELEMNT sync with Apple Health?",
+        "a": "Yes. Completed rides are shared from the Wahoo app (ACE, BOLT 3, ROAM 3) or the ELEMNT app (older units) once Apple Health is authorized and auto-share is on."
+      },
+      {
+        "q": "Does the Wahoo TICKR sync to Apple Health?",
+        "a": "Not directly. TICKR is a sensor. The app that records it (Wahoo app, Apple Watch Workout app, etc.) saves the heart rate to Health."
+      },
+      {
+        "q": "Can I pair a TICKR with my Apple Watch?",
+        "a": "Yes. Wake the strap, then on Apple Watch open Settings → Bluetooth and select it under Health Devices. The Workout app will use it for heart rate."
+      },
+      {
+        "q": "Does Wahoo send power and cadence to Apple Health?",
+        "a": "Wahoo doesn't document exporting power or cadence to Health. Expect duration, distance, calories and heart rate; the full .FIT file goes to Strava/TrainingPeaks."
+      },
+      {
+        "q": "Why are my old Wahoo rides missing from Health?",
+        "a": "Only rides completed after authorizing are auto-shared. Share older ones manually from History → ••• → Share activity."
+      }
+    ],
+    "sources": [
+      [
+        "Wahoo Support: Authorized Apps [Wahoo app] (Apple Health, iOS only)",
+        "https://support.wahoofitness.com/hc/en-us/articles/14467471126802-Authorized-Apps-Wahoo-app"
+      ],
+      [
+        "Wahoo Support: Authorize an app partner (ACE, BOLT 3, ROAM 3)",
+        "https://support.wahoofitness.com/hc/en-us/articles/23541803136530-Authorize-an-app-partner-to-sync-routes-planned-workouts-completed-rides-or-segments"
+      ],
+      [
+        "Wahoo Support: Upload and share a completed ride from ELEMNT ACE, BOLT 3 and ROAM 3",
+        "https://support.wahoofitness.com/hc/en-us/articles/22710510686098-Upload-and-share-a-completed-ride-from-ELEMNT-ACE-BOLT-3-and-ROAM-3"
+      ],
+      [
+        "Wahoo Support: Authorize a 3rd party app [ELEMNT app]",
+        "https://support.wahoofitness.com/hc/en-us/articles/115000504304-Authorize-a-3rd-party-app-for-route-planned-workout-sync-or-completed-ride-upload-ELEMNT"
+      ],
+      [
+        "Wahoo Support: Using ELEMNT RIVAL with Apple Health",
+        "https://support.wahoofitness.com/hc/en-us/articles/360018076140-Using-ELEMNT-RIVAL-with-Apple-Health"
+      ],
+      [
+        "Wahoo Support: Apple Watch and Apple Health (SYSTM)",
+        "https://support.wahoofitness.com/hc/en-us/articles/4406329958674-Apple-Watch-and-Apple-Health"
+      ],
+      [
+        "Wahoo Support: Can I use the TICKR with Apple Watch?",
+        "https://support.wahoofitness.com/hc/en-us/articles/115000754724-Can-I-use-the-TICKR-with-Apple-Watch"
+      ],
+      [
+        "Wahoo Support: Wahoo app release notes [iOS]",
+        "https://support.wahoofitness.com/hc/en-us/articles/360000117484-Wahoo-app-release-notes-iOS"
+      ],
+      [
+        "Wahoo Support: ELEMNT Companion App Release Notes (iOS)",
+        "https://support.wahoofitness.com/hc/en-us/articles/360000466930-ELEMNT-Companion-App-Release-Notes-iOS"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "strava",
+    "name": "Strava",
+    "path": "/strava-apple-health",
+    "app": "Strava",
+    "method": "native",
+    "checked": "2026-10-27",
+    "answer": [
+      "Yes, in both directions. With Send to Health on, Strava writes your activities to Apple Health with activity type, distance, time, calories and, for activities recorded in Strava, the route. With Automatic Uploads on, it imports workouts recorded in Apple's Workout app.",
+      "Key caveats: Strava imports only native Apple Workout app sessions from the last 30 days, and routes from Garmin, Zwift and other third-party uploads aren't sent to Health. If your device also writes to Health directly, Send to Health causes duplicates."
+    ],
+    "requirements": [
+      "iPhone with the Strava app",
+      "Health permission for Strava with Workouts & Routes enabled",
+      "For importing: workouts recorded with the Apple Workout app (iOS 17+ / watchOS 10+ for power and cadence)"
+    ],
+    "syncs": [
+      {
+        "type": "Workouts",
+        "ok": true,
+        "note": "Strava → Health: activity type, distance, time, calories. GPS routes: yes for activities recorded in Strava; no for activities uploaded from other companies' apps (Garmin, Zwift, etc.)."
+      },
+      {
+        "type": "Steps",
+        "ok": false
+      },
+      {
+        "type": "Active energy",
+        "ok": true,
+        "note": "Activity calories are sent with the workout."
+      },
+      {
+        "type": "Heart rate",
+        "ok": "partial",
+        "note": "Strava's Send to Health list doesn't include heart rate. Strava does read heart rate from Health for imported Apple Watch workouts."
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": false
+      },
+      {
+        "type": "HRV",
+        "ok": false
+      },
+      {
+        "type": "Sleep",
+        "ok": false
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": false
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": false
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": false
+      },
+      {
+        "type": "Import from Health (reads)",
+        "ok": "partial",
+        "note": "Health → Strava: only Apple Workout app activities (including Fitness+) from the past 30 days, with heart rate, cycling power and cadence, and running power. Workouts other apps wrote to Health are not imported."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Open Strava settings",
+        "text": "Strava app → You tab → settings (gear) icon in the upper corner.",
+        "menu": [
+          "Strava app",
+          "You tab"
+        ]
+      },
+      {
+        "title": "Connect Health",
+        "text": "Manage Apps and Devices → Health → tap the + icon → Connect.",
+        "menu": [
+          "Manage Apps and Devices",
+          "Health",
+          "+ icon",
+          "Connect"
+        ]
+      },
+      {
+        "title": "Grant permissions",
+        "text": "On the Health Access screen, turn on Workouts & Routes (required for anything to sync) plus the other categories you want, then tap Allow.",
+        "ui": "permissions"
+      },
+      {
+        "title": "Choose the direction",
+        "text": "Back in Settings → Manage Apps and Devices → Health: turn on Send to Health to write Strava activities to Apple Health, and/or Automatic Uploads to import Apple Workout app sessions. Optionally turn on notifications for new workouts.",
+        "ui": "toggle"
+      },
+      {
+        "title": "Change permissions later",
+        "text": "Health app → profile → Privacy: Apps → Strava, or iPhone Settings → Apps → Health → Data Access & Devices → Strava.",
+        "menu": [
+          "Health app",
+          "profile",
+          "Privacy: Apps",
+          "Strava"
+        ]
+      }
+    ],
+    "afterSetup": "Strava sends a new activity to Health after it's saved or uploaded to Strava. Opening Strava and pulling down on the You feed triggers the transfer. Imports from Apple Health also happen when Strava is open, and you get a notification for each successful or failed automatic sync. Missed Apple Workout sessions can be imported by hand under Manage Apps and Devices → Health → Import, but only for the last 30 days.",
+    "duplicates": "Duplicates come from two writers saving the same activity. If Garmin, Wahoo, Peloton or Zwift already writes to Apple Health, or you recorded on Apple Watch, and that service also uploads to Strava, then Send to Health writes it again. Fix: keep exactly one writer per activity. Usually that means turning off Send to Health in Strava (Settings → Manage Apps and Devices → Health) and letting the device's own app write to Health. If Strava is your only recorder (Strava app on iPhone or Watch), keep Send to Health on. Source priority (Health → Browse → category → Data Sources & Access → Edit) dedups calories and distance, but duplicate workout entries must be deleted by hand in Health → Browse → Activity → Workouts → Show All Data.",
+    "trouble": [
+      {
+        "q": "Strava activities don't appear in Apple Health",
+        "a": "Check that Send to Health is on, then force-close the Health app, open Strava and pull down on the You feed to refresh (Strava's fix). Confirm Workouts is allowed for Strava in Health → profile → Privacy: Apps → Strava."
+      },
+      {
+        "q": "Apple Watch workout won't import into Strava",
+        "a": "It must be recorded with Apple's Workout app and be under 30 days old. Tap Import next to it in Settings → Manage Apps and Devices → Health. If it says imported but is missing, delete any Strava activity with the same date and time and import again."
+      },
+      {
+        "q": "Workout isn't listed for import",
+        "a": "Tap Connect with Health in Strava's Health settings, then iPhone Settings → Apps → Health → Data Access & Devices → Strava and turn on all categories."
+      },
+      {
+        "q": "Garmin/Zwift rides in Health have no map",
+        "a": "That's expected. Strava doesn't send route data for activities recorded by another company's app. Let that company's app write the route to Health instead."
+      },
+      {
+        "q": "Every ride shows twice in Health",
+        "a": "Your device app and Strava both write it. Turn off Send to Health in Strava, or turn off Workouts for the device app in Health, and delete the extras."
+      },
+      {
+        "q": "Power or cadence missing on imported Apple Watch rides",
+        "a": "Needs iOS 17+, watchOS 10+ and a current Strava version. Allow all categories for Strava in Health, then reconnect Health in Strava (Settings → Manage Apps and Devices → Health) even if it was connected before."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Strava sync with Apple Health?",
+        "a": "Yes, both ways: Send to Health writes Strava activities to Health, and Automatic Uploads imports Apple Workout app sessions into Strava."
+      },
+      {
+        "q": "Does Strava read workouts from Apple Health that other apps recorded?",
+        "a": "No. Strava only imports workouts recorded with Apple's Workout app (last 30 days). Workouts other apps saved to Health are ignored."
+      },
+      {
+        "q": "Does Strava send heart rate to Apple Health?",
+        "a": "Strava's help center lists route, activity type, distance, time and calories, not heart rate."
+      },
+      {
+        "q": "Why doesn't my Garmin route show in Apple Health via Strava?",
+        "a": "Strava doesn't forward routes from third-party uploads. Garmin Connect can write the workout with its route to Health itself."
+      },
+      {
+        "q": "Should I turn on Send to Health if my Garmin already syncs to Health?",
+        "a": "No. Then every activity appears twice. Use one writer only."
+      },
+      {
+        "q": "Do Apple Fitness+ workouts sync to Strava?",
+        "a": "Yes, through the same Health link (iOS 18.2+ / watchOS 11.2+), with class name and trainer."
+      }
+    ],
+    "sources": [
+      [
+        "Strava Support: Apple Health and Strava (Sep 2026)",
+        "https://support.strava.com/hc/en-us/articles/216917527-Health-App-and-Strava"
+      ],
+      [
+        "Strava Support: How do I get power and cadence data from Apple Health?",
+        "https://support.strava.com/en-us/articles/15401595-how-do-i-get-power-and-cadence-data-from-apple-health"
+      ],
+      [
+        "Strava Support: Apple Fitness+ and Strava",
+        "https://support.strava.com/hc/en-us/articles/32628875281037-Apple-Fitness-and-Strava"
+      ],
+      [
+        "DC Rainmaker: Strava turns back on Apple Health sync for third-party activities (2022)",
+        "https://www.dcrainmaker.com/2022/03/strava-reverses-functionality.html"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "zwift",
+    "name": "Zwift",
+    "path": "/zwift-apple-health",
+    "app": "Zwift / Zwift Companion",
+    "method": "partial",
+    "checked": "2026-10-27",
+    "answer": [
+      "Not officially. Apple Health isn't on Zwift's list of platforms that receive activity data, and Zwift staff call the link unsupported. The reliable route is to connect Zwift to Strava or Garmin Connect and let that app write the ride to Health.",
+      "Key caveats: the iOS Zwift and Companion apps can still register as Health writers, and users report inflated Active Energy and distance from them. Zwift also says Apple Watch isn't compatible as a heart-rate monitor."
+    ],
+    "requirements": [
+      "Zwift account and the Zwift Companion app (or zwift.com) to manage Connections",
+      "A Strava or Garmin Connect account that writes to Apple Health (or an app such as HealthFit/RunGap to import Zwift .FIT files)",
+      "A Bluetooth LE or ANT+ heart-rate strap if you want heart rate in the ride file"
+    ],
+    "syncs": [
+      {
+        "type": "Workouts",
+        "ok": "partial",
+        "note": "Not a supported Zwift export. Via Strava: workout with type, distance, time and calories, no route. Via Garmin Connect: per Garmin's Health export. Direct Zwift/Companion writes are inconsistent."
+      },
+      {
+        "type": "Steps",
+        "ok": false
+      },
+      {
+        "type": "Active energy",
+        "ok": "partial",
+        "note": "Users report Zwift on iOS writing Active Energy repeatedly (inflated totals), even with permissions off."
+      },
+      {
+        "type": "Heart rate",
+        "ok": "partial",
+        "note": "Only if the relay app (Strava/Garmin) exports it. Users report Companion-created Health workouts have no heart rate."
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": false
+      },
+      {
+        "type": "HRV",
+        "ok": false
+      },
+      {
+        "type": "Sleep",
+        "ok": false
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": false
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": false,
+        "note": "Zwift doesn't read weight from Apple Health. Withings can send scale weight to Zwift, and Fitbit's weight feed to Zwift ends 30 Oct 2026."
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": false
+      }
+    ],
+    "steps": [
+      {
+        "title": "Connect Zwift to Strava or Garmin",
+        "text": "Zwift Companion → More (iOS) → Settings → Connections → tap + next to Strava or Garmin → sign in → authorize. Or go to zwift.com/settings/connections → Connect.",
+        "menu": [
+          "Zwift Companion",
+          "More",
+          "Settings",
+          "Connections",
+          "+ next to Strava or Garmin",
+          "sign in"
+        ]
+      },
+      {
+        "title": "Let that app write to Health",
+        "text": "Strava: You → settings → Manage Apps and Devices → Health → connect and turn on Send to Health. Garmin Connect: enable its Apple Health integration.",
+        "menu": [
+          "You",
+          "settings",
+          "Manage Apps and Devices",
+          "Health"
+        ]
+      },
+      {
+        "title": "Stop direct Zwift writes (optional)",
+        "text": "If you see inflated Active Energy or distance, Health app → profile → Privacy: Apps → Zwift and Zwift Companion → turn off categories.",
+        "menu": [
+          "Health app",
+          "profile",
+          "Privacy: Apps",
+          "Zwift and Zwift Companion"
+        ]
+      },
+      {
+        "title": "Alternative: Apple Watch workout",
+        "text": "To close Activity rings, start an Indoor Cycle workout in the Apple Watch Workout app at the same time as the ride. Then don't also send the Zwift ride to Health through Strava, or it counts twice."
+      }
+    ],
+    "afterSetup": "Zwift uploads the activity to connected platforms automatically after you save it, though timing varies by platform. Strava then sends it to Health the next time Strava refreshes; open Strava and pull down on the You feed to trigger that. Routes don't come through this path. If an upload is missing, download the .FIT file from Zwift and upload it to the platform by hand.",
+    "duplicates": "Common doubles: (1) an Apple Watch Indoor Cycle workout plus the same ride sent to Health by Strava; (2) Zwift → Garmin Connect → Health plus Zwift → Strava → Health; (3) Zwift on iOS writing several cumulative Active Energy and distance entries per ride (a known issue since 2024, still open). Fix: choose one path into Health. Either record on the Watch and turn off Strava's Send to Health (it can't be limited to Zwift rides only), or skip the Watch workout and let Strava or Garmin write it. Don't do both. Turn off write permissions for Zwift and Zwift Companion in Health → profile → Privacy: Apps. For Active Energy, also put Apple Watch first in Health → Browse → Activity → Active Energy → Data Sources & Access → Edit. Zwift also notes that duplicate activities can appear in its own history when a third-party device is connected; delete them in Companion.",
+    "trouble": [
+      {
+        "q": "Apple Health is not in Zwift's Connections list",
+        "a": "That's expected. Zwift only lists adidas, Garmin, MapMyFitness, Strava, TechnoGym, Wahoo, WTRL and ZwiftPower as activity destinations. Use Strava or Garmin to reach Health."
+      },
+      {
+        "q": "Active Energy or distance in Health is several times too high after a ride",
+        "a": "This is a known Zwift iOS issue: Zwift writes running totals repeatedly. Turn off Zwift's and Zwift Companion's write permissions in Health, delete the extra entries (Browse → Activity → Active Energy → Show All Data), and route rides through Strava/Garmin."
+      },
+      {
+        "q": "Zwift keeps writing to Health after permissions are off",
+        "a": "Users reported this in Dec 2025. Re-check both Zwift and Zwift Companion under Health → profile → Privacy: Apps, update the apps, and delete stray samples. Report it to Zwift support."
+      },
+      {
+        "q": "Can I use Apple Watch as my heart-rate monitor in Zwift?",
+        "a": "Zwift says Apple Watch isn't currently compatible. Use any Bluetooth LE or ANT+ strap, or a trainer that relays heart rate."
+      },
+      {
+        "q": "Zwift ride doesn't close my Move ring",
+        "a": "Rides that come in through Strava or Companion may not credit Activity rings like a Watch workout does. Start an Apple Watch Indoor Cycle workout alongside the ride, and don't also send the ride to Health from Strava."
+      },
+      {
+        "q": "Ride didn't upload to Strava or Garmin",
+        "a": "Disconnect and reconnect the platform in Companion → Settings → Connections or at zwift.com/settings/connections. Enable cookies and JavaScript, or upload the .FIT file manually."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Zwift sync with Apple Health?",
+        "a": "Not officially. Zwift doesn't list Apple Health as a destination. Send rides to Strava or Garmin Connect and let that app write them to Health."
+      },
+      {
+        "q": "How do I get Zwift rides into Apple Health?",
+        "a": "Connect Zwift to Strava, then turn on Send to Health in Strava. Or use Garmin Connect, or import the .FIT file with an app like HealthFit or RunGap."
+      },
+      {
+        "q": "Does Zwift work with Apple Watch?",
+        "a": "Zwift states Apple Watch isn't currently compatible as a heart-rate source. You can still record a separate Watch workout for your rings."
+      },
+      {
+        "q": "Why are my Zwift calories doubled in Apple Health?",
+        "a": "Two writers (Apple Watch plus Strava or Garmin) or Zwift's own repeated Active Energy writes. Keep one writer and remove the others' permissions."
+      },
+      {
+        "q": "Will the route map show in Apple Health?",
+        "a": "No. Strava doesn't forward routes from third-party apps like Zwift, and virtual routes aren't real GPS tracks anyway."
+      }
+    ],
+    "sources": [
+      [
+        "Zwift Support: Zwift and Third-party Platforms",
+        "https://support.zwift.com/en_us/zwift-and-third-party-platforms-SypU0LdVr"
+      ],
+      [
+        "Zwift Support: Compatible Cycling Accessories (Apple Watch not compatible)",
+        "https://support.zwift.com/en_us/compatible-cycling-accessories-ryfy2ixY"
+      ],
+      [
+        "Zwift Support: Connecting a Heart Rate Monitor",
+        "https://support.zwift.com/en_us/connecting-a-heart-rate-monitor-Hk0MimWlS"
+      ],
+      [
+        "Zwift Support: Zwift Fitness Tracking (duplicate activities)",
+        "https://support.zwift.com/zwift-fitness-tracking-SkUEwkHjkg"
+      ],
+      [
+        "Zwift Forums: Zwift reporting duplicate data to Apple Health [iOS] (known issue)",
+        "https://forums.zwift.com/t/zwift-reporting-duplicate-data-to-apple-health-ios/627646"
+      ],
+      [
+        "Strava Support: Apple Health and Strava",
+        "https://support.strava.com/hc/en-us/articles/216917527-Health-App-and-Strava"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "peloton",
+    "name": "Peloton",
+    "path": "/peloton-apple-health",
+    "app": "Peloton",
+    "method": "native",
+    "checked": "2026-10-27",
+    "answer": [
+      "Yes, in both directions. The Peloton iPhone app writes your Peloton workouts from Bike, Tread, Row, Guide or the app to Apple Health with heart rate, active energy and distance, plus cycling and running power and speed. It can also import workouts from Apple Health into Peloton history and Streaks.",
+      "Key caveats: the iPhone Peloton app must be opened to sync, Apple Health is iPhone-only, and Strava auto-post combined with Strava's Send to Health counts workouts twice."
+    ],
+    "requirements": [
+      "iPhone with the latest Peloton app, signed in to your Peloton account",
+      "Peloton permissions granted in Apple Health (Read and/or Write)",
+      "Optional: Apple Watch with the Peloton watch app for heart rate"
+    ],
+    "syncs": [
+      {
+        "type": "Workouts",
+        "ok": true,
+        "note": "All Peloton classes and workout history, including from Bike, Tread and Row. Cycling cadence, power and speed and running power and speed have been added since Feb 2025. GPS routes: only for outdoor GPS runs in the app (not confirmed)."
+      },
+      {
+        "type": "Steps",
+        "ok": false
+      },
+      {
+        "type": "Active energy",
+        "ok": true
+      },
+      {
+        "type": "Heart rate",
+        "ok": true,
+        "note": "When a heart-rate monitor or Apple Watch was connected during the class."
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": false
+      },
+      {
+        "type": "HRV",
+        "ok": false
+      },
+      {
+        "type": "Sleep",
+        "ok": false
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": false
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": false,
+        "note": "Not documented."
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": false
+      },
+      {
+        "type": "Mindful minutes",
+        "ok": "partial",
+        "note": "Reported for meditation classes at launch (2019); not in Peloton's current article."
+      },
+      {
+        "type": "Import from Health (reads)",
+        "ok": true,
+        "note": "Workouts from other apps and devices appear in Peloton Workout History and count toward Streaks and goals; auto-import or manual picks."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Open Connected Apps & Devices",
+        "text": "Peloton app → Profile tab (bottom right) → menu (three lines, top right) → Connected Apps & Devices → Apple Health.",
+        "menu": [
+          "Peloton app",
+          "Profile tab",
+          "top right)",
+          "Connected Apps & Devices",
+          "Apple Health"
+        ]
+      },
+      {
+        "title": "Connect",
+        "text": "Tap Health App, then Connect to Apple Health.",
+        "menu": [
+          "Health App",
+          "Connect to Apple Health"
+        ]
+      },
+      {
+        "title": "Grant permissions",
+        "text": "Choose what Peloton can read and write (Peloton recommends turning all on) → Allow.",
+        "menu": [
+          "what Peloton can read and write",
+          "Allow"
+        ]
+      },
+      {
+        "title": "Set import behaviour",
+        "text": "Turn on auto-import (optionally only some activity types), or turn it off and pick recent activities to import by hand.",
+        "ui": "toggle"
+      },
+      {
+        "title": "Check permissions later",
+        "text": "Same path → Health App → Open Health App, or Health app → profile → Privacy: Apps → Peloton. 'Write' categories send Peloton workouts to Health; 'Read' categories bring other workouts into Peloton.",
+        "menu": [
+          "Same path",
+          "Health App"
+        ]
+      }
+    ],
+    "afterSetup": "After you connect, open the Peloton iPhone app so it syncs your full workout history to Health. Later classes, including ones taken on Bike, Tread or Row hardware, go to Health when the iPhone app syncs. Keep the app open until an import finishes. With an Apple Watch, start the class on the Peloton hardware or iPhone app, tap Connect on the watch, and always end the class on the Peloton device, not the watch.",
+    "duplicates": "Peloton's help center warns that Strava users may see workouts counted twice. The usual chain is Peloton → Health plus Peloton auto-post → Strava → Send to Health. Fix: either turn off Send to Health in Strava (Settings → Manage Apps and Devices → Health), or turn off Peloton's Strava auto-post. Don't also start a separate Apple Watch Workout app session during a Peloton class: the Peloton watch app already supplies heart rate and the Peloton app writes the workout. If you use GymKit on the Bike+, check that only one workout per class appears. Delete extras in Health → Browse → Activity → Workouts → Show All Data. Source priority (Data Sources & Access → Edit) dedups calories and distance only.",
+    "trouble": [
+      {
+        "q": "Peloton workouts don't appear in Apple Health",
+        "a": "Open the Peloton iPhone app (hardware classes sync through it), then check Health → profile → Privacy: Apps → Peloton and make sure the Write categories (Workouts, Active Energy, Heart Rate, Distance) are on. Update the app, or disconnect and reconnect via Profile → menu → Connected Apps & Devices → Apple Health."
+      },
+      {
+        "q": "Workouts are counted twice",
+        "a": "Usually Strava: turn off Strava's Send to Health or Peloton's Strava auto-post, then delete duplicates in Health. Peloton's older guidance was to delete Strava's workout data in Health."
+      },
+      {
+        "q": "Apple Watch shows no heart rate during a class",
+        "a": "Turn off Low Power Mode on the iPhone and watch, make sure the band is snug, then re-run Apple Watch setup in the Peloton app so Health and Motion & Fitness permissions are granted."
+      },
+      {
+        "q": "Imported activities don't show up in Peloton",
+        "a": "Allow Peloton to Read categories in Health, keep the Peloton app open while it syncs, and make sure auto-import (or the activity type) is on. Use the latest app version for Streaks to count."
+      },
+      {
+        "q": "Calories or distance differ between Peloton and Apple Watch",
+        "a": "They calculate differently. Pick one source first for Active Energy in Health (Browse → Activity → Active Energy → Data Sources & Access → Edit)."
+      },
+      {
+        "q": "No Apple Health option on Android or on the Bike screen",
+        "a": "Apple Health exists only on iPhone. Hardware workouts reach it through the Peloton iPhone app on the same account."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Peloton sync with Apple Health?",
+        "a": "Yes. The Peloton iPhone app writes workouts to Health and can import workouts from Health into Peloton history and Streaks."
+      },
+      {
+        "q": "Do Peloton Bike and Tread workouts go to Apple Health?",
+        "a": "Yes, through the Peloton app on your iPhone, signed in to the same account."
+      },
+      {
+        "q": "Does Peloton close my Apple Watch rings?",
+        "a": "Peloton workouts written to Health with Active Energy count toward Activity. With the Peloton watch app connected, heart rate comes from the watch."
+      },
+      {
+        "q": "Why are my Peloton workouts doubled in Apple Health?",
+        "a": "Usually Strava auto-post plus Strava's Send to Health. Turn one off."
+      },
+      {
+        "q": "Can Peloton import my runs from Apple Health?",
+        "a": "Yes. Allow Peloton to Read in Health and turn on auto-import or import activities manually."
+      }
+    ],
+    "sources": [
+      [
+        "Peloton Support: How to Link Your Apple Health Account",
+        "https://support.onepeloton.com/s/article/360022843811-Apple-Health?language=en_US"
+      ],
+      [
+        "Peloton Support: Using Your Apple Watch For Peloton Classes",
+        "https://support.onepeloton.com/s/article/15240361174292-Using-Your-Apple-Watch-For-Peloton-Classes?language=en_US"
+      ],
+      [
+        "Peloton Support (archived): Apple Health, Strava double-counting note",
+        "https://support.onepeloton.com/hc/en-au/articles/360022843811-Apple-Health"
+      ],
+      [
+        "Peloton blog: How to connect Apple Health, Garmin Connect and Fitbit (Mar 2026)",
+        "https://www.onepeloton.com/blog/wearables-integration"
+      ],
+      [
+        "Pelobuddy: Peloton adds more metrics to Apple Health (Feb 2025)",
+        "https://www.pelobuddy.com/apple-health-metrics-more/"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
+        "https://support.apple.com/en-us/108779"
+      ]
+    ]
+  },
+  {
+    "id": "myfitnesspal",
+    "name": "MyFitnessPal",
+    "path": "/myfitnesspal-apple-health",
+    "app": "MyFitnessPal",
+    "method": "native",
+    "checked": "2026-10-27",
+    "summary": "Nutrition and weight; reads workouts and steps",
+    "answer": [
+      "Yes. MyFitnessPal writes your food diary (meal summaries, calories and most nutrients) to Apple Health, syncs weight both ways, and reads exercise, steps and sleep from Health. Apple Watch workouts appear in MFP's exercise diary automatically.",
+      "Key caveats: exercise logged in MFP is not sent to Health, Health exercise only syncs on the same day, and no historical data is pulled."
+    ],
+    "requirements": [
+      "iPhone with the latest MyFitnessPal app",
+      "MyFitnessPal permissions granted in Apple Health",
+      "Optional: Apple Watch, or the iPhone itself, as the step source"
+    ],
+    "syncs": [
+      {
+        "type": "Nutrition (dietary energy, macros, micronutrients)",
+        "ok": true,
+        "note": "MFP → Health: meal summaries and most nutrients. Caffeine and vitamin A don't sync, and meal timestamps aren't kept."
+      },
+      {
+        "type": "Workouts",
+        "ok": false,
+        "note": "Read only: Health → MFP exercise diary (same day only). Exercise logged in MFP is not sent to Health."
+      },
+      {
+        "type": "Steps",
+        "ok": false,
+        "note": "Read only: Apple Health, iPhone or Apple Watch steps drive MFP's Calorie Adjustment."
+      },
+      {
+        "type": "Active energy",
+        "ok": false,
+        "note": "Not written. MFP doesn't yet factor in the Apple Watch's separate active calories."
+      },
+      {
+        "type": "Heart rate",
+        "ok": false
+      },
+      {
+        "type": "Resting heart rate",
+        "ok": false
+      },
+      {
+        "type": "HRV",
+        "ok": false
+      },
+      {
+        "type": "Sleep",
+        "ok": false,
+        "note": "Read only: Health sleep is viewable in MFP."
+      },
+      {
+        "type": "Blood oxygen",
+        "ok": false
+      },
+      {
+        "type": "Respiratory rate",
+        "ok": false
+      },
+      {
+        "type": "VO2 max",
+        "ok": false
+      },
+      {
+        "type": "Weight / body composition",
+        "ok": true,
+        "note": "Weight syncs both ways."
+      },
+      {
+        "type": "Menstrual cycle",
+        "ok": false
+      }
+    ],
+    "steps": [
+      {
+        "title": "Open sharing settings",
+        "text": "MyFitnessPal app → More (bottom right; or your profile icon, top right) → Settings → Sharing & Privacy → HealthKit Sharing.",
+        "menu": [
+          "MyFitnessPal app",
+          "top right)",
+          "Settings",
+          "Sharing & Privacy",
+          "HealthKit Sharing"
+        ]
+      },
+      {
+        "title": "Grant permissions",
+        "text": "Turn on the categories you want (MFP suggests all) → Allow. This screen appears only the first time.",
+        "menu": [
+          "Turn on the categories you want",
+          "Allow"
+        ]
+      },
+      {
+        "title": "Pick a step source",
+        "text": "More → Steps → choose Apple Watch or iPhone (Apple Health). For Apple Watch, open MFP on the watch once to register it.",
+        "menu": [
+          "More",
+          "Steps",
+          "Apple Watch or iPhone"
+        ]
+      },
+      {
+        "title": "Change permissions later",
+        "text": "iPhone Settings → Health → Data Access & Devices → MyFitnessPal, or Health app → profile → Privacy: Apps → MyFitnessPal. MFP's own settings won't show these toggles again.",
+        "menu": [
+          "iPhone Settings",
+          "Health",
+          "Data Access & Devices",
+          "MyFitnessPal"
+        ]
+      }
+    ],
+    "afterSetup": "Food you log goes to Health as you log it. Exercise from Health shows up when you open MFP, under Today → Healthy Habits as an 'Apple Health Exercise', but only on the same day; anything synced after midnight doesn't carry over. Steps sync at set intervals, not live. Only data logged after you connect syncs. Apple Health won't appear under Connected Apps in MFP, and that's normal.",
+    "duplicates": "Duplicates in Health happen when more than one nutrition app writes Dietary Energy (MFP plus Lose It!, Cronometer, a meal-kit app and so on). Turn off the Nutrition categories for all but one app (Health → profile → Privacy: Apps), or set priority in Health → Browse → Nutrition → Dietary Energy → Data Sources & Access → Edit. Inside MFP, exercise can be counted twice if a workout arrives from Apple Health and you also log it by hand, or if Garmin or another partner also sends it to MFP. Keep one exercise source. MFP's Calorie Adjustment is built to avoid double-counting step and cardio calories.",
+    "trouble": [
+      {
+        "q": "Apple Health isn't listed under Connected Apps in MyFitnessPal",
+        "a": "That's expected. Apple Health is part of iOS, so the link lives in Settings → Sharing & Privacy → HealthKit Sharing and in iPhone Settings → Health → Data Access & Devices → MyFitnessPal."
+      },
+      {
+        "q": "Yesterday's workout didn't sync to MFP",
+        "a": "Health exercise only syncs on the same day. Open MFP before midnight after a workout. Log missed ones manually."
+      },
+      {
+        "q": "Nothing syncs between Health and MFP",
+        "a": "Check categories in iPhone Settings → Health → Data Access & Devices → MyFitnessPal. Add a test weight or workout in Health and see if it appears. If not, tap More → Sync, confirm your data shows on myfitnesspal.com, then reinstall MFP and reconnect."
+      },
+      {
+        "q": "Apple Watch calories don't match MFP",
+        "a": "MFP reads steps and workouts but doesn't use the watch's separate active calories, so totals will differ. Check the Calorie Adjustment breakdown in Today → Exercise."
+      },
+      {
+        "q": "Old data didn't come across",
+        "a": "MFP can't pull historical Health data. Only entries after you connect sync."
+      },
+      {
+        "q": "Wrong data on a shared iPhone",
+        "a": "Health can't tell MFP accounts apart. Don't connect Apple Health if several MFP accounts are used on one iPhone."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does MyFitnessPal sync with Apple Health?",
+        "a": "Yes. Food and nutrients go to Health, weight syncs both ways, and exercise, steps and sleep come from Health into MFP."
+      },
+      {
+        "q": "Does MyFitnessPal send exercise to Apple Health?",
+        "a": "No. Exercise only flows from Apple Health into MFP."
+      },
+      {
+        "q": "Do Apple Watch workouts sync to MyFitnessPal?",
+        "a": "Yes, automatically once Apple Health is linked. Open MFP the same day; some types appear as 'Apple Health App Workout'."
+      },
+      {
+        "q": "How do I use Apple Watch steps in MyFitnessPal?",
+        "a": "Open MFP on the watch once, then on iPhone go to More → Steps and select Apple Watch."
+      },
+      {
+        "q": "Does MyFitnessPal sync calories to Apple Health?",
+        "a": "Yes, food calories (dietary energy) and most nutrients sync, but not caffeine or vitamin A, and meal times aren't kept."
+      }
+    ],
+    "sources": [
+      [
+        "MyFitnessPal Support: Apple Health connection and syncing",
+        "https://support.myfitnesspal.com/hc/en-us/articles/360032271092-Apple-Health-connection-and-syncing"
+      ],
+      [
+        "MyFitnessPal Support: Apple Health Troubleshooting",
+        "https://support.myfitnesspal.com/hc/en-us/articles/47916762416269-Apple-Health-Troubleshooting"
+      ],
+      [
+        "MyFitnessPal Support: Apple Watch App",
+        "https://support.myfitnesspal.com/hc/en-us/articles/360032625731-Apple-Watch-App"
+      ],
+      [
+        "MyFitnessPal Support: How step tracking works in MyFitnessPal",
+        "https://support.myfitnesspal.com/hc/en-us/articles/360032273612-How-step-tracking-works-in-MyFitnessPal"
+      ],
+      [
+        "MyFitnessPal Support: Understanding your Calorie Adjustment",
+        "https://support.myfitnesspal.com/hc/en-us/articles/360032623871-Understanding-your-Calorie-Adjustment"
+      ],
+      [
+        "MyFitnessPal Support: Apple Watch workout names and how they sync",
+        "https://support.myfitnesspal.com/hc/en-us/articles/47890508058125-Apple-Watch-workout-names-and-how-they-sync-to-MyFitnessPal"
+      ],
+      [
+        "Apple Support: Manage Health data on your iPhone",
         "https://support.apple.com/en-us/108779"
       ]
     ]

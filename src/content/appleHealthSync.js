@@ -33,6 +33,7 @@ const listOf = (names, joiner = 'and') => (names.length > 1 ? `${names.slice(0, 
 // "Workouts, sleep, heart rate and steps" — the key types a device writes in full.
 const lower = (label) => (label === 'HRV' ? label : label.toLowerCase());
 export function syncSummary(guide) {
+  if (guide.summary) return guide.summary;
   const full = KEY_TYPES.filter((k) => syncOf(guide, k)?.ok === true).map((k) => lower(k.label));
   const part = KEY_TYPES.filter((k) => syncOf(guide, k)?.ok === 'partial').map((k) => lower(k.label));
   const text = [full.length && listOf(full), part.length && `partly ${listOf(part)}`].filter(Boolean).join('; ') || 'none of the key data types';

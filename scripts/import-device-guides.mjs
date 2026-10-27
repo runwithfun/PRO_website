@@ -27,8 +27,8 @@ const LLMS = path.join(ROOT, 'public/llms.txt');
 const SITE = 'https://proapp.uk';
 
 // Display order on the hub and in "other devices"; unknown ids go last, alphabetically.
-const ORDER = ['garmin', 'whoop', 'oura', 'polar', 'coros', 'suunto', 'fitbit', 'samsung', 'amazfit', 'xiaomi', 'huawei', 'withings', 'ultrahuman', 'wahoo', 'strava', 'zwift', 'peloton'];
-const KEYS = ['id', 'name', 'path', 'app', 'method', 'checked', 'answer', 'requirements', 'syncs', 'steps', 'thirdParty', 'afterSetup', 'duplicates', 'trouble', 'faq', 'sources'];
+const ORDER = ['garmin', 'whoop', 'oura', 'polar', 'coros', 'suunto', 'fitbit', 'samsung', 'amazfit', 'xiaomi', 'huawei', 'withings', 'ultrahuman', 'wahoo', 'strava', 'zwift', 'peloton', 'myfitnesspal'];
+const KEYS = ['id', 'name', 'path', 'app', 'method', 'checked', 'summary', 'answer', 'requirements', 'syncs', 'steps', 'thirdParty', 'afterSetup', 'duplicates', 'trouble', 'faq', 'sources'];
 const METHODS = ['native', 'third-party', 'partial'];
 const UI = ['install', 'permissions', 'sync', 'toggle'];
 

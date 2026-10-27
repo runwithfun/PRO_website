@@ -164,3 +164,6 @@
   .dg-sync-flow i { opacity: .6; }
   .dg-card { transition: none; }
 }
+
+/* Long device titles: smaller than the shared 80px intro heading */
+.device-page .connect-intro h1 { font-size: clamp(32px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -.04em; max-width: 900px; }

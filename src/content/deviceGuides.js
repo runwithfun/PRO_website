@@ -1030,11 +1030,12 @@ export const deviceGuides = [
       },
       {
         "title": "Open the Suunto app settings",
-        "text": "Suunto app → profile icon → Settings → 'Save to Apple Health' (label as reported by third-party guides; Suunto's listing only says 'Go to app settings').",
+        "text": "Suunto app → Profile → Settings → scroll down → turn on 'Save to Apple Health'. You can also manage it from the Health app: profile → Apps → Suunto.",
         "menu": [
           "Suunto app",
-          "profile icon",
-          "Settings"
+          "Profile",
+          "Settings",
+          "Save to Apple Health"
         ]
       },
       {

@@ -106,7 +106,7 @@
   // in-app browser (those apps usually strip the referrer), the very first touch of this
   // browser, the visit number and the names (not values) of the landing link's parameters.
   var CLICK_IDS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid', 'twclid', 'rdt_cid', 'li_fat_id',
-                   'igsh', 'yclid', 'epik', 'sccid', 'dclid'];
+                   'igsh', 'yclid', 'epik', 'sccid', 'dclid', 'oppref', 'olref'];  // oppref/olref: ChatGPT ads
   var CLICK_VALUE = /^[A-Za-z0-9_.\-]{1,300}$/;
   var IN_APP = [[/Instagram/, 'instagram'], [/FBAN|FBAV|FB_IAB/, 'facebook'], [/Barcelona/, 'threads'],
                 [/musical_ly|BytedanceWebview|TikTok/i, 'tiktok'], [/Twitter/, 'x'], [/Reddit/i, 'reddit'],
@@ -124,11 +124,13 @@
       return host && HOSTS.indexOf(host) < 0 ? host.slice(0, 120) : '';
     } catch (e) { return ''; }
   }
-  function storedJSON(store, key) { try { return JSON.parse(store.getItem(key) || 'null'); } catch (e) { return null; } }
-  function saveJSON(store, key, value) { try { store.setItem(key, JSON.stringify(value)); } catch (e) {} }
+  // Storage is looked up by name inside try: where the browser blocks it, merely reading
+  // window.localStorage throws, and the page must still send its events.
+  function storedJSON(store, key) { try { return JSON.parse(w[store].getItem(key) || 'null'); } catch (e) { return null; } }
+  function saveJSON(store, key, value) { try { w[store].setItem(key, JSON.stringify(value)); } catch (e) {} }
   // A visit starts after 30 minutes without events; its landing facts are fixed for the visit.
   function visitContext(campaign) {
-    var now = Date.now(), visit = storedJSON(w.sessionStorage, 'pro_visit_v1');
+    var now = Date.now(), visit = storedJSON('sessionStorage', 'pro_visit_v1');
     if (!visit || now < visit.at || now - visit.at >= VISIT_TTL) {
       var count = 0;
       try { count = parseInt(w.localStorage.getItem('pro_visits') || '0', 10) || 0; } catch (e) {}
@@ -146,12 +148,12 @@
       visit = { number: count, click: click, params: keys.join(','), landing: cleanPath(w.location.pathname), referrer: referrerHost() };
     }
     visit.at = now;
-    saveJSON(w.sessionStorage, 'pro_visit_v1', visit);
-    var first = storedJSON(w.localStorage, 'pro_first_touch_v1');
+    saveJSON('sessionStorage', 'pro_visit_v1', visit);
+    var first = storedJSON('localStorage', 'pro_first_touch_v1');
     if (!first || typeof first.at !== 'number') {
       first = { at: now, source: campaign.utm_source || (visit.click.type ? 'click:' + visit.click.type : '') || visit.referrer || 'direct',
                 medium: campaign.utm_medium || '', campaign: campaign.utm_campaign || '', referrer: visit.referrer, landing: visit.landing };
-      saveJSON(w.localStorage, 'pro_first_touch_v1', first);
+      saveJSON('localStorage', 'pro_first_touch_v1', first);
     }
     var out = { visit_number: visit.number, landing_path: visit.landing, days_since_first_visit: Math.max(0, Math.floor((now - first.at) / 86400000)) };
     if (visit.params) out.landing_params = visit.params;
@@ -204,7 +206,8 @@
 
   function flush(leaving) {
     if (!queue.length || failures >= 5 || HOSTS.indexOf(w.location.hostname) < 0) return;
-    var batch = queue.splice(0, 50);
+    // ~2.5 KB per event at most: 20 stay well under the server's 64 KB body limit.
+    var batch = queue.splice(0, 20);
     var body = JSON.stringify({ visitor_id: visitorId(), referrer: (d.referrer || '').slice(0, 300) || null, events: batch });
     if (leaving && w.navigator.sendBeacon) {
       try { if (w.navigator.sendBeacon(API, new Blob([body], { type: 'text/plain' }))) return; } catch (e) {}

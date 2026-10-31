@@ -955,8 +955,8 @@ export const deviceGuides = [
     "method": "partial",
     "checked": "2026-10-27",
     "answer": [
-      "Partly. The Suunto iPhone app can save workouts with heart rate, and reportedly steps, distance and active energy, to Apple Health; Suunto's App Store listing says only 'Go to app settings to start sharing your data.'",
-      "Key caveats: sleep, HRV, resting heart rate, SpO2, respiratory rate, VO2 max and GPS routes are not written. Suunto publishes no list of synced data types."
+      "Yes, for workouts. Turn on 'Save to Apple Health' in the Suunto app and your workouts go to Apple Health with heart rate, distance and active energy, ready for any app that reads Health.",
+      "Sleep, HRV, resting heart rate, SpO2, respiratory rate, VO2 max and GPS routes stay in the Suunto app."
     ],
     "requirements": [
       "iPhone with the Suunto app (iOS 16.6 or later) and a Suunto watch paired to it",

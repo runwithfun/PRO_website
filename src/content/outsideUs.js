@@ -17,7 +17,7 @@ export const STATUS = [
     'Health in ChatGPT reads Apple Health from the ChatGPT iPhone app.',
     'US only. Launched to US users on July 23, 2026. The early access that opened on January 7, 2026 excluded the EEA, Switzerland and the UK.',
     'Free, Go, Plus and Pro, on the web and iOS. Connecting Apple Health needs an iPhone.',
-    'Yes. Add P.R.O. as a custom MCP server on chatgpt.com, on a plan that allows custom MCP servers.',
+    'Yes. Install the free P.R.O. plugin from the ChatGPT plugin directory.',
     '/apple-health-chatgpt',
   ],
   [
@@ -64,7 +64,7 @@ export const STATUS = [
 
 // Per-assistant notes for "How to do it from the UK, EU, Canada, Australia or India".
 export const ROUTES_OUTSIDE = [
-  { name: 'ChatGPT', path: '/apple-health-chatgpt', text: 'Set it up once on chatgpt.com — Safari on iPhone works — and it then appears in the ChatGPT iPhone app too. The iPhone app can’t add custom servers on its own.' },
+  { name: 'ChatGPT', path: '/apple-health-chatgpt', text: 'Install the P.R.O. plugin from the ChatGPT plugin directory once, and it works on the web and in the ChatGPT iPhone app.' },
   { name: 'Claude', path: '/apple-health-claude', text: 'Add a custom connector in the Claude app under Settings → Connectors. It works on the Free plan, which allows one custom connector.' },
   { name: 'Perplexity', path: '/apple-health-perplexity', text: 'Add a custom remote connector on perplexity.ai. Perplexity answers in text and draws its own charts.' },
   { name: 'Grok', path: '/apple-health-grok', text: 'Add a custom connector at grok.com/connectors or in the Grok iPhone app.' },

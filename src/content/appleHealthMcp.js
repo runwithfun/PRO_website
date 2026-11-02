@@ -32,7 +32,7 @@ export const ahmCompare = [
 export const ahmClients = [
   {
     id: 'chatgpt', name: 'ChatGPT', status: 'tested', guide: '/apple-health-chatgpt',
-    steps: ['On chatgpt.com: Settings → Plugins → Browse directory → Add → Add custom MCP server.', 'Name PRO, Server URL ' + MCP_URL + ', Authentication OAuth.', 'Create as a plugin → Continue to PRO, then enter the code from P.R.O. It then works in the ChatGPT iPhone app too.'],
+    steps: ['Open the P.R.O. plugin in the ChatGPT plugin directory and install it: https://chatgpt.com/plugins/plugin_asdk_app_6ad22f791530819196ed668dfdbf6909', 'Or add it by hand on chatgpt.com: Settings → Plugins → Browse directory → Add → Add custom MCP server, Server URL ' + MCP_URL + ', OAuth.', 'Create as a plugin → Continue to PRO, then enter the code from P.R.O. It then works in the ChatGPT iPhone app too.'],
   },
   {
     id: 'claude', name: 'Claude and Claude Desktop', icon: 'Claude', status: 'tested', guide: '/apple-health-claude',

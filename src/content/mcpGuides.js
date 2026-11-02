@@ -2,30 +2,26 @@
 export const MCP_URL = 'https://mcp.proapp.uk';
 export const connectionSteps = [
   { title: 'Copy the address.', text: 'Copy https://mcp.proapp.uk — the address for every supported assistant.' },
-  { title: 'Add a custom connector.', text: 'In your assistant’s settings, add a custom MCP connector. Paste the address and select OAuth if asked.' },
+  { title: 'Add a custom connector.', text: 'In your assistant’s settings, add a custom MCP connector. Paste the address and select OAuth if asked. In ChatGPT, just install the P.R.O. plugin.' },
   { title: 'Get P.R.O. and copy your code.', text: 'Install P.R.O. on iPhone, sign in and choose your Apple Health permissions. Open Settings → MCP Connect, tap Get connection code, then tap the code to copy.' },
   { title: 'Paste the code. Connect.', text: 'Return to the authorization page. Paste or type the code, then select Connect. Choose what to share in P.R.O.' },
   { title: 'Start a conversation.', text: 'With P.R.O. enabled, ask your assistant about your workouts, sleep or progress.' },
 ];
 export const guides = [
   {
-    id: 'chatgpt', name: 'ChatGPT', platform: 'Set up on the web · use on iPhone too',
-    intro: 'Add P.R.O. on chatgpt.com first. The ChatGPT iPhone app cannot add a custom MCP server; your connection works there after web setup.',
-    verified: 'Tested by us, October 2026',
-    helpUrl: 'https://developers.openai.com/plugins/deploy/connect-chatgpt',
+    id: 'chatgpt', name: 'ChatGPT', platform: 'ChatGPT plugin directory · web and iPhone',
+    intro: 'P.R.O. is in the ChatGPT plugin directory. Install it, approve access with a one-time code from your iPhone, and start asking.',
+    verified: 'Install flow recorded from the ChatGPT plugin directory, November 2026',
+    helpUrl: 'https://chatgpt.com/plugins/plugin_asdk_app_6ad22f791530819196ed668dfdbf6909',
     steps: [
-      { title: 'Open Plugins in ChatGPT settings.', text: 'On chatgpt.com, open Settings → Plugins.', link: 'https://chatgpt.com/#settings/Connectors', linkText: 'Open ChatGPT settings ↗' },
-      { title: 'Select Browse directory.', text: 'The Customize → Plugins directory opens.' },
-      { title: 'Select Add.', text: 'The menu is in the top-right corner of the directory.' },
-      { title: 'Select Add custom MCP server.' },
-      { title: 'Enter PRO in Name.', text: 'The description and icon are optional.' },
-      { title: 'Enter https://mcp.proapp.uk in Server URL.', text: 'Keep Server URL as the connection type.' },
-      { title: 'Keep OAuth as Authentication.', text: 'Leave Advanced OAuth settings unchanged.' },
-      { title: 'Select I understand and want to continue.', text: 'Read the custom MCP server notice first.' },
-      { title: 'Select Create as a plugin.', text: 'The Connect PRO authorization prompt opens.' },
-      { title: 'Select Continue to PRO ↗.', text: 'The P.R.O. authorization page opens. Complete the access steps below.', pairing: true },
-      { title: 'Check that PRO appears under Installed.', text: 'Your ChatGPT account is connected. You can now use P.R.O. on the web and in the iPhone app.' },
+      { title: 'Open the P.R.O. plugin in ChatGPT.', text: 'Sign in to ChatGPT if it asks.', link: 'https://chatgpt.com/plugins/plugin_asdk_app_6ad22f791530819196ed668dfdbf6909', linkText: 'Open P.R.O. in ChatGPT ↗' },
+      { title: 'Select Install plugin.', text: 'It’s at the top right of the plugin page.' },
+      { title: 'Select Connect P.R.O.', text: 'Read ChatGPT’s notice first. The P.R.O. authorization page opens.' },
+      { title: 'Sign in to P.R.O.', text: 'The P.R.O. authorization page opens.', pairing: true },
+      { title: 'Choose what ChatGPT can access.', text: 'Review the data switches in P.R.O. and tap Done.' },
+      { title: 'Ask ChatGPT.', text: 'Your connection works on the web and in the ChatGPT iPhone app. Try “Show my latest run with its splits and route.”' },
     ],
+    note: 'You can also add it by hand at https://mcp.proapp.uk: on chatgpt.com, Settings → Plugins → Browse directory → Add → Add custom MCP server, with OAuth.',
   },
   {
     id: 'claude', name: 'Claude', platform: 'iPhone · custom connector',

@@ -95,8 +95,8 @@ export const alternatives = [
     ],
     faq: [
       {
-        q: 'What is the best WHOOP alternative for Apple Watch?',
-        a: 'If you already wear an Apple Watch, an app that reads its HRV, resting heart rate and sleep from Apple Health gives you WHOOP-style recovery without a band. P.R.O. adds training load, an AI coach, a free MCP connector for ChatGPT and Claude and, with Pro, adaptive training plans.',
+        q: 'What is the best WHOOP alternative if I already wear a watch or ring?',
+        a: 'If you already wear an Apple Watch, Garmin, Oura or another tracker, an app that reads its data from Apple Health gives you WHOOP-style recovery without a band. P.R.O. adds training load, an AI coach, a free MCP connector for ChatGPT and Claude and, with Pro, adaptive training plans.',
       },
       {
         q: 'Is there a free WHOOP alternative?',

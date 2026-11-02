@@ -157,7 +157,7 @@ export const SOURCES = [
 
 export const compareFaq = [
   {
-    q: 'What is the best AI coach app for Apple Watch?',
+    q: 'What is the best AI coach app for Apple Health?',
     a: 'P.R.O. if you want to chat with your Apple Health data, connect ChatGPT or Claude through a free MCP connector and get adaptive training plans with Pro. Athlytic suits an on-device recovery score, WHOOP a dedicated band and Runna running-only plans.',
   },
   {

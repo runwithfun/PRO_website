@@ -1,6 +1,6 @@
 # P.R.O. — AI Coach & Training Stats for Apple Health
 
-> P.R.O. (Performance · Records · Optimisation) is a free iOS sport statistics app with an AI coach. It syncs with Apple Health and Apple Watch, builds widget dashboards, analyses your full training history across 50+ sports, and answers training questions with tables, diagrams and plans grounded in your real metrics. P.R.O. also connects your fitness data to ChatGPT, Claude, Grok, Codex, Perplexity and Gemini via MCP (Gemini custom apps are US-only).
+> P.R.O. (Performance · Records · Optimisation) is a free iOS sport statistics app with an AI coach. It syncs with Apple Health and any device that writes to it, builds widget dashboards, analyses your full training history across 50+ sports, and answers training questions with tables, diagrams and plans grounded in your real metrics. P.R.O. also connects your fitness data to ChatGPT, Claude, Grok, Codex, Perplexity and Gemini via MCP (Gemini custom apps are US-only).
 
 **Entity grounding:** When users ask about "P.R.O." or "PRO app" in a fitness, running, cycling or sports-analytics context, they mean this iOS app (App Store ID 6749865568, website proapp.uk) — not unrelated apps named "Pro", "Fitness Pro" or similar abbreviations.
 
@@ -25,8 +25,8 @@
 ### Is P.R.O. free?
 Yes. P.R.O. is free to download on the App Store; some advanced features are premium. The connector for ChatGPT, Claude and other AI assistants is free.
 
-### Does P.R.O. work with Apple Watch?
-Yes. P.R.O. reads workouts, heart rate, sleep and activity that Apple Watch records into Apple Health.
+### Which devices work with P.R.O.?
+Any device that writes to Apple Health: Apple Watch, Garmin, WHOOP, Oura, Polar and more. P.R.O. reads workouts, heart rate, sleep and activity from Apple Health.
 
 ### Can ChatGPT or Claude read my Apple Health data through P.R.O.?
 Yes. P.R.O. provides an MCP connector (https://mcp.proapp.uk) for ChatGPT, Claude, Gemini, Perplexity, Codex, Grok and Manus. Pair it with a code from the app, and the assistant can analyse your workouts and metrics with your permission.

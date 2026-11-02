@@ -42,7 +42,7 @@ export function structuredData(route, store = {}) {
       name: 'P.R.O.',
       alternateName: 'P.R.O. AI Coach for Apple Health',
       description:
-        'iOS sport statistics app with an AI coach: syncs with Apple Health and Apple Watch, builds widget dashboards, analyses training history across 50+ sports and answers training questions with your real data. Connects to ChatGPT and Claude via MCP.',
+        'iOS sport statistics app with an AI coach: syncs with Apple Health and any device that writes to it, builds widget dashboards, analyses training history across 50+ sports and answers training questions with your real data. Connects to ChatGPT and Claude via MCP.',
       applicationCategory: 'HealthApplication',
       operatingSystem: store.operatingSystem ?? 'iOS 18.5 or later',
       ...(store.softwareVersion && { softwareVersion: store.softwareVersion }),

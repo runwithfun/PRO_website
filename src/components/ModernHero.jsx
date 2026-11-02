@@ -46,7 +46,7 @@ export default function ModernHero() {
           className="mx-auto mb-10 mt-6 max-w-3xl text-xl leading-relaxed text-pink-800 sm:text-2xl animate-slide-up"
           style={{ animationDelay: '0.1s' }}
         >
-          P.R.O. is a free iOS AI coach that turns your Apple Health and Apple Watch data into
+          P.R.O. is a free iOS AI coach that turns your Apple Health data, from Apple Watch, Garmin, WHOOP or any other device, into
           training history analysis, widget-rich dashboards and answers from your real metrics.
         </p>
 

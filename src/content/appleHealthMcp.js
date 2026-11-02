@@ -70,6 +70,10 @@ export const ahmClients = [
     note: 'Google offers custom apps only in the US, to adults with a personal Google account.',
   },
   {
+    id: 'cherry-studio', name: 'Cherry Studio', status: 'tested', guide: '/apple-health-cherry-studio',
+    steps: ['Settings → MCP → MCP Servers → + Add → Quick Create. Type Streamable HTTP, URL ' + MCP_URL + '.', 'Turn the server on and sign in with the code from P.R.O., then switch P.R.O. on under the assistant’s name → MCP. Use a model that can call tools, such as DeepSeek or Kimi.'],
+  },
+  {
     id: 'manus', name: 'Manus', status: 'tested', guide: '/apple-health-manus',
     steps: ['On manus.im: Settings → Connectors → + Add connectors → Custom MCP → + Add custom MCP → Direct configuration.', 'Server URL ' + MCP_URL + ', no headers → Save, then turn P.R.O. on in a task and sign in with the code from P.R.O.'],
   },

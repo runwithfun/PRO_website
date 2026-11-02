@@ -27,6 +27,29 @@ const alsoWorksIn = (self) => {
   return 'The same connection also works in ' + listOf(others) + gemini + '.';
 };
 
+const CHERRY_STEPS = [
+  { title: 'Open Settings → MCP → MCP Servers in Cherry Studio.', text: 'The gear icon is at the bottom left of the window.' },
+  { title: 'Select + Add → Quick Create.' },
+  { title: 'Fill in the form and select Add.', text: 'Name: P.R.O. Type: Streamable HTTP (streamableHttp). URL: https://mcp.proapp.uk. Leave Headers empty: there’s no API key, P.R.O. registers Cherry Studio on its own.' },
+  { title: 'Turn on the switch at the top right.', text: 'The status changes to Waiting for authorization and the P.R.O. authorization page opens in your browser. Cherry Studio waits for a few minutes, so have your iPhone ready.' },
+  { title: 'Sign in to P.R.O.', text: 'The P.R.O. authorization page opens.', pairing: true },
+  { title: 'Choose what Cherry Studio can access.', text: 'Review the data switches in P.R.O. and tap Done.' },
+  { title: 'Check that the status says Connected.', text: 'The Tools tab now lists the P.R.O. tools.' },
+  { title: 'Turn P.R.O. on for your assistant.', text: 'In Chat, click the assistant’s name at the top. Open MCP, set MCP Mode to Manual and switch P.R.O. on.' },
+  { title: 'Choose a model that can call tools.', text: 'In Settings → Model Provider, pick a provider such as DeepSeek or Moonshot (Kimi), select Add API key, then choose its model at the top of the chat. The free built-in Qwen model can’t call tools, so it can’t read your data.' },
+];
+const CHERRY_SHOTS = {
+  2: { src: 'mcp/cherry-studio/add-menu.jpg', alt: 'Cherry Studio MCP Servers page with the Add menu open and Quick Create at the top', caption: '+ Add → Quick Create.' },
+  3: { src: 'mcp/cherry-studio/server-form.jpg', alt: 'Cherry Studio Quick Create form: Name P.R.O., Type Streamable HTTP, URL https://mcp.proapp.uk', caption: 'The filled-in form.' },
+  4: { src: 'mcp/cherry-studio/waiting.jpg', alt: 'Cherry Studio server page showing Waiting for authorization with the switch on', caption: 'Waiting for authorization: finish the sign-in in your browser.' },
+  5: { src: 'mcp/grok/pairing-page.jpg', alt: 'P.R.O. authorization page with Open P.R.O., a code field, Paste and Connect', caption: 'The P.R.O. page looks the same for every assistant.' },
+  6: { src: 'mcp/grok/permissions.jpg', alt: 'P.R.O. screen with data switches for the connected assistant', caption: 'In P.R.O.: choose what the assistant can see, then Done.' },
+  7: { src: 'mcp/cherry-studio/tools.jpg', alt: 'Cherry Studio showing P.R.O. Connected with the Tools tab listing get_profile, get_goals and get_training_plan', caption: 'Connected, with the P.R.O. tools listed.' },
+  8: { src: 'mcp/cherry-studio/assistant-mcp.jpg', alt: 'Cherry Studio Edit Assistant dialog on the MCP tab: MCP Mode Manual, P.R.O. Connected and switched on', caption: 'Edit Assistant → MCP: P.R.O. on.' },
+};
+const CHERRY_VERIFIED = 'Connection and tool list tested in Cherry Studio 2.1.10, November 2026';
+const CHERRY_HELP = 'https://docs.cherry-ai.com/';
+
 export const assistantGuides = [
   {
     id: 'chatgpt',
@@ -432,6 +455,97 @@ export const assistantGuides = [
       { q: 'Does Manus show P.R.O. cards?', a: 'Manus works from the data P.R.O. returns and answers in its own format. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
       { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
       { q: 'How do I remove Manus’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Manus and confirm Disconnect. You can also remove the connector in Manus under Settings → Connectors.' },
+    ],
+  },
+  {
+    id: 'cherry-studio',
+    name: 'Cherry Studio',
+    platform: 'Desktop app · DeepSeek, Kimi, GLM and more',
+    path: '/apple-health-cherry-studio',
+    title: 'How to Connect Apple Health to Cherry Studio (MCP) — P.R.O.',
+    description:
+      'Use your Apple Health workouts, sleep and HRV in Cherry Studio with the free P.R.O. MCP connector. No API key for P.R.O.: add one URL, sign in, pick a model.',
+    answer: [
+      'Cherry Studio has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health data to it through an MCP server at ' + MCP_URL + ', so the model you choose can read your workouts, sleep, heart rate, HRV, training load and training plan.',
+      'Add the server once, sign in with a one-time code from your iPhone, and switch it on for your assistant. It works with any model in Cherry Studio that can call tools, including DeepSeek and Kimi through your own API key.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'Cherry Studio on your computer.',
+      'An API key for a model that can call tools, such as DeepSeek or Moonshot (Kimi).',
+    ],
+    guide: {
+      intro: 'Add P.R.O. as a Streamable HTTP server in Cherry Studio, sign in with a one-time code from your iPhone, then switch it on for your assistant.',
+      verified: CHERRY_VERIFIED,
+      helpUrl: CHERRY_HELP,
+      steps: CHERRY_STEPS,
+    },
+    recorded: 'November 2026',
+    shots: CHERRY_SHOTS,
+    prompts: [
+      'Use P.R.O. to summarize my training this week.',
+      'Use P.R.O. to compare my sleep and HRV on the nights after hard workouts.',
+      'Use P.R.O. to tell me whether I’m ready to train today.',
+      'Use P.R.O. to check whether I’m on track for my training plan.',
+    ],
+    cards: [],
+    trouble: [
+      ['Cherry Studio says the browser authorization wasn’t finished.', 'It stopped waiting before you signed in. Select Retry next to the server name and enter a new code from P.R.O. on the page that opens.'],
+      ['The model asks me for my training details.', 'Check two things: P.R.O. is on under the assistant’s name → MCP, and the model can call tools. The free built-in Qwen model can’t.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+    ],
+    faq: [
+      { q: 'Can Cherry Studio read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Add https://mcp.proapp.uk as a Streamable HTTP MCP server and sign in with a code from P.R.O. Cherry Studio then reads only the categories you allow.' },
+      { q: 'Do I need an API key for P.R.O.?', a: 'No. P.R.O. uses OAuth with a one-time code, so leave Headers empty. You only need an API key for the model you chat with.' },
+      { q: 'Which models work?', a: 'Models that can call tools. The free built-in Qwen model in Cherry Studio can’t, so add a provider such as DeepSeek or Moonshot (Kimi) with your own API key.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
+      { q: 'How do I remove access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Cherry Studio and confirm Disconnect. You can also select Delete on the server page in Cherry Studio.' },
+    ],
+  },
+  {
+    id: 'deepseek',
+    name: 'DeepSeek',
+    platform: 'DeepSeek, Qwen, Kimi or GLM · through Cherry Studio',
+    path: '/apple-health-deepseek',
+    title: 'Connect Apple Health to DeepSeek, Qwen or Kimi (MCP) — P.R.O.',
+    description:
+      'Ask DeepSeek, Kimi, Qwen or GLM about your Apple Health data: the free P.R.O. MCP connector plus Cherry Studio and your model’s API key. Step-by-step setup.',
+    answer: [
+      'Use a desktop app that supports MCP. As of November 2026 we found no way to add a custom MCP connector in the DeepSeek, Qwen or Kimi chat apps, so connect the free P.R.O. app (' + MCP_URL + ') to Cherry Studio and choose DeepSeek, Kimi, Qwen or GLM there with your own API key.',
+      'The model then reads your Apple Health workouts, sleep, heart rate, HRV, training load and training plan, and only the categories you allow.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'Cherry Studio on your computer.',
+      'An API key from DeepSeek, Moonshot (Kimi), BigModel (GLM), or a provider that hosts Qwen, such as SiliconFlow.',
+    ],
+    guide: {
+      intro: 'Set up P.R.O. in Cherry Studio once. After that, you can switch between models without connecting again.',
+      verified: CHERRY_VERIFIED,
+      helpUrl: CHERRY_HELP,
+      steps: CHERRY_STEPS,
+    },
+    recorded: 'November 2026',
+    shots: CHERRY_SHOTS,
+    prompts: [
+      'Use P.R.O. to summarize my training this week.',
+      'Use P.R.O. to find what changed in my sleep and resting heart rate this month.',
+      'Use P.R.O. to tell me whether I’m ready to train today.',
+      'Use P.R.O. to build a table of my workouts for the last 30 days.',
+    ],
+    cards: [],
+    trouble: [
+      ['The model asks me for my training details.', 'Check two things: P.R.O. is on under the assistant’s name → MCP, and you selected your provider’s model, not the free built-in Qwen.'],
+      ['Cherry Studio says the browser authorization wasn’t finished.', 'It stopped waiting before you signed in. Select Retry next to the server name and enter a new code from P.R.O. on the page that opens.'],
+    ],
+    faq: [
+      { q: 'Can DeepSeek read my Apple Health data?', a: 'Yes, through Cherry Studio and the free P.R.O. app. We found no custom connector option in the DeepSeek chat app, and the DeepSeek API doesn’t run MCP servers itself, so a desktop app connects to P.R.O. and passes the data to the model.' },
+      { q: 'Does this work with Qwen and Kimi?', a: 'The setup is the same. Add Moonshot for Kimi, or a provider that hosts Qwen such as SiliconFlow, then choose that model in the chat.' },
+      { q: 'Does it work in the DeepSeek or Qwen phone app?', a: 'Not as of November 2026: we found no way to add a custom MCP connector there. Use Cherry Studio on your computer.' },
+      { q: 'Where does my data go?', a: 'P.R.O. sends the categories you allow to Cherry Studio, and Cherry Studio sends what the model needs to the provider you chose. That provider’s privacy terms apply to those messages.' },
+      { q: 'Is it free?', a: 'The P.R.O. app and connector are free. You pay your model provider for API usage according to its pricing.' },
     ],
   },
 ];

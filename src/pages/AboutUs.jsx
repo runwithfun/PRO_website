@@ -29,7 +29,7 @@ const SPECS = [
   { label: 'Dashboard', value: 'Widget-rich grid', note: 'Rings, stats, streaks, and coach entry — all in one dense view.' },
   { label: 'AI coach', value: 'Tables, diagrams, plans', note: 'Answers grounded in your real training history.' },
   { label: 'MCP connector', value: 'Free for your AI', note: 'ChatGPT, Claude, Gemini and more read the Apple Health data you allow.' },
-  { label: 'Privacy', value: 'Your choice', note: 'You choose which categories P.R.O. reads and shares, and can revoke access at any time.' },
+  { label: 'Privacy', value: 'On-device first', note: 'Your health data stays on your device until you choose to send it to an AI assistant.' },
 ];
 
 function VideoShowcase() {

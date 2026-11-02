@@ -57,7 +57,7 @@ const SPOTLIGHTS = [
 const FAQ = [
   {
     q: 'How does the Coach Assistant use my data?',
-    a: 'It reads your Apple Health workout history — distance, pace, heart rate, sleep — to personalise analysis, plans, and recovery advice. You choose which categories P.R.O. reads and shares, and can revoke access at any time.',
+    a: 'It reads your Apple Health workout history — distance, pace, heart rate, sleep — to personalise analysis, plans, and recovery advice. Health data stays on your device until you choose to send it to an AI assistant.',
   },
   {
     q: 'What makes the dashboard different?',

@@ -29,7 +29,7 @@ export default function DeviceGuide({ id }) {
       <dl className="ag-facts dg-facts hero-fade" style={{ animationDelay: '200ms' }}>
         <div><dt>{g.method === 'third-party' ? 'Official app' : 'App'}</dt><dd>{g.app || 'No official Apple Health link'}</dd></div>
         <div><dt>Method</dt><dd><MethodBadge method={g.method} /><span className="dg-fact-hint">{METHOD_HINT[g.method]}</span></dd></div>
-        <div><dt>Data types</dt><dd>{counts.yes} of {g.syncs.length} sync{counts.part ? `, ${counts.part} partly` : ''}</dd></div>
+        <div><dt>Data types</dt><dd>{counts.yes} of {g.syncs.filter((s) => s.ok !== undefined).length} sync{counts.part ? `, ${counts.part} partly` : ''}</dd></div>
         <div><dt>Checked</dt><dd><time dateTime={g.checked}>{checked}</time></dd></div>
       </dl>
     </header>
@@ -105,10 +105,10 @@ export default function DeviceGuide({ id }) {
           <li><strong>AI coach chat</strong> grounded in your own workouts, sleep and heart rate</li>
           <li><strong>Widget dashboards</strong> for the numbers you care about</li>
           <li><strong>Training history</strong> across 50+ sports, with records and trends</li>
-          <li><strong>Adaptive training plans</strong> that follow your load and recovery</li>
+          <li><strong>Adaptive training plans</strong> with Pro, following your load and recovery</li>
           <li><strong>Sleep score</strong> for every night</li>
         </ul>
-        <p className="dg-pro-lead">You can also ask ChatGPT, Claude, Gemini or Perplexity about your {g.name} data through the free P.R.O. connector.</p>
+        <p className="dg-pro-lead">You can also ask ChatGPT, Claude, Gemini or Perplexity about your {g.name} data through the free P.R.O. MCP connector.</p>
         <div className="dg-pro-actions">
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
           <Link className="dg-pro-link" to="/mcp-connect">Connect ChatGPT or Claude →</Link>

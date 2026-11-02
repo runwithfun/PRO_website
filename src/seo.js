@@ -1,6 +1,6 @@
 import { assistantGuides } from './content/assistantGuides.js';
 import { deviceGuides } from './content/deviceGuides.js';
-import { HUB_PATH, hubTitle, hubDescription, guideDescription } from './content/appleHealthSync.js';
+import { HUB_PATH, hubTitle, hubDescription, guideDescription, deviceTitle } from './content/appleHealthSync.js';
 import { alternatives } from './content/alternatives.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
@@ -19,7 +19,7 @@ export const ROUTES = [
     file: 'features.html',
     title: 'Features — P.R.O. AI Coach for Apple Health',
     description:
-      '65+ features: widget dashboards, training history across 50+ sports, heart-rate zones, personal records, adaptive training plans and an AI coach grounded in your Apple Health data.',
+      '65+ features: a free MCP connector for ChatGPT and Claude, widget dashboards, 50+ sports, training plans and an AI coach built on your Apple Health data.',
   },
   {
     path: '/faq',
@@ -50,7 +50,7 @@ export const ROUTES = [
     file: 'terms.html',
     title: 'Terms of Service — P.R.O.',
     description:
-      'Terms for using the P.R.O. app, its AI coach and the MCP connector for AI assistants: subscriptions via the App Store, acceptable use, AI disclaimers and account deletion.',
+      'Terms for the P.R.O. app, its AI coach and the MCP connector: App Store subscriptions, acceptable use, AI disclaimers and account deletion.',
     sources: ['src/pages/Terms.jsx', 'src/components/LegalPage.jsx', 'src/content/terms.js'],
   },
   {
@@ -58,7 +58,7 @@ export const ROUTES = [
     file: 'support.html',
     title: 'Support — P.R.O.',
     description:
-      'Contact P.R.O. support at mail@proapp.uk, and fix common issues: connecting AI assistants, revoking access, missing data, account deletion and subscriptions.',
+      'Contact P.R.O. support at mail@proapp.uk and fix common issues: connecting AI assistants, revoking access, missing data, account deletion, subscriptions.',
     faq: 'support',
     sources: ['src/pages/Support.jsx', 'src/content/support.js'],
   },
@@ -67,7 +67,7 @@ export const ROUTES = [
     file: 'mcp-connect.html',
     title: 'Connect Apple Health to Your AI Assistant via MCP — P.R.O.',
     description:
-      'Connect P.R.O. to ChatGPT, Claude, Gemini, Perplexity, Codex, Grok or Manus. A clear setup guide for sharing Apple Health workouts, sleep and heart rate with your permission.',
+      'Connect Apple Health to ChatGPT, Claude, Gemini, Perplexity, Codex, Grok or Manus with the free P.R.O. MCP connector. Five steps, about two minutes.',
     faq: 'mcp',
     image: '/mcp-guide/social.jpg',
     imageHeight: 630,
@@ -93,7 +93,7 @@ export const ROUTES = [
   ...deviceGuides.map((g) => ({
     path: g.path,
     file: `${g.path.slice(1)}.html`,
-    title: `How to Sync ${g.name} with Apple Health (${g.checked.slice(0, 4)}) — P.R.O.`,
+    title: deviceTitle(g),
     description: guideDescription(g),
     device: g.id,
     sources: ['src/pages/DeviceGuide.jsx', 'src/pages/device-guide.css', 'src/components/DeviceSync.jsx', 'src/content/appleHealthSync.js', 'src/content/deviceGuides.js'],
@@ -103,16 +103,16 @@ export const ROUTES = [
     file: 'what-is-a-good-hrv.html',
     title: 'What Is a Good HRV on Apple Watch? HRV by Age Chart — P.R.O.',
     description:
-      'What counts as a good HRV on Apple Watch: SDNN vs RMSSD, Recovery HRV, normal HRV by age and sex from ECG studies, and a free checker to compare your number with your age and your own baseline.',
+      'What counts as a good HRV on Apple Watch: SDNN vs RMSSD, normal HRV by age and sex from ECG studies, and a free checker for your age and baseline.',
     faq: 'hrv',
     sources: ['src/pages/GoodHrv.jsx', 'src/content/hrv.js', 'src/pages/tools.css'],
   },
   {
     path: '/zone-2-calculator',
     file: 'zone-2-calculator.html',
-    title: 'Zone 2 Heart Rate Calculator — Apple Watch, Karvonen, MAF | P.R.O.',
+    title: 'Zone 2 Heart Rate Calculator: Karvonen, MAF — P.R.O.',
     description:
-      'Free Zone 2 heart rate calculator: compare 60–70% of max HR, Tanaka, Gulati for women, heart rate reserve (Karvonen) and MAF side by side, see Zone 2 by age, and set your zones on Apple Watch.',
+      'Free Zone 2 calculator: compare 60–70% of max HR, Tanaka, Gulati, Karvonen and MAF side by side, see Zone 2 by age and set your zones on Apple Watch.',
     faq: 'zone2',
     sources: ['src/pages/Zone2Calculator.jsx', 'src/content/zone2.js', 'src/pages/tools.css'],
   },
@@ -121,25 +121,25 @@ export const ROUTES = [
     file: 'apple-watch-readiness-score.html',
     title: 'Apple Watch Readiness Score on Older Watches — P.R.O.',
     description:
-      'Apple’s Readiness is only on Series 12 and Ultra 4. Get a free readiness read on Series 9–11, Ultra or SE — in the app or in ChatGPT and Claude via MCP.',
+      'Apple’s Readiness is only on Series 12 and Ultra 4. Get a free readiness read on older watches in ChatGPT or Claude via MCP, or in the app with Pro.',
     faq: 'readiness',
     sources: ['src/pages/AppleWatchReadiness.jsx', 'src/content/readiness.js', 'src/pages/tools.css'],
   },
   {
     path: '/apple-health-ai-outside-us',
     file: 'apple-health-ai-outside-us.html',
-    title: 'ChatGPT Health & Claude Apple Health Outside the US: UK, EU, Canada — P.R.O.',
+    title: 'Apple Health in ChatGPT & Claude Outside the US — P.R.O.',
     description:
-      'ChatGPT Health, Claude’s Apple Health beta, Perplexity Health and Copilot Health are US only as of October 2026. How to connect Apple Health to ChatGPT, Claude, Perplexity, Grok or Codex from the UK, EU, Canada, Australia or India.',
+      'ChatGPT Health and Claude’s Apple Health are US only. Connect Apple Health from the UK, EU, Canada or India with the free P.R.O. MCP connector.',
     faq: 'outsideUs',
     sources: ['src/pages/OutsideUs.jsx', 'src/content/outsideUs.js', 'src/pages/tools.css', 'src/pages/assistant-guide.css'],
   },
   {
     path: '/apple-health-mcp',
     file: 'apple-health-mcp.html',
-    title: 'Apple Health MCP Server — Hosted HealthKit MCP for Claude, ChatGPT, Cursor & Codex | P.R.O.',
+    title: 'Apple Health MCP Server: Hosted, Free, No Export — P.R.O.',
     description:
-      'A hosted Apple Health MCP server at https://mcp.proapp.uk: the free P.R.O. iPhone app syncs HealthKit, you sign in with OAuth — no export.xml, Mac or terminal. Setup for Claude Desktop, ChatGPT, Cursor, Codex and Claude Code.',
+      'Hosted Apple Health MCP server at https://mcp.proapp.uk: free P.R.O. app, OAuth sign-in, no export.xml, Mac or terminal. Works in Claude, ChatGPT, Cursor.',
     faq: 'appleHealthMcp',
     sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
   },
@@ -154,9 +154,9 @@ export const ROUTES = [
   {
     path: '/compare',
     file: 'compare.html',
-    title: 'P.R.O. vs Athlytic, Bevel, WHOOP Coach & Runna — AI Coach Apps Compared',
+    title: 'P.R.O. vs Athlytic, Bevel, WHOOP & Runna: AI Coach Apps',
     description:
-      'Honest comparison of AI coach apps for Apple Watch: P.R.O., Athlytic, Bevel, WHOOP Coach, Gentler Streak, Google Health Coach, Runna, Apple Readiness and ChatGPT Health — price, hardware, AI chat, plans, recovery, ChatGPT/Claude support.',
+      'Compare AI coach apps on MCP, price, hardware, plans and recovery: P.R.O. vs Athlytic, Bevel, WHOOP, Gentler Streak, Runna and ChatGPT Health.',
     faq: 'compare',
     sources: ['src/pages/Compare.jsx', 'src/content/compare.js'],
   },

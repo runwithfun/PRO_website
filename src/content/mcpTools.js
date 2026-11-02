@@ -13,11 +13,29 @@ export const mcpTools = [
     what: 'Workout summaries: type, date, duration, distance, energy, heart rate, pace, cadence, power, source app.',
     access: 'Read',
   },
+  {
+    name: 'get_training_load',
+    title: 'Training load and readiness',
+    what: 'Seven-day acute versus 28-day chronic load, their ratio and trends, plus your readiness status.',
+    access: 'Read',
+  },
+  {
+    name: 'get_week_summary',
+    title: 'Week in numbers',
+    what: 'The last seven days compared with the seven before: steps, energy, exercise, sleep, resting heart rate, HRV and workout totals.',
+    access: 'Read',
+  },
   { name: 'get_streak', title: 'Activity streak', what: 'Current and longest run of active days.', access: 'Read' },
   {
     name: 'get_training_plan',
     title: 'Training plan',
     what: 'The active plan, upcoming sessions and the plan’s change history.',
+    access: 'Read',
+  },
+  {
+    name: 'get_plan_proposal',
+    title: 'Plan change status',
+    what: 'A plan proposal with its changes and status: pending, accepted, partial, declined, expired or superseded.',
     access: 'Read',
   },
   { name: 'recall', title: 'Saved coach notes', what: 'Notes you or the P.R.O. coach saved.', access: 'Read' },
@@ -32,6 +50,12 @@ export const mcpTools = [
     title: 'Show a P.R.O. widget',
     what: 'Renders P.R.O. cards (today, sleep, heart, workouts, streak, goals…) inline in assistants that support MCP Apps.',
     access: 'Read',
+  },
+  {
+    name: 'propose_plan_changes',
+    title: 'Suggest plan changes',
+    what: 'Sends a new plan or changes to your current one as a pending proposal. Nothing changes until you accept it in P.R.O.',
+    access: 'Proposal',
   },
   {
     name: 'remember_fact',

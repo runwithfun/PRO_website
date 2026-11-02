@@ -11,22 +11,22 @@ import { MCP_URL } from './mcpGuides.js';
 export const AHM_CHECKED = 'October 27, 2026';
 
 // Columns: export-file servers, Health Auto Export, companion app + local server, P.R.O. (last, highlighted).
-export const ahmColumns = ['Export-file servers', 'Health Auto Export server', 'Companion app + local server', 'P.R.O. (hosted)'];
+export const ahmColumns = ['Export-file servers', 'Server on the phone', 'Companion app + local server', 'P.R.O. (hosted)'];
 export const ahmColumnNotes = [
-  'e.g. the-momentum/apple-health-mcp-server, davidmosiah/apple-health-mcp',
-  'Health Auto Export iOS app, HealthyApps/health-auto-export-mcp-server',
-  'e.g. MetricBridge (healthexport.dev)',
+  'Open-source projects',
+  'iOS export apps',
+  'Paid companion apps',
   MCP_URL,
 ];
 export const ahmCompare = [
   ['Setup', 'Export everything from the Health app (export.zip / export.xml), copy it to a computer, run the server.', 'Install the app, buy Premium, run the server on the phone and point a client at its local IP.', 'Install the app, set up exports to a folder, run a local Node.js server.', 'Add one address in your assistant and confirm with a code from P.R.O. About two minutes.'],
-  ['Fresh data', 'A snapshot as old as your last export.', 'Only while the app is open on the same Wi-Fi.', 'Scheduled exports after a full first backfill.', 'Kept in sync by P.R.O.; the assistant can ask for a fresh sync at any time.'],
+  ['Fresh data', 'A snapshot as old as your last export.', 'Only while the app is open on the same Wi-Fi.', 'Scheduled exports after a full first backfill.', 'Synced by P.R.O. from your iPhone; the assistant can request a refresh.'],
   ['Computer or terminal', 'Required.', 'Required, on the same Wi-Fi as the phone.', 'Required.', 'Not needed. Works from a browser or the assistant’s app.'],
   ['Assistants on your phone', 'No.', 'No — local network only.', 'No.', 'Yes — ChatGPT, Claude and Grok on iPhone, plus web and desktop.'],
-  ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity, Gemini and Manus — all tested.'],
+  ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini, all tested by us; Manus connection confirmed.'],
   ['You choose what’s shared', 'The whole export.', 'Whatever the app exports.', 'Whatever you export.', 'Per category — switch off workouts, sleep, heart rate and more in one tap; revoke any assistant in P.R.O.'],
   ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude and Gemini.'],
-  ['Cost', 'Free, open source.', 'Premium required ($1.99/month, $6.99/year or $24.99 lifetime, US App Store).', '$24.99 one-time app.', 'Free. The connector is included in P.R.O. at no cost.'],
+  ['Cost', 'Free, open source.', 'Paid app tier required.', 'Paid app.', 'Free. The connector is included in P.R.O. at no cost.'],
 ];
 
 export const ahmClients = [
@@ -36,12 +36,12 @@ export const ahmClients = [
   },
   {
     id: 'claude', name: 'Claude and Claude Desktop', icon: 'Claude', status: 'tested', guide: '/apple-health-claude',
-    steps: ['In the Claude app, claude.ai or Claude Desktop, open Connectors (Customize → Connectors in Claude Help; Settings → Connectors in the iPhone app we recorded).', 'Add custom connector → name P.R.O., URL ' + MCP_URL + ' → Continue.', 'Sign in on the P.R.O. page with the code from your iPhone.'],
+    steps: ['In the Claude app, claude.ai or Claude Desktop, open Connectors (Settings → Connectors on iPhone, Customize → Connectors elsewhere).', 'Add custom connector → name P.R.O., URL ' + MCP_URL + ' → Continue.', 'Sign in on the P.R.O. page with the code from your iPhone.'],
     note: 'Custom connectors work on every Claude plan, including Free (one connector).',
   },
   {
     id: 'codex', name: 'Codex', status: 'tested', guide: '/apple-health-codex',
-    steps: ['ChatGPT desktop app: Settings → MCP servers → Add server → Streamable HTTP → URL ' + MCP_URL + ' → Save → Authenticate.', 'Or with the Codex CLI:'],
+    steps: ['ChatGPT desktop app: Settings → Plugins → Add → Add MCP server (or Settings → MCP servers → Add server) → Streamable HTTP → URL ' + MCP_URL + ' → Save → Authenticate.', 'Or with the Codex CLI:'],
     code: 'codex mcp add pro --url ' + MCP_URL + '\ncodex mcp login pro',
   },
   {
@@ -70,17 +70,17 @@ export const ahmClients = [
     note: 'Google offers custom apps only in the US, to adults with a personal Google account.',
   },
   {
-    id: 'cherry-studio', name: 'Cherry Studio', status: 'tested', guide: '/apple-health-cherry-studio',
+    id: 'cherry-studio', name: 'Cherry Studio', status: 'tested', badge: 'Connection tested', guide: '/apple-health-cherry-studio',
     steps: ['Settings → MCP → MCP Servers → + Add → Quick Create. Type Streamable HTTP, URL ' + MCP_URL + '.', 'Turn the server on and sign in with the code from P.R.O., then switch P.R.O. on under the assistant’s name → MCP. Use a model that can call tools, such as DeepSeek or Kimi.'],
   },
   {
-    id: 'manus', name: 'Manus', status: 'tested', guide: '/apple-health-manus',
+    id: 'manus', name: 'Manus', status: 'tested', badge: 'Connection confirmed November 2026', guide: '/apple-health-manus',
     steps: ['On manus.im: Settings → Connectors → + Add connectors → Custom MCP → + Add custom MCP → Direct configuration.', 'Server URL ' + MCP_URL + ', no headers → Save, then turn P.R.O. on in a task and sign in with the code from P.R.O.'],
   },
 ];
 
 export const ahmFaq = [
-  { q: 'Is there an official Apple Health MCP server?', a: 'No. As of October 27, 2026, Apple does not publish an MCP server for Apple Health or HealthKit, and its developer documentation describes none. Every Apple Health MCP server, including P.R.O., is made by a third party and gets the data either from an iPhone app or from a Health export file.' },
+  { q: 'Is there an official Apple Health MCP server?', a: 'No. As of October 27, 2026, Apple does not publish an MCP server for Apple Health or HealthKit, and its developer documentation describes none. Every Apple Health MCP server gets the data either from an iPhone app or from a Health export file.' },
   { q: 'Why does an Apple Health MCP server need an iPhone app?', a: 'Apple says the device stores all HealthKit data locally, and a Mac has no HealthKit store at all. Apple documents no web API for Health data, and Health data synced to iCloud is end-to-end encrypted. So the data has to come from an app on the iPhone, or from an export you make in the Health app.' },
   { q: 'Do I need a Mac or a terminal?', a: 'No. You need an iPhone with P.R.O.; you add ' + MCP_URL + ' in a browser or in the assistant’s app and sign in with a code. If you work in Codex, Claude Code or Cursor on a computer, they connect to the same address.' },
   { q: 'Does it work with Claude Desktop, Cursor and Claude Code?', a: 'Yes. P.R.O. is a remote MCP server over Streamable HTTP with OAuth, and we have tested it in Claude, Claude Code and Cursor. In Claude Desktop you add it as a custom connector, the same way as in the Claude app.' },
@@ -94,12 +94,6 @@ export const ahmSources = [
   ['Apple Developer: Protecting user privacy (HealthKit)', 'https://developer.apple.com/documentation/healthkit/protecting-user-privacy'],
   ['Apple Developer: About the HealthKit framework', 'https://developer.apple.com/documentation/healthkit/about-the-healthkit-framework'],
   ['Apple: Health app and privacy', 'https://www.apple.com/legal/privacy/data/en/health-app/'],
-  ['the-momentum/apple-health-mcp-server (GitHub)', 'https://github.com/the-momentum/apple-health-mcp-server'],
-  ['davidmosiah/apple-health-mcp (GitHub)', 'https://github.com/davidmosiah/apple-health-mcp'],
-  ['Health Auto Export Help: MCP server connection', 'https://help.healthyapps.dev/en/health-auto-export/automations/server-connection'],
-  ['HealthyApps/health-auto-export-mcp-server (GitHub)', 'https://github.com/HealthyApps/health-auto-export-mcp-server'],
-  ['Health Auto Export on the App Store', 'https://apps.apple.com/us/app/health-auto-export-json-csv/id1115567069'],
-  ['MetricBridge MCP server (healthexport.dev)', 'https://healthexport.dev/mcp/'],
   ['Claude Help: custom connectors using remote MCP', 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp'],
   ['Claude Code docs: connect to MCP servers', 'https://code.claude.com/docs/en/mcp'],
   ['OpenAI: MCP in Codex', 'https://learn.chatgpt.com/docs/extend/mcp'],

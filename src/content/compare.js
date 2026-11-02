@@ -6,6 +6,7 @@
 export const CHECKED = '27 October 2026';
 
 export const ROWS = [
+  ['mcp', 'Works with ChatGPT / Claude (MCP)'],
   ['price', 'Price'],
   ['hardware', 'Hardware'],
   ['platforms', 'Platforms'],
@@ -13,7 +14,6 @@ export const ROWS = [
   ['plans', 'Training plans'],
   ['readiness', 'Readiness / recovery score'],
   ['sleep', 'Sleep analysis'],
-  ['mcp', 'Works with ChatGPT / Claude (MCP)'],
 ];
 
 export const APPS = [
@@ -21,13 +21,13 @@ export const APPS = [
     id: 'pro',
     name: 'P.R.O.',
     price: 'Free; optional Pro, Pro+ and Premium from $2.99/mo or $29.99/yr',
-    hardware: 'None — Apple Watch optional, via Apple Health',
+    hardware: 'None — any device that writes to Apple Health',
     platforms: 'iPhone, iPad (iOS 18.5+)',
     coach: 'Yes — chat with tables & charts, choice of AI model',
-    plans: 'Yes — adaptive plans + home-screen widget',
-    readiness: 'Daily readiness guidance in the plan',
+    plans: 'Yes, with Pro — adaptive plans + home-screen widget',
+    readiness: 'Daily status with reasons: free through MCP, in the app with Pro',
     sleep: 'Yes — sleep score',
-    mcp: 'Yes — official connector (mcp.proapp.uk) for ChatGPT, Claude, Grok, Codex, Perplexity, Gemini and Manus; works outside the US; you choose the data categories',
+    mcp: 'Yes — free MCP connector (https://mcp.proapp.uk) for ChatGPT, Claude, Grok, Codex, Perplexity, Gemini and Manus; works outside the US (Gemini custom apps are US only); you choose the data categories',
     url: 'https://apps.apple.com/us/app/p-r-o/id6749865568',
   },
   {
@@ -53,7 +53,7 @@ export const APPS = [
     plans: 'Yes — strength plans',
     readiness: 'Yes — Recovery score',
     sleep: 'Yes — sleep score, smart alarm',
-    mcp: 'No (requested by users, under review)',
+    mcp: 'No',
     url: 'https://apps.apple.com/us/app/bevel-ai-health-coach/id6456176249',
   },
   {
@@ -158,18 +158,18 @@ export const SOURCES = [
 export const compareFaq = [
   {
     q: 'What is the best AI coach app for Apple Watch?',
-    a: 'It depends on what you need: P.R.O. if you want to chat with your Apple Health data, get adaptive training plans and connect ChatGPT or Claude for free; Athlytic for an on-device recovery score; WHOOP if you prefer a dedicated band; Runna for structured running plans.',
+    a: 'P.R.O. if you want to chat with your Apple Health data, connect ChatGPT or Claude through a free MCP connector and get adaptive training plans with Pro. Athlytic suits an on-device recovery score, WHOOP a dedicated band and Runna running-only plans.',
   },
   {
     q: 'Is P.R.O. a good Athlytic alternative?',
-    a: 'Yes, if you want an AI coach you can chat with and adaptive training plans. Athlytic is stronger as a pure recovery-score app with fully on-device processing; P.R.O. adds a chat coach, training plans and a ChatGPT/Claude connector, and is free to start.',
+    a: 'Yes, if you want an AI coach you can chat with and adaptive training plans. P.R.O. adds a chat coach, training plans with Pro and a free MCP connector for ChatGPT and Claude, and it works with any device that writes to Apple Health.',
   },
   {
     q: 'Is P.R.O. a good Bevel alternative?',
-    a: 'Yes for Apple Health users who want a cheaper AI coach: P.R.O. is free with Pro from $2.99/month, while Bevel Pro is $14.99/month. Bevel supports more wearables (Oura, Garmin, Amazfit) and has strength-training plans.',
+    a: 'Yes. P.R.O. is free with Pro from $2.99/month, while Bevel Pro is $14.99/month, and it adds a free MCP connector for ChatGPT and Claude. P.R.O. works with anything that writes to Apple Health, including Oura, Garmin and Amazfit.',
   },
   {
     q: 'Which fitness apps work with ChatGPT or Claude?',
-    a: 'In the US, ChatGPT Health (since July 2026) and Claude’s Apple Health beta (Pro and Max) read Apple Health directly, and independent MCP servers exist for some wearables. P.R.O. has an official MCP connector (mcp.proapp.uk) that works outside the US, in ChatGPT, Claude, Grok, Perplexity, Gemini and Codex, and lets you choose which data categories the assistant sees. As of 27 October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak, Google Health Coach or Runna.',
+    a: 'In the US, ChatGPT Health (since July 2026) and Claude’s Apple Health beta (Pro and Max) read Apple Health directly, and independent MCP servers exist for some wearables. P.R.O. has a free MCP connector (https://mcp.proapp.uk) that works outside the US in ChatGPT, Claude, Grok, Perplexity and Codex (Gemini custom apps are US only), and lets you choose which data categories the assistant sees. As of 27 October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak, Google Health Coach or Runna.',
   },
 ];

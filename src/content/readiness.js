@@ -34,7 +34,7 @@ export const readinessFaq = [
   },
   {
     q: 'How do I get a readiness score on an older Apple Watch?',
-    a: 'Compare your latest HRV and resting heart rate with your 28-day averages and check last night’s sleep. HRV 15% or more below average, resting heart rate 5 bpm or more above average, or less than 6 hours of sleep each count as one warning sign: none means ready, one means take it easier, two or more means recover. The free P.R.O. app does this automatically from Apple Health.',
+    a: 'Compare your latest HRV and resting heart rate with your 28-day averages and check last night’s sleep. HRV 15% or more below average, resting heart rate 5 bpm or more above average, or less than 6 hours of sleep each count as one warning sign: none means ready, one means take it easier, two or more means recover. P.R.O. does this automatically from Apple Health: free through its MCP connector, in the app with Pro.',
   },
   {
     q: 'Why is my Apple Watch Readiness score not showing?',
@@ -46,7 +46,7 @@ export const readinessFaq = [
   },
   {
     q: 'Is there a free readiness app for older Apple Watches?',
-    a: 'Yes. P.R.O. is free on the App Store and gives a daily readiness status — ready, caution or recover — with the reasons, from the HRV, resting heart rate and sleep in Apple Health. It is not a 0–10 number. Its AI coach uses the same read to adjust your training plan, and you can ask about it in ChatGPT, Claude and other assistants through the free MCP connector at https://mcp.proapp.uk.',
+    a: 'Yes, through MCP. The free P.R.O. connector at https://mcp.proapp.uk gives ChatGPT, Claude and other assistants a daily readiness status — ready, caution or recover — with the reasons, from the HRV, resting heart rate and sleep in Apple Health. In the P.R.O. app the same status comes with Pro from $2.99/month, where the AI coach uses it to adjust your training plan.',
   },
   {
     q: 'Can ChatGPT or Claude tell me if I’m ready to train?',
@@ -54,7 +54,7 @@ export const readinessFaq = [
   },
   {
     q: 'Does a readiness read work with Garmin, WHOOP or Oura data?',
-    a: 'Partly. Garmin, WHOOP and Oura do not write HRV to Apple Health, but some of them write resting heart rate or sleep — WHOOP writes resting heart rate, Garmin and Oura write sleep. P.R.O. uses whichever of the three signals reach Apple Health; with an Apple Watch you get all three.',
+    a: 'Yes, with whichever signals reach Apple Health. Garmin, WHOOP and Oura do not write HRV there; WHOOP writes resting heart rate, and Garmin and Oura write sleep. With an Apple Watch you get all three.',
   },
 ];
 

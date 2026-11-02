@@ -14,7 +14,7 @@ import FreeTools from '../components/FreeTools';
 const TICKER = [
   'WIDGET DASHBOARD',
   'COACH TABLES',
-  'MERMAID DIAGRAMS',
+  'MCP CONNECTOR',
   'HEART RATE ZONES',
   'MONTHLY SUMMARIES',
   'SPORT SPLITS',
@@ -25,12 +25,12 @@ const TICKER = [
 ];
 
 const SPECS = [
-  { label: 'Widget dashboard', value: 'Rings, stats, streaks, GURU', note: 'Dense widget grid — dozens of metrics in one view.' },
-  { label: 'Coach assistant', value: 'Markdown · tables · diagrams', note: 'Structured answers from your real workout data.' },
+  { label: 'Widget dashboard', value: 'Rings, stats, streaks, goals', note: 'Dense widget grid — dozens of metrics in one view.' },
+  { label: 'Coach assistant', value: 'Tables · charts · diagrams', note: 'Structured answers from your real workout data.' },
   { label: 'History & analytics', value: 'Monthly reports & sport splits', note: 'Search workouts, filter by sport, track trends.' },
   { label: 'Workout tracking', value: '50+ sports · GPS routes', note: 'Import from Apple Health with full metric depth.' },
   { label: 'Goals & records', value: 'Targets & personal bests', note: 'Weekly and yearly distance goals with celebrations.' },
-  { label: 'Integrations', value: 'Apple Health · Apple Watch', note: 'HealthKit sync keeps your dashboard live.' },
+  { label: 'MCP connector', value: 'ChatGPT · Claude · Gemini · more', note: 'Free. Your Apple Health data from any device, in the AI you already use.' },
 ];
 
 const SPOTLIGHTS = [
@@ -38,7 +38,7 @@ const SPOTLIGHTS = [
     eyebrow: 'Dashboard',
     title: 'Your day, at a glance.',
     body: 'Activity rings, step analysis, heart-rate trends, and streak tracking — a dense widget grid packed with the metrics that matter.',
-    points: ['Dozens of built-in widgets', 'Real-time Apple Health sync', 'Streaks, goals, and overview tiles'],
+    points: ['Dozens of built-in widgets', 'Automatic Apple Health sync', 'Streaks, goals, and overview tiles'],
   },
   {
     eyebrow: 'Analytics',
@@ -57,7 +57,7 @@ const SPOTLIGHTS = [
 const FAQ = [
   {
     q: 'How does the Coach Assistant use my data?',
-    a: 'It reads your Apple Health workout history — distance, pace, heart rate, sleep — to personalise analysis, plans, and recovery advice. Health data stays on your device.',
+    a: 'It reads your Apple Health workout history — distance, pace, heart rate, sleep — to personalise analysis, plans, and recovery advice. You choose which categories P.R.O. reads and shares, and can revoke access at any time.',
   },
   {
     q: 'What makes the dashboard different?',
@@ -65,15 +65,11 @@ const FAQ = [
   },
   {
     q: 'Which sports and metrics are supported?',
-    a: '50+ activities with GPS routes, HR zones, duration, distance, energy, and sport-specific fields. Data imports from Apple Health and Apple Watch.',
+    a: '50+ activities with GPS routes, HR zones, duration, distance, energy, and sport-specific fields. Data imports from Apple Health, from Apple Watch, Garmin, WHOOP or any other device that writes there.',
   },
   {
     q: 'Can I track goals and personal records?',
     a: 'Yes. Set weekly and yearly distance targets, watch progress rings fill, and get notified when you hit a new personal best across any dimension.',
-  },
-  {
-    q: 'Is everything in the app available today?',
-    a: '65+ features ship on the App Store now. The redesigned Coach Assistant with richer tables and diagrams is rolling out in the next major update.',
   },
 ];
 
@@ -84,7 +80,7 @@ export default function Features() {
         eyebrow="Features"
         lines={['65+ capabilities.', 'One app.', 'Zero noise.']}
         accentIndex={0}
-        description="Widget dashboards, training history, and an AI coach that answers with your numbers — not generic advice."
+        description="A free MCP connector for ChatGPT, Claude and Gemini, widget dashboards, training history and an AI coach that answers with your numbers."
       />
 
       <MetricTicker items={TICKER} />
@@ -94,11 +90,11 @@ export default function Features() {
         items={[
           {
             title: 'Widget dashboard.',
-            body: 'Rings, steps, heart rate, streaks, and goals — dozens of widgets in one view, updated from Apple Health in real time.',
+            body: 'Rings, steps, heart rate, streaks, and goals — dozens of widgets in one view, updated from Apple Health.',
           },
           {
             title: 'Coach that reads your log.',
-            body: 'Markdown answers with comparison tables and Mermaid diagrams — week analysis, nutrition, recovery, and planning.',
+            body: 'Answers with comparison tables and diagrams — week analysis, nutrition, recovery, and planning.',
           },
           {
             title: 'History with depth.',

@@ -25,7 +25,7 @@ function ClientCard({ c }) {
     <div className="ahm-client-head">
       {c.id === 'cursor' ? <span className="assistant-icon" aria-hidden="true"><span className="assistant-other-icon">↗</span></span> : <AssistantIcon name={c.icon ?? c.name} />}
       <div><h3>{c.name}</h3>
-        <span className={`ahm-badge${c.status === 'tested' ? ' is-tested' : ''}`}>{c.status === 'tested' ? 'Tested by us' : `Per ${c.vendor} docs`}</span></div>
+        <span className={`ahm-badge${c.status === 'tested' ? ' is-tested' : ''}`}>{c.badge ?? (c.status === 'tested' ? 'Tested by us' : `Per ${c.vendor} docs`)}</span></div>
     </div>
     <ol>{c.steps.map((s) => <li key={s}>{s}</li>)}</ol>
     {c.code && <pre><code>{c.code}</code></pre>}
@@ -60,40 +60,40 @@ export default function AppleHealthMcpServer() {
       <h2 id="why-iphone">Why Apple Health needs an iPhone app for MCP</h2>
       <p className="tool-lead">Apple Health has no cloud API to connect a server to. Apple’s HealthKit documentation says the device stores all HealthKit data locally, so the data has to leave the iPhone through an app or an export.</p>
       <ul>
-        <li><strong>On-device store:</strong> iPhone, Apple Watch, iPad (iPadOS 17 and later) and Vision Pro each keep their own HealthKit store and sync it with each other. The store is encrypted while the phone is locked.</li>
-        <li><strong>No Health data on a Mac:</strong> the HealthKit framework exists on macOS 13 and later, but a Mac has no HealthKit store, so a Mac app can’t read your Health data. That’s why local MCP servers work from an export file.</li>
-        <li><strong>iCloud doesn’t help:</strong> Health data synced to iCloud is end-to-end encrypted — Apple says it can’t read it — and Apple documents no web API for it.</li>
-        <li><strong>No official server:</strong> as of {AHM_CHECKED}, Apple publishes no MCP server for Apple Health or HealthKit. All of them, including P.R.O., are third-party.</li>
+        <li>iPhone, Apple Watch, iPad (iPadOS 17 and later) and Vision Pro each keep their own HealthKit store and sync it with each other. The store is encrypted while the phone is locked.</li>
+        <li>The HealthKit framework exists on macOS 13 and later, but a Mac has no HealthKit store, so a Mac app can’t read your Health data. That’s why local MCP servers work from an export file.</li>
+        <li>Health data synced to iCloud is end-to-end encrypted — Apple says it can’t read it — and Apple documents no web API for it.</li>
+        <li>As of {AHM_CHECKED}, Apple publishes no MCP server for Apple Health or HealthKit.</li>
       </ul>
     </section>
 
     <section className="connect-wrap connect-section" aria-labelledby="compare">
-      <div className="connect-section-heading"><h2 id="compare">Why a hosted Apple Health MCP server</h2><p>P.R.O. compared with export-based and local Apple Health MCP servers, from each project’s own docs. Checked {AHM_CHECKED}; prices can change.</p></div>
+      <div className="connect-section-heading"><h2 id="compare">Why a hosted Apple Health MCP server</h2><p>P.R.O. compared with export-based and local Apple Health MCP servers, from each project’s own docs. Checked {AHM_CHECKED}.</p></div>
       <div className="ag-table ahm-compare"><table>
         <caption className="sr-only">Apple Health MCP server types compared</caption>
         <thead><tr><th scope="col"><span className="sr-only">Feature</span></th>{ahmColumns.map((c, i) => <th scope="col" key={c}>{c}<small>{ahmColumnNotes[i]}</small></th>)}</tr></thead>
         <tbody>{ahmCompare.map(([k, ...cells]) => <tr key={k}><th scope="row">{k}</th>{cells.map((v, i) => <td key={i} data-label={ahmColumns[i]}>{v}</td>)}</tr>)}</tbody>
       </table></div>
       <div className="tool-prose">
-        <p className="tool-small">With P.R.O. there is nothing to export or run: your Apple Health data stays current, the same connection works on your phone, on the web and in desktop tools, and you decide category by category what each assistant can read.</p>
+        <p className="tool-small">With P.R.O. there is nothing to export or run: your Apple Health data syncs from your iPhone, the same connection works on your phone, on the web and in desktop tools, and you decide category by category what each assistant can read.</p>
       </div>
     </section>
 
     <section className="connect-wrap connect-section" aria-labelledby="connect">
       <div className="connect-section-heading"><h2 id="connect">How to connect your MCP client</h2><p>Every client uses the same address, {MCP_URL}. When it asks you to sign in, open <strong>P.R.O. → Settings → MCP Connect → Get connection code</strong> on your iPhone and enter the six-character code on the P.R.O. page. The code works once, for 10 minutes. On iPhone, Open P.R.O. on that page copies a code for you.</p></div>
       <div className="ahm-clients">{ahmClients.map((c) => <ClientCard key={c.id} c={c} />)}</div>
-      <p className="guide-recorded">Other clients that support remote MCP over Streamable HTTP with OAuth may work too. Full five-step walkthrough: <Link to="/mcp-connect">Connect Apple Health to your AI assistant</Link>.</p>
+      <p className="guide-recorded">Other clients that support remote MCP over Streamable HTTP with OAuth connect the same way. Full five-step walkthrough: <Link to="/mcp-connect">Connect Apple Health to your AI assistant</Link>.</p>
     </section>
 
     <section className="connect-wrap connect-section tool-prose" aria-labelledby="exposes">
       <h2 id="exposes">What the P.R.O. MCP server exposes</h2>
-      <p className="tool-lead">Read tools for your profile, goals, daily metrics, workouts, training plan and sleep, plus three limited write actions. Data tools respect your access settings.</p>
+      <p className="tool-lead">Read tools for your profile, goals, daily metrics, workouts, training load, training plan and sleep, plus three limited write actions. Data tools respect your access settings.</p>
       <div className="connect-tools"><table><caption>P.R.O. MCP tools and access</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Access</th></tr></thead><tbody>{mcpTools.map((t) => <tr key={t.name}><th scope="row"><code>{t.name}</code></th><td>{t.what}</td><td>{t.access}</td></tr>)}</tbody></table></div>
       <ul>
-        <li><strong>Training-plan proposals:</strong> an assistant can suggest plan changes; they are saved as pending and change nothing until you accept them in P.R.O.</li>
-        <li><strong>Permissions:</strong> in P.R.O., Settings → MCP Connect → Data the assistant can read lets you switch off profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, or coach memory. Allow saving coach notes is off by default.</li>
-        <li><strong>Revoking access:</strong> open Settings → MCP Connect, tap × beside the assistant under Connected and confirm Disconnect. Removing the connector only inside the assistant does not revoke its access; deleting your P.R.O. account revokes all connector tokens.</li>
-        <li><strong>Not possible:</strong> the server can’t delete data, make payments, send messages or change account settings, and P.R.O. never writes to Apple Health.</li>
+        <li>An assistant can suggest plan changes; they are saved as pending and change nothing until you accept them in P.R.O.</li>
+        <li>In P.R.O., Settings → MCP Connect → Data the assistant can read lets you switch off profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, or coach memory. Allow saving coach notes is off by default.</li>
+        <li>To revoke access, open Settings → MCP Connect, tap × beside the assistant under Connected and confirm Disconnect. Removing the connector only inside the assistant does not revoke its access; deleting your P.R.O. account revokes all connector tokens.</li>
+        <li>The server can’t delete data, make payments, send messages or change account settings, and P.R.O. never writes to Apple Health.</li>
       </ul>
     </section>
 

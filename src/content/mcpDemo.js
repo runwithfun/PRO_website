@@ -15,6 +15,6 @@ export const mcpDemo = {
     { title: 'Suggested changes', text: 'Ask for an easier session. The assistant shows a pending proposal; the plan changes only after you accept it in P.R.O.' },
     { title: 'Privacy', text: 'A request for a coworker’s health data without their permission is refused.' },
     { title: 'Running history', text: 'Review synced running history by month, then open a workout’s details and route.' },
-    { title: 'Limits', text: 'The assistant explains that the connector cannot delete Apple Health history.' },
+    { title: 'Safety', text: 'The assistant explains that the connector cannot delete Apple Health history.' },
   ],
 };

@@ -98,7 +98,7 @@ function normalize(entry, where) {
   if (!Array.isArray(entry.syncs) || !entry.syncs.length) fail(at, 'syncs must be a non-empty list');
   for (const s of entry.syncs ?? []) {
     if (!isText(s.type)) fail(at, 'syncs[].type is required');
-    if (![true, false, 'partial'].includes(s.ok)) fail(at, `syncs "${s.type}": ok must be true, false or "partial"`);
+    if (![true, false, 'partial', undefined].includes(s.ok)) fail(at, `syncs "${s.type}": ok must be true, false, "partial" or absent (no vendor source)`);
   }
   if (!Array.isArray(entry.steps) || !entry.steps.length) fail(at, 'steps must be a non-empty list');
   for (const s of entry.steps ?? []) {

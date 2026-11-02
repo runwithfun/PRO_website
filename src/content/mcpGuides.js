@@ -11,7 +11,7 @@ export const guides = [
   {
     id: 'chatgpt', name: 'ChatGPT', platform: 'Set up on the web · use on iPhone too',
     intro: 'Add P.R.O. on chatgpt.com first. The ChatGPT iPhone app cannot add a custom MCP server; your connection works there after web setup.',
-    verified: 'Recorded on ChatGPT Pro · October 8, 2026',
+    verified: 'Tested by us, October 2026',
     helpUrl: 'https://developers.openai.com/plugins/deploy/connect-chatgpt',
     steps: [
       { title: 'Open Plugins in ChatGPT settings.', text: 'On chatgpt.com, open Settings → Plugins.', link: 'https://chatgpt.com/#settings/Connectors', linkText: 'Open ChatGPT settings ↗' },
@@ -30,7 +30,7 @@ export const guides = [
   {
     id: 'claude', name: 'Claude', platform: 'iPhone · custom connector',
     intro: 'In Claude, open Settings → Connectors. Add P.R.O. as a custom connector and approve access on your iPhone.',
-    verified: 'Recorded on Claude for iPhone · October 10, 2026',
+    verified: 'Tested by us, October 2026',
     helpUrl: 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp',
     steps: [
       { title: 'Open Connectors in Claude settings.', text: 'The Connectors screen lists your available services.' },
@@ -46,7 +46,7 @@ export const guides = [
   {
     id: 'grok', name: 'Grok', platform: 'Web · iPhone',
     intro: 'Set up in a browser at grok.com/connectors. In the iPhone app, you can also use Connectors → Custom Connectors → Custom Connector → Connect.',
-    verified: 'iPhone connection tested October 10, 2026 · Web setup follows Grok’s official guide',
+    verified: 'Tested by us, October 2026',
     helpUrl: 'https://docs.x.ai/grok/connectors',
     steps: [
       { title: 'Open grok.com/connectors.', link: 'https://grok.com/connectors', linkText: 'Open Grok connectors ↗' },

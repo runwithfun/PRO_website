@@ -24,12 +24,12 @@ const TICKER = [
 ];
 
 const SPECS = [
-  { label: 'Data source', value: 'Apple Health & Apple Watch', note: 'Workouts, HR, sleep, steps — synced on device.' },
+  { label: 'Data source', value: 'Apple Health', note: 'Workouts, HR, sleep and steps from Apple Watch, Garmin, WHOOP or any other device.' },
   { label: 'Sports tracked', value: '50+ activities', note: 'Running, cycling, strength, swimming, and more.' },
   { label: 'Dashboard', value: 'Widget-rich grid', note: 'Rings, stats, streaks, and coach entry — all in one dense view.' },
   { label: 'AI coach', value: 'Tables, diagrams, plans', note: 'Answers grounded in your real training history.' },
-  { label: 'Analytics', value: 'Monthly & sport splits', note: 'Volume trends, HR zones, and personal records.' },
-  { label: 'Privacy', value: 'On-device first', note: 'Your health data stays under your control.' },
+  { label: 'MCP connector', value: 'Free for your AI', note: 'ChatGPT, Claude, Gemini and more read the Apple Health data you allow.' },
+  { label: 'Privacy', value: 'Your choice', note: 'You choose which categories P.R.O. reads and shares, and can revoke access at any time.' },
 ];
 
 function VideoShowcase() {
@@ -128,7 +128,7 @@ export default function AboutUs() {
         items={[
           {
             title: 'Every rep logged.',
-            body: 'Apple Health and Apple Watch feed your dashboard automatically — distance, HR, sleep, and load in one place.',
+            body: 'Apple Health feeds your dashboard automatically from Apple Watch, Garmin or any other device — distance, HR, sleep, and load in one place.',
           },
           {
             title: 'See the pattern.',

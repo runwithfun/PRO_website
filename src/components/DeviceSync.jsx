@@ -15,7 +15,7 @@ const MARK = {
 
 // ok: true | false | "partial"; undefined means the guide doesn't cover the type.
 export function SyncMark({ ok, label = true }) {
-  if (ok === undefined) return <span className="dg-mark is-none"><span aria-hidden="true">–</span><span className="sr-only">Not listed</span></span>;
+  if (ok === undefined) return <span className="dg-mark is-none"><span aria-hidden="true">—</span>{label ? <span>Not listed</span> : <span className="sr-only">Not listed</span>}</span>;
   const [icon, text, cls] = MARK[String(ok)];
   return <span className={`dg-mark ${cls}`}><span className="dg-mark-icon" aria-hidden="true">{icon}</span>{label ? <span>{text}</span> : <span className="sr-only">{text}</span>}</span>;
 }

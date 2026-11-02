@@ -9,6 +9,9 @@ import ModernAppShowcase from '../components/ModernAppShowcase';
 import ModernCTA from '../components/ModernCTA';
 import FreeTools from '../components/FreeTools';
 
+// Homepage copy changes need the owner's approval, so this page keeps its own wording.
+const HOME_CTA = 'Free on the App Store: an AI coach that knows your training, adaptive training plans, sleep score and a ChatGPT & Claude connector — all from your Apple Health data.';
+
 export default function Home() {
   return (
     <>
@@ -19,8 +22,8 @@ export default function Home() {
       <AccentStatement />
       <HistoryShowcase />
       <ModernAppShowcase />
-      <FreeTools />
-      <ModernCTA />
+      <FreeTools connectorLabel="AI connector" />
+      <ModernCTA copy={HOME_CTA} />
     </>
   );
 }

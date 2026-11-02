@@ -17,7 +17,7 @@ export const STATUS = [
     'Health in ChatGPT reads Apple Health from the ChatGPT iPhone app.',
     'US only. Launched to US users on July 23, 2026. The early access that opened on January 7, 2026 excluded the EEA, Switzerland and the UK.',
     'Free, Go, Plus and Pro, on the web and iOS. Connecting Apple Health needs an iPhone.',
-    'Yes. Add P.R.O. as a custom MCP server on chatgpt.com, on a plan that allows custom MCP servers. We recorded the setup on Pro.',
+    'Yes. Add P.R.O. as a custom MCP server on chatgpt.com, on a plan that allows custom MCP servers.',
     '/apple-health-chatgpt',
   ],
   [
@@ -35,14 +35,6 @@ export const STATUS = [
     'Pro and Max, on iOS and the web. Apple Health needs an iPhone and is 18+.',
     'Yes, as a custom remote connector on plans with custom connectors.',
     '/apple-health-perplexity',
-  ],
-  [
-    'Microsoft Copilot',
-    'Copilot Health, in preview. It connects wearables, starting with Apple Health.',
-    'US residents only, 18 and older.',
-    'Microsoft 365 Personal, Family and Premium. On the web, in the Windows app and in Edge; Microsoft says the iOS app is coming.',
-    'No. Microsoft’s help for consumer Copilot lists only built-in connections (OneDrive, Outlook.com, Google Drive and Gmail). We haven’t tested P.R.O. in Copilot.',
-    null,
   ],
   [
     'Gemini',
@@ -98,7 +90,7 @@ export const outsideUsFaq = [
   },
   {
     q: 'Can I use Gemini with Apple Health in Europe?',
-    a: 'Not with P.R.O. today. Gemini has no built-in Apple Health integration, and Google offers custom apps in Gemini only in the US, to adults with a personal Google account. Google Health Coach is offered in the UK and much of the EU, but it lives in the Google Health app and needs a Fitbit or Pixel Watch and Google Health Premium.',
+    a: 'Gemini has no built-in Apple Health integration, and Google offers custom apps in Gemini only in the US, to adults with a personal Google account. From Europe, use P.R.O. in ChatGPT, Claude, Perplexity, Grok or Codex.',
   },
   {
     q: 'Can I use a VPN to get ChatGPT Health or Claude’s Apple Health feature?',
@@ -122,9 +114,6 @@ export const outsideUsSources = [
   ['Claude Help — custom connectors using remote MCP (Free, Pro, Max, Team, Enterprise)', 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp'],
   ['Perplexity Help — What is Perplexity Health? (Pro and Max in the US, phased rollout)', 'https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health'],
   ['Perplexity — Introducing Perplexity Health, March 19, 2026', 'https://www.perplexity.ai/hub/blog/introducing-perplexity-health'],
-  ['Microsoft Support — About Copilot Health (preview, US residents 18+, Microsoft 365 Personal, Family, Premium)', 'https://support.microsoft.com/en-us/microsoft-copilot/copilot-health'],
-  ['Microsoft Source — Copilot Health now in preview, May 29, 2026 (Spanish)', 'https://news.microsoft.com/source/latam/noticias-de-microsoft/copilot-health-ahora-en-vista-previa/'],
-  ['Microsoft Support — Connecting Microsoft Copilot to other services', 'https://support.microsoft.com/en-us/microsoft-copilot/connecting-microsoft-copilot-to-other-services'],
   ['Google Health Help — Google Health Coach (Fitbit or Pixel Watch, Google Health Premium, country list)', 'https://support.google.com/googlehealth/answer/16961408?hl=en'],
   ['Gemini Apps Help — custom apps (US, 18+, personal account, English)', 'https://support.google.com/gemini/answer/17209137?hl=en'],
   ['xAI Docs — Grok connectors (available to all Grok users)', 'https://docs.x.ai/grok/connectors'],

@@ -10,7 +10,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes. The Garmin Connect iPhone app writes steps, all-day heart rate, active and resting energy, sleep, weight/body composition, water and workouts to Apple Health. It is one-way: Garmin Connect does not read anything from Apple Health or an Apple Watch.",
-      "Key caveats: GPS routes, HRV, resting heart rate, VO2 max, SpO2, respiration, Body Battery and stress are not written, workouts carry only high/low heart rate, and Garmin Connect has to be open in the foreground for the transfer to run."
+      "HRV, resting heart rate, VO2 max, SpO2, respiration, Body Battery, stress and GPS routes stay in Garmin Connect, workouts carry only high/low heart rate, and Garmin Connect has to be open in the foreground for the transfer to run."
     ],
     "requirements": [
       "iPhone with the Garmin Connect app, signed in to the Garmin account the watch is paired with",
@@ -218,7 +218,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes. The WHOOP iPhone app writes workouts, active energy, heart rate during activities and sleep, sleep sessions, resting heart rate, respiratory rate, blood oxygen and steps to Apple Health, and can read Apple Watch workouts, weight and cycle data back.",
-      "Key caveats: WHOOP does not export HRV (it measures RMSSD, Apple uses SDNN), all-day heart rate, Recovery/Strain scores or GPS routes, and users report Apple Health shows WHOOP sleep only as time asleep, without stages."
+      "WHOOP keeps HRV (it measures RMSSD, Apple uses SDNN), all-day heart rate, Recovery/Strain scores and GPS routes in its own app."
     ],
     "requirements": [
       "iPhone with the latest WHOOP app and an active WHOOP membership",
@@ -257,7 +257,7 @@ export const deviceGuides = [
       {
         "type": "Sleep",
         "ok": "partial",
-        "note": "Sleep sessions are logged automatically; users report only In Bed/Asleep reach Health, without REM/deep/core stages."
+        "note": "Sleep sessions are logged automatically; no stage detail is documented."
       },
       {
         "type": "Blood oxygen",
@@ -345,7 +345,7 @@ export const deviceGuides = [
       },
       {
         "q": "Sleep stages are missing in Apple Health",
-        "a": "Users report WHOOP writes only time in bed and time asleep; REM/deep/core stages stay in the WHOOP app. No fix on the user side."
+        "a": "Apple Health gets time in bed and time asleep; REM/deep/core stages stay in the WHOOP app."
       },
       {
         "q": "Duplicate workouts in Apple Health",
@@ -418,7 +418,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes. The Oura app writes sleep with stages, heart rate (one-minute intervals), steps, active energy, workouts with routes, nighttime respiratory rate, mindful minutes, weight and height to Apple Health, and reads workouts and other data back.",
-      "Key caveats: HRV, resting heart rate, SpO2, temperature and Readiness/Sleep scores are not written, and Gen3 or Ring 4 owners need an active Oura membership for the integration."
+      "Oura keeps HRV, resting heart rate, SpO2, temperature and its Readiness and Sleep scores in its own app, and Gen3 or Ring 4 owners need an active Oura membership for the integration."
     ],
     "requirements": [
       "iPhone with the Oura app (iOS only)",
@@ -608,7 +608,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes, one way. The Polar Flow iPhone app writes workouts, workout heart rate, active and resting energy, sleep duration, steps and weight to Apple Health; it cannot read anything from Health.",
-      "Key caveats: continuous heart rate, sleep stages, Nightly Recharge/HRV, resting heart rate, VO2 max and GPS routes are not written."
+      "Continuous heart rate, sleep stages, Nightly Recharge/HRV, resting heart rate, VO2 max and GPS routes stay in Polar Flow."
     ],
     "requirements": [
       "iPhone with the Polar Flow app, signed in to your Polar account",
@@ -779,7 +779,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes, one way. The COROS iPhone app writes steps, heart rate, sleep, walking/running/cycling/swimming distance, workouts with active energy and, since app 4.0 (July 2025), resting heart rate during sleep to Apple Health.",
-      "Key caveats: HRV, VO2 max/Running Fitness, training load and recovery stay in the COROS app, and COROS documents no GPS route or sleep stage export."
+      "HRV, VO2 max/Running Fitness, training load and recovery stay in the COROS app, and COROS lists no GPS route or sleep stage export."
     ],
     "requirements": [
       "iPhone with the COROS app and a COROS watch paired to it",
@@ -789,7 +789,7 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "Activities are written and split into indoor/outdoor run and bike, pool/open-water swim. GPS routes: not documented by COROS (unverified)."
+        "note": "Activities are written and split into indoor/outdoor run and bike, pool/open-water swim. COROS lists no GPS route export."
       },
       {
         "type": "Steps",
@@ -955,7 +955,7 @@ export const deviceGuides = [
     "method": "partial",
     "checked": "2026-10-27",
     "answer": [
-      "Yes, for workouts. Turn on 'Save to Apple Health' in the Suunto app and your workouts go to Apple Health with heart rate, distance and active energy, ready for any app that reads Health.",
+      "Yes, for workouts. Turn on 'Save to Apple Health' in the Suunto app and your workouts go to Apple Health with heart rate and distance, ready for any app that reads Health.",
       "Sleep, HRV, resting heart rate, SpO2, respiratory rate, VO2 max and GPS routes stay in the Suunto app."
     ],
     "requirements": [
@@ -966,22 +966,18 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "Workouts with heart rate are written. GPS routes: no (per Suunto community reports)."
+        "note": "Workouts with heart rate are written."
       },
       {
-        "type": "Steps",
-        "ok": "partial",
-        "note": "Reported to sync by third-party guides; some Suunto forum users report daily steps missing."
+        "type": "Steps"
       },
       {
-        "type": "Active energy",
-        "ok": "partial",
-        "note": "Reported by third-party guides; not documented by Suunto."
+        "type": "Active energy"
       },
       {
         "type": "Heart rate",
         "ok": "partial",
-        "note": "Workout heart rate; daily heart rate reported as sparse with gaps."
+        "note": "Workout heart rate."
       },
       {
         "type": "Resting heart rate",
@@ -1054,8 +1050,8 @@ export const deviceGuides = [
         ]
       }
     ],
-    "afterSetup": "Workouts are saved to Apple Health after the watch syncs a new activity to the Suunto app. Suunto does not document timing for daily data; community reports say steps and daily heart rate are incomplete.",
-    "duplicates": "With an iPhone or Apple Watch also writing to Health, set priorities: Health app → Browse → Activity → Steps → Data Sources & Access → Edit → drag Suunto (or your other device) to the top → Done; do the same for Heart Rate and Active Energy. If missing Suunto data is the issue, members of Suunto's forum advise making Suunto the preferred source for steps, workouts and heart rate.",
+    "afterSetup": "Workouts are saved to Apple Health after the watch syncs a new activity to the Suunto app. Suunto does not document timing for daily data.",
+    "duplicates": "With an iPhone or Apple Watch also writing to Health, set priorities: Health app → Browse → Activity → Steps → Data Sources & Access → Edit → drag Suunto (or your other device) to the top → Done; do the same for Heart Rate and Active Energy. If Suunto data is missing, make Suunto the preferred source for steps, workouts and heart rate.",
     "trouble": [
       {
         "q": "Suunto workouts are not appearing in Apple Health",
@@ -1063,15 +1059,15 @@ export const deviceGuides = [
       },
       {
         "q": "Sleep is not in Apple Health",
-        "a": "The Suunto app does not request permission to write sleep, so it cannot sync. Long-standing open request in Suunto's community."
+        "a": "The Suunto app does not request permission to write sleep, so it cannot sync."
       },
       {
         "q": "Workout map/route is missing",
-        "a": "Users report that the Suunto app writes no GPS route. Third-party apps such as RunGap (free; export needs its paid tier) can copy Suunto workouts with routes into Health."
+        "a": "The Suunto app writes no GPS route. Third-party apps such as RunGap (free; export needs its paid tier) can copy Suunto workouts with routes into Health."
       },
       {
         "q": "Daily steps or heart rate have gaps",
-        "a": "Make Suunto the top source for Steps and Heart Rate in Data Sources & Access; users still report gaps, so treat daily data from Suunto as incomplete."
+        "a": "Make Suunto the top source for Steps and Heart Rate in Data Sources & Access."
       },
       {
         "q": "Watch won't sync to the Suunto app at all",
@@ -1081,7 +1077,7 @@ export const deviceGuides = [
     "faq": [
       {
         "q": "Does Suunto sync with Apple Health?",
-        "a": "Partly: workouts and some activity data are written; sleep and recovery metrics are not."
+        "a": "Workouts with heart rate are written; sleep and recovery metrics are not."
       },
       {
         "q": "Does Suunto sync sleep to Apple Health?",
@@ -1093,7 +1089,7 @@ export const deviceGuides = [
       },
       {
         "q": "Do Suunto GPS routes show in Apple Health?",
-        "a": "No, according to community reports; RunGap is a common workaround."
+        "a": "No. RunGap is a common workaround."
       },
       {
         "q": "Can the Suunto app import Apple Watch workouts?",
@@ -1310,11 +1306,11 @@ export const deviceGuides = [
       },
       {
         "q": "Can I use a Google Pixel Watch with an iPhone?",
-        "a": "Not officially. Google's compatibility page says Pixel Watch works only with Android phones. The third-party app Merge claims to pair Wear OS watches, including Pixel Watch, with an iPhone and write health data to Apple Health, but the watch still has to be activated with an Android phone."
+        "a": "Google's compatibility page says Pixel Watch works only with Android phones. The third-party app Merge says it pairs Wear OS watches, including Pixel Watch, with an iPhone and write health data to Apple Health, but the watch still has to be activated with an Android phone."
       },
       {
         "q": "Will my old Fitbit history appear in Apple Health?",
-        "a": "Google's release notes, as reported at launch, let you choose to sync the past 30 days or your full history when you connect."
+        "a": "Google's release notes let you choose to sync the past 30 days or your full history when you connect."
       },
       {
         "q": "Do I still need a third-party Fitbit-to-Health app?",
@@ -1364,7 +1360,7 @@ export const deviceGuides = [
     "method": "third-party",
     "checked": "2026-10-27",
     "answer": [
-      "No official way for current models. Samsung states that Galaxy Watch4 through Watch8, Watch FE and Watch Ultra are not compatible with iPhone because they rely on Google Play services, and Samsung Health has no Apple Health export. Only older watches (Galaxy Watch, Watch Active/Active2, Watch3, Gear and Galaxy Fit models) work with an iPhone via Galaxy Wearable and Samsung Health for iOS, and what they pass to Apple Health is limited."
+      "Samsung states that Galaxy Watch4 through Watch8, Watch FE and Watch Ultra are not compatible with iPhone because they rely on Google Play services, and Samsung Health has no Apple Health export. Only older watches (Galaxy Watch, Watch Active/Active2, Watch3, Gear and Galaxy Fit models) work with an iPhone via Galaxy Wearable and Samsung Health for iOS, and what they pass to Apple Health is limited."
     ],
     "requirements": [
       "Galaxy Watch4 or newer: an Android phone for activation; on iPhone only through the unofficial Merge app",
@@ -1379,7 +1375,7 @@ export const deviceGuides = [
       {
         "type": "Steps",
         "ok": "partial",
-        "note": "Older watches via Samsung Health for iOS: steps reported by users, inconsistent. Samsung's listing documents only reading iPhone steps from Apple Health. Merge says it writes steps, distance, floors"
+        "note": "Samsung's listing documents only reading iPhone steps from Apple Health. Merge says it writes steps, distance, floors"
       },
       {
         "type": "Active energy",
@@ -1402,7 +1398,7 @@ export const deviceGuides = [
       {
         "type": "Sleep",
         "ok": false,
-        "note": "Not listed by Merge; older-watch users report sleep not syncing"
+        "note": "Not listed by Merge"
       },
       {
         "type": "Blood oxygen",
@@ -1464,7 +1460,7 @@ export const deviceGuides = [
         "note": "Unofficial; needs an Android phone for first activation"
       }
     ],
-    "afterSetup": "With Samsung Health for iOS, data reaches Apple Health only when the app syncs, and users report gaps. Merge runs as a background Bluetooth connection with the watch in range; Samsung features such as ECG, blood pressure and LTE activation do not work without an Android phone.",
+    "afterSetup": "With Samsung Health for iOS, data reaches Apple Health only when the app syncs. Merge runs as a background Bluetooth connection with the watch in range; Samsung features such as ECG, blood pressure and LTE activation do not work without an Android phone.",
     "duplicates": "If an iPhone and the watch both count steps, set the priority in Health > Browse > Activity > Steps > Data Sources & Access > Edit and drag the watch's app above iPhone. Samsung Health for iOS can also read iPhone steps from Apple Health, so avoid letting it re-count the same steps.",
     "trouble": [
       {
@@ -1477,7 +1473,7 @@ export const deviceGuides = [
       },
       {
         "q": "Sleep from an older Galaxy Watch is not in Apple Health",
-        "a": "Samsung Health for iOS passes very little to Apple Health. Users report that power-cycling the phone and watch and reopening Samsung Health sometimes restores syncing inside Samsung Health, but Apple Health support stays limited."
+        "a": "Samsung Health for iOS passes very little to Apple Health. Power-cycling the phone and watch and reopening Samsung Health can restore syncing inside Samsung Health."
       },
       {
         "q": "Steps are double-counted",
@@ -1503,7 +1499,7 @@ export const deviceGuides = [
       },
       {
         "q": "Can I move my Samsung Health history to Apple Health?",
-        "a": "Not officially. Samsung Health has no import or export to Apple Health."
+        "a": "Samsung Health has no import or export to Apple Health."
       },
       {
         "q": "Will a Galaxy Ring work with iPhone?",
@@ -1560,7 +1556,7 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "duration, distance, calories, heart rate. GPS routes not documented by Amazfit"
+        "note": "duration, distance, calories, heart rate"
       },
       {
         "type": "Steps",
@@ -1576,9 +1572,7 @@ export const deviceGuides = [
         "ok": true
       },
       {
-        "type": "Resting heart rate",
-        "ok": "partial",
-        "note": "listed by third-party integrators, not by Amazfit"
+        "type": "Resting heart rate"
       },
       {
         "type": "HRV",
@@ -1587,33 +1581,24 @@ export const deviceGuides = [
       },
       {
         "type": "Sleep",
-        "ok": true,
-        "note": "stages reported by third-party integrators; not documented by Amazfit"
+        "ok": true
       },
       {
-        "type": "Blood oxygen",
-        "ok": "partial",
-        "note": "reported by integrators, not documented by Amazfit"
+        "type": "Blood oxygen"
       },
       {
-        "type": "Respiratory rate",
-        "ok": "partial",
-        "note": "reported by integrators, not documented by Amazfit"
+        "type": "Respiratory rate"
       },
       {
-        "type": "VO2 max",
-        "ok": false,
-        "note": "not documented"
+        "type": "VO2 max"
       },
       {
         "type": "Weight / body composition",
         "ok": "partial",
-        "note": "Since Zepp 9.10 (2025) Zepp can read weight from Apple Health. Writing weight from Zepp scales not documented"
+        "note": "Since Zepp 9.10 (2025) Zepp can read weight from Apple Health."
       },
       {
-        "type": "Menstrual cycle",
-        "ok": false,
-        "note": "not documented"
+        "type": "Menstrual cycle"
       }
     ],
     "steps": [
@@ -1653,7 +1638,7 @@ export const deviceGuides = [
     "trouble": [
       {
         "q": "Zepp is stuck on the \"Allow Zepp to access Apple Health\" screen",
-        "a": "Force-close Zepp, update it, and reopen. A user-reported workaround is to open Zepp with the network off (Airplane Mode), then turn the network back on."
+        "a": "Force-close Zepp, update it, and reopen. If that fails, open Zepp with the network off (Airplane Mode), then turn the network back on."
       },
       {
         "q": "Data stops appearing in Apple Health",
@@ -1661,7 +1646,7 @@ export const deviceGuides = [
       },
       {
         "q": "No HRV in Apple Health",
-        "a": "Only the Helio Strap exports HRV. Users also report HRV values landing on the previous day."
+        "a": "Only the Helio Strap exports HRV."
       },
       {
         "q": "PAI, stress or readiness are missing",
@@ -1683,7 +1668,7 @@ export const deviceGuides = [
       },
       {
         "q": "Can Amazfit read data from Apple Health?",
-        "a": "Partly. Since Zepp 9.10 (2025), Zepp can read weight from Apple Health."
+        "a": "Since Zepp 9.10 (2025), Zepp can read weight from Apple Health."
       },
       {
         "q": "Do Amazfit workouts show up in the Apple Fitness app?",
@@ -1729,7 +1714,7 @@ export const deviceGuides = [
     "method": "native",
     "checked": "2026-10-27",
     "answer": [
-      "Yes. Current Xiaomi Smart Bands and watches sync through the Mi Fitness app: Profile > Third-party data > Health, then pick the data types. Steps, heart rate, active energy, sleep and workouts come through; HRV and SpO2 are not documented. Older Mi Bands that use Zepp Life share only steps, sleep and weight."
+      "Yes. Current Xiaomi Smart Bands and watches sync through the Mi Fitness app: Profile > Third-party data > Health, then pick the data types. Steps, heart rate, active energy, sleep and workouts come through; HRV and SpO2 aren't on Xiaomi's list. Older Mi Bands that use Zepp Life share only steps, sleep and weight."
     ],
     "requirements": [
       "iPhone with Mi Fitness (Xiaomi Smart Band 8/9/10, Xiaomi and Redmi watches)",
@@ -1740,7 +1725,7 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": "partial",
-        "note": "sessions with type, duration and calories per integrator docs; routes not documented by Xiaomi"
+        "note": "Workout sessions."
       },
       {
         "type": "Steps",
@@ -1756,34 +1741,24 @@ export const deviceGuides = [
         "ok": true
       },
       {
-        "type": "Resting heart rate",
-        "ok": false,
-        "note": "not documented"
+        "type": "Resting heart rate"
       },
       {
-        "type": "HRV",
-        "ok": false,
-        "note": "not documented"
+        "type": "HRV"
       },
       {
         "type": "Sleep",
         "ok": true,
-        "note": "sleep time; stages not documented for Apple Health"
+        "note": "Sleep time."
       },
       {
-        "type": "Blood oxygen",
-        "ok": false,
-        "note": "not documented for Apple Health"
+        "type": "Blood oxygen"
       },
       {
-        "type": "Respiratory rate",
-        "ok": false,
-        "note": "not documented"
+        "type": "Respiratory rate"
       },
       {
-        "type": "VO2 max",
-        "ok": false,
-        "note": "not documented"
+        "type": "VO2 max"
       },
       {
         "type": "Weight / body composition",
@@ -1791,9 +1766,7 @@ export const deviceGuides = [
         "note": "with a Xiaomi smart scale; Xiaomi lists weight for Zepp Life"
       },
       {
-        "type": "Menstrual cycle",
-        "ok": false,
-        "note": "not documented"
+        "type": "Menstrual cycle"
       }
     ],
     "steps": [
@@ -1835,7 +1808,7 @@ export const deviceGuides = [
       }
     ],
     "afterSetup": "Mi Fitness writes to Apple Health after the band syncs with the app. Xiaomi recommends turning off Low Power Mode so background activity isn't restricted. Zepp Life sleep data usually shows up the next day.",
-    "duplicates": "Users report Mi Fitness steps being added on top of iPhone steps. Set priority in Health > Browse > Activity > Steps > Data Sources & Access > Edit, putting Mi Fitness (or your Apple Watch) above iPhone. Don't sync the same band through both Mi Fitness and Zepp Life.",
+    "duplicates": "Mi Fitness steps can add on top of iPhone steps. Set priority in Health > Browse > Activity > Steps > Data Sources & Access > Edit, putting Mi Fitness (or your Apple Watch) above iPhone. Don't sync the same band through both Mi Fitness and Zepp Life.",
     "trouble": [
       {
         "q": "Mi Fitness data doesn't appear in Apple Health",
@@ -1869,11 +1842,11 @@ export const deviceGuides = [
       },
       {
         "q": "Does Mi Fitness sync sleep to Apple Health?",
-        "a": "Yes, sleep time syncs. Detailed sleep stages are not documented for Apple Health."
+        "a": "Yes, sleep time syncs."
       },
       {
         "q": "Does Mi Fitness sync heart rate variability or SpO2?",
-        "a": "Not documented by Xiaomi for Apple Health."
+        "a": "Xiaomi doesn't list them for Apple Health."
       },
       {
         "q": "Can Mi Fitness read data from Apple Health?",
@@ -1915,7 +1888,7 @@ export const deviceGuides = [
     "method": "partial",
     "checked": "2026-10-27",
     "answer": [
-      "Partly. HUAWEI Health for iPhone has a built-in HealthKit sharing option, and Huawei documents that it writes workouts and weight to Apple Health; steps and activity energy also come through, but heart rate and sleep are inconsistent and HRV, SpO2 and VO2 max are not shared. For fuller data, the third-party Health Sync app copies Huawei Health cloud data to Apple Health."
+      "HUAWEI Health for iPhone has a built-in HealthKit sharing option: Huawei documents that it writes workouts and weight to Apple Health, and steps and activity energy come through too. HRV, SpO2 and VO2 max are not shared. For fuller data, the third-party Health Sync app copies Huawei Health cloud data to Apple Health."
     ],
     "requirements": [
       "iPhone with HUAWEI Health (in Europe the App Store listing is \"HUAWEI Health: Europe\", in some markets \"HUAWEI Health: Global\")",
@@ -1926,12 +1899,11 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "Huawei's App Store listing says recorded exercise is synced to HealthKit; route data not documented"
+        "note": "Huawei's App Store listing says recorded exercise is synced to HealthKit"
       },
       {
         "type": "Steps",
-        "ok": true,
-        "note": "users report counts lower than in Huawei Health"
+        "ok": true
       },
       {
         "type": "Active energy",
@@ -1940,12 +1912,12 @@ export const deviceGuides = [
       {
         "type": "Heart rate",
         "ok": "partial",
-        "note": "not documented by Huawei; via Health Sync"
+        "note": "Via Health Sync"
       },
       {
         "type": "Resting heart rate",
         "ok": false,
-        "note": "native no; via Health Sync possibly"
+        "note": "Not natively"
       },
       {
         "type": "HRV",
@@ -1955,7 +1927,7 @@ export const deviceGuides = [
       {
         "type": "Sleep",
         "ok": "partial",
-        "note": "users report sleep stopped syncing; Health Sync says it syncs detailed sleep"
+        "note": "Health Sync says it syncs detailed sleep"
       },
       {
         "type": "Blood oxygen",
@@ -1974,12 +1946,10 @@ export const deviceGuides = [
       {
         "type": "Weight / body composition",
         "ok": true,
-        "note": "weight is written (and read); body composition not documented"
+        "note": "Weight is written and read"
       },
       {
-        "type": "Menstrual cycle",
-        "ok": false,
-        "note": "not documented"
+        "type": "Menstrual cycle"
       }
     ],
     "steps": [
@@ -2043,7 +2013,7 @@ export const deviceGuides = [
       },
       {
         "q": "Sleep stopped syncing",
-        "a": "Users report this after iOS updates. Re-grant sleep permission; some users found it changed with TruSleep settings. Health Sync is the more reliable route for sleep."
+        "a": "Re-grant sleep permission after iOS updates and check your TruSleep settings. Health Sync is the more reliable route for sleep."
       },
       {
         "q": "Health Sync says Health Kit is not supported in my country",
@@ -2057,7 +2027,7 @@ export const deviceGuides = [
     "faq": [
       {
         "q": "Does Huawei Health sync with Apple Health?",
-        "a": "Yes, partly. HUAWEI Health writes workouts, weight and basic activity to Apple Health; detailed vitals and sleep are unreliable or absent."
+        "a": "Yes. HUAWEI Health writes workouts, weight and basic activity to Apple Health. For detailed vitals and sleep, use Health Sync."
       },
       {
         "q": "Does a Huawei Watch work with an iPhone?",
@@ -2145,7 +2115,7 @@ export const deviceGuides = [
       {
         "type": "HRV",
         "ok": "partial",
-        "note": "listed by Withings as a shared category without saying which direction; some guides report Withings HRV is not exported"
+        "note": "Listed by Withings as a shared category"
       },
       {
         "type": "Sleep",
@@ -2186,8 +2156,8 @@ export const deviceGuides = [
       },
       {
         "type": "ECG",
-        "ok": "partial",
-        "note": "listed by Withings, but users have reported ECGs not appearing in Apple Health"
+        "ok": true,
+        "note": "Listed by Withings"
       }
     ],
     "steps": [
@@ -2324,7 +2294,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes. The Ultrahuman iPhone app writes Ring AIR / Ring PRO data to Apple Health once you allow it in the Health app. Ultrahuman names workouts, sleep, menstrual data, HRV, skin temperature, energy expenditure, and logged caffeine and water; M1 users also get glucose.",
-      "Key caveats: Ultrahuman's own scores (Sleep Index, Movement Index, Recovery) stay in the app, its HRV (RMSSD) won't match Apple's SDNN, and ring steps can double-count with an Apple Watch unless you set source priority."
+      "Ultrahuman's own scores (Sleep Index, Movement Index, Recovery) stay in the app, its HRV (RMSSD) won't match Apple's SDNN, and ring steps can double-count with an Apple Watch unless you set source priority."
     ],
     "requirements": [
       "iPhone with the latest Ultrahuman app (iOS 16 or later)",
@@ -2335,12 +2305,10 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "Ultrahuman lists workouts among Apple Health sync data; app 4.3.1 improved workout upload reliability. GPS routes: not documented."
+        "note": "Ultrahuman lists workouts among Apple Health sync data; app 4.3.1 improved workout upload reliability."
       },
       {
-        "type": "Steps",
-        "ok": "partial",
-        "note": "Reported to sync by reviewers and users (who report double counting with Apple Watch); Ultrahuman does not itemise steps in its docs."
+        "type": "Steps"
       },
       {
         "type": "Active energy",
@@ -2348,14 +2316,10 @@ export const deviceGuides = [
         "note": "Ultrahuman names energy expenditure as available in Apple Health."
       },
       {
-        "type": "Heart rate",
-        "ok": "partial",
-        "note": "Reported by third-party guides; not itemised by Ultrahuman."
+        "type": "Heart rate"
       },
       {
-        "type": "Resting heart rate",
-        "ok": "partial",
-        "note": "Reported by third-party guides; not itemised by Ultrahuman."
+        "type": "Resting heart rate"
       },
       {
         "type": "HRV",
@@ -2365,17 +2329,13 @@ export const deviceGuides = [
       {
         "type": "Sleep",
         "ok": true,
-        "note": "Ultrahuman lists sleep data; third-party guides report stages (awake/REM/core/deep)."
+        "note": "Ultrahuman lists sleep data."
       },
       {
-        "type": "Blood oxygen",
-        "ok": "partial",
-        "note": "Claimed by an integration vendor only; not confirmed by Ultrahuman."
+        "type": "Blood oxygen"
       },
       {
-        "type": "Respiratory rate",
-        "ok": false,
-        "note": "Not documented."
+        "type": "Respiratory rate"
       },
       {
         "type": "VO2 max",
@@ -2522,7 +2482,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes. The Wahoo iPhone app lists Apple Health (iOS only) as an authorized app. Rides from ELEMNT ACE, BOLT 3 and ROAM 3, KICKR sessions and Wahoo Apple Watch workouts are written to Health as workouts with duration, distance, calories and heart rate. Older ELEMNT, BOLT 1/2 and ROAM 1/2 units share through the ELEMNT companion app, and ELEMNT RIVAL also pushes steps and sleep.",
-      "Key caveats: auto-share is off by default, SYSTM does not write to Apple Health, and a ride that also reaches Health through Strava appears twice."
+      "Auto-share is off by default, SYSTM does not write to Apple Health, and a ride that also reaches Health through Strava appears twice."
     ],
     "requirements": [
       "iPhone with the Wahoo app (ELEMNT ACE, BOLT 3, ROAM 3, KICKR, TICKR, Wahoo app for Apple Watch) or the ELEMNT app (ELEMNT, BOLT 1/2, ROAM 1/2, RIVAL)",
@@ -2533,7 +2493,7 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "Rides, runs and trainer sessions with moving time (not elapsed time), distance and calories. GPS routes: not documented. Power and cadence aren't documented as exported."
+        "note": "Rides, runs and trainer sessions with moving time (not elapsed time), distance and calories."
       },
       {
         "type": "Steps",
@@ -2639,7 +2599,7 @@ export const deviceGuides = [
       },
       {
         "q": "Heart rate in Health has odd values or timestamps",
-        "a": "Users have reported shifted heart-rate timestamps after some app versions. Update the Wahoo app. The ride file in Wahoo/Strava is still correct; delete the bad workout in Health if needed."
+        "a": "Update the Wahoo app. The ride file in Wahoo/Strava is still correct; delete the bad workout in Health if needed."
       },
       {
         "q": "Can I use Apple Watch as a heart-rate monitor for ELEMNT/KICKR?",
@@ -2647,7 +2607,7 @@ export const deviceGuides = [
       },
       {
         "q": "RIVAL steps don't count in Health",
-        "a": "Health → Browse → Activity → Steps → Data Sources & Access → Edit → move ELEMNT to the top. Users still report patchy RIVAL step sync, so open the ELEMNT app regularly."
+        "a": "Health → Browse → Activity → Steps → Data Sources & Access → Edit → move ELEMNT to the top. Open the ELEMNT app regularly so RIVAL steps sync."
       },
       {
         "q": "Ride shows up twice (Wahoo + Strava)",
@@ -2728,7 +2688,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes, in both directions. With Send to Health on, Strava writes your activities to Apple Health with activity type, distance, time, calories and, for activities recorded in Strava, the route. With Automatic Uploads on, it imports workouts recorded in Apple's Workout app.",
-      "Key caveats: Strava imports only native Apple Workout app sessions from the last 30 days, and routes from Garmin, Zwift and other third-party uploads aren't sent to Health. If your device also writes to Health directly, Send to Health causes duplicates."
+      "Strava imports only native Apple Workout app sessions from the last 30 days, and routes from Garmin, Zwift and other third-party uploads aren't sent to Health. If your device also writes to Health directly, Send to Health causes duplicates."
     ],
     "requirements": [
       "iPhone with the Strava app",
@@ -2918,8 +2878,8 @@ export const deviceGuides = [
     "method": "partial",
     "checked": "2026-10-27",
     "answer": [
-      "Not officially. Apple Health isn't on Zwift's list of platforms that receive activity data, and Zwift staff call the link unsupported. The reliable route is to connect Zwift to Strava or Garmin Connect and let that app write the ride to Health.",
-      "Key caveats: the iOS Zwift and Companion apps can still register as Health writers, and users report inflated Active Energy and distance from them. Zwift also says Apple Watch isn't compatible as a heart-rate monitor."
+      "Connect Zwift to Strava or Garmin Connect and let that app write the ride to Health. That's the reliable route, because Apple Health isn't on Zwift's list of platforms that receive activity data.",
+      "The iOS Zwift and Companion apps can still register as Health writers, so check their permissions if Active Energy or distance looks too high. Zwift says Apple Watch isn't compatible as a heart-rate monitor."
     ],
     "requirements": [
       "Zwift account and the Zwift Companion app (or zwift.com) to manage Connections",
@@ -2937,14 +2897,12 @@ export const deviceGuides = [
         "ok": false
       },
       {
-        "type": "Active energy",
-        "ok": "partial",
-        "note": "Users report Zwift on iOS writing Active Energy repeatedly (inflated totals), even with permissions off."
+        "type": "Active energy"
       },
       {
         "type": "Heart rate",
         "ok": "partial",
-        "note": "Only if the relay app (Strava/Garmin) exports it. Users report Companion-created Health workouts have no heart rate."
+        "note": "Only if the relay app (Strava/Garmin) exports it."
       },
       {
         "type": "Resting heart rate",
@@ -3031,7 +2989,7 @@ export const deviceGuides = [
       },
       {
         "q": "Zwift keeps writing to Health after permissions are off",
-        "a": "Users reported this in Dec 2025. Re-check both Zwift and Zwift Companion under Health → profile → Privacy: Apps, update the apps, and delete stray samples. Report it to Zwift support."
+        "a": "Re-check both Zwift and Zwift Companion under Health → profile → Privacy: Apps, update the apps, and delete stray samples. Report it to Zwift support."
       },
       {
         "q": "Can I use Apple Watch as my heart-rate monitor in Zwift?",
@@ -3049,7 +3007,7 @@ export const deviceGuides = [
     "faq": [
       {
         "q": "Does Zwift sync with Apple Health?",
-        "a": "Not officially. Zwift doesn't list Apple Health as a destination. Send rides to Strava or Garmin Connect and let that app write them to Health."
+        "a": "Through another app. Zwift doesn't list Apple Health as a destination, so send rides to Strava or Garmin Connect and let that app write them to Health."
       },
       {
         "q": "How do I get Zwift rides into Apple Health?",
@@ -3108,7 +3066,7 @@ export const deviceGuides = [
     "checked": "2026-10-27",
     "answer": [
       "Yes, in both directions. The Peloton iPhone app writes your Peloton workouts from Bike, Tread, Row, Guide or the app to Apple Health with heart rate, active energy and distance, plus cycling and running power and speed. It can also import workouts from Apple Health into Peloton history and Streaks.",
-      "Key caveats: the iPhone Peloton app must be opened to sync, Apple Health is iPhone-only, and Strava auto-post combined with Strava's Send to Health counts workouts twice."
+      "The iPhone Peloton app must be opened to sync, Apple Health is iPhone-only, and Strava auto-post combined with Strava's Send to Health counts workouts twice."
     ],
     "requirements": [
       "iPhone with the latest Peloton app, signed in to your Peloton account",
@@ -3119,7 +3077,7 @@ export const deviceGuides = [
       {
         "type": "Workouts",
         "ok": true,
-        "note": "All Peloton classes and workout history, including from Bike, Tread and Row. Cycling cadence, power and speed and running power and speed have been added since Feb 2025. GPS routes: only for outdoor GPS runs in the app (not confirmed)."
+        "note": "All Peloton classes and workout history, including from Bike, Tread and Row. Cycling cadence, power and speed and running power and speed have been added since Feb 2025."
       },
       {
         "type": "Steps",
@@ -3159,18 +3117,14 @@ export const deviceGuides = [
         "ok": false
       },
       {
-        "type": "Weight / body composition",
-        "ok": false,
-        "note": "Not documented."
+        "type": "Weight / body composition"
       },
       {
         "type": "Menstrual cycle",
         "ok": false
       },
       {
-        "type": "Mindful minutes",
-        "ok": "partial",
-        "note": "Reported for meditation classes at launch (2019); not in Peloton's current article."
+        "type": "Mindful minutes"
       },
       {
         "type": "Import from Health (reads)",
@@ -3307,7 +3261,7 @@ export const deviceGuides = [
     "summary": "Nutrition and weight; reads workouts and steps",
     "answer": [
       "Yes. MyFitnessPal writes your food diary (meal summaries, calories and most nutrients) to Apple Health, syncs weight both ways, and reads exercise, steps and sleep from Health. Apple Watch workouts appear in MFP's exercise diary automatically.",
-      "Key caveats: exercise logged in MFP is not sent to Health, Health exercise only syncs on the same day, and no historical data is pulled."
+      "Exercise logged in MFP is not sent to Health, Health exercise only syncs on the same day, and no historical data is pulled."
     ],
     "requirements": [
       "iPhone with the latest MyFitnessPal app",

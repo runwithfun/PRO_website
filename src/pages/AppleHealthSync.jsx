@@ -42,7 +42,7 @@ export default function AppleHealthSync() {
           {KEY_TYPES.map((k) => <td key={k.label}><SyncMark ok={syncOf(g, k)?.ok} label={false} /></td>)}
         </tr>)}</tbody>
       </table></div>
-      <p className="dg-legend"><SyncMark ok /> <SyncMark ok="partial" /> <SyncMark ok={false} /></p>
+      <p className="dg-legend"><SyncMark ok /> <SyncMark ok="partial" /> <SyncMark ok={false} /> <SyncMark /></p>
     </section>
 
     <section className="connect-wrap connect-section tool-prose" aria-labelledby="merge-heading">
@@ -64,9 +64,9 @@ export default function AppleHealthSync() {
       </div>
 
       <div className="tool-cta">
-        <p><strong>P.R.O.</strong> reads Apple Health, so it works with every device on this page — and with any other tracker that syncs there. Chat with an AI coach that answers with your real numbers, build widget dashboards, see your training history across 50+ sports, follow adaptive training plans and get a sleep score for every night.</p>
+        <p><strong>P.R.O.</strong> reads Apple Health, so it works with every device on this page — and with any other tracker that syncs there. Chat with an AI coach that answers with your real numbers, build widget dashboards, see your training history across 50+ sports, get a sleep score for every night and, with Pro, follow adaptive training plans.</p>
         <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
-        <p className="tool-small">Ask ChatGPT, Claude, Gemini or Perplexity about the same data with the free connector: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
+        <p className="tool-small">Ask ChatGPT, Claude, Gemini or Perplexity about the same data with the free P.R.O. MCP connector: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
       </div>
     </section>
 

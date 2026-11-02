@@ -22,8 +22,8 @@ export const alternatives = [
     eyebrow: 'WHOOP ALTERNATIVE · PRICES CHECKED 27 OCTOBER 2026',
     h1: 'The WHOOP alternative that uses the watch you already have',
     answer: [
-      'P.R.O. is a free iPhone app that turns what your Apple Watch, Garmin, Oura or other tracker already writes to Apple Health into a daily readiness status, training load, sleep score and an AI coach — no band and no WHOOP membership, which costs $199 to $359 a year. Its free MCP connector lets you ask ChatGPT, Claude, Gemini, Grok or Perplexity about your recovery and strain with your real numbers.',
-      'WHOOP is still the pick if you want a screenless band worn 24/7; its Peak and Life tiers add Healthspan, ECG and blood pressure insights.',
+      'P.R.O. is a free iPhone app whose MCP connector lets you ask ChatGPT, Claude, Gemini, Grok or Perplexity about your recovery and strain with your real numbers, from whatever your Apple Watch, Garmin, Oura or other tracker already writes to Apple Health. No band and no WHOOP membership, which costs $199 to $359 a year.',
+      'The app adds an AI coach, training load and a sleep score. Daily readiness in the app and adaptive training plans come with Pro from $2.99 a month.',
     ],
     facts: [
       ['P.R.O.', 'Free; optional Pro from $2.99/mo or $29.99/yr'],
@@ -40,15 +40,15 @@ export const alternatives = [
     },
     columns: ['P.R.O.', 'WHOOP', 'Athlytic', 'Bevel'],
     rows: [
-      [MCP_ROW, PRO_MCP, 'No official connector; unofficial community servers use the WHOOP API', 'No', 'No'],
+      [MCP_ROW, PRO_MCP, 'No official connector', 'No', 'No'],
       ['Price (US)', 'Free; optional Pro from $2.99/mo or $29.99/yr', 'One $199/yr, Peak $239/yr, Life $359/yr; monthly ($25–$40) only after the first 12 months', '$4.99/mo or $29.99/yr, 7-day trial', 'Free app; Bevel Pro $14.99/mo or $99.99/yr'],
       ['Hardware', 'None — Apple Watch, Garmin, Oura, WHOOP, Polar, COROS or anything else that writes to Apple Health', 'WHOOP 5.0 (One, Peak) or WHOOP MG (Life), included', 'Apple Watch for most features', 'Apple Watch, Oura, Garmin, Amazfit'],
       ['Without a subscription', 'Free app', 'Stops collecting and analysing data when the membership ends', 'Subscription after the 7-day trial', 'Free tier'],
-      ['Recovery / readiness', 'Daily status — ready, caution or recover — from HRV, resting heart rate and sleep against your 28-day baseline, with the reasons', 'Recovery score (%)', 'Recovery score (0–100%)', 'Recovery score'],
+      ['Recovery / readiness', 'Daily status — ready, caution or recover — from HRV, resting heart rate and sleep against your 28-day baseline, with the reasons; free through MCP, in the app with Pro', 'Recovery score (%)', 'Recovery score (0–100%)', 'Recovery score'],
       ['Strain / training load', 'Training load from heart-rate zones, acute vs chronic load ratio (ACWR) and a daily target band', 'Strain (0–21)', 'Exertion (0–10) with a daily target', 'Strain score'],
       ['Sleep', 'Sleep score and stages', 'Sleep score', 'Sleep score and target', 'Sleep score, smart alarm'],
       ['AI coach chat', 'Yes — answers with tables and charts from your data; choice of AI model', 'WHOOP Coach (built with OpenAI)', 'Ask Athlytic, on-device Q&A', 'Bevel Intelligence'],
-      ['Training plans', 'Adaptive AI plans for running, cycling and more that adjust to load and recovery; home-screen widget', 'Strength Trainer; guidance from WHOOP Coach', 'Daily workout suggestions', 'Strength plans'],
+      ['Training plans', 'Adaptive AI plans with Pro for running, cycling and more that adjust to load and recovery; home-screen widget', 'Strength Trainer; guidance from WHOOP Coach', 'Daily workout suggestions', 'Strength plans'],
       ['Apple Health', 'Reads every device you sync into one history across 50+ sports', 'Writes workouts, sleep, resting heart rate, SpO2, respiratory rate and steps; not HRV', 'Reads Apple Watch data from Apple Health', 'Reads Apple Health'],
     ],
     cost: {
@@ -66,9 +66,7 @@ export const alternatives = [
     },
     picks: [
       ['P.R.O.', 'You already wear an Apple Watch, Garmin, Oura or another tracker that syncs to Apple Health and want readiness, training load, sleep and an AI coach in one app — and to ask ChatGPT or Claude about it through MCP. Free to start.'],
-      ['WHOOP', 'You want a screenless band worn 24/7 and WHOOP’s own Recovery and Strain scores, or Healthspan, ECG and blood pressure insights on Peak and Life. Works on iPhone and Android.'],
-      ['Athlytic', 'You only want WHOOP-style recovery and exertion scores from an Apple Watch.'],
-      ['Bevel', 'You want nutrition and glucose logging alongside recovery and strain.'],
+      ['WHOOP', 'You want a screenless band worn 24/7 and WHOOP’s own Recovery and Strain scores.'],
     ],
     steps: [
       {
@@ -82,7 +80,7 @@ export const alternatives = [
       },
       {
         title: 'Check readiness and training load each morning',
-        text: 'Ready, caution or recover, with the reasons, next to today’s load target. Add a training plan and it adapts to the same signals.',
+        text: 'Ask your assistant through the free MCP connector, or see it in the app with Pro: ready, caution or recover, with the reasons, next to today’s load target. Training plans adapt to the same signals.',
         links: [['/apple-watch-readiness-score', 'How the readiness rules work']],
       },
       {
@@ -98,7 +96,7 @@ export const alternatives = [
     faq: [
       {
         q: 'What is the best WHOOP alternative for Apple Watch?',
-        a: 'If you already wear an Apple Watch, an app that reads its HRV, resting heart rate and sleep from Apple Health gives you WHOOP-style recovery without a band. P.R.O. is free and adds training load, an AI coach, adaptive training plans and a free MCP connector for ChatGPT and Claude. Athlytic ($29.99/yr) focuses on recovery and exertion scores; Bevel adds nutrition logging.',
+        a: 'If you already wear an Apple Watch, an app that reads its HRV, resting heart rate and sleep from Apple Health gives you WHOOP-style recovery without a band. P.R.O. adds training load, an AI coach, a free MCP connector for ChatGPT and Claude and, with Pro, adaptive training plans.',
       },
       {
         q: 'Is there a free WHOOP alternative?',
@@ -110,7 +108,7 @@ export const alternatives = [
       },
       {
         q: 'Can you use WHOOP without a subscription?',
-        a: 'No. WHOOP says that once your membership ends it no longer collects, uploads or analyses your biometric data; you can still view past data. Unofficial third-party apps that read the band directly exist; they are not WHOOP products.',
+        a: 'No. WHOOP says that once your membership ends it no longer collects, uploads or analyses your biometric data; you can still view past data.',
       },
       {
         q: 'WHOOP vs Apple Watch: which is better for recovery?',
@@ -118,7 +116,7 @@ export const alternatives = [
       },
       {
         q: 'Athlytic vs WHOOP: what is the difference?',
-        a: 'Athlytic is an iPhone app ($4.99/month or $29.99/year) that calculates recovery, exertion and sleep scores from Apple Watch data; WHOOP is a band with a $199–$359 yearly membership. P.R.O. is a free alternative to both that adds an AI coach, adaptive training plans and an MCP connector for ChatGPT and Claude.',
+        a: 'Athlytic is an iPhone app ($4.99/month or $29.99/year) that calculates recovery, exertion and sleep scores from Apple Watch data; WHOOP is a band with a $199–$359 yearly membership. P.R.O. is an alternative to both: a free app with an AI coach and an MCP connector for ChatGPT and Claude, with adaptive training plans in Pro.',
       },
       {
         q: 'Can ChatGPT or Claude read my recovery data?',
@@ -188,9 +186,6 @@ export const alternatives = [
     picks: [
       ['P.R.O.', 'You want a plan that reacts to your recovery — HRV, resting heart rate and sleep — not only to your paces, you train more than running, and you want to ask ChatGPT or Claude about your runs through MCP. From $2.99 a month.'],
       ['Runna', 'You want pace-based workouts sent to your watch and a large library of race plans, on iPhone or Android.'],
-      ['Garmin Coach', 'You own a Garmin and want free adaptive plans from 5K to half marathon.'],
-      ['Nike Run Club', 'You want free audio Guided Runs.'],
-      ['Strava', 'You want the social feed and segments; Strava sells Runna as a bundle.'],
     ],
     steps: [
       {
@@ -219,11 +214,11 @@ export const alternatives = [
     faq: [
       {
         q: 'What is the best Runna alternative?',
-        a: 'For iPhone runners, P.R.O. builds adaptive running plans from your Apple Health data for $2.99 a month instead of Runna’s $19.99, adjusts them to your training load, HRV, resting heart rate and sleep, and lets ChatGPT or Claude propose plan changes through a free MCP connector. Garmin Coach is a free option if you own a Garmin; Nike Run Club offers free Guided Runs.',
+        a: 'For iPhone runners, P.R.O. builds adaptive running plans from your Apple Health data for $2.99 a month instead of Runna’s $19.99, adjusts them to your training load, HRV, resting heart rate and sleep, and lets ChatGPT or Claude propose plan changes through a free MCP connector.',
       },
       {
         q: 'Is there a free alternative to Runna?',
-        a: 'Garmin Coach is free with a Garmin watch and Nike Run Club’s Guided Runs are free. P.R.O. is a free app with plans from $2.99 a month, and its MCP connector is completely free: ChatGPT or Claude can read your real runs and write a plan from them.',
+        a: 'P.R.O. is a free app, and its MCP connector is completely free: ChatGPT or Claude can read your real runs and write a plan from them. Plans inside the app start at $2.99 a month.',
       },
       {
         q: 'How much does Runna cost in 2026?',

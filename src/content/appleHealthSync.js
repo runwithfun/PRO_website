@@ -43,19 +43,34 @@ export function syncSummary(guide) {
 export const formatChecked = (iso) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
-// Meta description from the direct answer: whole sentences up to ~160 characters,
-// otherwise the first ones cut at a word. A leading "Yes, one way." adds nothing in a snippet.
-export function guideDescription(guide) {
-  const answer = guide.answer.join(' ').replace(/^(?:Yes|Partly)\b[^.!?]{0,20}[.!?]\s+/, '');
-  const sentences = answer.split(/(?<=[.!?][’'”"]?)\s+/);
-  let text = '';
-  for (const s of sentences) {
-    if (`${text} ${s}`.trim().length > 160) break;
-    text = `${text} ${s}`;
-  }
-  text = text.trim();
-  if (text.length >= 90) return text;
-  return answer.length <= 160 ? answer : `${answer.slice(0, 158).replace(/[\s,;:]+\S*$/, '')}…`;
+// Meta descriptions for device guides: a concrete benefit in whole sentences, up to 155 characters.
+const DEVICE_DESCRIPTIONS = {
+  garmin: 'Garmin Connect writes steps, heart rate, sleep, weight and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  whoop: 'WHOOP writes workouts, sleep, resting heart rate and more to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  oura: 'The Oura app writes sleep with stages, heart rate, steps and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  polar: 'Polar Flow writes workouts, energy, sleep duration, steps and weight to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  coros: 'The COROS app writes steps, heart rate, sleep, distance and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  suunto: 'Turn on Save to Apple Health in the Suunto app and workouts arrive with heart rate. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  fitbit: 'Google Health (formerly Fitbit) connects to Apple Health on iPhone: workouts, sleep, heart rate, steps. Then ask ChatGPT via P.R.O. MCP.',
+  samsung: "Galaxy Watch4 and newer don't pair with iPhone. See what older watches and the Merge bridge app bring into Apple Health, then use it in P.R.O.",
+  amazfit: 'The Zepp app writes Amazfit workouts, steps, sleep and heart rate to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  xiaomi: 'Mi Fitness writes steps, heart rate, sleep and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  huawei: 'HUAWEI Health writes workouts, weight, steps and activity energy to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  withings: 'The Withings app exports scale, watch and sleep data to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  ultrahuman: 'The Ultrahuman app writes ring sleep, HRV and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  wahoo: 'The Wahoo app writes rides, runs and KICKR sessions to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  strava: 'Strava writes activities with distance and calories to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  zwift: 'Get Zwift rides into Apple Health through Strava or Garmin Connect, then ask ChatGPT about them via the free P.R.O. MCP connector.',
+  peloton: 'Peloton writes Bike, Tread and Row workouts to Apple Health with heart rate. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  myfitnesspal: 'MyFitnessPal writes your food diary, calories and nutrients to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+};
+
+export const guideDescription = (guide) => DEVICE_DESCRIPTIONS[guide.id];
+
+// Device guide title; longer names drop "How to" to stay within 60 characters.
+export function deviceTitle(guide) {
+  const title = `Sync ${guide.name} with Apple Health (${guide.checked.slice(0, 4)}) — P.R.O.`;
+  return title.length <= 53 ? `How to ${title}` : title;
 }
 
 // Generic Apple Health steps, shared by every guide's "Avoid double-counting" block.
@@ -73,10 +88,8 @@ const native = byMethod('native');
 const bridge = byMethod('third-party');
 const partial = byMethod('partial');
 
-export const hubTitle = 'Sync Any Fitness Tracker with Apple Health — Device Guides | P.R.O.';
-export const hubDescription = `Step-by-step guides to sync ${listOf(
-  deviceGuides.slice(0, 6).map((g) => g.name).concat(deviceGuides.length > 6 ? ['more'] : []),
-)} with Apple Health: what each device writes, setup steps and how to avoid double-counted steps.`;
+export const hubTitle = 'Sync Any Fitness Tracker with Apple Health — P.R.O.';
+export const hubDescription = 'Step-by-step guides to sync Garmin, WHOOP, Oura, Polar, COROS, Suunto and more with Apple Health: what each device writes and how to avoid double counting.';
 
 const plural = (names, one, many) => (names.length > 1 ? many : one);
 const methodClauses = [
@@ -113,6 +126,6 @@ export const hubFaq = [
   },
   {
     q: 'Is there an app that works with data from any tracker in Apple Health?',
-    a: 'Yes. P.R.O. is a free iPhone app that reads Apple Health, so it works with every device that syncs there: an AI coach that answers with your real numbers, widget dashboards, training history for 50+ sports, adaptive training plans and a sleep score. Its free connector also lets ChatGPT, Claude, Gemini, Perplexity, Grok, Codex and Cursor read your Apple Health.',
+    a: 'Yes. P.R.O. is a free iPhone app that reads Apple Health, so it works with every device that syncs there: an AI coach that answers with your real numbers, widget dashboards, training history for 50+ sports, a sleep score and, with Pro, adaptive training plans. Its free MCP connector also lets ChatGPT, Claude, Gemini, Perplexity, Grok, Codex and Cursor read your Apple Health.',
   },
 ];

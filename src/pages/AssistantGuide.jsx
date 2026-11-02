@@ -40,7 +40,6 @@ export default function AssistantGuide({ id }) {
         <div><dt>Server address</dt><dd><CopyAddress /></dd></div>
         <div><dt>Sign-in</dt><dd>OAuth with a one-time code from P.R.O.</dd></div>
         <div><dt>Time</dt><dd>About 2 minutes</dd></div>
-        <div><dt>Recorded</dt><dd>{g.recorded}</dd></div>
       </dl>
     </header>
 

@@ -323,7 +323,7 @@ export default function GoodHrv() {
         <div className="tool-cta">
           <p><strong>P.R.O.</strong> reads your HRV, resting heart rate and sleep from Apple Health — from Apple Watch or any Garmin, WHOOP, Oura or other device that syncs there — and shows how today compares with your own norm — and its AI coach can take it into account when you ask about training.</p>
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
-          <p className="tool-small">Ask about your HRV in ChatGPT or Claude too: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
+          <p className="tool-small">Ask about your HRV in ChatGPT or Claude too, through the free P.R.O. MCP connector: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
         </div>
       </section>
 

@@ -100,9 +100,9 @@ export default function AppleWatchReadiness() {
             <p className="tool-small">Example with sample data. Answers depend on your assistant and your own Apple Health data.</p>
           </div>
           <ul>
-            <li><strong>Tested by us in every assistant:</strong> ChatGPT, Claude, Gemini, Grok, Perplexity, Codex, Claude Code and Cursor.</li>
-            <li><strong>Completely free:</strong> the connector costs nothing; you only need the free P.R.O. app on iPhone to sync Apple Health.</li>
-            <li><strong>Two minutes to set up:</strong> add https://mcp.proapp.uk as a custom connector, get a code in P.R.O. under Settings → MCP Connect, paste it — and choose which data categories the assistant can read.</li>
+            <li>We tested it ourselves in ChatGPT, Claude, Gemini, Grok, Perplexity, Codex, Claude Code and Cursor.</li>
+            <li>The connector costs nothing; you only need the free P.R.O. app on iPhone to sync Apple Health.</li>
+            <li>Setup takes two minutes: add https://mcp.proapp.uk as a custom connector, get a code in P.R.O. under Settings → MCP Connect, paste it and choose which data categories the assistant can read.</li>
           </ul>
           <p className="rd-mcp-links"><Link className="tool-btn" to="/mcp-connect">Connect your AI assistant</Link> <Link to="/apple-health-mcp">How the Apple Health MCP server works</Link></p>
         </div>
@@ -163,13 +163,13 @@ export default function AppleWatchReadiness() {
 
       <section className="connect-wrap connect-section tool-prose" aria-labelledby="pro">
         <h2 id="pro">Get a daily readiness read automatically with P.R.O.</h2>
-        <p className="tool-lead">P.R.O. is a free AI coach for Apple Health that runs these same checks every day — on any Apple Watch, and with other devices that write to Apple Health.</p>
+        <p className="tool-lead">P.R.O. is an AI coach for Apple Health that runs these same checks every day, free through its MCP connector and in the app with Pro — on any Apple Watch, and with other devices that write to Apple Health.</p>
         <ul>
-          <li><strong>Readiness with reasons:</strong> your latest HRV and resting heart rate against your previous 28 days, plus last night’s sleep, give a status — ready, caution or recover — and the signals behind it.</li>
-          <li><strong>No calibration week:</strong> the baseline comes from the history already in Apple Health, so if your watch has been recording, it works from day one.</li>
-          <li><strong>Plans that adapt:</strong> the AI coach reads your readiness and training load (last 7 days against the last 4 weeks) and adjusts the next sessions of your plan.</li>
-          <li><strong>Ask in your AI assistant:</strong> the same read is available in ChatGPT, Claude, Gemini, Grok, Perplexity, Codex, Claude Code and Cursor through the free <Link to="/apple-health-mcp">Apple Health MCP connector</Link> at https://mcp.proapp.uk — <a href="#ask-ai">see the example above</a>.</li>
-          <li><strong>Other trackers:</strong> Garmin, WHOOP and Oura don’t write HRV to Apple Health, but WHOOP writes resting heart rate and Garmin and Oura write sleep — P.R.O. uses what arrives. See <Link to="/apple-health-sync">what each tracker syncs to Apple Health</Link>.</li>
+          <li>Your latest HRV and resting heart rate against your previous 28 days, plus last night’s sleep, give a status — ready, caution or recover — and the signals behind it.</li>
+          <li>There’s no calibration week: the baseline comes from the history already in Apple Health, so if your watch has been recording, it works from day one.</li>
+          <li>With Pro, the AI coach reads your readiness and training load (last 7 days against the last 4 weeks) and adjusts the next sessions of your plan.</li>
+          <li>The same read is available in ChatGPT, Claude, Gemini, Grok, Perplexity, Codex, Claude Code and Cursor through the free <Link to="/apple-health-mcp">Apple Health MCP connector</Link> at https://mcp.proapp.uk — <a href="#ask-ai">see the example above</a>.</li>
+          <li>Garmin, WHOOP and Oura don’t write HRV to Apple Health, but WHOOP writes resting heart rate and Garmin and Oura write sleep — P.R.O. uses what arrives. See <Link to="/apple-health-sync">what each tracker syncs to Apple Health</Link>.</li>
         </ul>
 
         <h2 id="apps">Other recovery-score apps</h2>
@@ -180,7 +180,7 @@ export default function AppleWatchReadiness() {
         <div className="tool-cta">
           <p><strong>P.R.O.</strong> reads HRV, resting heart rate and sleep from Apple Health — from Apple Watch or any device that syncs there — and tells you whether to push, ease off or recover, with the reasons.</p>
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
-          <p className="tool-small">Prefer to ask ChatGPT or Claude? <Link to="/mcp-connect">Connect Apple Health to your AI assistant</Link> — the connector is free.</p>
+          <p className="tool-small">Prefer to ask ChatGPT or Claude? <Link to="/mcp-connect">Connect Apple Health to your AI assistant</Link> — the MCP connector is free.</p>
         </div>
       </section>
 

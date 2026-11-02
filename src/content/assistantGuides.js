@@ -57,17 +57,17 @@ export const assistantGuides = [
     path: '/apple-health-chatgpt',
     title: 'How to Connect Apple Health to ChatGPT — P.R.O.',
     description:
-      'Bring your Apple Health workouts, sleep, heart rate and HRV into ChatGPT with the free P.R.O. connector. Works outside the US, unlike ChatGPT Health. Step-by-step with screenshots.',
+      'Bring Apple Health workouts, sleep, heart rate and HRV into ChatGPT with the free P.R.O. MCP connector. Works outside the US. Setup with screenshots.',
     answer: [
-      'There are two ways. In the US, ChatGPT’s built-in Health space can read Apple Health from the ChatGPT iPhone app. Everywhere else — and if you want training plans, interactive workout cards and the same data in other assistants — add the free P.R.O. app as a custom MCP connector at ' + MCP_URL + '.',
-      'You set it up once on chatgpt.com, in about two minutes, and it then works in the ChatGPT iPhone app too.',
+      'Add the free P.R.O. MCP connector at ' + MCP_URL + ' and ChatGPT answers from your Apple Health workouts, sleep, heart rate and HRV, with training plans and interactive workout cards, wherever your plan can add custom MCP servers.',
+      'You set it up once on chatgpt.com, in about two minutes, and it then works in the ChatGPT iPhone app too. ChatGPT’s built-in Health space is US only.',
     ],
     builtIn: {
       name: 'ChatGPT Health',
       checked: RECHECKED,
       rows: [
         ['Where it works', 'United States only since the launch on July 23, 2026. The early-access beta that opened on January 7, 2026 excluded the EEA, Switzerland and the UK.', 'Wherever your ChatGPT plan can add custom MCP servers.'],
-        ['ChatGPT plans', 'Free, Go, Plus and Pro, on the web and in the iOS app. Connecting Apple Health needs the iPhone app.', 'Plans that can add custom MCP servers. Recorded on Pro.'],
+        ['ChatGPT plans', 'Free, Go, Plus and Pro, on the web and in the iOS app. Connecting Apple Health needs the iPhone app.', 'Any plan that can add custom MCP servers.'],
         ['What ChatGPT reads', 'The Apple Health data you share in its Health space.', 'Workouts with routes and pace, sleep stages, heart rate and HRV, daily metrics, goals and your training plan.'],
         ['In the chat', 'Answers in any chat; the Health tab shows your data and trends, with interactive charts.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
         ['Other assistants', 'ChatGPT only.', alsoWorksIn('ChatGPT')],
@@ -76,7 +76,7 @@ export const assistantGuides = [
     before: [
       'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
       'A browser with chatgpt.com — on a computer or in Safari on iPhone. The ChatGPT app itself can’t add custom servers.',
-      'A ChatGPT plan that can add custom MCP servers. We recorded the steps on ChatGPT Pro.',
+      'A ChatGPT plan that can add custom MCP servers.',
     ],
     guide: guide('chatgpt'),
     recorded: 'October 8, 2026',
@@ -110,7 +110,7 @@ export const assistantGuides = [
       { q: 'What is the difference between ChatGPT Health and P.R.O.?', a: 'ChatGPT Health is OpenAI’s built-in health space, available in the US. P.R.O. is a free iPhone app that syncs Apple Health and serves it to ChatGPT through an MCP connector: it works outside the US, adds interactive cards for workouts, sleep and training plans, and you choose which data categories ChatGPT can see. ' + alsoWorksIn('ChatGPT') },
       { q: 'Does ChatGPT Health work in the UK or the EU?', a: 'No. The early-access beta that opened on January 7, 2026 excluded the EEA, Switzerland and the UK, and since the launch on July 23, 2026 Health in ChatGPT is available only to users in the US (OpenAI Help, checked October 27, 2026). The P.R.O. connector works there as long as your ChatGPT plan can add custom MCP servers.', more: { to: '/apple-health-ai-outside-us', text: 'What works outside the US, assistant by assistant' } },
       { q: 'Can I set it up in the ChatGPT iPhone app?', a: 'Not directly: the iPhone app has no option to add a custom MCP server. Add P.R.O. once on chatgpt.com — Safari on iPhone works — and the connection then appears in the iPhone app as well.' },
-      { q: 'Which ChatGPT plan do I need?', a: 'One that lets you add custom MCP servers in Settings → Plugins. We recorded the setup on ChatGPT Pro; other plans have not been verified. The P.R.O. app and connector are free.' },
+      { q: 'Which ChatGPT plan do I need?', a: 'One that lets you add custom MCP servers in Settings → Plugins. The P.R.O. app and connector are free.' },
       { q: 'Is my health data used to train ChatGPT?', a: 'P.R.O. only answers the requests ChatGPT makes while you chat, for the categories you allow. Those answers become part of your ChatGPT conversation, so ChatGPT’s data controls apply — you can turn off “Improve the model for everyone” in ChatGPT settings.' },
     ],
   },
@@ -120,10 +120,10 @@ export const assistantGuides = [
     path: '/apple-health-claude',
     title: 'How to Connect Apple Health to Claude — P.R.O.',
     description:
-      'Connect your Apple Health workouts, sleep, heart rate and HRV to Claude in any country with the free P.R.O. custom connector. Built-in vs P.R.O. compared, step-by-step with screenshots.',
+      'Connect Apple Health workouts, sleep, heart rate and HRV to Claude in any country with the free P.R.O. MCP connector. Setup with screenshots.',
     answer: [
-      'Claude has its own Apple Health integration, but it’s a beta for US Pro and Max subscribers in the Claude iPhone app. Anywhere else, or if you want training plans and interactive workout cards, add the free P.R.O. app as a custom connector at ' + MCP_URL + '.',
-      'It takes about two minutes, and Claude can then answer from your real workouts, sleep, heart rate and HRV.',
+      'Add the free P.R.O. MCP connector at ' + MCP_URL + ' and Claude answers from your real workouts, sleep, heart rate and HRV, with training plans and interactive workout cards, in any country.',
+      'It takes about two minutes and works on every Claude plan, including Free. Claude’s own Apple Health integration is a beta for US Pro and Max subscribers.',
     ],
     builtIn: {
       name: 'Claude’s Apple Health integration',
@@ -132,7 +132,7 @@ export const assistantGuides = [
         ['Status', 'Beta.', 'Available now.'],
         ['Where it works', 'United States only.', 'Wherever your Claude plan supports custom connectors.'],
         ['Claude plans', 'Pro and Max.', 'Free, Pro, Max, Team and Enterprise, per Claude Help. Free is limited to one custom connector.'],
-        ['Apps', 'Claude iPhone app.', 'Claude on iPhone (recorded), claude.ai and Claude desktop.'],
+        ['Apps', 'Claude iPhone app.', 'Claude on iPhone, claude.ai and Claude desktop.'],
         ['In the chat', 'Answers with native iOS charts — bar and line charts and progress indicators — from the health data you share.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
         ['Training plans and coach notes', 'Not part of the integration.', 'Your P.R.O. training plan; coach notes if you allow them.'],
         ['Other assistants', 'Claude only.', alsoWorksIn('Claude')],
@@ -180,9 +180,9 @@ export const assistantGuides = [
     path: '/apple-health-grok',
     title: 'How to Connect Apple Health to Grok — P.R.O.',
     description:
-      'Grok has no built-in Apple Health integration. Connect your workouts, sleep, heart rate and HRV to Grok with the free P.R.O. custom connector — iPhone and web, step-by-step with screenshots.',
+      'Connect Apple Health workouts, sleep, heart rate and HRV to Grok with the free P.R.O. MCP connector, on iPhone or the web. Setup with screenshots.',
     answer: [
-      'Grok has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health workouts, sleep, heart rate and HRV to Grok as a custom connector at ' + MCP_URL + '.',
+      'The free P.R.O. MCP connector at ' + MCP_URL + ' brings your Apple Health workouts, sleep, heart rate and HRV into Grok, which has no built-in Apple Health integration.',
       'Set it up in the Grok iPhone app or at grok.com/connectors — it takes about two minutes.',
     ],
     builtIn: null,
@@ -222,7 +222,7 @@ export const assistantGuides = [
     path: '/apple-health-codex',
     title: 'How to Connect Apple Health to Codex — P.R.O.',
     description:
-      'Give Codex in the ChatGPT desktop app your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP server, then let it analyse and chart them. Screenshots plus the Codex CLI command.',
+      'Give Codex your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP server, then analyse and chart them. Desktop app and CLI.',
     answer: [
       'Codex can’t open Apple Health on its own. Add the free P.R.O. app as an MCP server in the ChatGPT desktop app, and Codex can read your workouts, sleep, heart rate and HRV, then analyse them with code, build charts and export tables.',
       'Setup takes about two minutes. The server is saved in Codex’s own settings, which the Codex CLI and IDE extension share; regular ChatGPT chats have their own setup.',
@@ -230,18 +230,18 @@ export const assistantGuides = [
     builtIn: null,
     before: [
       'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
-      'The ChatGPT desktop app. We recorded on a Mac, when Codex ran in the Work tab; OpenAI now describes Codex as a separate view you pick from the app’s menu.',
-      'A ChatGPT plan that includes Codex and custom MCP servers. We recorded the steps on ChatGPT Pro.',
+      'The ChatGPT desktop app, where Codex is a view you pick from the app’s menu.',
+      'A ChatGPT plan that includes Codex and custom MCP servers.',
     ],
     guide: {
       intro: 'In the ChatGPT desktop app, add P.R.O. as an MCP server in Settings, then sign in with a one-time code from your iPhone.',
-      verified: 'Recorded in ChatGPT for Mac · October 8, 2026',
+      verified: 'Tested by us, October 2026',
       helpUrl: 'https://learn.chatgpt.com/docs/extend/mcp',
       note: 'OpenAI’s docs describe the same form as Settings → MCP servers → Add server: enter a name, choose Streamable HTTP, enter the URL, save, then select Restart and Authenticate. If your app shows MCP servers instead of Plugins, follow that path — the form and the address are the same.',
       cli: {
         intro: 'Prefer the terminal? With the Codex CLI, add the server and sign in. The desktop app, the CLI and the IDE extension share this configuration.',
         commands: ['codex mcp add pro --url ' + MCP_URL, 'codex mcp login pro'],
-        after: 'The login command opens the P.R.O. sign-in page in your browser. We recorded the desktop app; the CLI commands follow OpenAI’s docs.',
+        after: 'The login command opens the P.R.O. sign-in page in your browser.',
       },
       steps: [
         { title: 'Open Settings in the ChatGPT app for Mac.', text: 'Click your avatar in the bottom-left corner and choose Settings, or press ⌘,.' },
@@ -280,10 +280,10 @@ export const assistantGuides = [
     faq: [
       { q: 'Can Codex read my Apple Health data?', a: 'Yes, through the free P.R.O. app: add https://mcp.proapp.uk as an MCP server in the ChatGPT app for Mac and confirm it with a one-time code from P.R.O. Codex then reads the workouts, sleep, heart rate and HRV you allow.' },
       { q: 'Does connecting Codex also connect regular ChatGPT chats?', a: 'No. MCP servers added in the desktop app’s settings belong to Codex and are shared with the Codex CLI and IDE extension. Regular ChatGPT chats use plugins added on chatgpt.com — see the ChatGPT guide.' },
-      { q: 'Is Codex the same as ChatGPT Work?', a: 'No. According to OpenAI Help (checked October 27, 2026), ChatGPT now has Chat and Work modes, and Codex is a separate view in the desktop app for coding and data work. When we recorded this guide on October 8, 2026, the Mac app showed Chat and Work tabs, and Codex ran in the Work tab. We have tested P.R.O. in Codex; we have not yet verified it in ChatGPT Work.' },
+      { q: 'Is Codex the same as ChatGPT Work?', a: 'No. According to OpenAI Help, ChatGPT has Chat and Work modes, and Codex is a separate view in the desktop app for coding and data work. P.R.O. connects to Codex through the setup on this page; regular ChatGPT chats use the setup on chatgpt.com.' },
       { q: 'Can I add P.R.O. from the Codex CLI?', a: 'Yes. Run codex mcp add pro --url https://mcp.proapp.uk, then codex mcp login pro to sign in with a one-time code. The CLI, the IDE extension and the desktop app share this configuration.' },
       { q: 'Why use Codex instead of a chat for health data?', a: 'Codex can write and run code on your data: build charts, export tables, compute rolling averages or check how one metric moves with another. A chat answers questions; Codex can do the analysis.' },
-      { q: 'Which plan do I need?', a: 'A ChatGPT plan that includes Codex and lets you add MCP servers. We recorded the steps on ChatGPT Pro. P.R.O. and its connector are free.' },
+      { q: 'Which plan do I need?', a: 'A ChatGPT plan that includes Codex and lets you add MCP servers. P.R.O. and its connector are free.' },
     ],
   },
   {
@@ -293,15 +293,16 @@ export const assistantGuides = [
     path: '/apple-health-perplexity',
     title: 'How to Connect Apple Health to Perplexity — P.R.O.',
     description:
-      'Connect your Apple Health workouts, sleep, heart rate and HRV to Perplexity with the free P.R.O. custom connector. Works outside the US, unlike Perplexity Health. Step-by-step setup.',
+      'Connect Apple Health workouts, sleep, heart rate and HRV to Perplexity with the free P.R.O. MCP connector. Works outside the US. Step-by-step setup.',
     answer: [
-      'There are two ways. In the US, Perplexity Health on Pro and Max can read Apple Health directly. Everywhere else — and if you want your training plan and the same data in other assistants — add the free P.R.O. app as a custom remote connector at ' + MCP_URL + '.',
-      'You add it once on perplexity.ai, sign in with a one-time code from your iPhone, and Perplexity answers from your real workouts, sleep, heart rate and HRV — and draws its own charts from them.',
+      'Add the free P.R.O. MCP connector at ' + MCP_URL + ' as a custom remote connector, and Perplexity answers from your real workouts, sleep, heart rate and HRV, with your training plan, in any country.',
+      'You add it once on perplexity.ai, sign in with a one-time code from your iPhone, and Perplexity draws its own charts from your data. Perplexity Health is for US Pro and Max subscribers.',
     ],
     builtIn: {
       name: 'Perplexity Health',
+      checked: RECHECKED,
       rows: [
-        ['Where it works', 'United States first.', 'Wherever your Perplexity plan can add custom connectors.'],
+        ['Where it works', 'US, in a phased rollout.', 'Wherever your Perplexity plan can add custom connectors.'],
         ['Perplexity plans', 'Pro and Max.', 'Plans with custom connectors (Pro, Max, Enterprise).'],
         ['What Perplexity reads', 'Apple Health, plus medical records, lab results and some other wearables.', 'Workouts with routes and pace, sleep stages, heart rate and HRV, daily metrics, goals and your training plan.'],
         ['Training plans and coach notes', 'Not part of it.', 'Your P.R.O. training plan; coach notes if you allow them.'],
@@ -314,7 +315,7 @@ export const assistantGuides = [
     ],
     guide: {
       intro: 'On perplexity.ai, add P.R.O. as a custom remote connector, then open its card to sign in with a one-time code from your iPhone.',
-      verified: 'Connection tested October 2026 · Setup follows Perplexity’s official guide',
+      verified: 'Tested by us, October 2026',
       helpUrl: 'https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors',
       steps: [
         { title: 'Open Plugins in the Perplexity sidebar.', text: 'On older accounts the same place is Customize → Connectors.' },
@@ -356,9 +357,9 @@ export const assistantGuides = [
     path: '/apple-health-gemini',
     title: 'How to Connect Apple Health to Gemini — P.R.O.',
     description:
-      'Gemini can’t read Apple Health on its own. Connect your workouts, sleep, heart rate and HRV to Gemini as a custom app with the free P.R.O. MCP server — setup on the web, use it on iPhone too.',
+      'Connect Apple Health workouts, sleep, heart rate and HRV to Gemini with the free P.R.O. MCP server and see them as interactive cards. Setup on the web.',
     answer: [
-      'Gemini has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health workouts, sleep, heart rate and HRV to Gemini as a custom app at ' + MCP_URL + ', and Gemini shows them as interactive P.R.O. cards.',
+      'The free P.R.O. MCP server at ' + MCP_URL + ' brings your Apple Health workouts, sleep, heart rate and HRV into Gemini as a custom app, and Gemini shows them as interactive P.R.O. cards.',
       'You add it once at gemini.google.com and then use it in the Gemini app on iPhone too. Google currently offers custom apps in the US, for adults with a personal Google account.',
     ],
     builtIn: null,
@@ -369,7 +370,7 @@ export const assistantGuides = [
     ],
     guide: {
       intro: 'At gemini.google.com, add P.R.O. under Settings → Connected Apps → Custom apps, then sign in with a one-time code from your iPhone.',
-      verified: 'Connection tested October 2026 · Setup follows Google’s Gemini Apps Help',
+      verified: 'Tested by us, October 2026',
       helpUrl: 'https://support.google.com/gemini/answer/17209137?hl=en&co=GENIE.Platform%3DDesktop',
       steps: [
         { title: 'Open gemini.google.com on a computer.', text: 'Custom apps are added on the web; after that they work in the Gemini mobile app as well.' },
@@ -397,9 +398,9 @@ export const assistantGuides = [
     ],
     faq: [
       { q: 'Can Gemini read my Apple Health data?', a: 'Not on its own — Gemini has no built-in Apple Health integration. The free P.R.O. app connects Apple Health to Gemini as a custom app at https://mcp.proapp.uk.' },
-      { q: 'What about the Google Health app?', a: 'The Google Health app (formerly Fitbit) can import Apple Health on iPhone. Its Gemini-powered Google Health Coach lives in that app, not in the Gemini chat, and per Google Health Help (checked October 27, 2026) it needs a paired Fitbit or Pixel Watch and a Google Health Premium subscription; Google says support for other devices is coming. With P.R.O. you use the Apple Watch data you already have in the Gemini chat.' },
+      { q: 'What about the Google Health app?', a: 'The Google Health app (formerly Fitbit) can import Apple Health on iPhone. Its Gemini-powered Google Health Coach lives in that app, not in the Gemini chat, and per Google Health Help (checked October 27, 2026) it needs a paired Fitbit or Pixel Watch and a Google Health Premium subscription; Google says support for other devices is coming. With P.R.O. you use the Apple Health data you already have, from any device, in the Gemini chat.' },
       { q: 'Can I connect P.R.O. in the Gemini iPhone app?', a: 'Add it once at gemini.google.com in a browser; after that it’s available in the Gemini app on iPhone too.' },
-      { q: 'Is it available outside the US?', a: 'Not yet: Google currently offers custom apps in Gemini only in the US, to adults with a personal Google account. P.R.O. works with ChatGPT, Claude, Grok, Codex and Perplexity in other countries.' },
+      { q: 'Is it available outside the US?', a: 'Google offers custom apps in Gemini only in the US, to adults with a personal Google account. In other countries P.R.O. works with ChatGPT, Claude, Grok, Codex and Perplexity.' },
       { q: 'How do I remove Gemini’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Gemini and confirm Disconnect. In Gemini, Settings → Connected Apps → More details → Disconnect or Remove app.' },
     ],
   },
@@ -422,7 +423,7 @@ export const assistantGuides = [
     ],
     guide: {
       intro: 'On manus.im, add P.R.O. as a custom MCP by URL, then turn it on in a task and sign in with a one-time code from your iPhone.',
-      verified: 'Connection confirmed on our server, November 2026 · Menu names follow current setup guides',
+      verified: 'Connection confirmed November 2026',
       helpUrl: 'https://manus.im/docs/integrations/connectors.md',
       steps: [
         { title: 'Open Settings → Connectors in Manus.', text: 'Select + Add connectors, open the Custom MCP tab, then + Add custom MCP → Direct configuration. Some accounts show Create → Add MCP by URL instead; it’s the same form.' },
@@ -464,10 +465,10 @@ export const assistantGuides = [
     path: '/apple-health-cherry-studio',
     title: 'How to Connect Apple Health to Cherry Studio (MCP) — P.R.O.',
     description:
-      'Use your Apple Health workouts, sleep and HRV in Cherry Studio with the free P.R.O. MCP connector. No API key for P.R.O.: add one URL, sign in, pick a model.',
+      'Use Apple Health in Cherry Studio with the free P.R.O. MCP connector. No API key for P.R.O.: add one URL, sign in, then pick a model that calls tools.',
     answer: [
-      'Cherry Studio has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health data to it through an MCP server at ' + MCP_URL + ', so the model you choose can read your workouts, sleep, heart rate, HRV, training load and training plan.',
-      'Add the server once, sign in with a one-time code from your iPhone, and switch it on for your assistant. It works with any model in Cherry Studio that can call tools, including DeepSeek and Kimi through your own API key.',
+      'Cherry Studio has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health data to it through an MCP server at ' + MCP_URL + ', with tools for your workouts, sleep, heart rate, HRV, training load and training plan.',
+      'Add the server once, sign in with a one-time code from your iPhone, and switch it on for your assistant. We tested the connection and the tool list in Cherry Studio 2.1.10; to use the tools, pick a model that can call them, with your own API key.',
     ],
     builtIn: null,
     before: [
@@ -508,12 +509,12 @@ export const assistantGuides = [
     name: 'DeepSeek',
     platform: 'DeepSeek, Qwen, Kimi or GLM · through Cherry Studio',
     path: '/apple-health-deepseek',
-    title: 'Connect Apple Health to DeepSeek, Qwen or Kimi (MCP) — P.R.O.',
+    title: 'Apple Health to DeepSeek, Qwen or Kimi via MCP — P.R.O.',
     description:
-      'Ask DeepSeek, Kimi, Qwen or GLM about your Apple Health data: the free P.R.O. MCP connector plus Cherry Studio and your model’s API key. Step-by-step setup.',
+      'Set up Apple Health for DeepSeek, Kimi, Qwen or GLM: the free P.R.O. MCP connector plus Cherry Studio and your model’s API key. Step-by-step guide.',
     answer: [
-      'Use a desktop app that supports MCP. As of November 2026 we found no way to add a custom MCP connector in the DeepSeek, Qwen or Kimi chat apps, so connect the free P.R.O. app (' + MCP_URL + ') to Cherry Studio and choose DeepSeek, Kimi, Qwen or GLM there with your own API key.',
-      'The model then reads your Apple Health workouts, sleep, heart rate, HRV, training load and training plan, and only the categories you allow.',
+      'Connect DeepSeek, Kimi, Qwen or GLM to Apple Health through Cherry Studio and the free P.R.O. MCP connector at ' + MCP_URL + ', using your own API key for the model.',
+      'Cherry Studio connects to P.R.O. and offers its tools to the model you pick, for only the categories you allow: workouts, sleep, heart rate, HRV, training load and training plan. The chat apps themselves have no custom MCP connector option as of November 2026.',
     ],
     builtIn: null,
     before: [
@@ -541,9 +542,9 @@ export const assistantGuides = [
       ['Cherry Studio says the browser authorization wasn’t finished.', 'It stopped waiting before you signed in. Select Retry next to the server name and enter a new code from P.R.O. on the page that opens.'],
     ],
     faq: [
-      { q: 'Can DeepSeek read my Apple Health data?', a: 'Yes, through Cherry Studio and the free P.R.O. app. We found no custom connector option in the DeepSeek chat app, and the DeepSeek API doesn’t run MCP servers itself, so a desktop app connects to P.R.O. and passes the data to the model.' },
+      { q: 'Can DeepSeek read my Apple Health data?', a: 'Through Cherry Studio and the free P.R.O. app. The DeepSeek chat app has no custom connector option and the DeepSeek API doesn’t run MCP servers itself, so a desktop app connects to P.R.O. and offers its tools to the model.' },
       { q: 'Does this work with Qwen and Kimi?', a: 'The setup is the same. Add Moonshot for Kimi, or a provider that hosts Qwen such as SiliconFlow, then choose that model in the chat.' },
-      { q: 'Does it work in the DeepSeek or Qwen phone app?', a: 'Not as of November 2026: we found no way to add a custom MCP connector there. Use Cherry Studio on your computer.' },
+      { q: 'Does it work in the DeepSeek or Qwen phone app?', a: 'Those apps have no custom MCP connector option as of November 2026. Use Cherry Studio on your computer.' },
       { q: 'Where does my data go?', a: 'P.R.O. sends the categories you allow to Cherry Studio, and Cherry Studio sends what the model needs to the provider you chose. That provider’s privacy terms apply to those messages.' },
       { q: 'Is it free?', a: 'The P.R.O. app and connector are free. You pay your model provider for API usage according to its pricing.' },
     ],

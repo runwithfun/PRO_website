@@ -2,7 +2,9 @@ import React from 'react';
 
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
-export default function ModernCTA() {
+const DEFAULT_COPY = 'Free on the App Store: an AI coach that knows your training, a sleep score and a free MCP connector for ChatGPT, Claude, Gemini and more, all from your Apple Health data. Adaptive training plans come with Pro from $2.99/month.';
+
+export default function ModernCTA({ copy = DEFAULT_COPY }) {
   return (
     <section className="relative overflow-hidden border-t border-brand-pink/20 py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-brand-pink/10 to-black" aria-hidden />
@@ -12,7 +14,7 @@ export default function ModernCTA() {
           Train smarter with P.R.O.
         </h2>
         <p className="mt-4 text-gray-400">
-          Free on the App Store: an AI coach that knows your training, adaptive training plans, sleep score and a ChatGPT &amp; Claude connector — all from your Apple Health data.
+          {copy}
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a

@@ -274,7 +274,7 @@ export default function Zone2Calculator() {
         <div className="tool-cta">
           <p><strong>P.R.O.</strong> reads your workouts and heart rate from Apple Health — from Apple Watch, Garmin, WHOOP, Oura or any app that writes there — shows the heart rate zones of every workout and lets you set your own zones; its AI coach answers questions about your training with your real numbers.</p>
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
-          <p className="tool-small">Ask ChatGPT or Claude about your Zone 2 runs with your real data: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
+          <p className="tool-small">Ask ChatGPT or Claude about your Zone 2 runs through the free P.R.O. MCP connector: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
         </div>
       </section>
 

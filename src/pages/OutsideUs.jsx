@@ -16,7 +16,7 @@ export default function OutsideUs() {
         <p className="connect-eyebrow">GUIDE · UK, EU, CANADA, AUSTRALIA, INDIA</p>
         <h1 className="font-display font-extrabold tool-h1">Apple Health in ChatGPT &amp; Claude outside the US</h1>
         <div className="ag-answer">
-          <p>Built-in Apple Health features in <strong>ChatGPT, Claude, Perplexity and Copilot are US only</strong> as of October 2026. Outside the US you can connect Apple Health through a custom connector such as <strong>P.R.O.</strong>, which works in any country where the app is available — in ChatGPT, Claude, Perplexity, Grok and Codex.</p>
+          <p>The free <strong>P.R.O. MCP connector</strong> brings Apple Health into ChatGPT, Claude, Perplexity, Grok and Codex in any country where the app is available. The built-in Apple Health features in ChatGPT, Claude and Perplexity are US only as of October 2026.</p>
           <p>Gemini is the exception: Google offers custom apps in Gemini only in the US.</p>
         </div>
         <p className="tool-reviewed">Checked {CHECKED} against each provider’s help pages · Sources below</p>
@@ -58,7 +58,7 @@ export default function OutsideUs() {
         </ol>
         <p>Step-by-step guides with screenshots:</p>
         <ul>{ROUTES_OUTSIDE.map((r) => <li key={r.path}><Link to={r.path}><strong>Apple Health in {r.name}</strong></Link> — {r.text}</li>)}</ul>
-        <p>Two assistants don’t work from outside the US today. Gemini custom apps are US only, for adults with a personal Google account; if you wear a Fitbit or Pixel Watch, Google Health Coach in the Google Health app is offered in the UK, much of the EU, Canada, Australia and India. Microsoft’s help for consumer Copilot lists only built-in connections, and we haven’t tested P.R.O. there.</p>
+        <p>Gemini custom apps are US only, for adults with a personal Google account.</p>
 
         <h2 id="privacy">Privacy: what goes where</h2>
         <p className="tool-lead">Nothing is shared until you type the pairing code, and the assistant only sees the categories you leave switched on.</p>

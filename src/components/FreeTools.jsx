@@ -66,7 +66,7 @@ const TOOLS = [
   { to: '/apple-health-sync', eyebrow: 'Device sync', title: 'Sync your tracker with Apple Health.', preview: <SyncPreview /> },
 ];
 
-export default function FreeTools({ title = 'Check your numbers.' }) {
+export default function FreeTools({ title = 'Check your numbers.', connectorLabel = 'MCP connector' }) {
   const { ref, visible } = useReveal();
   return (
     <section ref={ref} className="border-t border-white/5 bg-black py-20 sm:py-24" aria-labelledby="free-tools-title">
@@ -81,7 +81,7 @@ export default function FreeTools({ title = 'Check your numbers.' }) {
               className={`group flex w-[80%] shrink-0 snap-start flex-col rounded-3xl md:w-auto border border-white/10 bg-white/[0.03] p-6 transition duration-700 hover:border-brand-pink/50 hover:bg-white/[0.05] ${visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">{eyebrow}</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">{to === '/mcp-connect' ? connectorLabel : eyebrow}</span>
               <span className="mt-2 font-display text-xl font-bold leading-snug text-white">{t}</span>
               {preview}
               <span className="mt-auto pt-6 text-sm font-semibold text-brand-pink">

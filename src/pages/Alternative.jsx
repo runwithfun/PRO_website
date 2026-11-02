@@ -108,7 +108,7 @@ export default function Alternative({ id }) {
         ))}</ol>
 
         <div className="tool-cta">
-          <p><strong>P.R.O.</strong> is free on the App Store and works with any device that writes to Apple Health: readiness, training load, sleep score, an AI coach, adaptive training plans across 50+ sports and a free MCP connector for ChatGPT, Claude, Gemini, Grok and Perplexity.</p>
+          <p><strong>P.R.O.</strong> works with any device that writes to Apple Health: a free MCP connector for ChatGPT, Claude, Gemini, Grok and Perplexity, plus an AI coach, training load and a sleep score. Readiness in the app and adaptive training plans across 50+ sports come with Pro from $2.99/month.</p>
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
           <p className="tool-small">Comparing more apps? See the <Link to="/compare">full AI coach comparison</Link>{other.map((o) => <span key={o.id}> or the <Link to={o.path}>{o.competitor} alternative</Link></span>)}.</p>
         </div>

@@ -29,7 +29,7 @@ export default function AppleHealthMcp() {
         <span className="hero-in connect-title-line">Your health.</span>{' '}
         <span className="hero-in connect-title-line text-brand-pink" style={{ animationDelay: '80ms' }}>Your favorite AI.</span>
       </h1>
-      <p className="connect-description hero-fade text-gray-500" style={{ animationDelay: '280ms' }}>Connect your health data to ChatGPT, Claude, Gemini, Perplexity, Codex or Grok. Your workouts, sleep and progress — in the conversation.</p>
+      <p className="connect-description hero-fade text-gray-500" style={{ animationDelay: '280ms' }}>Connect your health data to ChatGPT, Claude, Gemini, Perplexity, Codex, Grok or Manus. Your workouts, sleep and progress — in the conversation.</p>
     </header>
     <div className="connect-orbit-wrap"><HealthOrbit /></div>
     <section className="connect-wrap connect-section" id="how-to-connect" aria-labelledby="setup-heading">

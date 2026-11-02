@@ -48,7 +48,7 @@
 .orbit-assistant.is-current { opacity: 1; transform: translateY(0) scale(1); }
 .assistant-icon { display: grid; place-items: center; flex-shrink: 0; position: relative; width: 36px; height: 36px; border-radius: 10px; background: #1c1c21; }
 .assistant-icon img { width: 22px; height: 22px; object-fit: contain; }
-.assistant-icon-chatgpt img, .assistant-icon-codex img, .assistant-icon-grok img, .assistant-icon-perplexity img, .assistant-icon-qwen img { filter: brightness(0) invert(1); }
+.assistant-icon-chatgpt img, .assistant-icon-codex img, .assistant-icon-grok img, .assistant-icon-perplexity img, .assistant-icon-qwen img, .assistant-icon-manus img { filter: brightness(0) invert(1); }
 .orbit-assistant .assistant-icon { width: 76px; height: 76px; border-radius: 20px; background: #1d1d23; box-shadow: 0 15px 35px #0006; }
 .orbit-assistant .assistant-icon img { width: 43px; height: 43px; }
 .codex-corner { position: absolute; bottom: 2px; right: 3px; font: 8px monospace; color: #eee; background: #1c1c21; padding: 0 2px; border-radius: 3px; }

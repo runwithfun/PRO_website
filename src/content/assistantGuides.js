@@ -19,7 +19,7 @@ export const CHECKED = 'October 13, 2026';
 const RECHECKED = 'October 27, 2026';
 
 // Every assistant P.R.O. has a tested setup page for, in one order for all pages.
-const ASSISTANTS = ['ChatGPT', 'Claude', 'Grok', 'Codex', 'Perplexity', 'Gemini'];
+const ASSISTANTS = ['ChatGPT', 'Claude', 'Grok', 'Codex', 'Perplexity', 'Gemini', 'Manus'];
 const listOf = (names) => (names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0]);
 const alsoWorksIn = (self) => {
   const others = ASSISTANTS.filter((n) => n !== self);
@@ -378,6 +378,60 @@ export const assistantGuides = [
       { q: 'Can I connect P.R.O. in the Gemini iPhone app?', a: 'Add it once at gemini.google.com in a browser; after that it’s available in the Gemini app on iPhone too.' },
       { q: 'Is it available outside the US?', a: 'Not yet: Google currently offers custom apps in Gemini only in the US, to adults with a personal Google account. P.R.O. works with ChatGPT, Claude, Grok, Codex and Perplexity in other countries.' },
       { q: 'How do I remove Gemini’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Gemini and confirm Disconnect. In Gemini, Settings → Connected Apps → More details → Disconnect or Remove app.' },
+    ],
+  },
+  {
+    id: 'manus',
+    name: 'Manus',
+    platform: 'manus.im · custom MCP',
+    path: '/apple-health-manus',
+    title: 'How to Connect Apple Health to Manus (MCP) — P.R.O.',
+    description:
+      'Give Manus your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP connector. No API key: add one URL and sign in once.',
+    answer: [
+      'Manus has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health data to Manus through an MCP server at ' + MCP_URL + ', so Manus can read your workouts, sleep, heart rate, HRV, training load and training plan.',
+      'Add it once as a custom MCP on manus.im and sign in with a one-time code from your iPhone. Manus is an agent, so it suits longer jobs: give it a whole month of training and ask for a report.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'A Manus account, in a browser at manus.im.',
+    ],
+    guide: {
+      intro: 'On manus.im, add P.R.O. as a custom MCP by URL, then turn it on in a task and sign in with a one-time code from your iPhone.',
+      verified: 'Connection confirmed on our server, November 2026 · Menu names follow current setup guides',
+      helpUrl: 'https://manus.im/docs/integrations/connectors.md',
+      steps: [
+        { title: 'Open Settings → Connectors in Manus.', text: 'Select + Add connectors, open the Custom MCP tab, then + Add custom MCP → Direct configuration. Some accounts show Create → Add MCP by URL instead; it’s the same form.' },
+        { title: 'Enter P.R.O. as the name and https://mcp.proapp.uk as the Server URL.', text: 'If Manus asks for a transport type, keep HTTP. Leave custom headers empty: there’s no API key, P.R.O. registers Manus on its own.' },
+        { title: 'Select Save.' },
+        { title: 'Start a task and turn P.R.O. on.', text: 'Use the connectors icon under the message box. Manus asks you to sign in when the connector is first used.' },
+        { title: 'Sign in to P.R.O.', text: 'The P.R.O. authorization page opens.', pairing: true },
+        { title: 'Choose what Manus can access, then ask.', text: 'Review the data switches in P.R.O. and tap Done. Name P.R.O. in your first request so Manus uses it.' },
+      ],
+    },
+    recorded: 'November 2026',
+    shots: {},
+    prompts: [
+      'Use P.R.O. to write a report on my last 30 days of training: load, recovery and what to change.',
+      'Use P.R.O. to compare my sleep and HRV on the nights after hard workouts.',
+      'Use P.R.O. to check whether I’m on track for my training plan this week.',
+      'Use P.R.O. to find my best and worst training weeks this year and explain the difference.',
+    ],
+    cards: [],
+    trouble: [
+      ['I don’t see Custom MCP.', 'Look for Create → Add MCP by URL under Connectors: Manus shows one or the other depending on the account.'],
+      ['Manus doesn’t ask me to sign in.', 'Turn P.R.O. on with the connectors icon under the message box and name it in your request. The sign-in page opens on the first use.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+      ['Manus answers without my data.', 'Check that P.R.O. is on for this task, and open P.R.O. on your iPhone so the latest data syncs.'],
+    ],
+    faq: [
+      { q: 'Can Manus read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Add https://mcp.proapp.uk as a custom MCP in Manus and sign in with a code from P.R.O. Manus has no Apple Health connector of its own.' },
+      { q: 'Do I need an API key or token?', a: 'No. Leave the header fields empty. P.R.O. uses OAuth: Manus registers itself and you approve the connection with a one-time code from your iPhone.' },
+      { q: 'What can Manus do with my data?', a: 'It reads what you allow: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, training load and your plan. Because Manus is an agent, it can combine several of these in one task and write up the result.' },
+      { q: 'Does Manus show P.R.O. cards?', a: 'Manus works from the data P.R.O. returns and answers in its own format. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
+      { q: 'How do I remove Manus’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Manus and confirm Disconnect. You can also remove the connector in Manus under Settings → Connectors.' },
     ],
   },
 ];

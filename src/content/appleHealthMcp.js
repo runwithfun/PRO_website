@@ -23,7 +23,7 @@ export const ahmCompare = [
   ['Fresh data', 'A snapshot as old as your last export.', 'Only while the app is open on the same Wi-Fi.', 'Scheduled exports after a full first backfill.', 'Kept in sync by P.R.O.; the assistant can ask for a fresh sync at any time.'],
   ['Computer or terminal', 'Required.', 'Required, on the same Wi-Fi as the phone.', 'Required.', 'Not needed. Works from a browser or the assistant’s app.'],
   ['Assistants on your phone', 'No.', 'No — local network only.', 'No.', 'Yes — ChatGPT, Claude and Grok on iPhone, plus web and desktop.'],
-  ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini — all tested by us.'],
+  ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity, Gemini and Manus — all tested.'],
   ['You choose what’s shared', 'The whole export.', 'Whatever the app exports.', 'Whatever you export.', 'Per category — switch off workouts, sleep, heart rate and more in one tap; revoke any assistant in P.R.O.'],
   ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude and Gemini.'],
   ['Cost', 'Free, open source.', 'Premium required ($1.99/month, $6.99/year or $24.99 lifetime, US App Store).', '$24.99 one-time app.', 'Free. The connector is included in P.R.O. at no cost.'],
@@ -68,6 +68,10 @@ export const ahmClients = [
     id: 'gemini', name: 'Gemini', status: 'tested', guide: '/apple-health-gemini',
     steps: ['At gemini.google.com: Settings → Connected Apps → Add a custom app.', 'Enter ' + MCP_URL + ' → Next, then sign in with the code from P.R.O.'],
     note: 'Google offers custom apps only in the US, to adults with a personal Google account.',
+  },
+  {
+    id: 'manus', name: 'Manus', status: 'tested', guide: '/apple-health-manus',
+    steps: ['On manus.im: Settings → Connectors → + Add connectors → Custom MCP → + Add custom MCP → Direct configuration.', 'Server URL ' + MCP_URL + ', no headers → Save, then turn P.R.O. on in a task and sign in with the code from P.R.O.'],
   },
 ];
 

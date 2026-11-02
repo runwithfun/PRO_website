@@ -27,7 +27,7 @@ export const APPS = [
     plans: 'Yes — adaptive plans + home-screen widget',
     readiness: 'Daily readiness guidance in the plan',
     sleep: 'Yes — sleep score',
-    mcp: 'Yes — official connector (mcp.proapp.uk) for ChatGPT, Claude, Grok, Codex, Perplexity and Gemini; works outside the US; you choose the data categories',
+    mcp: 'Yes — official connector (mcp.proapp.uk) for ChatGPT, Claude, Grok, Codex, Perplexity, Gemini and Manus; works outside the US; you choose the data categories',
     url: 'https://apps.apple.com/us/app/p-r-o/id6749865568',
   },
   {

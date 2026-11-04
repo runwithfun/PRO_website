@@ -33,6 +33,7 @@ Part A applies to all users. Part B applies additionally if you choose to use AI
 | Registration data | Contract performance | Account creation and authentication |
 | Fitness data | Contract performance | Core app functionality and analytics |
 | Technical data | Legitimate interest | App stability, bug fixes |
+| Account deletion summary | Legitimate interest | Understanding why people leave and improving P.R.O. |
 | Marketing emails | Consent | Promotional communications (opt-in only) |
 
 ### A3. Data Sharing
@@ -41,7 +42,7 @@ We do not sell your personal data. We share data only with:
 
 - **Infrastructure providers** (e.g., cloud hosting) — under contractual data protection obligations, for hosting and storage
 - **Product analytics and monitoring** — [PostHog](https://posthog.com/privacy) (EU region) receives usage events such as which feature or API was used, linked to a pseudonymous account ID and, for connector requests, the IP address; [Langfuse](https://langfuse.com/privacy) (EU region) receives monitoring data about AI requests (see Part B). Neither receives your Apple Health data for analytics or advertising, and neither may use it for its own purposes
-- **Self-hosted product analytics** — our own OpenPanel instance (not a third party) receives app and website usage events through our server: screens and actions in the app, pages and clicks on proapp.uk, your account email and name, a random installation or visitor ID, device model, OS and app version, and the IP address with the approximate location derived from it. It is used to find problems and improve P.R.O., is never used for advertising, and is erased when you delete your account
+- **Self-hosted product analytics** — our own OpenPanel instance (not a third party) receives app and website usage events through our server: screens and actions in the app, pages and clicks on proapp.uk, your account email and name, a random installation or visitor ID, device model, OS and app version, and the IP address with the approximate location derived from it. It is used to find problems and improve P.R.O., is never used for advertising, and is erased when you delete your account, apart from the account deletion summary described in A5
 - **Legal requirements** — if compelled by applicable law, court order, or regulatory authority
 
 We require all third-party service providers to maintain appropriate technical and organizational security measures. However, we cannot guarantee the security practices of third parties and disclaim responsibility for breaches or data incidents occurring within their systems.
@@ -54,6 +55,7 @@ All data is encrypted in transit (TLS 1.3) and at rest (AES-256). Access is rest
 
 - **Account and fitness data:** retained while your account is active; deleted within 30 days of account deletion
 - **Technical and crash logs:** retained for 90 days, then automatically purged
+- **Account deletion summary:** from November 18, 2026, when you delete your account, we first create a summary of how P.R.O. was used and keep it for up to 12 months, to understand why people leave and improve the app. It covers things like how long the account was used, app version and device model, language, how you signed in and where you came from, which features were used and the last actions in the app, whether purchases were started, the subscription tier, and the number and type of errors and crashes. It does not contain your name, email, account ID, IP address, health or fitness values, or the text of your messages, and times in it are relative, with the date recorded only as a calendar week. We do not use it to identify you or to contact you
 
 We are not able to guarantee deletion of data already shared with third-party infrastructure providers within the same timeframe, as their own retention policies apply.
 
@@ -250,7 +252,7 @@ Our aggregate liability under this policy shall not exceed the greater of (a) th
 
 ## Changes to This Policy
 
-Material changes will be communicated via in-app notification and/or email at least 14 days in advance. Continued use of the app after the effective date constitutes acceptance of the revised policy. The "Last Updated" date at the top of this document reflects the most recent revision.
+Material changes are published on this page at least 14 days before they take effect. Continued use of the app after the effective date constitutes acceptance of the revised policy. The "Last Updated" date at the top of this document reflects the most recent revision.
 
 ---
 

@@ -53,22 +53,30 @@ const DEVICE_DESCRIPTIONS = {
   suunto: 'Turn on Save to Apple Health in the Suunto app and workouts arrive with heart rate. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
   fitbit: 'Google Health (formerly Fitbit) connects to Apple Health on iPhone: workouts, sleep, heart rate, steps. Then ask ChatGPT via P.R.O. MCP.',
   samsung: "Galaxy Watch4 and newer don't pair with iPhone. See what older watches and the Merge bridge app bring into Apple Health, then use it in P.R.O.",
-  amazfit: 'The Zepp app writes Amazfit workouts, steps, sleep and heart rate to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  amazfit: 'Zepp writes Amazfit steps, workouts, heart rate and sleep to Apple Health; Helio Strap adds HRV. PAI stays in Zepp. Ask AI via the free P.R.O. MCP.',
   xiaomi: 'Mi Fitness writes steps, heart rate, sleep and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
-  huawei: 'HUAWEI Health writes workouts, weight, steps and activity energy to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  huawei: 'HUAWEI Health writes steps, workouts and weight to Apple Health. Steps low or missing? Run Me > Settings > Sync. Then ask any AI via the free P.R.O. MCP.',
   withings: 'The Withings app exports scale, watch and sleep data to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
   ultrahuman: 'The Ultrahuman app writes ring sleep, HRV and workouts to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
   wahoo: 'The Wahoo app writes rides, runs and KICKR sessions to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
   strava: 'Strava writes activities with distance and calories to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
   zwift: 'Get Zwift rides into Apple Health through Strava or Garmin Connect, then ask ChatGPT about them via the free P.R.O. MCP connector.',
-  peloton: 'Peloton writes Bike, Tread and Row workouts to Apple Health with heart rate. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
+  peloton: 'Bike, Tread and Row classes reach Apple Health through the Peloton iPhone app. Open it, check Write permissions, reconnect. Ask AI via the free P.R.O. MCP.',
   myfitnesspal: 'MyFitnessPal writes your food diary, calories and nutrients to Apple Health. Two-minute setup, then ask ChatGPT about it via P.R.O. MCP.',
 };
 
 export const guideDescription = (guide) => DEVICE_DESCRIPTIONS[guide.id];
 
+// Titles that match what people actually search for on these devices.
+const DEVICE_TITLES = {
+  huawei: 'Sync Huawei Steps to Apple Health, Plus Fixes for Low Counts',
+  peloton: 'Peloton Not Syncing to Apple Health? Causes and Fixes (2026)',
+  amazfit: 'Sync Amazfit and Helio to Apple Health, HRV Included',
+};
+
 // Device guide title; longer names drop "How to" to stay within 60 characters.
 export function deviceTitle(guide) {
+  if (DEVICE_TITLES[guide.id]) return DEVICE_TITLES[guide.id];
   const title = `Sync ${guide.name} with Apple Health (${guide.checked.slice(0, 4)}) — P.R.O.`;
   return title.length <= 53 ? `How to ${title}` : title;
 }

@@ -43,16 +43,17 @@ export default function AppleHealthMcpServer() {
       <nav className="ag-crumbs" aria-label="Breadcrumb"><Link to="/">P.R.O.</Link><span aria-hidden="true">/</span><span>Apple Health MCP server</span></nav>
       <p className="connect-eyebrow">GUIDE · MODEL CONTEXT PROTOCOL</p>
       <h1 className="font-display font-extrabold tool-h1 hero-in">Apple Health MCP server</h1>
-      <div className="ag-answer hero-fade" style={{ animationDelay: '120ms' }}>
-        <p>Apple doesn’t ship an MCP server for Apple Health, and HealthKit data lives on your iPhone, so every Apple Health MCP server needs either an iPhone app or a Health export. <strong>P.R.O.</strong> is the app route: the free iPhone app syncs the Apple Health categories you allow, and a hosted remote MCP server at <strong>{MCP_URL}</strong> serves them to ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini — with OAuth sign-in, no export.xml, no Mac and no terminal. The connector is free.</p>
-        <p>It works with whatever writes to Apple Health — Apple Watch, Garmin, WHOOP, Oura or any other device or app that syncs there. You add the address once in your assistant, confirm with a one-time code from P.R.O., and choose which data the assistant can read.</p>
-      </div>
-      <dl className="ag-facts hero-fade" style={{ animationDelay: '200ms' }}>
+      <p className="tool-lead hero-fade ahm-lead" style={{ animationDelay: '80ms' }}>Add this address to your assistant, confirm with a one-time code from P.R.O. and start asking. No export file, no Mac, no terminal.</p>
+      <dl className="ag-facts hero-fade" style={{ animationDelay: '120ms' }}>
         <div><dt>Server address</dt><dd><CopyAddress /></dd></div>
         <div><dt>Transport</dt><dd>Remote MCP, Streamable HTTP</dd></div>
         <div><dt>Sign-in</dt><dd>OAuth 2.1 with a one-time code from P.R.O.</dd></div>
         <div><dt>Price</dt><dd>Free — iPhone with P.R.O.</dd></div>
       </dl>
+      <div className="ag-answer hero-fade" style={{ animationDelay: '200ms' }}>
+        <p>Apple doesn’t ship an MCP server for Apple Health, and HealthKit data lives on your iPhone, so every Apple Health MCP server needs either an iPhone app or a Health export. <strong>P.R.O.</strong> is the app route: the free iPhone app syncs the Apple Health categories you allow, and a hosted remote MCP server at <strong>{MCP_URL}</strong> serves them to ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini — with OAuth sign-in, no export.xml, no Mac and no terminal. The connector is free.</p>
+        <p>It works with whatever writes to Apple Health — Apple Watch, Garmin, WHOOP, Oura or any other device or app that syncs there. You add the address once in your assistant, confirm with a one-time code from P.R.O., and choose which data the assistant can read.</p>
+      </div>
       <p className="tool-reviewed">Last reviewed {AHM_CHECKED} · Sources below</p>
     </header>
 

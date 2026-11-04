@@ -55,13 +55,14 @@ export const assistantGuides = [
     id: 'chatgpt',
     name: 'ChatGPT',
     path: '/apple-health-chatgpt',
-    title: 'How to Connect Apple Health to ChatGPT — P.R.O.',
+    title: 'Connect Apple Health to ChatGPT, Also in Europe — P.R.O.',
     description:
-      'P.R.O. is in the ChatGPT plugin directory. Install it free and ask about your Apple Health workouts, sleep, heart rate and HRV, in or outside the US.',
+      'ChatGPT Health is US only. Install the free P.R.O. plugin from the ChatGPT directory and ask about workouts, sleep and HRV. About 2 minutes, via MCP.',
     answer: [
       'Install the free P.R.O. plugin from the ChatGPT plugin directory and ChatGPT answers from your Apple Health workouts, sleep, heart rate and HRV, with training plans and interactive workout cards. It runs on the P.R.O. MCP server at ' + MCP_URL + '.',
       'It takes about two minutes, with a one-time code from your iPhone, and it works on the web and in the ChatGPT iPhone app. ChatGPT’s built-in Health space is US only.',
     ],
+    cta: { href: 'https://chatgpt.com/plugins/plugin_asdk_app_6ad22f791530819196ed668dfdbf6909', label: 'Open P.R.O. in ChatGPT ↗' },
     builtIn: {
       name: 'ChatGPT Health',
       checked: RECHECKED,

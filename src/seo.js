@@ -128,7 +128,7 @@ export const ROUTES = [
   {
     path: '/apple-health-ai-outside-us',
     file: 'apple-health-ai-outside-us.html',
-    title: 'Apple Health in ChatGPT & Claude Outside the US — P.R.O.',
+    title: 'ChatGPT Health in Europe? Connect Apple Health Anyway',
     description:
       'ChatGPT Health and Claude’s Apple Health are US only. Connect Apple Health from the UK, EU, Canada or India with the free P.R.O. MCP connector.',
     faq: 'outsideUs',
@@ -137,9 +137,9 @@ export const ROUTES = [
   {
     path: '/apple-health-mcp',
     file: 'apple-health-mcp.html',
-    title: 'Apple Health MCP Server: Hosted, Free, No Export — P.R.O.',
+    title: 'Apple Health MCP Server, Hosted and Free. No Export Needed',
     description:
-      'Hosted Apple Health MCP server at https://mcp.proapp.uk: free P.R.O. app, OAuth sign-in, no export.xml, Mac or terminal. Works in Claude, ChatGPT, Cursor.',
+      'Add https://mcp.proapp.uk to ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity or Gemini. OAuth sign-in, no export.xml. Free with P.R.O.',
     faq: 'appleHealthMcp',
     sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
   },

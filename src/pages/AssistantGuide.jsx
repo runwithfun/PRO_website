@@ -36,6 +36,7 @@ export default function AssistantGuide({ id }) {
         <h1 className="font-display font-extrabold hero-in">Connect Apple Health to {g.name}</h1>
       </div>
       <div className="ag-answer hero-fade" style={{ animationDelay: '120ms' }}>{g.answer.map((p) => <p key={p}>{p}</p>)}</div>
+      {g.cta && <a className="ag-cta hero-fade" style={{ animationDelay: '160ms' }} href={g.cta.href} target="_blank" rel="noopener noreferrer">{g.cta.label}</a>}
       <dl className="ag-facts hero-fade" style={{ animationDelay: '200ms' }}>
         <div><dt>Server address</dt><dd><CopyAddress /></dd></div>
         <div><dt>Sign-in</dt><dd>OAuth with a one-time code from P.R.O.</dd></div>

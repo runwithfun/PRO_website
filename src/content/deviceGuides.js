@@ -1888,7 +1888,7 @@ export const deviceGuides = [
     "method": "partial",
     "checked": "2026-10-27",
     "answer": [
-      "HUAWEI Health for iPhone has a built-in HealthKit sharing option: Huawei documents that it writes workouts and weight to Apple Health, and steps and activity energy come through too. HRV, SpO2 and VO2 max are not shared. For fuller data, the third-party Health Sync app copies Huawei Health cloud data to Apple Health."
+      "Yes. In HUAWEI Health, tap Me, open Third-party services, choose the Health sharing option and tap Turn On All. Huawei documents that it writes workouts and weight to Apple Health, and steps and activity energy come through too. HRV, SpO2 and VO2 max are not shared. For fuller data, the third-party Health Sync app copies Huawei Health cloud data to Apple Health."
     ],
     "requirements": [
       "iPhone with HUAWEI Health (in Europe the App Store listing is \"HUAWEI Health: Europe\", in some markets \"HUAWEI Health: Global\")",

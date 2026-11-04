@@ -26,6 +26,9 @@ export default function DeviceGuide({ id }) {
       </ol></nav>
       <h1 className="font-display font-extrabold tool-h1 hero-in">How to sync {g.name} with Apple Health</h1>
       <div className="ag-answer dg-answer hero-fade" style={{ animationDelay: '120ms' }}>{g.answer.map((p) => <p key={p}>{p}</p>)}</div>
+      {g.trouble[0] && <aside className="dg-quick hero-fade" style={{ animationDelay: '160ms' }}>
+        <strong>{g.name} not syncing?</strong> {g.trouble[0].a} <a href="#trouble-heading">All fixes ↓</a>
+      </aside>}
       <dl className="ag-facts dg-facts hero-fade" style={{ animationDelay: '200ms' }}>
         <div><dt>{g.method === 'third-party' ? 'Official app' : 'App'}</dt><dd>{g.app || 'No official Apple Health link'}</dd></div>
         <div><dt>Method</dt><dd><MethodBadge method={g.method} /><span className="dg-fact-hint">{METHOD_HINT[g.method]}</span></dd></div>

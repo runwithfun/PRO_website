@@ -1,5 +1,6 @@
 .ahm-page .connect-section { max-width: 1000px; }
 .ahm-page .ag-facts { max-width: 900px; }
+.ahm-lead { margin-top: 18px; }
 .ahm-compare table { min-width: 860px; }
 .ahm-compare thead th small { display: block; margin-top: 4px; font-size: 10px; font-weight: 400; color: #8e8e98; overflow-wrap: anywhere; }
 .ahm-compare tbody th { width: 16%; }

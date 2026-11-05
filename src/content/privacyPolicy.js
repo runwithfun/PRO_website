@@ -169,9 +169,9 @@ The assistant reads data only when you ask it something in that assistant and it
 
 | Category (as shown in the app) | Data |
 | --- | --- |
-| Profile | Name, sex, height, weight, age |
+| Profile | Name, sex, height, weight, age; from November 19, 2026, also your latest weight and height from Apple Health with the date each was recorded, used instead of the profile value when newer |
 | Goals | Goals you set in the app and your progress toward them |
-| Daily metrics | Daily totals synced from Apple Health: steps, active energy, distance, exercise minutes, flights climbed |
+| Daily metrics | Daily totals synced from Apple Health: steps, active energy, distance, exercise minutes, flights climbed; from November 19, 2026, also water intake |
 | Workouts | Workout summaries (type, date, duration, distance, energy, heart rate, pace, cadence, power, source app); for workouts from the last 14 days, pace per kilometre and elevation gain; your activity streak, your active training plan and its change history |
 | Workout routes | The GPS route of a single workout, only when uploaded on request, including when the assistant shows the P.R.O. workout card (see below) |
 | Sleep | Sleep hours and sleep score; time in each sleep stage (deep, core, REM, awake), bedtime, wake time and the stage timeline of each night |

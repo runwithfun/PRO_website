@@ -1,10 +1,10 @@
 export const mcpTools = [
-  { name: 'get_profile', title: 'Profile', what: 'Name, sex, age, height and weight.', access: 'Read' },
+  { name: 'get_profile', title: 'Profile', what: 'Name, sex and age; height and weight from Apple Health or the profile.', access: 'Read' },
   { name: 'get_goals', title: 'Goals and progress', what: 'Goals set in the app with targets and progress.', access: 'Read' },
   {
     name: 'get_daily_metrics',
     title: 'Daily health metrics',
-    what: 'Steps, active energy, distance, exercise minutes, flights, resting and average heart rate, HRV, sleep hours and sleep score, per day.',
+    what: 'Steps, active energy, distance, exercise minutes, flights, water intake, resting and average heart rate, HRV, sleep hours and sleep score, per day.',
     access: 'Read',
   },
   {

@@ -32,7 +32,7 @@ function ClientCard({ c }) {
     {c.after && <p>{c.after}</p>}
     {c.note && <p>{c.note}</p>}
     {c.guide
-      ? <Link to={c.guide}>Step-by-step {c.name.split(' ')[0]} guide →</Link>
+      ? <Link to={c.guide}>Step-by-step {c.name} guide →</Link>
       : <a href={c.helpUrl} target="_blank" rel="noopener noreferrer">{c.vendor}’s MCP docs ↗</a>}
   </article>;
 }

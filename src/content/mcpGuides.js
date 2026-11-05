@@ -52,5 +52,6 @@ export const guides = [
       { title: 'Authorize P.R.O.', text: 'Complete the OAuth sign-in using the P.R.O. authorization steps.', pairing: true },
       { title: 'Choose what Grok can access.', text: 'Review the data switches in P.R.O., then tap Done.' },
     ],
+    note: 'Using Grok Bot? It has its own guide at proapp.uk/apple-health-grok-bot.',
   },
 ];

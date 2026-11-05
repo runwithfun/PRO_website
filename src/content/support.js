@@ -10,6 +10,10 @@ export const supportFaq = [
     a: `In ChatGPT, Claude, Gemini, Perplexity, Codex or Grok, add a custom MCP connection with the URL ${MCP_URL}. On the P.R.O. authorization page on iPhone, tap Open P.R.O., return and tap Paste, then Connect. On a computer, get a code in P.R.O. on your iPhone and enter it on the computer. The code works once and expires after 10 minutes.`,
   },
   {
+    q: 'The authorization page says Unknown app.',
+    a: `Your assistant has a wrong Client ID saved for P.R.O. Remove the connector and add it again with only the address ${MCP_URL}. Leave Client ID and client secret empty: P.R.O. registers the assistant on its own.`,
+  },
+  {
     q: 'The connection code does not work.',
     a: 'Each code is valid for 10 minutes and can be used only once. Tap Get a new code in the app and type it straight away, without spaces. Make sure you are signed in to the same P.R.O. account on your iPhone.',
   },

@@ -208,6 +208,7 @@ export const assistantGuides = [
     cards: [],
     trouble: [
       ['I can’t find custom connectors on iPhone.', 'Open Connectors and scroll to the bottom: Custom Connectors → Custom Connector → Connect.'],
+      ['I use Grok Bot, not grok.com.', 'Grok Bot has its own setup: see proapp.uk/apple-health-grok-bot.'],
       ['The code is rejected.', 'Each code works once and expires after 10 minutes. On iPhone, Open P.R.O. on the authorization page creates and copies a fresh one.'],
     ],
     faq: [
@@ -215,6 +216,63 @@ export const assistantGuides = [
       { q: 'Can I connect on the Grok iPhone app?', a: 'Yes. Open Connectors, scroll to Custom Connectors, tap Connect next to Custom Connector and enter https://mcp.proapp.uk. On the web, use grok.com/connectors → New Connector → Custom.' },
       { q: 'Will Grok show P.R.O. cards?', a: 'Grok answers from your data in text. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
       { q: 'What can Grok see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, and coach memory. You can change this any time in Settings → MCP Connect.' },
+    ],
+  },
+  {
+    id: 'grok-bot',
+    name: 'Grok Bot',
+    platform: 'Desktop · iPhone · Android',
+    path: '/apple-health-grok-bot',
+    title: 'How to Connect Apple Health to Grok Bot (MCP) — P.R.O.',
+    description:
+      'Give Grok Bot your Apple Health workouts, sleep, heart rate and HRV with the free P.R.O. MCP connector. No API key or client ID: one URL and a one-time code.',
+    answer: [
+      'The free P.R.O. MCP connector at ' + MCP_URL + ' brings your Apple Health workouts, sleep, heart rate, HRV, training load and training plan into Grok Bot.',
+      'Ask Grok Bot to add it in a chat and authorize once with a one-time code from your iPhone. Then attach P.R.O. to any task and give the Bot a whole month of training to work through.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'Grok Bot on a computer or phone.',
+    ],
+    guide: {
+      intro: 'Grok Bot adds custom MCP servers from the chat. Ask it to add P.R.O. by URL, then authorize with a one-time code from your iPhone.',
+      verified: 'Connection confirmed November 2026',
+      helpUrl: 'https://docs.x.ai/grok-bot/computer-and-apps',
+      steps: [
+        { title: 'Ask Grok Bot to add the server.', text: 'Send this in a chat: Add a custom MCP server called P.R.O. at https://mcp.proapp.uk' },
+        { title: 'Confirm the name and address.', text: 'If the Bot asks about authentication, choose OAuth. Leave Client ID and client secret empty: P.R.O. registers Grok Bot on its own.' },
+        { title: 'Select Authorize on the Connect card.', text: 'The card appears in the chat. On a computer the button can say Authenticate. The P.R.O. authorization page opens in your browser.' },
+        { title: 'Sign in to P.R.O.', text: 'The page says Connect Cursor to P.R.O. That’s expected: Grok Bot connects through Cursor’s connector service.', pairing: true },
+        { title: 'Choose what Grok Bot can access.', text: 'Review the data switches in P.R.O. and tap Done. P.R.O. lists the connection as Cursor.' },
+        { title: 'Attach P.R.O. and ask.', text: 'Type @ in the chat, choose P.R.O., then send your request.' },
+      ],
+    },
+    recorded: 'November 2026',
+    shots: {},
+    prompts: [
+      'Use P.R.O. to write a report on my last 30 days of training: load, recovery and what to change.',
+      'Use P.R.O. to compare my sleep and HRV on the nights after hard workouts.',
+      'Use P.R.O. to check whether I’m on track for my training plan this week.',
+      'Use P.R.O. to find my best and worst training weeks this year and explain the difference.',
+    ],
+    cards: [],
+    trouble: [
+      ['The page says Unknown app.', 'Grok Bot has a wrong Client ID saved for P.R.O. Ask it to remove P.R.O., then add it again with only the address https://mcp.proapp.uk. Leave Client ID and client secret empty.'],
+      ['The page says Connect Cursor to P.R.O.', 'That’s normal. Grok Bot connects through Cursor’s connector service, so P.R.O. shows Cursor and www.cursor.com.'],
+      ['Nothing opens when I select Authorize.', 'Check for a blocked pop-up, then select Reopen on the card. You can also open P.R.O. under Connect apps and select Reconnect.'],
+      ['P.R.O. shows Needs auth or Disconnected.', 'Open Connect apps, open P.R.O. and select Authenticate. On a phone, the button says Authorize.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+      ['Grok Bot answers without my data.', 'Type @ and attach P.R.O. to the task, and open P.R.O. on your iPhone so the latest data syncs.'],
+    ],
+    faq: [
+      { q: 'Can Grok Bot read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Ask Grok Bot to add https://mcp.proapp.uk as a custom MCP server and approve it with a code from P.R.O.' },
+      { q: 'Do I need an API key or client ID?', a: 'No. Leave those fields empty. P.R.O. uses OAuth: Grok Bot registers itself and you approve the connection with a one-time code from your iPhone.' },
+      { q: 'Why does the connection say Cursor?', a: 'Grok Bot keeps its app connections on Cursor’s connector service, so it reaches P.R.O. under the name Cursor. It’s still your Grok Bot, and it sees only what you allow.' },
+      { q: 'Is this the same as Grok on grok.com?', a: 'No. Grok on the web and in the Grok iPhone app has its own connector setup: see proapp.uk/apple-health-grok.' },
+      { q: 'What can Grok Bot see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, training load, your plan and coach memory. You can change this any time in Settings → MCP Connect.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
+      { q: 'How do I remove Grok Bot’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Cursor and confirm Disconnect. To remove it from Grok Bot too, ask the Bot to remove P.R.O.' },
     ],
   },
   {

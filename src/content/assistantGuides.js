@@ -240,8 +240,8 @@ export const assistantGuides = [
       verified: 'Connection confirmed November 2026',
       helpUrl: 'https://docs.x.ai/grok-bot/computer-and-apps',
       steps: [
-        { title: 'Ask Grok Bot to add the server.', text: 'Send this in a chat: Add a custom MCP server called P.R.O. at https://mcp.proapp.uk' },
-        { title: 'Confirm the name and address.', text: 'If the Bot asks about authentication, choose OAuth. Leave Client ID and client secret empty: P.R.O. registers Grok Bot on its own.' },
+        { title: 'Ask Grok Bot to add the server.', text: 'Send this in a chat: Add a custom MCP server called P.R.O. at https://mcp.proapp.uk with OAuth. Leave Client ID and client secret empty.' },
+        { title: 'Confirm the name and address.', text: 'If the Bot asks for a Client ID, leave it empty. The address goes only in the URL field: P.R.O. registers Grok Bot on its own.' },
         { title: 'Select Authorize on the Connect card.', text: 'The card appears in the chat. On a computer the button can say Authenticate. The P.R.O. authorization page opens in your browser.' },
         { title: 'Sign in to P.R.O.', text: 'The page says Connect Cursor to P.R.O. That’s expected: Grok Bot connects through Cursor’s connector service.', pairing: true },
         { title: 'Choose what Grok Bot can access.', text: 'Review the data switches in P.R.O. and tap Done. P.R.O. lists the connection as Cursor.' },

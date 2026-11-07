@@ -9,6 +9,8 @@
 //   native iOS charts); custom connectors — https://support.claude.com/en/articles/11175166
 //   (Free, Pro, Max, Team and Enterprise; Free is limited to one custom connector).
 // Codex — https://learn.chatgpt.com/docs/extend/mcp and https://help.openai.com/en/articles/20001275.
+// Superhuman Go — https://coda.io/packs/build/latest/guides/blocks/mcp/ and
+//   https://coda.io/packs/build/latest/tutorials/build/mcp/, checked November 7, 2026; not tested by us.
 // Google Health Coach — https://support.google.com/googlehealth/answer/16961408 (needs a Fitbit or
 //   Pixel Watch and Google Health Premium).
 import { guides, MCP_URL } from './mcpGuides.js';
@@ -516,6 +518,61 @@ export const assistantGuides = [
       { q: 'Does Manus show P.R.O. cards?', a: 'Manus works from the data P.R.O. returns and answers in its own format. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
       { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
       { q: 'How do I remove Manus’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Manus and confirm Disconnect. You can also remove the connector in Manus under Settings → Connectors.' },
+    ],
+  },
+  {
+    id: 'superhuman',
+    name: 'Superhuman',
+    platform: 'Superhuman Go · MCP connector',
+    path: '/apple-health-superhuman',
+    title: 'How to Connect Apple Health to Superhuman Go (MCP) — P.R.O.',
+    description:
+      'Bring Apple Health workouts, sleep, heart rate and HRV into Superhuman Go with the free P.R.O. MCP connector. Create it from one URL, then sign in once.',
+    answer: [
+      'Superhuman Go has no built-in Apple Health integration. The free P.R.O. app connects your Apple Health data to Go through an MCP server at ' + MCP_URL + ', so Go can read your workouts, sleep, heart rate, HRV, training load and training plan.',
+      'In Superhuman, an MCP server becomes a connector. You create it once from the P.R.O. address in your Superhuman Docs workspace, then open it in Go and sign in with a one-time code from your iPhone.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'A Superhuman plan with Go connectors. Superhuman lists Pro or higher.',
+      'Doc Maker access in your Superhuman Docs workspace, to create the connector.',
+    ],
+    guide: {
+      intro: 'Create a P.R.O. connector from its address in Superhuman Docs, then open it in Go and sign in with a one-time code from your iPhone.',
+      verified: 'Steps follow Superhuman’s connector documentation, checked November 7, 2026',
+      helpUrl: 'https://coda.io/packs/build/latest/guides/blocks/mcp/',
+      steps: [
+        { title: 'Open the Packs page in Superhuman Docs.', text: 'At docs.superhuman.com, click your workspace name and choose Packs. If you belong to several workspaces, click the three dots next to the workspace instead.' },
+        { title: 'Click Create an MCP Connector and enter https://mcp.proapp.uk.' },
+        { title: 'Keep OAuth (Auto) and click Create Connector.', text: 'There’s no client ID, secret or API key to enter. P.R.O. registers the connector on its own.' },
+        { title: 'In Go, open Connectors, select the connector you created and click Sign in.', text: 'Use go.superhuman.com or the Go side panel.' },
+        { title: 'Sign in to P.R.O.', text: 'The P.R.O. authorization page opens.', pairing: true },
+        { title: 'Choose what Go can access, then ask.', text: 'Review the data switches in P.R.O. and tap Done. Start a new chat in Go and ask about your training.' },
+      ],
+    },
+    recorded: 'November 2026',
+    shots: {},
+    prompts: [
+      'Use P.R.O. to summarize my training this week.',
+      'Use P.R.O. to compare my sleep and HRV on the nights after hard workouts.',
+      'Use P.R.O. to tell me whether I’m ready to train today.',
+      'Use P.R.O. to draft a note to my coach about my last 30 days of training.',
+    ],
+    cards: [],
+    trouble: [
+      ['I don’t see Create an MCP Connector.', 'Creating a connector needs Doc Maker access in the Docs workspace. Ask a workspace admin to create it, or to give you that access.'],
+      ['Go asks me to confirm before a P.R.O. tool runs.', 'Go asks before any tool that isn’t marked read-only, such as asking your iPhone for a fresh sync. Reading your data doesn’t need a confirmation.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+      ['Go answers without my data.', 'Open P.R.O. on your iPhone so the latest data syncs, and name P.R.O. in your request.'],
+    ],
+    faq: [
+      { q: 'Can Superhuman Go read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Create a connector from https://mcp.proapp.uk in Superhuman Docs and sign in with a code from P.R.O. Go then reads only the categories you allow.' },
+      { q: 'Do I need an API key or token?', a: 'No. Keep OAuth (Auto) when you create the connector. Superhuman registers itself with P.R.O., and you approve the connection with a one-time code from your iPhone.' },
+      { q: 'Is Superhuman Docs the same as Coda?', a: 'Yes. Coda is now called Superhuman Docs, and Go connectors are built as Packs there. If your workspace still says Coda, the steps are the same.' },
+      { q: 'Does it work in the desktop app and the browser extension?', a: 'Superhuman says connector tools work in every Go client, while interactive cards show only on go.superhuman.com. Elsewhere Go answers in its own format.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
+      { q: 'How do I remove Go’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Superhuman and confirm Disconnect.' },
     ],
   },
   {

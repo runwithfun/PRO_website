@@ -170,6 +170,6 @@ export const compareFaq = [
   },
   {
     q: 'Which fitness apps work with ChatGPT or Claude?',
-    a: 'In the US, ChatGPT Health (since July 2026) and Claude’s Apple Health beta (Pro and Max) read Apple Health directly, and independent MCP servers exist for some wearables. P.R.O. has a free MCP connector (https://mcp.proapp.uk) that works outside the US in ChatGPT, Claude, Grok, Perplexity and Codex (Gemini custom apps are US only), and lets you choose which data categories the assistant sees. As of 27 October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak, Google Health Coach or Runna.',
+    a: 'In the US, ChatGPT Health (since July 2026) and Claude’s Apple Health beta (Pro, Max and Ultra) read Apple Health directly, and independent MCP servers exist for some wearables. P.R.O. has a free MCP connector (https://mcp.proapp.uk) that works outside the US in ChatGPT, Claude, Grok, Perplexity and Codex (Gemini custom apps are US only), and lets you choose which data categories the assistant sees. As of 27 October 2026 we found no official connector for Athlytic, Bevel, WHOOP, Gentler Streak, Google Health Coach or Runna.',
   },
 ];

@@ -24,8 +24,8 @@ export const STATUS = [
     'Claude',
     'Apple Health integration, in beta.',
     'US only.',
-    'Pro and Max, in the Claude iPhone app.',
-    'Yes. Custom connectors are on Free (one connector), Pro, Max, Team and Enterprise.',
+    'Pro, Max and Ultra, in the Claude iPhone app.',
+    'Yes. Custom connectors are on Free (one connector), Pro, Max, Ultra, Team and Enterprise.',
     '/apple-health-claude',
   ],
   [
@@ -82,7 +82,7 @@ export const outsideUsFaq = [
   },
   {
     q: 'Can Claude read Apple Health outside the US?',
-    a: 'Not through Claude’s own integration: Anthropic describes it as a beta for US users on Pro and Max. Custom connectors are a different feature, available on Free, Pro, Max, Team and Enterprise plans, so you can add P.R.O. at https://mcp.proapp.uk from the UK, the EU, Canada, Australia or India.',
+    a: 'Not through Claude’s own integration: Anthropic describes it as a beta for US users on Pro, Max and Ultra. Custom connectors are a different feature, available on Free, Pro, Max, Ultra, Team and Enterprise plans, so you can add P.R.O. at https://mcp.proapp.uk from the UK, the EU, Canada, Australia or India.',
   },
   {
     q: 'Is Perplexity Health available in the UK, Canada, Australia or India?',
@@ -110,8 +110,8 @@ export const outsideUsSources = [
   ['OpenAI Help — Health in ChatGPT (US only; Free, Go, Plus, Pro; web and iOS)', 'https://help.openai.com/en/articles/20001036'],
   ['OpenAI — Launching Health in ChatGPT, July 23, 2026', 'https://openai.com/index/health-in-chatgpt/'],
   ['OpenAI — Introducing ChatGPT Health, January 7, 2026 (early access outside the EEA, Switzerland and the UK)', 'https://openai.com/index/introducing-chatgpt-health/'],
-  ['Claude Help — health integrations (beta, US only, Pro and Max)', 'https://support.claude.com/en/articles/11869619'],
-  ['Claude Help — custom connectors using remote MCP (Free, Pro, Max, Team, Enterprise)', 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp'],
+  ['Claude Help — health integrations (beta, US only, Pro, Max and Ultra)', 'https://support.claude.com/en/articles/11869619'],
+  ['Claude Help — custom connectors using remote MCP (Free, Pro, Max, Ultra, Team, Enterprise)', 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp'],
   ['Perplexity Help — What is Perplexity Health? (Pro and Max in the US, phased rollout)', 'https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health'],
   ['Perplexity — Introducing Perplexity Health, March 19, 2026', 'https://www.perplexity.ai/hub/blog/introducing-perplexity-health'],
   ['Google Health Help — Google Health Coach (Fitbit or Pixel Watch, Google Health Premium, country list)', 'https://support.google.com/googlehealth/answer/16961408?hl=en'],

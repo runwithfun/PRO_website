@@ -5,9 +5,9 @@
 // ChatGPT Health — https://openai.com/index/introducing-chatgpt-health/ (early access from
 //   January 7, 2026 outside the EEA, Switzerland and the UK; launch to US users on July 23, 2026)
 //   and https://help.openai.com/en/articles/20001036 (US only; Free, Go, Plus and Pro; web and iOS).
-// Claude Apple Health — https://support.claude.com/en/articles/11869619 (beta, US, Pro and Max,
+// Claude Apple Health — https://support.claude.com/en/articles/11869619 (beta, US, Pro, Max and Ultra, checked November 8, 2026,
 //   native iOS charts); custom connectors — https://support.claude.com/en/articles/11175166
-//   (Free, Pro, Max, Team and Enterprise; Free is limited to one custom connector).
+//   (Free, Pro, Max, Ultra, Team and Enterprise; Free is limited to one custom connector).
 // Codex — https://learn.chatgpt.com/docs/extend/mcp and https://help.openai.com/en/articles/20001275.
 // Superhuman Go — https://coda.io/packs/build/latest/guides/blocks/mcp/ and
 //   https://coda.io/packs/build/latest/tutorials/build/mcp/, checked November 7, 2026; not tested by us.
@@ -122,20 +122,20 @@ export const assistantGuides = [
     id: 'claude',
     name: 'Claude',
     path: '/apple-health-claude',
-    title: 'How to Connect Apple Health to Claude — P.R.O.',
+    title: 'Connect Apple Health to Claude in Any Country: Free MCP',
     description:
-      'Connect Apple Health workouts, sleep, heart rate and HRV to Claude in any country with the free P.R.O. MCP connector. Setup with screenshots.',
+      'Outside the US or on the Free plan? Connect Apple Health workouts, sleep and HRV to Claude with the free P.R.O. MCP connector. No VPN. Setup in two minutes.',
     answer: [
       'Add the free P.R.O. MCP connector at ' + MCP_URL + ' and Claude answers from your real workouts, sleep, heart rate and HRV, with training plans and interactive workout cards, in any country.',
-      'It takes about two minutes and works on every Claude plan, including Free. Claude’s own Apple Health integration is a beta for US Pro and Max subscribers.',
+      'It takes about two minutes and works on every Claude plan, including Free. Claude’s own Apple Health integration is a beta for US Pro, Max and Ultra subscribers.',
     ],
     builtIn: {
       name: 'Claude’s Apple Health integration',
-      checked: RECHECKED,
+      checked: 'November 8, 2026',
       rows: [
         ['Status', 'Beta.', 'Available now.'],
         ['Where it works', 'United States only.', 'Wherever your Claude plan supports custom connectors.'],
-        ['Claude plans', 'Pro and Max.', 'Free, Pro, Max, Team and Enterprise, per Claude Help. Free is limited to one custom connector.'],
+        ['Claude plans', 'Pro, Max and Ultra.', 'Free, Pro, Max, Ultra, Team and Enterprise, per Claude Help. Free is limited to one custom connector.'],
         ['Apps', 'Claude iPhone app.', 'Claude on iPhone, claude.ai and Claude desktop.'],
         ['In the chat', 'Answers with native iOS charts — bar and line charts and progress indicators — from the health data you share.', 'Text answers plus interactive P.R.O. cards for workouts, sleep, plans and training load.'],
         ['Training plans and coach notes', 'Not part of the integration.', 'Your P.R.O. training plan; coach notes if you allow them.'],
@@ -171,9 +171,9 @@ export const assistantGuides = [
       ['Claude doesn’t use my data.', 'Check that P.R.O. is turned on for the chat in Claude’s tools menu, and open P.R.O. on your iPhone so the latest data syncs.'],
     ],
     faq: [
-      { q: 'Can Claude read my Apple Health data?', a: 'Yes. Claude’s own Apple Health integration is a beta for US Pro and Max users in the Claude iPhone app. In other countries, or for training plans and interactive workout cards, add the free P.R.O. app as a custom connector at https://mcp.proapp.uk.' },
-      { q: 'Does Claude’s Apple Health integration work outside the US?', a: 'Not yet: Anthropic describes it as a beta for US users on Pro and Max plans. The P.R.O. connector is not limited to the US.', more: { to: '/apple-health-ai-outside-us', text: 'What works outside the US, assistant by assistant' } },
-      { q: 'Do I need Claude Pro?', a: 'No. Per Claude Help (checked October 27, 2026), custom connectors are available on Free, Pro, Max, Team and Enterprise plans; Free users are limited to one custom connector. Claude’s own Apple Health beta needs Pro or Max. The P.R.O. app and its connector are free.' },
+      { q: 'Can Claude read my Apple Health data?', a: 'Yes. Claude’s own Apple Health integration is a beta for US Pro, Max and Ultra users in the Claude iPhone app. In other countries, or for training plans and interactive workout cards, add the free P.R.O. app as a custom connector at https://mcp.proapp.uk.' },
+      { q: 'Does Claude’s Apple Health integration work outside the US?', a: 'Not yet: Anthropic describes it as a beta for US users on Pro, Max and Ultra plans. The P.R.O. connector is not limited to the US.', more: { to: '/apple-health-ai-outside-us', text: 'What works outside the US, assistant by assistant' } },
+      { q: 'Do I need Claude Pro?', a: 'No. Per Claude Help (checked November 8, 2026), custom connectors are available on Free, Pro, Max, Ultra, Team and Enterprise plans; Free users are limited to one custom connector. Claude’s own Apple Health beta needs Pro, Max or Ultra. The P.R.O. app and its connector are free.' },
       { q: 'Can Claude change my Apple Health data?', a: 'No. P.R.O. never writes to Apple Health. If you allow it, Claude can save short coach notes inside P.R.O.; that option is off by default.' },
       { q: 'How do I remove Claude’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Claude and confirm Disconnect. Removing the connector only inside Claude does not revoke its P.R.O. access.' },
     ],

@@ -26,6 +26,8 @@ Part A applies to all users. Part B applies additionally if you choose to use AI
 
 **Technical data:** Device type, OS version, app version, anonymized crash reports, and session timestamps.
 
+**Medicines (optional):** The Medicine widget keeps your medicine schedule, reminders and the doses you log on your device. Medications you choose to share from Apple Health are read on your device, shown in the app, and are not uploaded to your account or available to connected AI assistants. If you ask the AI coach to work with your schedule, it is sent as described in B2.
+
 ### A2. Legal Basis for Processing
 
 | Data Category | Legal Basis | Purpose |
@@ -34,6 +36,7 @@ Part A applies to all users. Part B applies additionally if you choose to use AI
 | Fitness data | Contract performance | Core app functionality and analytics |
 | Technical data | Legitimate interest | App stability, bug fixes |
 | Account deletion summary | Legitimate interest | Understanding why people leave and improving P.R.O. |
+| Optional answer on the Delete Account screen | Consent | Understanding why people leave and improving P.R.O. |
 | Marketing emails | Consent | Promotional communications (opt-in only) |
 
 ### A3. Data Sharing
@@ -56,6 +59,8 @@ All data is encrypted in transit (TLS 1.3) and at rest (AES-256). Access is rest
 - **Account and fitness data:** retained while your account is active; deleted within 30 days of account deletion
 - **Technical and crash logs:** retained for 90 days, then automatically purged
 - **Account deletion summary:** from November 18, 2026, when you delete your account, we first create a summary of how P.R.O. was used and keep it for up to 12 months, to understand why people leave and improve the app. It covers things like how long the account was used, app version and device model, language, how you signed in and where you came from, which features were used and the last actions in the app, whether purchases were started, the subscription tier, and the number and type of errors and crashes. It does not contain your name, email, account ID, IP address, health or fitness values, or the text of your messages, and times in it are relative, with the date recorded only as a calendar week. We do not use it to identify you or to contact you
+
+- **Optional answer on the Delete Account screen:** the screen asks why you are leaving, and answering is optional. If you answer, we store your reason, any comment you write, the app version, language and platform, without your account ID, email or name. We keep it after your account is deleted to improve P.R.O., and because it is not linked to you we cannot find or remove a single answer later
 
 We are not able to guarantee deletion of data already shared with third-party infrastructure providers within the same timeframe, as their own retention policies apply.
 
@@ -81,7 +86,10 @@ When you use an AI feature, the following processed data may be transmitted exte
 
 - Your text query (the input you provide)
 - A limited selection of fitness context data necessary for the AI feature to function
+- Your medicine schedule, only if you ask the AI coach to create, change or log it (medicine names, doses, times, days and notes)
 - A pseudonymous session identifier (does not include your name or email)
+
+P.R.O. does not automatically include medical diagnoses, clinical records or medications from Apple Health in AI requests. A medicine schedule you ask the coach to work with is handled like the rest of your chat: it passes through our servers to the AI provider you use, and it may appear in our logs and in the AI monitoring described in B3.
 
 ### B3. Third-Party AI Processors
 

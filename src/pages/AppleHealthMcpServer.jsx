@@ -76,7 +76,7 @@ export default function AppleHealthMcpServer() {
         <tbody>{ahmCompare.map(([k, ...cells]) => <tr key={k}><th scope="row">{k}</th>{cells.map((v, i) => <td key={i} data-label={ahmColumns[i]}>{v}</td>)}</tr>)}</tbody>
       </table></div>
       <div className="tool-prose">
-        <p className="tool-small">With P.R.O. there is nothing to export or run: your Apple Health data syncs from your iPhone, the same connection works on your phone, on the web and in desktop tools, and you decide category by category what each assistant can read.</p>
+        <p className="tool-small">With P.R.O. there is nothing to export or run: your Apple Health data syncs from your iPhone, the same connection works on your phone, on the web and in desktop tools, and you decide category by category what each assistant can read. <Link to="/best-apple-health-mcp-servers">See how P.R.O. compares with telo, Somvia, Marrow, Health Auto Export and athletedata →</Link></p>
       </div>
     </section>
 

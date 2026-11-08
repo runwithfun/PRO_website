@@ -14,6 +14,7 @@ import Zone2Calculator from './pages/Zone2Calculator';
 import AppleWatchReadiness from './pages/AppleWatchReadiness';
 import OutsideUs from './pages/OutsideUs';
 import AppleHealthMcpServer from './pages/AppleHealthMcpServer';
+import BestMcpServers from './pages/BestMcpServers';
 import { assistantGuides } from './content/assistantGuides';
 import AppleHealthSync from './pages/AppleHealthSync';
 import DeviceGuide from './pages/DeviceGuide';
@@ -93,6 +94,7 @@ export function AppShell() {
             <Route path="/apple-watch-readiness-score" element={<AppleWatchReadiness />} />
             <Route path="/apple-health-ai-outside-us" element={<OutsideUs />} />
             <Route path="/apple-health-mcp" element={<AppleHealthMcpServer />} />
+            <Route path="/best-apple-health-mcp-servers" element={<BestMcpServers />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/support" element={<Support />} />
           </Routes>

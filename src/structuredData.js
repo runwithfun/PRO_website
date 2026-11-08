@@ -9,6 +9,7 @@ import { zone2Faq } from './content/zone2.js';
 import { readinessFaq } from './content/readiness.js';
 import { outsideUsFaq } from './content/outsideUs.js';
 import { ahmFaq } from './content/appleHealthMcp.js';
+import { bestMcpFaq } from './content/bestMcpServers.js';
 import { mcpDemo } from './content/mcpDemo.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
@@ -94,7 +95,7 @@ export function structuredData(route, store = {}) {
     });
   }
   if (route.faq) {
-    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq }[route.faq] ?? faq;
+    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, bestMcp: bestMcpFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({

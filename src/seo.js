@@ -143,6 +143,15 @@ export const ROUTES = [
     faq: 'appleHealthMcp',
     sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
   },
+  {
+    path: '/best-apple-health-mcp-servers',
+    file: 'best-apple-health-mcp-servers.html',
+    title: 'Best Apple Health MCP Servers in 2026, Compared — P.R.O.',
+    description:
+      'P.R.O., telo, Somvia, Marrow, Health Auto Export and athletedata side by side: price, setup and sign-in. P.R.O. is the free hosted Apple Health MCP.',
+    faq: 'bestMcp',
+    sources: ['src/pages/BestMcpServers.jsx', 'src/pages/apple-health-mcp.css', 'src/content/bestMcpServers.js'],
+  },
   ...alternatives.map((a) => ({
     path: a.path,
     file: `${a.path.slice(1)}.html`,

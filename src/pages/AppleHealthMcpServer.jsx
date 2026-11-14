@@ -23,7 +23,7 @@ function CopyAddress() {
 function ClientCard({ c }) {
   return <article className="ahm-client" id={`client-${c.id}`}>
     <div className="ahm-client-head">
-      {c.id === 'cursor' ? <span className="assistant-icon" aria-hidden="true"><span className="assistant-other-icon">↗</span></span> : <AssistantIcon name={c.icon ?? c.name} />}
+      <AssistantIcon name={c.icon ?? c.name} />
       <div><h3>{c.name}</h3>
         <span className={`ahm-badge${c.status === 'tested' ? ' is-tested' : ''}`}>{c.badge ?? (c.status === 'tested' ? 'Tested by us' : `Per ${c.vendor} docs`)}</span></div>
     </div>

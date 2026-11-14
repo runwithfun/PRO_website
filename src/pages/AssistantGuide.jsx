@@ -60,6 +60,7 @@ export default function AssistantGuide({ id }) {
       <ol className="ag-steps">{g.guide.steps.map((s, i) => <li key={i}>
         <div className="ag-step"><strong>{s.title}</strong>{s.text && <p>{s.text}</p>}
           {s.pairing && <p className="ag-code">On your iPhone, open <b>P.R.O. → Settings → MCP Connect</b> and tap <b>Get connection code</b>. Enter the six-character code on the authorization page and select <b>Connect</b>. The code works once, for 10 minutes.</p>}
+          {s.code && <pre className="ag-step-pre"><code>{s.code}</code></pre>}
           {s.link && <a href={s.link} target="_blank" rel="noopener noreferrer">{s.linkText}</a>}
         </div>
         {g.shots[i + 1] && <Shot shot={g.shots[i + 1]} />}

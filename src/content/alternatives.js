@@ -36,7 +36,7 @@ export const alternatives = [
       lead: `Add P.R.O.’s MCP connector, https://mcp.proapp.uk, to your AI assistant and it can read the Apple Health data you allow: your readiness status, HRV and resting heart rate against your 28-day baseline, sleep, workouts and training load. The connector is completely free, and we have tested it in ${ASSISTANTS_TESTED}.`,
       prompt: 'Am I recovered enough for intervals today? Compare my HRV and resting heart rate with my 28-day baseline, check last night’s sleep and my training load this week, and tell me what to do.',
       more: ['How did I sleep this week compared to last week?', 'Which workouts pushed my training load up most this month?', 'Is my resting heart rate trending up?'],
-      after: 'The assistant calls P.R.O., reads your numbers and answers with them. In ChatGPT, Claude and Gemini it can also show interactive P.R.O. cards for sleep, workouts and plans. You choose which data categories it sees and can revoke access in the app at any time.',
+      after: 'The assistant calls P.R.O., reads your numbers and answers with them. In ChatGPT, Claude, Gemini and Cursor it can also show interactive P.R.O. cards for sleep, workouts and plans. You choose which data categories it sees and can revoke access in the app at any time.',
     },
     columns: ['P.R.O.', 'WHOOP', 'Athlytic', 'Bevel'],
     rows: [
@@ -164,7 +164,7 @@ export const alternatives = [
       lead: `Add P.R.O.’s MCP connector, https://mcp.proapp.uk, to your AI assistant and it can read your recent runs — distance, pace, heart rate and splits — along with sleep, readiness and training load, then propose a new plan or changes to your current one. The proposal waits in P.R.O. and changes nothing until you accept it. The connector is completely free, and we have tested it in ${ASSISTANTS_TESTED}.`,
       prompt: 'Look at my runs from the last 8 weeks and build me a 12-week half-marathon plan: four runs a week, long run on Sunday, goal under 1:55. Send it to P.R.O. as a proposal.',
       more: ['Am I on track for my half-marathon plan?', 'My legs are heavy — make this week easier and move the intervals.', 'What was my average pace on my last long run?'],
-      after: 'The assistant reads your training history through P.R.O., writes the plan with your real paces and sends it as a pending proposal; you review and accept it in the app. In ChatGPT, Claude and Gemini it can show interactive P.R.O. plan and workout cards.',
+      after: 'The assistant reads your training history through P.R.O., writes the plan with your real paces and sends it as a pending proposal; you review and accept it in the app. In ChatGPT, Claude, Gemini and Cursor it can show interactive P.R.O. plan and workout cards.',
     },
     columns: ['P.R.O.', 'Runna', 'Garmin Coach', 'Nike Run Club', 'Strava'],
     rows: [

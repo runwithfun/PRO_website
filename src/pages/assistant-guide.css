@@ -36,6 +36,7 @@
 .ag-step a { display: inline-block; margin-top: 6px; font-size: 12px; color: #c5c5d0; text-decoration: underline; text-underline-offset: 3px; }
 .ag-step .ag-code { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #ed62a40f; border: 1px solid #ed62a42b; color: #dcdce2; }
 .ag-step .ag-code b { font-weight: 500; color: #fff; }
+.ag-step .ag-step-pre { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #0a0a0d; border: 1px solid #ffffff17; overflow-x: auto; font-size: 13px; line-height: 1.7; color: #e2e2e8; }
 .ag-shot { margin-top: 16px; max-width: 620px; }
 .ag-shot img { width: 100%; height: auto; border-radius: 14px; border: 1px solid #ffffff17; }
 .ag-shot img[width="920"] { max-width: 300px; }

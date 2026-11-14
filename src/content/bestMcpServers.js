@@ -25,11 +25,11 @@ export const bestMcpRows = [
   ['Sign-in', 'OAuth 2.1 with a one-time code from P.R.O.', 'OAuth.', 'Sign in with Apple, or a Somvia access token.', 'OAuth with a six-character code.', 'Bearer token.', 'OAuth or a keyed URL.'],
   ['Assistants the vendor lists', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini, all tested by us. Manus connection confirmed.', 'Claude, ChatGPT, Gemini, Grok, Le Chat, Cursor, Claude Code and Codex.', 'Claude, ChatGPT and Codex with sign-in; Grok and others with a token.', 'Claude, ChatGPT, Gemini, Grok, Perplexity, Le Chat, Claude Code, Codex and Cursor.', 'Claude Code, Codex, Cursor and VS Code.', 'Claude, ChatGPT, Codex, Cursor, Lovable and Perplexity.'],
   ['Where the data comes from', 'Apple Health, so anything that writes there: Apple Watch, Garmin, WHOOP, Oura and more.', 'Apple Health.', 'Apple Health.', 'Apple Health, plus Hevy and Intervals.icu directly.', 'Apple Health.', '39 apps, including Garmin, WHOOP and Oura through their own APIs.'],
-  ['Interactive cards in the chat', 'Yes, in ChatGPT, Claude and Gemini: workouts, sleep and training plans.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.'],
+  ['Interactive cards in the chat', 'Yes, in ChatGPT, Claude, Gemini and Cursor: workouts, sleep and training plans.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.', 'Not mentioned.'],
 ];
 
 export const bestMcpPicks = [
-  { name: 'P.R.O.', text: 'if you want the whole connector for free with nothing to run. Add one address, confirm with a code, and ask from your phone, the web or desktop tools. You also get interactive cards in ChatGPT, Claude and Gemini, your training plan in the conversation and per-category data switches.', to: '/apple-health-mcp' },
+  { name: 'P.R.O.', text: 'if you want the whole connector for free with nothing to run. Add one address, confirm with a code, and ask from your phone, the web or desktop tools. You also get interactive cards in ChatGPT, Claude, Gemini and Cursor, your training plan in the conversation and per-category data switches.', to: '/apple-health-mcp' },
   { name: 'telo', text: 'if your questions are about the past week, which its free tier covers, or you’re happy to pay $49 a year for full history.' },
   { name: 'Marrow', text: 'if you’d like to run the server yourself: its free Server MCP works around the clock on a small server of your own.' },
   { name: 'Somvia', text: 'if training-load scores are what you’re after and you already use Sign in with Apple everywhere.' },

@@ -25,7 +25,7 @@ export const ahmCompare = [
   ['Assistants on your phone', 'No.', 'No — local network only.', 'No.', 'Yes — ChatGPT, Claude and Grok on iPhone, plus web and desktop.'],
   ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini, all tested by us; Manus connection confirmed.'],
   ['You choose what’s shared', 'The whole export.', 'Whatever the app exports.', 'Whatever you export.', 'Per category — switch off workouts, sleep, heart rate and more in one tap; revoke any assistant in P.R.O.'],
-  ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude and Gemini.'],
+  ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude, Gemini and Cursor.'],
   ['Cost', 'Free, open source.', 'Paid app tier required.', 'Paid app.', 'Free. The connector is included in P.R.O. at no cost.'],
 ];
 
@@ -51,7 +51,7 @@ export const ahmClients = [
     after: 'Then run /mcp inside Claude Code and choose to authenticate. The browser opens the P.R.O. sign-in page; enter the code from your iPhone.',
   },
   {
-    id: 'cursor', name: 'Cursor', status: 'tested', vendor: 'Cursor', helpUrl: 'https://cursor.com/docs/context/mcp',
+    id: 'cursor', name: 'Cursor', status: 'tested', guide: '/apple-health-cursor',
     steps: ['Add P.R.O. to ~/.cursor/mcp.json (all projects) or .cursor/mcp.json (one project):'],
     code: '{\n  "mcpServers": {\n    "pro": { "url": "' + MCP_URL + '" }\n  }\n}',
     after: 'Cursor signs in with OAuth on its own — no client ID or API key. Complete the P.R.O. sign-in when Cursor asks.',

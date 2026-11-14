@@ -13,7 +13,7 @@
 ## Key capabilities
 
 - **AI coach:** reads your workout history and answers with markdown, comparison tables and Mermaid diagrams — recovery, pacing, weekly load, block planning — based on your data, not generic advice.
-- **Connect your favorite AI assistant (MCP):** add https://mcp.proapp.uk in ChatGPT, Claude, Gemini, Perplexity, Codex, Grok or Manus and approve the connection in P.R.O. You choose the permitted data categories. Interactive cards are confirmed in ChatGPT, Claude and Gemini; Perplexity answers in text with its own charts.
+- **Connect your favorite AI assistant (MCP):** add https://mcp.proapp.uk in ChatGPT, Claude, Gemini, Perplexity, Codex, Cursor, Grok or Manus and approve the connection in P.R.O. You choose the permitted data categories. Interactive cards are confirmed in ChatGPT, Claude and Gemini; Perplexity answers in text with its own charts.
 - **Widget dashboard:** rings, stats, streaks, goals and coach entry, synced from Apple Health.
 - **Training history:** monthly summaries, sport distribution, heart-rate zones, personal records, GPS routes and workout search across all sessions.
 - **Training plans:** AI-generated plans that adapt to load, recovery and performance, with Pro.
@@ -78,6 +78,7 @@ Yes, on iPhone: adaptive running plans from Apple Health runs, adjusted to train
 - [Connect Apple Health to Grok](https://proapp.uk/apple-health-grok): Grok has no built-in Apple Health integration; custom connector setup on iPhone and grok.com with screenshots.
 - [Connect Apple Health to Grok Bot](https://proapp.uk/apple-health-grok-bot): ask Grok Bot in chat to add https://mcp.proapp.uk as a custom MCP server, leave Client ID and client secret empty, then authorize with a one-time code from P.R.O.; the authorization page says Cursor because Grok Bot connects through Cursor's connector service.
 - [Connect Apple Health to Codex](https://proapp.uk/apple-health-codex): add P.R.O. as an MCP server in the ChatGPT desktop app (Codex) with screenshots, or with the Codex CLI; Codex can then analyse and chart workouts, sleep, heart rate and HRV with code.
+- [Connect Apple Health to Cursor](https://proapp.uk/apple-health-cursor): add https://mcp.proapp.uk to mcp.json from Customize → MCPs → + New (only the URL, no API key or client ID), switch the server on, select Authenticate and enter a one-time code from P.R.O.; Cursor's agent shows interactive P.R.O. cards in the chat. Tested by us, November 2026.
 - [Connect Apple Health to Perplexity](https://proapp.uk/apple-health-perplexity): custom remote connector on perplexity.ai; Perplexity Health (US) vs the P.R.O. connector; Perplexity answers in text and draws its own charts.
 - [Connect Apple Health to Manus](https://proapp.uk/apple-health-manus): Manus has no built-in Apple Health integration; add the free P.R.O. MCP server at https://mcp.proapp.uk as a custom MCP on manus.im (no API key, OAuth with a one-time code); Manus uses workouts, sleep, HRV, training load and plan in longer agent tasks.
 - [Connect Apple Health to Superhuman Go](https://proapp.uk/apple-health-superhuman): create an MCP connector from https://mcp.proapp.uk in Superhuman Docs (formerly Coda) with OAuth (Auto), then sign in from Go Connectors with a one-time code from P.R.O.; steps follow Superhuman's documentation.

@@ -21,7 +21,7 @@ export const CHECKED = 'October 13, 2026';
 const RECHECKED = 'October 27, 2026';
 
 // Every assistant P.R.O. has a tested setup page for, in one order for all pages.
-const ASSISTANTS = ['ChatGPT', 'Claude', 'Grok', 'Codex', 'Perplexity', 'Gemini', 'Manus'];
+const ASSISTANTS = ['ChatGPT', 'Claude', 'Grok', 'Codex', 'Cursor', 'Perplexity', 'Gemini', 'Manus'];
 const listOf = (names) => (names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0]);
 const alsoWorksIn = (self) => {
   const others = ASSISTANTS.filter((n) => n !== self);
@@ -216,7 +216,7 @@ export const assistantGuides = [
     faq: [
       { q: 'Does Grok work with Apple Health?', a: 'Not on its own — Grok has no built-in Apple Health integration. The free P.R.O. app connects Apple Health to Grok as a custom connector at https://mcp.proapp.uk.' },
       { q: 'Can I connect on the Grok iPhone app?', a: 'Yes. Open Connectors, scroll to Custom Connectors, tap Connect next to Custom Connector and enter https://mcp.proapp.uk. On the web, use grok.com/connectors → New Connector → Custom.' },
-      { q: 'Will Grok show P.R.O. cards?', a: 'Grok answers from your data in text. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
+      { q: 'Will Grok show P.R.O. cards?', a: 'Grok answers from your data in text. Interactive P.R.O. cards are confirmed in ChatGPT, Claude, Gemini and Cursor.' },
       { q: 'What can Grok see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, and coach memory. You can change this any time in Settings → MCP Connect.' },
     ],
   },
@@ -349,6 +349,73 @@ export const assistantGuides = [
     ],
   },
   {
+    id: 'cursor',
+    name: 'Cursor',
+    platform: 'Desktop app · Agent chat',
+    path: '/apple-health-cursor',
+    title: 'How to Connect Apple Health to Cursor (MCP) — P.R.O.',
+    description:
+      'Bring Apple Health workouts, sleep, heart rate and HRV into Cursor with the free P.R.O. MCP server: one mcp.json entry, OAuth sign-in, cards in chat.',
+    answer: [
+      'Cursor has no Apple Health integration of its own. Add the free P.R.O. MCP server at ' + MCP_URL + ' to mcp.json, sign in with a one-time code from your iPhone, and Cursor’s agent can read your workouts, sleep, heart rate, HRV, training load and training plan.',
+      'It takes about two minutes, needs no API key, and the agent can show interactive P.R.O. cards right in the chat.',
+    ],
+    builtIn: null,
+    before: [
+      'P.R.O. on your iPhone, signed in, with Apple Health access allowed. It’s free.',
+      'Cursor on your computer.',
+    ],
+    guide: {
+      intro: 'Add P.R.O. to mcp.json from Customize → MCPs, switch it on, then authenticate with a one-time code from your iPhone.',
+      verified: 'Tested by us in Cursor, November 2026',
+      helpUrl: 'https://cursor.com/docs/context/mcp',
+      steps: [
+        { title: 'Open Customize in Cursor and select MCPs.', text: 'Customize is in the sidebar. With no servers yet, the MCPs view says Connect External Tools with MCP.' },
+        { title: 'Select + New.', text: 'Cursor opens mcp.json for the current project. To use P.R.O. in every project, add the same lines to ~/.cursor/mcp.json instead.' },
+        { title: 'Add P.R.O. and save the file.', text: 'Only the URL: no client ID, API key or headers. P.R.O. registers Cursor on its own.', code: '{\n  "mcpServers": {\n    "pro": { "url": "' + MCP_URL + '" }\n  }\n}' },
+        { title: 'Switch P.R.O. on.', text: 'Back in Customize → MCPs, pro appears in the list. If it says Disabled, turn it on with its toggle.' },
+        { title: 'Select Authenticate.', text: 'P.R.O. moves to Needs Attention with Needs authentication. Authenticate opens the P.R.O. sign-in page in your browser.' },
+        { title: 'Sign in to P.R.O.', text: 'The page says Connect Cursor to P.R.O.', pairing: true },
+        { title: 'Choose what Cursor can access.', text: 'Review the data switches in P.R.O. and tap Done.' },
+        { title: 'Check that P.R.O. is connected.', text: 'Customize → MCPs shows pro with a green dot and 15 tools, 1 resource enabled.' },
+        { title: 'Ask the agent.', text: 'In a chat, try “Use P.R.O. to show my training summary for this week.” The agent calls P.R.O. and shows the answer as interactive cards.' },
+      ],
+    },
+    recorded: 'November 2026',
+    shots: {
+      1: { src: 'mcp/cursor/new-server.jpg', alt: 'Cursor Customize view with MCPs selected: Connect External Tools with MCP, with + New and Documentation buttons', caption: 'Customize → MCPs → + New.' },
+      3: { src: 'mcp/cursor/mcp-json.jpg', alt: 'Cursor editor showing .cursor/mcp.json with an mcpServers entry named pro and the URL https://mcp.proapp.uk', caption: 'The whole mcp.json entry: a name and the P.R.O. address.' },
+      4: { src: 'mcp/cursor/disabled.jpg', alt: 'Cursor MCPs list with the pro server marked Disabled', caption: 'pro is added; switch it on if it says Disabled.' },
+      5: { src: 'mcp/cursor/authenticate.jpg', alt: 'Cursor MCPs list with pro under Needs Attention, Needs authentication, and an Authenticate button', caption: 'Needs authentication → Authenticate.' },
+      6: { src: 'mcp/cursor/sign-in.jpg', alt: 'P.R.O. authorization page: Connect Cursor to P.R.O., a code field with Paste and a Connect button', caption: 'Enter the six-character code from P.R.O. and select Connect.' },
+      8: { src: 'mcp/cursor/connected.jpg', alt: 'Cursor MCPs list with pro connected: 15 tools, 1 resource enabled', caption: 'Connected: 15 tools and the card resource.' },
+    },
+    prompts: [
+      'Use P.R.O. to show my training summary for this week.',
+      'Use P.R.O. to export my runs from the last three months to a CSV and chart weekly distance.',
+      'Use P.R.O. to compare my sleep and HRV on the nights after hard sessions.',
+      'Use P.R.O. to check whether I’m on track for my training plan.',
+    ],
+    cards: [
+      { src: 'mcp/cursor/card-training-load.jpg', alt: 'P.R.O. training load card in Cursor’s agent chat: load ratio 0.99, Optimal, last 7 days, 4-week average, sessions, resting heart rate and sleep', caption: '“Use P.R.O. to show my training summary for this week”' },
+    ],
+    cardsNote: 'A P.R.O. card in Cursor’s agent chat, November 2026.',
+    trouble: [
+      ['P.R.O. says Disabled.', 'Open Customize → MCPs and turn it on with its toggle. Disabled servers don’t load or appear in chat.'],
+      ['P.R.O. says Needs authentication.', 'Select Authenticate and sign in with a new code from P.R.O. Cursor asks again if the sign-in has expired.'],
+      ['The agent doesn’t use P.R.O.', 'Mention P.R.O. in your request, start a new chat if needed, and check that pro shows 15 tools in Customize → MCPs.'],
+      ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
+    ],
+    faq: [
+      { q: 'Can Cursor read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Add https://mcp.proapp.uk to mcp.json and sign in with a code from P.R.O. Cursor’s agent then reads only the categories you allow.' },
+      { q: 'Do I need an API key or client ID?', a: 'No. P.R.O. uses OAuth with a one-time code, so the mcp.json entry needs only the URL. Cursor registers itself.' },
+      { q: 'Does Cursor show P.R.O. cards?', a: 'Yes. In our test, Cursor’s agent showed interactive P.R.O. training load and workout cards in the chat.' },
+      { q: 'Should I use the project or the global mcp.json?', a: '.cursor/mcp.json in a project makes P.R.O. available in that project only. ~/.cursor/mcp.json makes it available in every project.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
+      { q: 'How do I remove Cursor’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Cursor and confirm Disconnect. To remove it from Cursor too, delete the pro entry from mcp.json.' },
+    ],
+  },
+  {
     id: 'perplexity',
     name: 'Perplexity',
     platform: 'perplexity.ai · custom connector',
@@ -407,7 +474,7 @@ export const assistantGuides = [
     faq: [
       { q: 'Can Perplexity read my Apple Health data?', a: 'Yes. In the US, Perplexity Health on Pro and Max can read Apple Health. Outside the US, or if you want your training plan in the conversation, connect the free P.R.O. app as a custom remote connector at https://mcp.proapp.uk.' },
       { q: 'What is the difference between Perplexity Health and P.R.O.?', a: 'Perplexity Health is Perplexity’s own health feature, launched in the US in March 2026. P.R.O. is a free iPhone app that serves your Apple Health data through an MCP connector: it works outside the US, includes your training plan and works in other assistants too.' },
-      { q: 'Does Perplexity show P.R.O. cards?', a: 'Perplexity doesn’t display P.R.O.’s interactive cards. It answers in text and draws its own charts from the data P.R.O. returns. Interactive cards are confirmed in ChatGPT, Claude and Gemini.' },
+      { q: 'Does Perplexity show P.R.O. cards?', a: 'Perplexity doesn’t display P.R.O.’s interactive cards. It answers in text and draws its own charts from the data P.R.O. returns. Interactive cards are confirmed in ChatGPT, Claude, Gemini and Cursor.' },
       { q: 'Which Perplexity plan do I need?', a: 'One that can add custom connectors — Pro, Max or Enterprise. The P.R.O. app and connector are free.' },
       { q: 'How do I remove Perplexity’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Perplexity and confirm Disconnect. You can also remove the connector on Perplexity’s Plugins page with the ⋮ menu.' },
     ],
@@ -515,7 +582,7 @@ export const assistantGuides = [
       { q: 'Can Manus read my Apple Health data?', a: 'Yes, through the free P.R.O. app. Add https://mcp.proapp.uk as a custom MCP in Manus and sign in with a code from P.R.O. Manus has no Apple Health connector of its own.' },
       { q: 'Do I need an API key or token?', a: 'No. Leave the header fields empty. P.R.O. uses OAuth: Manus registers itself and you approve the connection with a one-time code from your iPhone.' },
       { q: 'What can Manus do with my data?', a: 'It reads what you allow: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, training load and your plan. Because Manus is an agent, it can combine several of these in one task and write up the result.' },
-      { q: 'Does Manus show P.R.O. cards?', a: 'Manus works from the data P.R.O. returns and answers in its own format. Interactive P.R.O. cards are confirmed in ChatGPT, Claude and Gemini.' },
+      { q: 'Does Manus show P.R.O. cards?', a: 'Manus works from the data P.R.O. returns and answers in its own format. Interactive P.R.O. cards are confirmed in ChatGPT, Claude, Gemini and Cursor.' },
       { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
       { q: 'How do I remove Manus’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Manus and confirm Disconnect. You can also remove the connector in Manus under Settings → Connectors.' },
     ],

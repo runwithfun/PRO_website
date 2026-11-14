@@ -61,8 +61,8 @@ export const ahmClients = [
     steps: ['grok.com/connectors → New Connector → Custom, or in the iPhone app Connectors → Custom Connectors → Custom Connector → Connect.', 'Enter ' + MCP_URL + ' and complete the OAuth sign-in with the code from P.R.O.'],
   },
   {
-    id: 'grok-bot', name: 'Grok Bot', status: 'tested', badge: 'Connection confirmed November 2026', guide: '/apple-health-grok-bot',
-    steps: ['In a Grok Bot chat: Add a custom MCP server called P.R.O. at ' + MCP_URL + '. Leave Client ID and client secret empty.', 'Select Authorize on the Connect card and sign in with the code from P.R.O. The page says Cursor because Grok Bot connects through Cursor’s connector service.'],
+    id: 'grok-bot', name: 'Grok Bot', status: 'tested', guide: '/apple-health-grok-bot',
+    steps: ['Connect apps → Add a custom connector: name P.R.O., type Remote HTTPS, Server URL ' + MCP_URL + '. Leave HTTP headers and Client ID empty → Add plugin.', 'Select Connect next to P.R.O. and sign in with the code from P.R.O. The page says Cursor because Grok Bot connects through Cursor’s connector service.'],
   },
   {
     id: 'perplexity', name: 'Perplexity', status: 'tested', guide: '/apple-health-perplexity',

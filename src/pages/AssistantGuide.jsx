@@ -19,7 +19,7 @@ function CopyAddress() {
 }
 
 function Shot({ shot }) {
-  return <figure className="ag-shot">
+  return <figure className={`ag-shot${shot.narrow ? ' is-narrow' : ''}`}>
     <Picture src={shot.src} alt={shot.alt} sizes="(max-width: 700px) 92vw, 620px" lazy />
     <figcaption>{shot.caption}</figcaption>
   </figure>;
@@ -66,6 +66,7 @@ export default function AssistantGuide({ id }) {
         {g.shots[i + 1] && <Shot shot={g.shots[i + 1]} />}
       </li>)}</ol>
       {g.guide.note && <p className="ag-note">{g.guide.note}</p>}
+      {g.guide.noteShot && <div className="ag-note-shot"><Shot shot={g.guide.noteShot} /></div>}
       {g.guide.cli && <div className="ag-cli"><h3>Set up from the command line</h3><p>{g.guide.cli.intro}</p>
         <pre><code>{g.guide.cli.commands.join('\n')}</code></pre>
         <p>{g.guide.cli.after}</p></div>}

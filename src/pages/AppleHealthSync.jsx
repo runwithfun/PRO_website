@@ -66,7 +66,7 @@ export default function AppleHealthSync() {
       <div className="tool-cta">
         <p><strong>P.R.O.</strong> reads Apple Health, so it works with every device on this page — and with any other tracker that syncs there. Chat with an AI coach that answers with your real numbers, build widget dashboards, see your training history across 50+ sports, get a sleep score for every night and, with Pro, follow adaptive training plans.</p>
         <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
-        <p className="tool-small">Ask ChatGPT, Claude, Gemini or Perplexity about the same data with the free P.R.O. MCP connector: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
+        <p className="tool-small">Ask ChatGPT, Claude, Gemini or Perplexity about the same data with the free P.R.O. <Link to="/apple-health-mcp">Apple Health MCP server</Link>: <Link to="/mcp-connect">connect Apple Health to your AI assistant</Link>.</p>
       </div>
     </section>
 

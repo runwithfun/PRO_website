@@ -111,7 +111,7 @@ export default function DeviceGuide({ id }) {
           <li><strong>Adaptive training plans</strong> with Pro, following your load and recovery</li>
           <li><strong>Sleep score</strong> for every night</li>
         </ul>
-        <p className="dg-pro-lead">You can also ask ChatGPT, Claude, Gemini or Perplexity about your {g.name} data through the free P.R.O. MCP connector.</p>
+        <p className="dg-pro-lead">You can also ask ChatGPT, Claude, Gemini or Perplexity about your {g.name} data through the free P.R.O. <Link to="/apple-health-mcp">Apple Health MCP server</Link>.</p>
         <div className="dg-pro-actions">
           <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
           <Link className="dg-pro-link" to="/mcp-connect">Connect ChatGPT or Claude →</Link>

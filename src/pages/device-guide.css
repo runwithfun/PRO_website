@@ -105,6 +105,7 @@
 .dg-pro h2 { margin-bottom: 14px; }
 .dg-pro-lead { max-width: 640px; font-size: 16px; line-height: 1.65; color: #dcdce2; }
 .dg-pro-lead strong { color: #fff; }
+.dg-pro-lead a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .dg-pro-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; margin: 22px 0; }
 .dg-pro-list li { position: relative; padding-left: 22px; font-size: 14px; line-height: 1.6; color: var(--connect-muted); }
 .dg-pro-list li::before { content: '✓'; position: absolute; left: 0; color: var(--connect-pink); font-weight: 700; }

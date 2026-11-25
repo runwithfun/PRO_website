@@ -137,9 +137,9 @@ export const ROUTES = [
   {
     path: '/apple-health-mcp',
     file: 'apple-health-mcp.html',
-    title: 'Apple Health MCP Server, Hosted and Free. No Export Needed',
+    title: 'Free Apple Health MCP Server for Claude, ChatGPT & Cursor',
     description:
-      'Add https://mcp.proapp.uk to ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity or Gemini. OAuth sign-in, no export.xml. Free with P.R.O.',
+      'Hosted HealthKit MCP for Claude, ChatGPT, Cursor, Codex, Grok, Perplexity and Gemini. Add https://mcp.proapp.uk, sign in, done. No export.xml, free.',
     faq: 'appleHealthMcp',
     sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
   },

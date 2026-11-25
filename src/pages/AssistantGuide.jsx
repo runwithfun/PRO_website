@@ -101,6 +101,7 @@ export default function AssistantGuide({ id }) {
       <div className="ag-other-links">
         {others.map((o) => <Link key={o.id} to={o.path}><AssistantIcon name={o.name} /><span>Apple Health in {o.name}</span></Link>)}
         <Link to="/mcp-connect"><span className="assistant-other-icon" aria-hidden="true">↗</span><span>All assistants and the five-step guide</span></Link>
+        <Link to="/apple-health-mcp"><span className="assistant-other-icon" aria-hidden="true">↗</span><span>Apple Health MCP server: tools and privacy</span></Link>
       </div>
     </section>
   </div>;

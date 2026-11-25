@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy_first.outputs.page_url || steps.deploy_retry.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -68,8 +68,24 @@ jobs:
         with:
           path: './dist'
 
+      # deploy-pages can look up the artifact before GitHub makes a just-uploaded
+      # one visible ("No artifacts named github-pages", actions/deploy-pages#451).
+      # Wait, then retry once after a longer pause.
+      - name: Wait for artifact
+        run: sleep 20
+
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy_first
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Wait before retry
+        if: steps.deploy_first.outcome == 'failure'
+        run: sleep 90
+
+      - name: Deploy to GitHub Pages (retry)
+        id: deploy_retry
+        if: steps.deploy_first.outcome == 'failure'
         uses: actions/deploy-pages@v4
 
       # HTML и картинки лежат в кэше Cloudflare до месяца (Cache Rules зоны

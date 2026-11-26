@@ -138,6 +138,17 @@ export default function AppleWatchReadiness() {
         </table></div>
         <p>Older watches keep the overnight Vitals app (watchOS 11 or later) with heart rate, respiratory rate, sleep duration and, depending on the model, wrist temperature (Series 8 and later, all Ultra) and blood oxygen — but no HRV there. HRV is still recorded as SDNN in short readings while you are still and lands in Health → Heart → Heart Rate Variability. See <Link to="/what-is-a-good-hrv">what a good HRV is on Apple Watch</Link>.</p>
 
+        <h2 id="blank">Why is my Readiness score blank?</h2>
+        <p className="tool-lead">Usually because the watch doesn’t have enough nights yet, or because it isn’t a Series 12 or Ultra 4. Check these in order.</p>
+        <ol>
+          <li><strong>Your model.</strong> Only Series 12 and Ultra 4 have Readiness. On any other Apple Watch the score never appears, even on watchOS 27.</li>
+          <li><strong>Seven nights.</strong> The first score needs at least seven nights of sleep with the watch on. DC Rainmaker reports each night needs at least 4 hours.</li>
+          <li><strong>Last night.</strong> If you didn’t sleep with the watch, today’s score can stay empty.</li>
+          <li><strong>Your health details.</strong> Height, weight and age in the Fitness app, with Activity, Sleep and Overnight Vitals set up.</li>
+          <li><strong>A new watch.</strong> The baseline belongs to the watch, so a replacement or a second watch starts counting again.</li>
+        </ol>
+        <p>Waiting for a score, or on an older watch? Your HRV, resting heart rate and sleep are already in Apple Health. P.R.O. compares them with your last four weeks and gives you a readiness read from day one of your history, and ChatGPT or Claude can explain it through the free MCP connector.</p>
+
         <h2 id="diy">How to get a readiness read on an older Apple Watch</h2>
         <p className="tool-lead">Compare today with your own last four weeks. Three signals cover most of what a readiness score reacts to: HRV, resting heart rate and sleep.</p>
         <div className="tool-table"><table>

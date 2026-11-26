@@ -21,6 +21,10 @@ import { PUBLISHED, DEVICE_GUIDES_PUBLISHED, isoDate } from './content/pageDates
 import { CHECKED as AG_CHECKED } from './content/assistantGuides.js';
 import { CHECKED as OUTSIDE_CHECKED } from './content/outsideUs.js';
 import { AHM_CHECKED } from './content/appleHealthMcp.js';
+import { REVIEWED as HRV_REVIEWED } from './content/hrv.js';
+import { REVIEWED as ZONE2_REVIEWED } from './content/zone2.js';
+import { REVIEWED as READINESS_REVIEWED } from './content/readiness.js';
+import { CHECKED as ALT_CHECKED } from './content/alternatives.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 // Official P.R.O. listings elsewhere, so search engines tie them to this site.
@@ -187,6 +191,11 @@ export function structuredData(route, store = {}) {
     ...(ag && !ag.builtIn && ag.checked && { dateModified: isoDate(ag.checked) }),
     ...(route.path === '/apple-health-ai-outside-us' && { dateModified: isoDate(OUTSIDE_CHECKED) }),
     ...(route.path === '/apple-health-mcp' && { dateModified: isoDate(AHM_CHECKED) }),
+    ...(route.path === '/what-is-a-good-hrv' && { dateModified: isoDate(HRV_REVIEWED) }),
+    ...(route.path === '/zone-2-calculator' && { dateModified: isoDate(ZONE2_REVIEWED) }),
+    ...(route.path === '/apple-watch-readiness-score' && { dateModified: isoDate(READINESS_REVIEWED) }),
+    ...((route.path === '/whoop-alternative' || route.path === '/runna-alternative') && { dateModified: isoDate(ALT_CHECKED) }),
+    ...(route.path === '/what-is-a-good-hrv' && { author: { '@id': `${SITE}/#org` } }),
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(dg && { mainEntity: { '@id': `${SITE}${route.path}#howto` }, dateModified: dg.checked }),

@@ -42,7 +42,10 @@ export const DEVICE_GUIDES_PUBLISHED = '2026-10-27';
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 // 'October 27, 2026' → '2026-10-27', so schema dates match the date shown on the page.
 export function isoDate(text) {
-  const m = /^(\w+) (\d{1,2}), (\d{4})$/.exec(text ?? '');
-  if (!m || !MONTHS.includes(m[1])) throw new Error(`isoDate: unexpected date "${text}"`);
-  return `${m[3]}-${String(MONTHS.indexOf(m[1]) + 1).padStart(2, '0')}-${m[2].padStart(2, '0')}`;
+  // Also accepts '27 October 2026'.
+  const us = /^(\w+) (\d{1,2}), (\d{4})$/.exec(text ?? '');
+  const uk = /^(\d{1,2}) (\w+) (\d{4})$/.exec(text ?? '');
+  const [month, day, year] = us ? [us[1], us[2], us[3]] : uk ? [uk[2], uk[1], uk[3]] : [];
+  if (!MONTHS.includes(month)) throw new Error(`isoDate: unexpected date "${text}"`);
+  return `${year}-${String(MONTHS.indexOf(month) + 1).padStart(2, '0')}-${day.padStart(2, '0')}`;
 }

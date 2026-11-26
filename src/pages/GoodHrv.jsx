@@ -238,8 +238,8 @@ export default function GoodHrv() {
       <header className="connect-intro connect-wrap">
         <p className="connect-eyebrow">GUIDE · HEART RATE VARIABILITY</p>
         <h1 className="font-display font-extrabold tool-h1">What is a good HRV on Apple Watch?</h1>
-        <div className="ag-answer"><p>There is no validated “normal HRV” chart for Apple Watch. The HRV in Health is <strong>SDNN</strong> (Series 12 and Ultra 4 add an overnight Recovery HRV), and in resting ECG studies healthy adults aged 25–34 average about <strong>50 ms</strong>, falling to about <strong>31 ms</strong> at 55–64 — with wide ranges. A good HRV is one that is stable or rising against <strong>your own 30-day average</strong>.</p></div>
-        <p className="tool-reviewed">Last reviewed {REVIEWED} · Sources below · Not medical advice</p>
+        <div className="ag-answer"><p>A typical Apple Watch HRV is about <strong>30–70 ms at ages 25–34</strong>, averaging about <strong>50 ms</strong>, and about <strong>18–45 ms at 55–64</strong>, averaging about <strong>31 ms</strong>. These are resting ECG norms for SDNN, the HRV Apple Watch records in Health (Series 12 and Ultra 4 add an overnight Recovery HRV).</p><p>No chart has been validated for Apple Watch itself, and the ranges are wide. A good HRV for you is one that is stable or rising against <strong>your own 30-day average</strong>.</p></div>
+        <p className="tool-reviewed">By the P.R.O. team · Last reviewed {REVIEWED} · Sources below · Not medical advice</p>
       </header>
 
       <section className="connect-wrap connect-section" aria-label="HRV tools">

@@ -112,9 +112,9 @@ export const ROUTES = [
   {
     path: '/what-is-a-good-hrv',
     file: 'what-is-a-good-hrv.html',
-    title: 'What Is a Good HRV on Apple Watch? HRV by Age Chart — P.R.O.',
+    title: 'Good HRV on Apple Watch: About 30–70 ms at 25–34, by Age',
     description:
-      'What counts as a good HRV on Apple Watch: SDNN vs RMSSD, normal HRV by age and sex from ECG studies, and a free checker for your age and baseline.',
+      'A typical Apple Watch HRV (SDNN) is about 30–70 ms at 25–34 and about 18–45 ms at 55–64. Chart by age and sex, SDNN vs RMSSD, and a free checker for your baseline.',
     faq: 'hrv',
     sources: ['src/pages/GoodHrv.jsx', 'src/content/hrv.js', 'src/pages/tools.css'],
   },

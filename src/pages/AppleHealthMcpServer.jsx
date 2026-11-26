@@ -106,7 +106,7 @@ export default function AppleHealthMcpServer() {
       <p className="tool-lead">Nothing is shared until you enter the pairing code, and the assistant reads data only when you ask it something and it decides to use P.R.O.</p>
       <ol className="ahm-flow">
         <li><strong>iPhone.</strong> P.R.O. reads Apple Health with your HealthKit permission and syncs only the categories you allow.</li>
-        <li><strong>P.R.O. server.</strong> When the assistant calls a tool, the server returns the permitted data. Detailed data — a full-day heart-rate series, an older night or workout, a GPS route — is uploaded only on request, after you open P.R.O., and cached for 48 hours, then deleted.</li>
+        <li><strong>P.R.O. server.</strong> When the assistant calls a tool, the server returns the permitted data. Detailed data — a full-day heart-rate series, an older night or workout, a GPS route — is uploaded only on request, after you open P.R.O., and kept for 48 hours. While you use an assistant, heart rate and sleep of the last 30 days and your latest 20 workouts are kept for 7 days so later questions don’t wake your phone. Then they are deleted.</li>
         <li><strong>Your assistant.</strong> The answer becomes part of your conversation, and the assistant provider’s own privacy terms apply from there.</li>
       </ol>
       <p>Your P.R.O. data is not sold, not used for advertising or data mining, and not used to train models by P.R.O. or the MCP operator. Account deletion removes connector tokens, pairing codes and cached detailed uploads. Details are in <Link to="/privacy">Privacy Policy Part C</Link>. P.R.O. provides fitness and wellness information, not medical advice.</p>

@@ -2,6 +2,8 @@ import { assistantGuides } from './content/assistantGuides.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubTitle, hubDescription, guideDescription, deviceTitle } from './content/appleHealthSync.js';
 import { alternatives } from './content/alternatives.js';
+import { deviceChats, DEVICE_CHAT_CHECKED } from './content/deviceChatgpt.js';
+import { BEST_MCP_CHECKED_ISO } from './content/bestMcpServers.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
 // заголовок вкладки менялся при переходах внутри сайта.
@@ -98,6 +100,15 @@ export const ROUTES = [
     device: g.id,
     sources: ['src/pages/DeviceGuide.jsx', 'src/pages/device-guide.css', 'src/components/DeviceSync.jsx', 'src/content/appleHealthSync.js', 'src/content/deviceGuides.js'],
   })),
+  ...deviceChats.map((c) => ({
+    path: c.path,
+    file: `${c.path.slice(1)}.html`,
+    title: c.title,
+    description: c.description,
+    deviceChat: c.id,
+    dateModified: DEVICE_CHAT_CHECKED,
+    sources: ['src/pages/DeviceChatgpt.jsx', 'src/pages/device-guide.css', 'src/content/deviceChatgpt.js', 'src/content/deviceGuides.js'],
+  })),
   {
     path: '/what-is-a-good-hrv',
     file: 'what-is-a-good-hrv.html',
@@ -156,8 +167,9 @@ export const ROUTES = [
     file: 'best-apple-health-mcp-servers.html',
     title: 'Best Apple Health MCP Servers in 2026, Compared — P.R.O.',
     description:
-      'P.R.O., telo, Somvia, Marrow, Health Auto Export and athletedata side by side: price, setup and sign-in. P.R.O. is the free hosted Apple Health MCP.',
+      'P.R.O., telo, Wellness Project, Marrow, Somvia, Health Auto Export and athletedata compared: price, hosted or local, sign-in. Checked Nov 26, 2026.',
     faq: 'bestMcp',
+    dateModified: BEST_MCP_CHECKED_ISO,
     sources: ['src/pages/BestMcpServers.jsx', 'src/pages/apple-health-mcp.css', 'src/content/bestMcpServers.js'],
   },
   ...alternatives.map((a) => ({

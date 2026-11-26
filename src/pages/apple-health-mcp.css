@@ -4,7 +4,7 @@
 .ahm-compare table { min-width: 860px; }
 .ahm-compare thead th small { display: block; margin-top: 4px; font-size: 10px; font-weight: 400; color: #8e8e98; overflow-wrap: anywhere; }
 .ahm-compare tbody th { width: 16%; }
-.best-mcp-compare table { min-width: 1120px; }
+.best-mcp-compare table { min-width: 1280px; }
 .best-mcp-compare thead th:last-child { color: #f0f0f3; }
 .best-mcp-compare thead th:nth-child(2) { color: var(--connect-pink); }
 .best-mcp-compare td:last-child { color: var(--connect-muted); }
@@ -33,3 +33,6 @@
 }
 .tool-prose .ahm-flow { list-style: none; padding-left: 0; }
 .tool-prose .ahm-flow li { margin-top: 0; }
+.best-mcp-checked td time { display: block; color: #e2e2e8; }
+.best-mcp-checked td span { font-size: 12px; }
+.best-mcp-checked a { text-decoration: underline; text-underline-offset: 3px; }

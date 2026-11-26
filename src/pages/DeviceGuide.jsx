@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MethodBadge, SyncMark, MenuPath, StepMock, PriorityMock } from '../components/DeviceSync';
 import { deviceGuides } from '../content/deviceGuides';
+import { deviceChats } from '../content/deviceChatgpt';
 import { HUB_PATH, APP_STORE, APPLE_PRIORITY_SOURCE, PRIORITY_PATH, PRIORITY_STEPS, METHOD_HINT, formatChecked } from '../content/appleHealthSync';
 import './mcp-connect.css';
 import './assistant-guide.css';
@@ -16,6 +17,7 @@ export default function DeviceGuide({ id }) {
   const counts = { yes: synced.length, part: g.syncs.filter((s) => s.ok === 'partial').length };
   const sources = g.sources.some(([, url]) => url === APPLE_PRIORITY_SOURCE[1]) ? g.sources : [...g.sources, APPLE_PRIORITY_SOURCE];
   const checked = formatChecked(g.checked);
+  const chatPage = deviceChats.find((c) => c.device === id)?.path;
 
   return <div className="mcp-page tool-page device-page">
     <header className="connect-intro connect-wrap">
@@ -48,6 +50,7 @@ export default function DeviceGuide({ id }) {
           <td>{s.note ?? ''}</td>
         </tr>)}</tbody>
       </table></div>
+      <p className="guide-recorded dg-ask">Ask about this data in <Link to={chatPage ?? '/apple-health-chatgpt'}>ChatGPT</Link>, <Link to="/apple-health-claude">Claude</Link> or <Link to="/apple-health-grok">Grok</Link> with the free P.R.O. connector.{chatPage && <> <Link to={chatPage}>What ChatGPT can see from {g.name} →</Link></>}</p>
     </section>
 
     <section className="connect-wrap connect-section" aria-labelledby="steps-heading">

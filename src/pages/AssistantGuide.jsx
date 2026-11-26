@@ -4,6 +4,7 @@ import AssistantIcon from '../components/mcp/AssistantIcon';
 import Picture from '../components/ui/Picture';
 import { assistantGuides, CHECKED } from '../content/assistantGuides';
 import { MCP_URL } from '../content/mcpGuides';
+import { deviceChats, guideOf } from '../content/deviceChatgpt';
 import './mcp-connect.css';
 import './assistant-guide.css';
 
@@ -76,6 +77,7 @@ export default function AssistantGuide({ id }) {
     <section className="connect-wrap connect-section" aria-labelledby="ask-heading">
       <div className="connect-section-heading"><h2 id="ask-heading">What to ask {g.name}</h2><p>Ask in your own words. {g.name} calls P.R.O. when it needs your data.</p></div>
       <ul className="ag-prompts">{g.prompts.map((p) => <li key={p}>“{p}”</li>)}</ul>
+      {g.id === 'chatgpt' && <p className="guide-recorded">Wear a Garmin, WHOOP or Oura? See what ChatGPT can read from each: {deviceChats.map((c, i) => <span key={c.id}>{i > 0 && ' · '}<Link to={c.path}>{guideOf(c).name} to ChatGPT</Link></span>)}.</p>}
       {g.cards.length > 0 && <>
         <div className="ag-cards">{g.cards.map((c) => <figure key={c.src} className="ag-card">
           <Picture src={c.src} alt={c.alt} sizes="(max-width: 700px) 92vw, 460px" lazy />

@@ -19,6 +19,8 @@ import { assistantGuides } from './content/assistantGuides';
 import AppleHealthSync from './pages/AppleHealthSync';
 import DeviceGuide from './pages/DeviceGuide';
 import { deviceGuides } from './content/deviceGuides';
+import DeviceChatgpt from './pages/DeviceChatgpt';
+import { deviceChats } from './content/deviceChatgpt';
 import { HUB_PATH } from './content/appleHealthSync';
 import Compare from './pages/Compare';
 import Alternative from './pages/Alternative';
@@ -90,6 +92,7 @@ export function AppShell() {
             {alternatives.map((a) => <Route key={a.id} path={a.path} element={<Alternative id={a.id} />} />)}
             <Route path={HUB_PATH} element={<AppleHealthSync />} />
             {deviceGuides.map((g) => <Route key={g.id} path={g.path} element={<DeviceGuide id={g.id} />} />)}
+            {deviceChats.map((c) => <Route key={c.id} path={c.path} element={<DeviceChatgpt id={c.id} />} />)}
             <Route path="/what-is-a-good-hrv" element={<GoodHrv />} />
             <Route path="/zone-2-calculator" element={<Zone2Calculator />} />
             <Route path="/apple-watch-readiness-score" element={<AppleWatchReadiness />} />

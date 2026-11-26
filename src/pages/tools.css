@@ -217,3 +217,6 @@
 .rd-mcp-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 6px; }
 .rd-mcp-links a:not(.tool-btn) { margin-top: 14px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; color: #d7d7df; }
 @media (max-width: 480px) { .rd-mcp { padding: 20px; } .rd-chat-you, .rd-chat-ai { max-width: 100%; } }
+.ou-grid { display: grid; gap: 10px; max-width: 700px; margin-top: 24px; }
+.ou-grid-title { margin: 6px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: #8e8e98; }
+.ou-assistants li { background: #ed62a41f; border-color: #ed62a455; }

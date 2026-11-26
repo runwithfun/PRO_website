@@ -43,6 +43,7 @@ export default function AssistantGuide({ id }) {
         <div><dt>Sign-in</dt><dd>OAuth with a one-time code from P.R.O.</dd></div>
         <div><dt>Time</dt><dd>About 2 minutes</dd></div>
       </dl>
+      {(id === 'chatgpt' || id === 'claude') && <p className="ag-outside hero-fade" style={{ animationDelay: '220ms' }}>Outside the US? {g.builtIn?.name ?? 'The built-in feature'} is US only, the P.R.O. connector is not. <Link to="/apple-health-ai-outside-us">What works in your country →</Link></p>}
     </header>
 
     {g.builtIn && <section className="connect-wrap connect-section" aria-labelledby="ways-heading">

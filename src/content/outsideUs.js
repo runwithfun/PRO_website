@@ -1,11 +1,11 @@
 // "Apple Health in AI assistants outside the US" — status table, FAQ and sources.
-// Every availability fact below was checked on October 27, 2026 against the official page
+// Every availability fact below was re-checked on November 26, 2026 (first checked October 27, 2026) against the official page
 // listed in outsideUsSources. P.R.O. facts come from assistantGuides.js, mcpFaq.js,
 // public/llms.txt and the Privacy Policy. App Store storefronts were checked with Apple's
 // lookup API (itunes.apple.com/lookup?id=6749865568&country=gb, de, fr, ie, nl, es, it, se,
 // ch, ca, au, in) on the same day.
 
-export const CHECKED = 'October 27, 2026';
+export const CHECKED = 'November 26, 2026';
 
 // Countries where we confirmed the P.R.O. App Store listing on CHECKED.
 export const STOREFRONTS = ['the UK', 'Ireland', 'Germany', 'France', 'the Netherlands', 'Spain', 'Italy', 'Sweden', 'Switzerland', 'Canada', 'Australia', 'India'];
@@ -16,7 +16,7 @@ export const STATUS = [
     'ChatGPT',
     'Health in ChatGPT reads Apple Health from the ChatGPT iPhone app.',
     'US only. Launched to US users on July 23, 2026. The early access that opened on January 7, 2026 excluded the EEA, Switzerland and the UK.',
-    'Free, Go, Plus and Pro, on the web and iOS. Connecting Apple Health needs an iPhone.',
+    'Free, Go, Plus and Pro, on the web, iOS, Android and the desktop app (Android and desktop rolling out). Connecting Apple Health needs an iPhone.',
     'Yes. Install the free P.R.O. plugin from the ChatGPT plugin directory.',
     '/apple-health-chatgpt',
   ],
@@ -74,7 +74,7 @@ export const ROUTES_OUTSIDE = [
 export const outsideUsFaq = [
   {
     q: 'Is ChatGPT Health available in the UK?',
-    a: 'No. OpenAI’s help page lists Health in ChatGPT for users in the US only (checked October 27, 2026), and the early access that opened in January 2026 excluded the UK, the EEA and Switzerland. In the UK you can still bring Apple Health into ChatGPT by adding the free P.R.O. app as a custom MCP server at https://mcp.proapp.uk.',
+    a: 'No. OpenAI’s help page lists Health in ChatGPT for users in the US only (checked November 26, 2026), and the early access that opened in January 2026 excluded the UK, the EEA and Switzerland. In the UK you can still bring Apple Health into ChatGPT by adding the free P.R.O. app as a custom MCP server at https://mcp.proapp.uk.',
   },
   {
     q: 'Why is ChatGPT Health not available in my country?',
@@ -98,7 +98,7 @@ export const outsideUsFaq = [
   },
   {
     q: 'Does P.R.O. work in the EU and the UK?',
-    a: 'Yes. On October 27, 2026 the P.R.O. App Store listing was available in the UK, Ireland, Germany, France, the Netherlands, Spain, Italy, Sweden, Switzerland, Canada, Australia and India. The connector at https://mcp.proapp.uk has no country restriction of its own; your assistant’s plan needs to allow custom connectors, and Gemini custom apps are US only.',
+    a: 'Yes. On November 26, 2026 the P.R.O. App Store listing was available in the UK, Ireland, Germany, France, the Netherlands, Spain, Italy, Sweden, Switzerland, Canada, Australia and India. The connector at https://mcp.proapp.uk has no country restriction of its own; your assistant’s plan needs to allow custom connectors, and Gemini custom apps are US only.',
   },
   {
     q: 'Where does my health data go, and what about GDPR?',
@@ -107,7 +107,7 @@ export const outsideUsFaq = [
 ];
 
 export const outsideUsSources = [
-  ['OpenAI Help — Health in ChatGPT (US only; Free, Go, Plus, Pro; web and iOS)', 'https://help.openai.com/en/articles/20001036'],
+  ['OpenAI Help — Health in ChatGPT (US only; Free, Go, Plus, Pro; web, iOS, Android, desktop)', 'https://help.openai.com/en/articles/20001036'],
   ['OpenAI — Launching Health in ChatGPT, July 23, 2026', 'https://openai.com/index/health-in-chatgpt/'],
   ['OpenAI — Introducing ChatGPT Health, January 7, 2026 (early access outside the EEA, Switzerland and the UK)', 'https://openai.com/index/introducing-chatgpt-health/'],
   ['Claude Help — health integrations (beta, US only, Pro, Max and Ultra)', 'https://support.claude.com/en/articles/11869619'],

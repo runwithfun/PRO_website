@@ -16,8 +16,14 @@ export default function OutsideUs() {
         <p className="connect-eyebrow">GUIDE · UK, EU, CANADA, AUSTRALIA, INDIA</p>
         <h1 className="font-display font-extrabold tool-h1">Apple Health in ChatGPT &amp; Claude outside the US</h1>
         <div className="ag-answer">
-          <p>The free <strong>P.R.O. MCP connector</strong> brings Apple Health into ChatGPT, Claude, Perplexity, Grok and Codex in any country where the app is available. The built-in Apple Health features in ChatGPT, Claude and Perplexity are US only as of October 2026.</p>
+          <p>The free <strong>P.R.O. MCP connector</strong> brings Apple Health into ChatGPT, Claude, Perplexity, Grok and Codex in any country where the app is available. The built-in Apple Health features in ChatGPT, Claude and Perplexity are US only as of November 2026.</p>
           <p>Gemini is the exception: Google offers custom apps in Gemini only in the US.</p>
+        </div>
+        <div className="ou-grid" aria-label="Countries where we checked the P.R.O. App Store listing">
+          <p className="ou-grid-title">P.R.O. works today from</p>
+          <ul className="ag-prompts">{STOREFRONTS.map((c) => <li key={c}>{c.replace(/^the /, '')}</li>)}<li>and more</li></ul>
+          <p className="ou-grid-title">in</p>
+          <ul className="ag-prompts ou-assistants">{['ChatGPT', 'Claude', 'Perplexity', 'Grok', 'Codex'].map((a) => <li key={a}>{a}</li>)}</ul>
         </div>
         <p className="tool-reviewed">Checked {CHECKED} against each provider’s help pages · Sources below</p>
       </header>
@@ -46,6 +52,12 @@ export default function OutsideUs() {
             </tr>
           ))}</tbody>
         </table></div>
+      </section>
+
+      <section className="connect-wrap connect-section tool-prose" aria-labelledby="why">
+        <h2 id="why">Why ChatGPT Health isn’t available in your country</h2>
+        <p className="tool-lead">OpenAI opened Health in ChatGPT to US users on July 23, 2026, and its help page still lists the US only, with no date for other countries. Claude’s Apple Health beta and Perplexity Health are US only too. That is a rule about the built-in feature, not about your iPhone or your plan, so no setting will switch it on.</p>
+        <p>Custom connectors are a different feature, and they work outside the US. Add the free P.R.O. MCP connector at <code>{MCP_URL}</code> and ChatGPT or Claude answers from your real workouts, sleep, heart rate and HRV in the UK, the EU, Canada, Australia or India. A VPN is not the answer: the providers decide by account and region, and getting around it can break their terms.</p>
       </section>
 
       <section className="connect-wrap connect-section tool-prose" aria-labelledby="how">

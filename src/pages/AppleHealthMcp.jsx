@@ -6,7 +6,8 @@ import AssistantIcon from '../components/mcp/AssistantIcon';
 import McpDemo from '../components/mcp/McpDemo';
 import { guides, MCP_URL } from '../content/mcpGuides';
 import { mcpFaq } from '../content/mcpFaq';
-import { mcpTools } from '../content/mcpTools';
+import { mcpTools, mcpExamplePrompts } from '../content/mcpTools';
+import ToolTable from '../components/mcp/ToolTable';
 import { assistantGuides } from '../content/assistantGuides';
 
 const guidePaths = Object.fromEntries(assistantGuides.map((x) => [x.id, x.path]));
@@ -50,8 +51,9 @@ export default function AppleHealthMcp() {
     <section className="connect-wrap connect-section connect-questions" aria-labelledby="questions-heading">
       <div className="connect-section-heading"><h2 id="questions-heading">Your data. Your call.</h2><p>Choose what to share. Disconnect anytime.</p></div>
       {mcpFaq.map(item => <details className="connect-question" key={item.q}><summary>{item.q}<span aria-hidden="true">+</span></summary><p>{item.a}</p></details>)}
-      <details className="connect-question"><summary>Technical reference: available MCP tools<span aria-hidden="true">+</span></summary><p>Remote Streamable HTTP at <code>{MCP_URL}</code>, with OAuth 2.1. Data tools respect your access settings.</p><div className="connect-tools"><table><caption>P.R.O. connector tools and access</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Access</th></tr></thead><tbody>{mcpTools.map(t => <tr key={t.name}><th scope="row"><code>{t.name}</code></th><td>{t.what}</td><td>{t.access}</td></tr>)}</tbody></table></div></details>
-      <div className="connect-end"><p>Interfaces can change; each guide links to the assistant’s own help.<br />P.R.O. provides fitness and wellness information, not medical advice.</p><div><Link to="/support">Get help ↗</Link><Link to="/privacy">Privacy ↗</Link></div></div>
+      <details className="connect-question"><summary>What can I ask?<span aria-hidden="true">+</span></summary><ul className="connect-prompts">{mcpExamplePrompts.map(p => <li key={p}>“{p}”</li>)}</ul></details>
+      <details className="connect-question"><summary>Technical reference: all {mcpTools.length} MCP tools<span aria-hidden="true">+</span></summary><p>Remote Streamable HTTP at <code>{MCP_URL}</code>, with OAuth 2.1. Data tools respect your access settings. A machine-readable list with input schemas is at <a href="/mcp/tools.json">/mcp/tools.json</a>.</p><ToolTable /></details>
+      <div className="connect-end"><p>Interfaces can change; each guide links to the assistant’s own help.<br />P.R.O. provides fitness and wellness information, not medical advice.</p><div><Link to="/changelog">What’s new ↗</Link><Link to="/support">Get help ↗</Link><Link to="/privacy">Privacy ↗</Link></div></div>
     </section>
   </div>;
 }

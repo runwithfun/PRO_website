@@ -5,7 +5,7 @@ export const connectionSteps = [
   { title: 'Add a custom connector.', text: 'In your assistant’s settings, add a custom MCP connector. Paste the address and select OAuth if asked. In ChatGPT, just install the P.R.O. plugin.' },
   { title: 'Get P.R.O. and copy your code.', text: 'Install P.R.O. on iPhone, sign in and choose your Apple Health permissions. Open Settings → MCP Connect, tap Get connection code, then tap the code to copy.' },
   { title: 'Paste the code. Connect.', text: 'Return to the authorization page. Paste or type the code, then select Connect. Choose what to share in P.R.O.' },
-  { title: 'Start a conversation.', text: 'With P.R.O. enabled, ask your assistant about your workouts, sleep or progress.' },
+  { title: 'Start a conversation.', text: 'With P.R.O. enabled, ask your assistant about your workouts, sleep or progress. Try “Give me my daily brief.”' },
 ];
 export const guides = [
   {

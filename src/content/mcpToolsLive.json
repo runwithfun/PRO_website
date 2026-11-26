@@ -1,0 +1,689 @@
+{
+ "serverInfo": {
+  "name": "pro-fitness",
+  "version": "1.1.0"
+ },
+ "tools": [
+  {
+   "name": "get_profile",
+   "title": "Profile",
+   "description": "Read the user's saved P.R.O. profile and body metrics, subject to sharing permissions.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Profile",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_goals",
+   "title": "Goals and progress",
+   "description": "Read goals set in P.R.O., their targets and current progress. Includes a goals card.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Goals and progress",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   },
+   "_meta": {
+    "ui": {
+     "resourceUri": "ui://pro/widget.html"
+    },
+    "ui/resourceUri": "ui://pro/widget.html",
+    "openai/widgetAccessible": true
+   }
+  },
+  {
+   "name": "get_training_plan",
+   "title": "Training plan",
+   "description": "Read the active P.R.O. training plan, scheduled sessions and recorded revision history (recent_changes, newest first). Returns null when no active plan exists.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Training plan",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "propose_plan_changes",
+   "title": "Suggest plan changes",
+   "description": "Create a pending proposal to add, replace, remove or move future sessions in the active P.R.O. training plan. Supersedes older pending proposals. The plan changes only when the user accepts changes in the iPhone app; the coach-note write switch does not control pending proposals.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "summary": {
+      "type": "string",
+      "description": "One short line the user sees first, e.g. 'Easier week after the cold'."
+     },
+     "reason": {
+      "type": "string",
+      "description": "Why, in a sentence or two."
+     },
+     "changes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 14,
+      "items": {
+       "type": "object",
+       "properties": {
+        "date": {
+         "type": "string",
+         "description": "Day of the session, YYYY-MM-DD (today or later)."
+        },
+        "action": {
+         "type": "string",
+         "enum": [
+          "replace",
+          "add",
+          "remove",
+          "move"
+         ],
+         "description": "replace the session on that day, add one, remove it (rest day) or move it to to_date."
+        },
+        "to_date": {
+         "type": "string",
+         "description": "For move: the new day, YYYY-MM-DD."
+        },
+        "type": {
+         "type": "string",
+         "description": "For replace/add: e.g. 'Easy run', 'Intervals', 'Strength'."
+        },
+        "duration_min": {
+         "type": "number",
+         "description": "For replace/add: minutes."
+        },
+        "distance_km": {
+         "type": "number",
+         "description": "For replace/add: kilometres."
+        },
+        "intensity": {
+         "type": "string",
+         "enum": [
+          "low",
+          "medium",
+          "high"
+         ]
+        },
+        "description": {
+         "type": "string",
+         "description": "For replace/add: what to do, one line."
+        }
+       },
+       "required": [
+        "date",
+        "action"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    "required": [
+     "summary",
+     "changes"
+    ],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Suggest plan changes",
+    "readOnlyHint": false,
+    "destructiveHint": true,
+    "idempotentHint": false,
+    "openWorldHint": false
+   },
+   "_meta": {
+    "ui": {
+     "resourceUri": "ui://pro/widget.html"
+    },
+    "ui/resourceUri": "ui://pro/widget.html",
+    "openai/widgetAccessible": true
+   }
+  },
+  {
+   "name": "get_plan_proposal",
+   "title": "Plan change status",
+   "description": "Read a P.R.O. plan proposal by ID, or the latest proposal when no ID is given. Returns its changes and pending, accepted, partial, declined, expired or superseded status.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "proposal_id": {
+      "type": "string",
+      "description": "From propose_plan_changes. Optional."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Plan change status",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   },
+   "_meta": {
+    "ui": {
+     "resourceUri": "ui://pro/widget.html"
+    },
+    "ui/resourceUri": "ui://pro/widget.html",
+    "openai/widgetAccessible": true
+   }
+  },
+  {
+   "name": "get_streak",
+   "title": "Activity streak",
+   "description": "Read current and longest streaks of consecutive active days counted by P.R.O.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Activity streak",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_daily_metrics",
+   "title": "Daily health metrics",
+   "description": "Read daily Apple Health metrics synced to P.R.O. for a recent period or exact dates (up to 90 days per call), per day or aggregated by week or month. The latest day may be partial; missing days were not synced. Sleep belongs to the night ending on that date. water_ml appears only on days with water logged in Apple Health or in P.R.O. fields_absent identifies untracked fields; restricted identifies fields withheld by sharing settings.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 90,
+      "description": "How many recent days to return (max 90). Default 14. Ignored when since is given."
+     },
+     "since": {
+      "type": "string",
+      "description": "Start of an exact period, YYYY-MM-DD local date (inclusive). A period longer than 90 days keeps its newest 90 days."
+     },
+     "until": {
+      "type": "string",
+      "description": "End of the period, YYYY-MM-DD (inclusive). Defaults to today; with only until, the days before it."
+     },
+     "group_by": {
+      "type": "string",
+      "enum": [
+       "day",
+       "week",
+       "month"
+      ],
+      "description": "day (default): one row per day in metrics. week (ISO, Monday first) or month: periods instead, each with days_with_data and, per field, mean, min, max, days (days with a value) and sum for steps, energy, distance, exercise minutes, flights and water."
+     },
+     "fields": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "steps",
+        "active_energy_kcal",
+        "distance_km",
+        "exercise_minutes",
+        "flights_up",
+        "resting_hr",
+        "avg_hr",
+        "hrv_ms",
+        "sleep_hours",
+        "sleep_score",
+        "water_ml",
+        "sleep_deep_min",
+        "sleep_rem_min",
+        "sleep_core_min",
+        "sleep_awake_min",
+        "sleep_interruptions",
+        "sleep_start",
+        "sleep_end",
+        "sleep_hypnogram",
+        "nap_minutes",
+        "naps",
+        "sleep_total_hours"
+       ]
+      },
+      "description": "Return only these fields (date is always included). Default: all."
+     },
+     "include_hypnogram": {
+      "type": "boolean",
+      "description": "Also return sleep_hypnogram per night: consecutive stage runs from sleep_start, e.g. 'c35 d22 r18 a3' (a awake, c light/core, d deep, r REM, u asleep without stage; number = minutes). Off by default — only ask for it when the timeline of a night matters."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Daily health metrics",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_workouts",
+   "title": "Workouts",
+   "description": "Read recorded workout headers for a period and optional sport. Includes a workouts card. Headers do not contain detailed GPS tracks or health samples.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3650,
+      "description": "How many recent days to cover (max 3650 — the whole synced history). Default 30. Ignored when since is given."
+     },
+     "sport": {
+      "type": "string",
+      "description": "Optional sport/workout type filter, e.g. running, cycling, swimming."
+     },
+     "since": {
+      "type": "string",
+      "description": "Start of an exact period, YYYY-MM-DD (inclusive). Use for questions like 'my runs in 2024' or 'last March'."
+     },
+     "until": {
+      "type": "string",
+      "description": "End of the period, YYYY-MM-DD (inclusive). Defaults to today."
+     },
+     "include_details": {
+      "type": "boolean",
+      "description": "Also return, for recent workouts, hr_series (average bpm per hr_bucket_s seconds from the start, '-' = no reading), splits_pace (minutes per km as decimals, one per completed km: '6.34' = 6 min 20 s), splits_hr, elevation_gain_m and hr_zones (minutes in five zones by % of max_hr; the method and max_hr_source are given). Off by default."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Workouts",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   },
+   "_meta": {
+    "ui": {
+     "resourceUri": "ui://pro/widget.html"
+    },
+    "ui/resourceUri": "ui://pro/widget.html",
+    "openai/widgetAccessible": true
+   }
+  },
+  {
+   "name": "get_records",
+   "title": "Personal records",
+   "description": "Read personal records from synced workouts (up to 10 years): longest workouts, fastest average pace or speed for whole workouts over standard distances, best week and month, yearly totals. Computed from whole workouts, not segments.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "sport": {
+      "type": "string",
+      "description": "Optional sport filter, e.g. running, cycling, swimming."
+     },
+     "since": {
+      "type": "string",
+      "description": "Only workouts from this date, YYYY-MM-DD. Default: the whole history."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Personal records",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_week_summary",
+   "title": "Week in numbers",
+   "description": "Read a calculated comparison of the last seven days with the preceding seven: steps, energy, exercise, sleep, resting heart rate, HRV and workout totals, subject to sharing permissions.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Week in numbers",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_training_load",
+   "title": "Training load and readiness",
+   "description": "Read calculated training load and readiness from recent workouts: seven-day acute versus 28-day chronic load, their ratio and trends. Fitness information, not a medical assessment.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Training load and readiness",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_baselines",
+   "title": "Personal baselines",
+   "description": "Read the user's personal baselines calculated from synced daily data: mean, usual range, latest value, deviation and trend for resting heart rate, HRV, sleep, steps and active energy over 28, 60 or 90 days, subject to sharing permissions.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "metrics": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "resting_hr",
+        "hrv_ms",
+        "sleep_hours",
+        "steps",
+        "active_energy_kcal"
+       ]
+      },
+      "description": "Which metrics to return. Default: all."
+     },
+     "window_days": {
+      "type": "integer",
+      "enum": [
+       28,
+       60,
+       90
+      ],
+      "description": "Baseline window in days: 28, 60 or 90. Default 28."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Personal baselines",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_daily_brief",
+   "title": "Daily brief",
+   "description": "Read a calculated brief for one day (today by default): activity so far, last night's sleep, readiness with short reasons, training load zone, the planned session, streak and metrics outside the usual range. Fitness information, not a medical assessment; subject to sharing permissions.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string",
+      "description": "Day YYYY-MM-DD, up to 61 days back. Default: today in the user's time zone."
+     }
+    },
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Daily brief",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_data_status",
+   "title": "Data status",
+   "description": "Read what P.R.O. has received from the user's iPhone: last upload times for daily metrics and workouts, covered dates, tracked daily fields, which data categories are shared with AI assistants, app version and pending detailed-data requests.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Data status",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "fetch_health_data",
+   "title": "Detailed health data",
+   "description": "Request or retrieve detailed Apple Health data for a date or workout. Supported scopes cover heart-rate series, sleep stages, workout details and workout routes. status=requested means the phone has not uploaded the data yet: call again with the same arguments after retry_after_s (about 20 s). Opening P.R.O. fulfils the request; a later call with the same arguments retrieves it, and P.R.O. then also sends the last 30 days (kept 7 days), so later dates in that range answer directly. Other detailed payloads expire after 48 hours.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "scope": {
+      "type": "string",
+      "enum": [
+       "heart_rate_series",
+       "sleep_stages",
+       "workout_details",
+       "workout_route"
+      ],
+      "description": "What to fetch: heart_rate_series (intraday HR for one day), sleep_stages (awake/core/deep/rem for one night, plus that day's naps as separate sessions), workout_details (HR series, per-km splits and hr_zones — minutes per heart-rate zone — of one workout), workout_route (GPS track of one workout)."
+     },
+     "date": {
+      "type": "string",
+      "description": "Calendar date YYYY-MM-DD. Required for heart_rate_series and sleep_stages; for sleep it is the morning the user woke up."
+     },
+     "workout_id": {
+      "type": "string",
+      "description": "Workout UUID as returned by get_workouts. Required for workout_details and workout_route."
+     }
+    },
+    "required": [
+     "scope"
+    ],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Detailed health data",
+    "readOnlyHint": false,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "recall",
+   "title": "Saved coach notes",
+   "description": "Search coach notes saved in this user's P.R.O. account. This searches P.R.O. data only, not the AI assistant's memory, files or conversation history.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "What to look for, in the user's own words."
+     }
+    },
+    "required": [
+     "query"
+    ],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Saved coach notes",
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "remember_fact",
+   "title": "Save a coach note",
+   "description": "Save a durable coach note requested by the user to their P.R.O. account, such as equipment, constraints or an agreed decision. Can supersede an earlier active note; earlier versions are retained. Requires coach-memory access and Allow saving coach notes in Settings → MCP Connect (off by default).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "type": "string",
+      "description": "The fact, one short self-contained sentence."
+     },
+     "category": {
+      "type": "string",
+      "enum": [
+       "profile",
+       "goal",
+       "constraint",
+       "preference",
+       "decision"
+      ],
+      "description": "Fact category. Default: profile."
+     },
+     "pinned": {
+      "type": "boolean",
+      "description": "True only for facts that matter in every conversation (e.g. a chronic injury)."
+     }
+    },
+    "required": [
+     "text"
+    ],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Save a coach note",
+    "readOnlyHint": false,
+    "destructiveHint": true,
+    "idempotentHint": false,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "request_sync",
+   "title": "Request a fresh sync",
+   "description": "Ask the user's iPhone for fresh Apple Health data: P.R.O. sends them a notification and uploads within seconds once the app is opened. Tell the user to open P.R.O., then call the read tools again. Returns request status, not health data.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Request a fresh sync",
+    "readOnlyHint": false,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "show_widget",
+   "title": "Show a P.R.O. widget",
+   "description": "Render one of the user's P.R.O. widgets inline in the chat and return the same data as JSON. key is one of: today, steps, sleep, heart, stats, compare, workouts, workout, streak, goals, plan, load, proposal, brief, records. today = rings and tiles for the latest synced day; steps/heart = one metric over the last week; sleep = last night's stage timeline plus the week as stage-coloured bars; stats = bar chart with the period and metric switchable inside the widget; compare = last 30 days against the 30 before; workouts = recent sessions; workout = the last session in detail; streak = active-day heatmap; goals = progress bars; plan = training plan progress and next sessions; load = training load and readiness; brief = today's readiness, HRV, resting HR and sleep against the user's usual range, activity so far and today's training; records = personal records per sport (best efforts, longest sessions, best week and month, totals by year). The card uses synced P.R.O. data and identifies missing data. workouts/workout accept an optional custom window (days) and a sport filter; other widgets have fixed windows sized to their layout. With key=workout and load_route=true, it may queue an iPhone upload of route and workout details; otherwise it reads already-synced data.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "key": {
+      "type": "string",
+      "enum": [
+       "today",
+       "steps",
+       "sleep",
+       "heart",
+       "stats",
+       "compare",
+       "workouts",
+       "workout",
+       "streak",
+       "goals",
+       "plan",
+       "load",
+       "proposal",
+       "brief",
+       "records"
+      ],
+      "description": "Which widget to show."
+     },
+     "days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3650,
+      "description": "Look-back window in days. Applies to `workouts` (history, default 30) and `workout` (how far back to look for the most recent session, default 180). Ignored by other keys."
+     },
+     "sport": {
+      "type": "string",
+      "description": "Sport filter for `workouts`/`workout`, e.g. 'running' or 'cycling' — `workout` then shows the latest session of that sport. Ignored by other keys."
+     },
+     "since": {
+      "type": "string",
+      "description": "For `workouts`/`workout`: start of an exact period, YYYY-MM-DD — e.g. 'my runs in 2024' -> since 2024-01-01, until 2024-12-31."
+     },
+     "until": {
+      "type": "string",
+      "description": "For `workouts`/`workout`: end of the period, YYYY-MM-DD."
+     },
+     "workout_id": {
+      "type": "string",
+      "description": "For `workout`: show this session (the `id` from get_workouts) instead of the latest one."
+     },
+     "date": {
+      "type": "string",
+      "description": "For `workout`: show the session from this day (YYYY-MM-DD); with several that day, the longest one."
+     },
+     "proposal_id": {
+      "type": "string",
+      "description": "For `proposal`: which proposed plan change to show (default: the latest)."
+     },
+     "load_route": {
+      "type": "boolean",
+      "description": "For `workout`: fetch the session's GPS route from the phone. Set it only when the user asks to see the route; the card's own button sets it too. Showing a workout without it never contacts the phone."
+     }
+    },
+    "required": [
+     "key"
+    ],
+    "additionalProperties": false
+   },
+   "annotations": {
+    "title": "Show a P.R.O. widget",
+    "readOnlyHint": false,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": false
+   },
+   "_meta": {
+    "ui": {
+     "resourceUri": "ui://pro/widget.html"
+    },
+    "ui/resourceUri": "ui://pro/widget.html",
+    "openai/widgetAccessible": true,
+    "openai/toolInvocation/invoking": "Opening your P.R.O. card…",
+    "openai/toolInvocation/invoked": "P.R.O. card ready"
+   }
+  }
+ ]
+}

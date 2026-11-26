@@ -1,0 +1,12 @@
+.cl-page .connect-intro { max-width: 900px; }
+.cl-page .tool-lead { margin-top: 18px; }
+.cl-page .tool-lead a, .cl-page .tool-small a { text-decoration: underline; text-underline-offset: 3px; color: #d7d7df; }
+.cl-list { display: grid; gap: 14px; }
+.cl-entry { border: 1px solid var(--connect-line); border-radius: 16px; background: #111115; padding: 20px 22px; scroll-margin-top: 90px; }
+.cl-entry.is-connector { border-color: #ed62a433; background: #ed62a408; }
+.cl-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 12px; color: #8e8e98; }
+.cl-kind { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #c9c9d1; }
+.is-connector .cl-kind { color: var(--connect-pink); }
+.cl-page .cl-entry h2 { margin: 8px 0 10px; font-size: 20px; font-weight: 500; letter-spacing: -.02em; }
+.cl-entry ul { list-style: disc; padding-left: 18px; font-size: 14px; line-height: 1.75; color: var(--connect-muted); }
+.cl-entry li + li { margin-top: 4px; }

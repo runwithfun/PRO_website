@@ -103,6 +103,45 @@ for (const route of ROUTES) {
   console.log(`${route.path} → ${route.file} (${(html.length / 1024).toFixed(0)} КБ)`);
 }
 
+// /mcp/tools.json: the tool catalog (src/content/mcpTools.js) plus input schemas and annotations
+// from the saved live tools/list. Refresh mcpToolsLive.json after every connector release.
+{
+  const { MCP_CATALOG, mcpTools, permissionLabels } = await import(pathToFileURL(path.join(ROOT, 'src/content/mcpTools.js')).href);
+  const live = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/mcpToolsLive.json'), 'utf8'));
+  const liveByName = new Map(live.tools.map((t) => [t.name, t]));
+  const names = (list) => list.map((t) => t.name).sort().join(',');
+  if (live.serverInfo?.version !== MCP_CATALOG.version) throw new Error(`tools.json: catalog ${MCP_CATALOG.version}, live snapshot ${live.serverInfo?.version}`);
+  if (names(mcpTools) !== names(live.tools)) throw new Error(`tools.json: catalog tools differ from the live snapshot\n${names(mcpTools)}\n${names(live.tools)}`);
+  const inventory = {
+    server: MCP_CATALOG.server,
+    version: MCP_CATALOG.version,
+    updated: MCP_CATALOG.updated,
+    transport: 'streamable-http',
+    auth: 'oauth2.1',
+    price: 'free',
+    docs: `${SITE}/apple-health-mcp`,
+    changelog: `${SITE}/changelog`,
+    permissions: permissionLabels,
+    tools: mcpTools.map((t) => {
+      const l = liveByName.get(t.name);
+      return {
+        name: t.name,
+        title: t.title,
+        summary: t.what,
+        description: l.description,
+        access: t.access,
+        readOnly: l.annotations?.readOnlyHint ?? null,
+        permission: t.permission,
+        annotations: l.annotations,
+        inputSchema: l.inputSchema,
+      };
+    }),
+  };
+  fs.mkdirSync(path.join(DIST, 'mcp'), { recursive: true });
+  fs.writeFileSync(path.join(DIST, 'mcp', 'tools.json'), `${JSON.stringify(inventory, null, 1)}\n`);
+  console.log(`/mcp/tools.json: ${inventory.tools.length} tools, version ${inventory.version}`);
+}
+
 // GitHub Pages cannot set HTTP status redirects. A static canonical redirect
 // preserves old inbound links; an HTTP 301 can additionally be set at Cloudflare.
 for (const { from, to } of REDIRECTS) {

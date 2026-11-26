@@ -7,6 +7,7 @@ import { mcpDemo } from '../src/content/mcpDemo.js';
 import { deviceGuides } from '../src/content/deviceGuides.js';
 import { HUB_PATH } from '../src/content/appleHealthSync.js';
 import { deviceChats, chatSteps, guideOf } from '../src/content/deviceChatgpt.js';
+import { MCP_CATALOG, mcpTools } from '../src/content/mcpTools.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -94,6 +95,13 @@ for (const redirect of REDIRECTS) {
   assert.ok(html.includes(`https://proapp.uk${redirect.to}`));
   assert.ok(html.includes('location.search + location.hash'));
 }
+const inventory = JSON.parse(fs.readFileSync(path.join(dist, 'mcp', 'tools.json'), 'utf8'));
+assert.equal(inventory.version, MCP_CATALOG.version, 'tools.json: catalog version');
+assert.deepEqual(inventory.tools.map(t => t.name), mcpTools.map(t => t.name), 'tools.json: same tools as the catalog');
+for (const tool of inventory.tools) assert.equal(tool.inputSchema?.type, 'object', `tools.json: ${tool.name} input schema`);
+// llms.txt is written by hand; fail the check when its tool summary falls behind the catalog.
+const llms = fs.readFileSync(path.join(dist, 'llms.txt'), 'utf8');
+assert.ok(llms.includes(`connector version ${MCP_CATALOG.version}`) && llms.includes(`${mcpTools.length} tools`), 'llms.txt: connector version and tool count match the catalog');
 for (const file of ['.well-known/apple-app-site-association', 'apple-app-site-association', '404.html']) {
   assert.deepEqual(fs.readFileSync(path.join(root, 'public', file)), fs.readFileSync(path.join(dist, file)), `${file}: copied unchanged`);
 }

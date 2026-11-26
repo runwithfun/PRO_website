@@ -34,6 +34,7 @@ export default function ModernFooter() {
               <Link to="/privacy" className="block text-gray-500 hover:text-white">Privacy</Link>
               <Link to="/terms" className="block text-gray-500 hover:text-white">Terms</Link>
               <Link to="/support" className="block text-gray-500 hover:text-white">Support</Link>
+              <Link to="/changelog" className="block text-gray-500 hover:text-white">What’s new</Link>
               <a href="mailto:mail@proapp.uk" className="block text-gray-500 hover:text-white">Contact</a>
               <a
                 href="https://apps.apple.com/us/app/p-r-o/id6749865568"

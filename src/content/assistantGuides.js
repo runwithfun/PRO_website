@@ -14,6 +14,7 @@
 // Google Health Coach — https://support.google.com/googlehealth/answer/16961408 (needs a Fitbit or
 //   Pixel Watch and Google Health Premium).
 import { guides, MCP_URL } from './mcpGuides.js';
+import { mcpTools } from './mcpTools.js';
 
 const guide = (id) => guides.find((g) => g.id === id);
 
@@ -174,7 +175,7 @@ export const assistantGuides = [
       { q: 'Can Claude read my Apple Health data?', a: 'Yes. Claude’s own Apple Health integration is a beta for US Pro, Max and Ultra users in the Claude iPhone app. In other countries, or for training plans and interactive workout cards, add the free P.R.O. app as a custom connector at https://mcp.proapp.uk.' },
       { q: 'Does Claude’s Apple Health integration work outside the US?', a: 'Not yet: Anthropic describes it as a beta for US users on Pro, Max and Ultra plans. The P.R.O. connector is not limited to the US.', more: { to: '/apple-health-ai-outside-us', text: 'What works outside the US, assistant by assistant' } },
       { q: 'Do I need Claude Pro?', a: 'No. Per Claude Help (checked November 8, 2026), custom connectors are available on Free, Pro, Max, Ultra, Team and Enterprise plans; Free users are limited to one custom connector. Claude’s own Apple Health beta needs Pro, Max or Ultra. The P.R.O. app and its connector are free.' },
-      { q: 'Can Claude change my Apple Health data?', a: 'No. P.R.O. never writes to Apple Health. If you allow it, Claude can save short coach notes inside P.R.O.; that option is off by default.' },
+      { q: 'Can Claude change my Apple Health data?', a: 'No. The P.R.O. connector never writes to Apple Health. If you allow it, Claude can save short coach notes inside P.R.O.; that option is off by default.' },
       { q: 'How do I remove Claude’s access?', a: 'In P.R.O., open Settings → MCP Connect, tap × next to Claude and confirm Disconnect. Removing the connector only inside Claude does not revoke its P.R.O. access.' },
     ],
   },
@@ -389,7 +390,7 @@ export const assistantGuides = [
         { title: 'Select Authenticate.', text: 'P.R.O. moves to Needs Attention with Needs authentication. Authenticate opens the P.R.O. sign-in page in your browser.' },
         { title: 'Sign in to P.R.O.', text: 'The page says Connect Cursor to P.R.O.', pairing: true },
         { title: 'Choose what Cursor can access.', text: 'Review the data switches in P.R.O. and tap Done.' },
-        { title: 'Check that P.R.O. is connected.', text: 'Customize → MCPs shows pro with a green dot and 15 tools, 1 resource enabled.' },
+        { title: 'Check that P.R.O. is connected.', text: 'Customize → MCPs shows pro with a green dot and ' + mcpTools.length + ' tools, 1 resource enabled.' },
         { title: 'Ask the agent.', text: 'In a chat, try “Use P.R.O. to show my training summary for this week.” The agent calls P.R.O. and shows the answer as interactive cards.' },
       ],
     },
@@ -400,7 +401,7 @@ export const assistantGuides = [
       4: { src: 'mcp/cursor/disabled.jpg', alt: 'Cursor MCPs list with the pro server marked Disabled', caption: 'pro is added; switch it on if it says Disabled.' },
       5: { src: 'mcp/cursor/authenticate.jpg', alt: 'Cursor MCPs list with pro under Needs Attention, Needs authentication, and an Authenticate button', caption: 'Needs authentication → Authenticate.' },
       6: { src: 'mcp/cursor/sign-in.jpg', alt: 'P.R.O. authorization page: Connect Cursor to P.R.O., a code field with Paste and a Connect button', caption: 'Enter the six-character code from P.R.O. and select Connect.' },
-      8: { src: 'mcp/cursor/connected.jpg', alt: 'Cursor MCPs list with pro connected: 15 tools, 1 resource enabled', caption: 'Connected: 15 tools and the card resource.' },
+      8: { src: 'mcp/cursor/connected.jpg', alt: 'Cursor MCPs list with pro connected, its tools and 1 resource enabled', caption: 'Connected, with the P.R.O. tools and the card resource.' },
     },
     prompts: [
       'Use P.R.O. to show my training summary for this week.',
@@ -415,7 +416,7 @@ export const assistantGuides = [
     trouble: [
       ['P.R.O. says Disabled.', 'Open Customize → MCPs and turn it on with its toggle. Disabled servers don’t load or appear in chat.'],
       ['P.R.O. says Needs authentication.', 'Select Authenticate and sign in with a new code from P.R.O. Cursor asks again if the sign-in has expired.'],
-      ['The agent doesn’t use P.R.O.', 'Mention P.R.O. in your request, start a new chat if needed, and check that pro shows 15 tools in Customize → MCPs.'],
+      ['The agent doesn’t use P.R.O.', 'Mention P.R.O. in your request, start a new chat if needed, and check that pro shows ' + mcpTools.length + ' tools in Customize → MCPs.'],
       ['The code is rejected.', 'Each code works once and expires after 10 minutes. Get a new one in P.R.O. → Settings → MCP Connect.'],
     ],
     faq: [

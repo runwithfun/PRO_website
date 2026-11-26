@@ -74,7 +74,7 @@ export const ROUTES = [
     image: '/mcp-guide/social.jpg',
     imageHeight: 630,
     imageAlt: 'P.R.O. connects Apple Health to ChatGPT, Claude, Gemini, Perplexity, Codex, Grok and Manus',
-    sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'src/content/mcpDemo.js', 'public/demo', 'public/mcp-guide'],
+    sources: ['src/pages/AppleHealthMcp.jsx', 'src/pages/mcp-connect.css', 'src/components/mcp', 'scripts/generate-mcp-social.mjs', 'src/content/mcpGuides.js', 'src/content/mcpFaq.js', 'src/content/mcpTools.js', 'src/content/mcpToolsLive.json', 'src/content/mcpDemo.js', 'public/demo', 'public/mcp-guide'],
   },
   ...assistantGuides.map((g) => ({
     path: g.path,
@@ -152,7 +152,15 @@ export const ROUTES = [
     description:
       'Hosted HealthKit MCP for Claude, ChatGPT, Cursor, Codex, Grok, Perplexity and Gemini. Add https://mcp.proapp.uk, sign in, done. No export.xml, free.',
     faq: 'appleHealthMcp',
-    sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js'],
+    sources: ['src/pages/AppleHealthMcpServer.jsx', 'src/pages/apple-health-mcp.css', 'src/content/appleHealthMcp.js', 'src/content/mcpTools.js', 'src/content/mcpToolsLive.json'],
+  },
+  {
+    path: '/changelog',
+    file: 'changelog.html',
+    title: 'What’s New in P.R.O. — App and MCP Connector Changelog',
+    description:
+      'Release notes for the P.R.O. iPhone app and its free MCP connector for ChatGPT, Claude and other assistants, newest first, with versions and dates.',
+    sources: ['src/pages/Changelog.jsx', 'src/pages/changelog.css', 'src/content/changelog.js'],
   },
   {
     path: '/best-apple-health-mcp-servers',

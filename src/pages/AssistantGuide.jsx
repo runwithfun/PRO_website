@@ -7,6 +7,7 @@ import { MCP_URL } from '../content/mcpGuides';
 import { deviceChats, guideOf } from '../content/deviceChatgpt';
 import './mcp-connect.css';
 import './assistant-guide.css';
+import './tools.css';
 
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -37,12 +38,18 @@ export default function AssistantGuide({ id }) {
         <h1 className="font-display font-extrabold hero-in">Connect Apple Health to {g.name}</h1>
       </div>
       <div className="ag-answer hero-fade" style={{ animationDelay: '120ms' }}>{g.answer.map((p) => <p key={p}>{p}</p>)}</div>
+      {g.example && <div className="rd-chat ag-chat hero-fade" style={{ animationDelay: '140ms' }} aria-label="Example conversation with sample data">
+        <p className="rd-chat-you">{g.example.q}</p>
+        <p className="rd-chat-ai">{g.example.a}</p>
+        <p className="tool-small ag-chat-note">Example answer with sample data. Yours comes from your own Apple Health.</p>
+      </div>}
       {g.cta && <a className="ag-cta hero-fade" style={{ animationDelay: '160ms' }} href={g.cta.href} target="_blank" rel="noopener noreferrer">{g.cta.label}</a>}
       <dl className="ag-facts hero-fade" style={{ animationDelay: '200ms' }}>
         <div><dt>Server address</dt><dd><CopyAddress /></dd></div>
         <div><dt>Sign-in</dt><dd>OAuth with a one-time code from P.R.O.</dd></div>
         <div><dt>Time</dt><dd>About 2 minutes</dd></div>
       </dl>
+      {g.checked && !g.builtIn && <p className="tool-reviewed">Checked {g.checked}</p>}
       {(id === 'chatgpt' || id === 'claude') && <p className="ag-outside hero-fade" style={{ animationDelay: '220ms' }}>Outside the US? {g.builtIn?.name ?? 'The built-in feature'} is US only, the P.R.O. connector is not. <Link to="/apple-health-ai-outside-us">What works in your country →</Link></p>}
     </header>
 
@@ -87,6 +94,13 @@ export default function AssistantGuide({ id }) {
         <p className="guide-recorded">{g.cardsNote}</p>
       </>}
     </section>
+
+    {g.sections?.map((sec) => <section key={sec.id} className="connect-wrap connect-section tool-prose" aria-labelledby={sec.id}>
+      <h2 id={sec.id}>{sec.title}</h2>
+      {sec.paras.map((p) => <p key={p}>{p}</p>)}
+      {sec.items && <ul>{sec.items.map(([b, t]) => <li key={b}><strong>{b}</strong> {t}</li>)}</ul>}
+      {sec.link && <p><Link to={sec.link.to}>{sec.link.text} →</Link></p>}
+    </section>)}
 
     <section className="connect-wrap connect-section connect-questions" aria-labelledby="faq-heading">
       <div className="connect-section-heading"><h2 id="faq-heading">If something goes wrong</h2></div>

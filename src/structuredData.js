@@ -180,6 +180,7 @@ export function structuredData(route, store = {}) {
     datePublished: PUBLISHED[route.path] ?? (dg ? DEVICE_GUIDES_PUBLISHED : undefined),
     // dateModified equals the "Checked" date shown on the page.
     ...(ag?.builtIn && { dateModified: isoDate(ag.builtIn.checked || AG_CHECKED) }),
+    ...(ag && !ag.builtIn && ag.checked && { dateModified: isoDate(ag.checked) }),
     ...(route.path === '/apple-health-ai-outside-us' && { dateModified: isoDate(OUTSIDE_CHECKED) }),
     ...(route.path === '/apple-health-mcp' && { dateModified: isoDate(AHM_CHECKED) }),
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),

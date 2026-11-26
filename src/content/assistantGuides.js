@@ -183,12 +183,46 @@ export const assistantGuides = [
     id: 'grok',
     name: 'Grok',
     path: '/apple-health-grok',
-    title: 'How to Connect Apple Health to Grok — P.R.O.',
+    title: 'Connect Apple Health to Grok: Free MCP Connector, 2-Minute Setup',
     description:
-      'Connect Apple Health workouts, sleep, heart rate and HRV to Grok with the free P.R.O. MCP connector, on iPhone or the web. Setup with screenshots.',
+      'Ask Grok about your real workouts, sleep, heart rate and HRV. The free P.R.O. MCP connector works in the Grok iPhone app and on grok.com, in any country.',
     answer: [
-      'The free P.R.O. MCP connector at ' + MCP_URL + ' brings your Apple Health workouts, sleep, heart rate and HRV into Grok, which has no built-in Apple Health integration.',
-      'Set it up in the Grok iPhone app or at grok.com/connectors — it takes about two minutes.',
+      'Ask Grok how your training is going and get an answer built from your own Apple Health numbers: runs and rides, sleep, resting heart rate, HRV, training load and your plan. The free P.R.O. MCP connector at ' + MCP_URL + ' makes that work, on the Grok iPhone app and on grok.com.',
+      'Setup takes about two minutes and works in any country, because xAI makes connectors available to all Grok users. Grok has no built-in Apple Health integration (checked November 26, 2026), so a connector is how your data gets there.',
+    ],
+    example: {
+      q: 'How did my training go this month?',
+      a: 'You trained 16 times: 11 runs for 96 km and 5 strength sessions. Your easy pace dropped from 6:05 to 5:52 per km at the same heart rate. HRV averaged 52 ms, steady with last month, and you slept 7 h 15 min on average. Your load is in a safe range, so you can add one longer run next week.',
+    },
+    checked: 'November 26, 2026',
+    sections: [
+      {
+        id: 'grok-which',
+        title: 'Grok or Grok Bot: which one are you using?',
+        paras: ['xAI has two places where you chat with Grok, and each adds connectors its own way. This page covers Grok in the iPhone app and on grok.com. The same P.R.O. address works in both.'],
+        items: [
+          ['Grok app and grok.com.', 'Connectors → Custom Connector, with ' + MCP_URL + '. The steps and screenshots are above.'],
+          ['Grok Bot.', 'Add P.R.O. under Connect apps, or ask the Bot in a chat to add mcp.proapp.uk. It has its own guide with screenshots.'],
+        ],
+        link: { to: '/apple-health-grok-bot', text: 'Apple Health in Grok Bot, step by step' },
+      },
+      {
+        id: 'grok-other-ways',
+        title: 'Other ways to get Apple Health into Grok',
+        paras: [
+          'Some people export Apple Health and upload the file to Grok, or set up an iPhone Shortcut that emails a daily summary to Grok Bot. Both work for a one-off look. The file is a snapshot, so Grok can’t see anything newer than your last export, and a large export.xml is more than a chat can read at once. A Shortcut sends only the numbers you picked when you built it.',
+          'With the P.R.O. connector, Grok asks for exactly the data a question needs, by day, week or month, from your iPhone’s latest sync. Nothing to export or schedule, and you can ask follow-up questions about any period.',
+        ],
+      },
+      {
+        id: 'grok-limits',
+        title: 'What to expect from Grok with Apple Health',
+        paras: [
+          'Grok answers from your data in text. P.R.O.’s interactive cards for sleep, workouts and plans show up in ChatGPT, Claude, Gemini and Cursor, and Grok describes the same numbers in its reply.',
+          'Your data is as fresh as P.R.O.’s last sync from your iPhone. Open P.R.O. before a big question, or ask Grok to request a fresh sync. Grok sees only the categories you switch on in P.R.O. → Settings → MCP Connect, and you can disconnect it there any time.',
+          'Grok, like other assistants, can suggest changes to your training plan. They arrive in P.R.O. as a proposal, and nothing changes until you accept it.',
+        ],
+      },
     ],
     builtIn: null,
     before: [
@@ -215,7 +249,10 @@ export const assistantGuides = [
       ['The code is rejected.', 'Each code works once and expires after 10 minutes. On iPhone, Open P.R.O. on the authorization page creates and copies a fresh one.'],
     ],
     faq: [
-      { q: 'Does Grok work with Apple Health?', a: 'Not on its own — Grok has no built-in Apple Health integration. The free P.R.O. app connects Apple Health to Grok as a custom connector at https://mcp.proapp.uk.' },
+      { q: 'Does Grok work with Apple Health?', a: 'Yes, through a connector. Grok has no built-in Apple Health integration (checked November 26, 2026), and the free P.R.O. app connects Apple Health to Grok as a custom connector at https://mcp.proapp.uk.' },
+      { q: 'Is it free?', a: 'Yes. The P.R.O. app and its MCP connector are free, and xAI makes connectors available to all Grok users.' },
+      { q: 'Does it work outside the US?', a: 'Yes. Neither Grok’s connectors nor the P.R.O. connector are limited to the US, so you can connect from the UK, the EU, Canada, Australia, India or anywhere the P.R.O. app is available.' },
+      { q: 'Does it work with Garmin, WHOOP or Oura?', a: 'Yes, for whatever those devices write to Apple Health. P.R.O. reads Apple Health, so the device doesn’t matter. See the sync guides at proapp.uk/apple-health-sync.' },
       { q: 'Can I connect on the Grok iPhone app?', a: 'Yes. Open Connectors, scroll to Custom Connectors, tap Connect next to Custom Connector and enter https://mcp.proapp.uk. On the web, use grok.com/connectors → New Connector → Custom.' },
       { q: 'Will Grok show P.R.O. cards?', a: 'Grok answers from your data in text. Interactive P.R.O. cards are confirmed in ChatGPT, Claude, Gemini and Cursor.' },
       { q: 'What can Grok see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts and routes, sleep, heart rate and HRV, and coach memory. You can change this any time in Settings → MCP Connect.' },
@@ -232,6 +269,14 @@ export const assistantGuides = [
     answer: [
       'The free P.R.O. MCP connector at ' + MCP_URL + ' brings your Apple Health workouts, sleep, heart rate, HRV, training load and training plan into Grok Bot.',
       'Ask Grok Bot to add it in a chat and authorize once with a one-time code from your iPhone. Then attach P.R.O. to any task and give the Bot a whole month of training to work through.',
+    ],
+    sections: [
+      {
+        id: 'grok-bot-or-grok',
+        title: 'Using Grok in the app or on grok.com instead?',
+        paras: ['Grok in the Grok iPhone app and on grok.com adds connectors in a different place: Connectors → Custom Connector. The P.R.O. address and the one-time code are the same, and one P.R.O. account can connect to both.'],
+        link: { to: '/apple-health-grok', text: 'Apple Health in Grok, step by step' },
+      },
     ],
     builtIn: null,
     before: [

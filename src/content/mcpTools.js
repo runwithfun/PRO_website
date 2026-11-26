@@ -101,7 +101,7 @@ export const mcpTools = [
   {
     name: 'fetch_health_data',
     title: 'Detailed health data',
-    what: 'On request, for one day or one workout: full-day heart-rate series, sleep stages, workout splits and heart-rate zones, GPS route. Uploaded by the phone when asked; most of it is kept for 48 hours.',
+    what: 'On request, for one day or one workout: full-day heart-rate series, sleep stages, workout splits and heart-rate zones, GPS route. Uploaded by the phone when asked and kept for 48 hours; heart rate and sleep of the last 30 days and the latest 20 workouts are then kept for 7 days while you use an assistant.',
     access: 'Read',
     permission: { heart_rate_series: 'heart', sleep_stages: 'sleep', workout_details: 'heart', workout_route: 'routes' },
   },

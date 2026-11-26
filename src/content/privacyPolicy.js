@@ -186,7 +186,12 @@ The assistant reads data only when you ask it something in that assistant and it
 | Heart rate & HRV | Resting and average heart rate, heart rate variability (HRV), heart rate within workout summaries, and the heart-rate curve of workouts from the last 14 days |
 | Coach memory | Coach notes you or the P.R.O. coach saved |
 
-**Detailed data on request.** Sleep stages and the heart-rate curve and splits of recent workouts are part of the regular sync listed above. Anything beyond that is uploaded only on request: when you ask for more detail about one day or one workout, or when the assistant shows the P.R.O. workout card, the assistant can ask your iPhone to upload a full-day heart-rate series, the stages or splits of an older night or workout, or a workout GPS route. The upload happens only after you open the P.R.O. app, and only for categories you allow. These detailed uploads are cached on our servers for **48 hours** so that a repeated question does not upload them again; after 48 hours they expire, are no longer available to any assistant and are deleted.
+**Detailed data.** Sleep stages and the heart-rate curve and splits of recent workouts are part of the regular sync listed above. More detail is uploaded in two ways, only for categories you allow and only from the P.R.O. app on your iPhone:
+
+- **On request.** When you ask for more detail about one day or one workout, or when the assistant shows the P.R.O. workout card, the assistant can ask your iPhone to upload a full-day heart-rate series, the stages or splits of an older night or workout, or a workout GPS route. The upload happens only after you open the P.R.O. app. These uploads are kept on our servers for **48 hours**, then expire, are no longer available to any assistant and are deleted.
+- **Recent detail while you use an assistant.** When the app fulfils such a request, and on later syncs while an assistant has read your P.R.O. data within the last 14 days, it also uploads the full-day heart-rate series and sleep stages of the last 30 days and the details of your latest 20 workouts (never GPS routes), so later questions are answered without waking your phone. Each of these uploads is kept for **7 days**, then expires and is deleted. If no assistant reads your data for 14 days, the app stops refreshing them and they expire on their own.
+
+**Connection status.** The assistant can also see when your iPhone last uploaded daily metrics and workouts, which dates are covered, which categories you allow, the P.R.O. app version and any detail requests still waiting for your phone.
 
 ### C4. What the Assistant Can Do
 

@@ -65,7 +65,7 @@ export default function OutsideUs() {
         <ul>
           <li>P.R.O. syncs the Apple Health categories you allow from your iPhone. You can switch off profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, or coach memory in Settings → MCP Connect.</li>
           <li>When you ask your assistant something and it calls P.R.O., the permitted data is processed by the MCP operator, Dorokhov Daniil, an independent developer in Armenia, and returned to that assistant. From then on, the assistant’s own privacy policy applies — OpenAI, Anthropic, Perplexity or xAI.</li>
-          <li>Detailed uploads, such as a full-day heart-rate series or a GPS route, happen only on request and are deleted from P.R.O.’s servers after 48 hours.</li>
+          <li>Detailed uploads, such as a full-day heart-rate series or a GPS route, start only on request and are deleted from P.R.O.’s servers after 48 hours, or after 7 days for the recent heart rate, sleep and workout details kept while you use an assistant.</li>
           <li>P.R.O. does not sell your data, use health data for advertising or train AI models on it.</li>
           <li>To revoke access, tap × beside the assistant in Settings → MCP Connect. Removing the connector only inside the assistant doesn’t revoke it. Deleting your P.R.O. account deletes your data on P.R.O.’s servers and revokes every connection.</li>
           <li>If you live in the EU or EEA, GDPR rights (Articles 15–22) apply to data held by HAOTONG TECHNOLOGY (HK) CO., LIMITED, which operates the app. Write to <a href="mailto:mail@proapp.uk">mail@proapp.uk</a>; for data an assistant holds, contact that provider. Details are in Part C of the <Link to="/privacy">Privacy Policy</Link>.</li>

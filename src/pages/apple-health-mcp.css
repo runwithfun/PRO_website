@@ -36,3 +36,12 @@
 .best-mcp-checked td time { display: block; color: #e2e2e8; }
 .best-mcp-checked td span { font-size: 12px; }
 .best-mcp-checked a { text-decoration: underline; text-underline-offset: 3px; }
+.best-mcp-quick { display: grid; gap: 12px; }
+.best-mcp-quick li { display: grid; gap: 4px; padding: 16px 18px; border-radius: 16px; background: #15151a; border: 1px solid var(--connect-line); }
+.best-mcp-who { font-size: 13px; color: #8e8e98; }
+.best-mcp-quick strong { font-size: 17px; color: #fff; }
+.best-mcp-quick strong a { color: var(--connect-pink); text-decoration: underline; text-underline-offset: 3px; }
+.best-mcp-quick li > span:last-child { font-size: 14px; line-height: 1.6; color: #d7d7de; }
+.best-mcp-all th[scope="row"] small { display: block; margin-top: 4px; font-weight: 400; font-size: 12px; }
+.best-mcp-all tr.is-pro th, .best-mcp-all tr.is-pro td { background: #ed62a414; }
+.best-mcp-all thead th:last-child { color: inherit; }

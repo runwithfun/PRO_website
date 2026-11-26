@@ -3,7 +3,7 @@ import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubTitle, hubDescription, guideDescription, deviceTitle } from './content/appleHealthSync.js';
 import { alternatives } from './content/alternatives.js';
 import { deviceChats, DEVICE_CHAT_CHECKED } from './content/deviceChatgpt.js';
-import { BEST_MCP_CHECKED_ISO } from './content/bestMcpServers.js';
+import { BEST_MCP_CHECKED_ISO, bestMcpAll } from './content/bestMcpServers.js';
 // Title и description каждой страницы. Используют и пререндер
 // (scripts/prerender.mjs, через src/entry-server.jsx), и браузер — чтобы
 // заголовок вкладки менялся при переходах внутри сайта.
@@ -165,9 +165,9 @@ export const ROUTES = [
   {
     path: '/best-apple-health-mcp-servers',
     file: 'best-apple-health-mcp-servers.html',
-    title: 'Best Apple Health MCP Servers in 2026, Compared — P.R.O.',
+    title: `${bestMcpAll.length} Best Apple Health MCP Servers (2026): Free, Hosted, Local`,
     description:
-      'P.R.O., telo, Wellness Project, Marrow, Somvia, Health Auto Export and athletedata compared: price, hosted or local, sign-in. Checked Nov 26, 2026.',
+      'P.R.O., telo, Wellness Project, freddy, Fulcra, Shape, HealthAPI, Marrow, Vaultbeat and open-source export servers compared: price, computer, best use. Nov 26, 2026.',
     faq: 'bestMcp',
     dateModified: BEST_MCP_CHECKED_ISO,
     sources: ['src/pages/BestMcpServers.jsx', 'src/pages/apple-health-mcp.css', 'src/content/bestMcpServers.js'],

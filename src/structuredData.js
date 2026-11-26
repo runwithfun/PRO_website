@@ -16,6 +16,10 @@ import { deviceChats, chatSteps, guideOf } from './content/deviceChatgpt.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
 import { changelog } from './content/changelog.js';
+import { PUBLISHED, DEVICE_GUIDES_PUBLISHED, isoDate } from './content/pageDates.js';
+import { CHECKED as AG_CHECKED } from './content/assistantGuides.js';
+import { CHECKED as OUTSIDE_CHECKED } from './content/outsideUs.js';
+import { AHM_CHECKED } from './content/appleHealthMcp.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -173,13 +177,18 @@ export function structuredData(route, store = {}) {
     '@type': 'WebPage', '@id': `${SITE}${route.path}#webpage`, url: `${SITE}${route.path}`,
     name: route.title, description: route.description, inLanguage: 'en',
     isPartOf: { '@id': `${SITE}/#website` },
+    datePublished: PUBLISHED[route.path] ?? (dg ? DEVICE_GUIDES_PUBLISHED : undefined),
+    // dateModified equals the "Checked" date shown on the page.
+    ...(ag?.builtIn && { dateModified: isoDate(ag.builtIn.checked || AG_CHECKED) }),
+    ...(route.path === '/apple-health-ai-outside-us' && { dateModified: isoDate(OUTSIDE_CHECKED) }),
+    ...(route.path === '/apple-health-mcp' && { dateModified: isoDate(AHM_CHECKED) }),
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(dg && { mainEntity: { '@id': `${SITE}${route.path}#howto` }, dateModified: dg.checked }),
     ...(dc && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(route.path === HUB_PATH && { mainEntity: { '@id': `${SITE}${HUB_PATH}#devices` } }),
     ...(route.dateModified && { dateModified: route.dateModified }),
-    ...(route.path === '/changelog' && { about: { '@id': `${SITE}/#app` }, dateModified: changelog[0].date }),
+    ...(route.path === '/changelog' && { about: { '@id': `${SITE}/#app` }, dateModified: [changelog[0].date, PUBLISHED['/changelog']].sort().at(-1) }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };
 }

@@ -20,6 +20,9 @@ for (const route of ROUTES) {
   assert.ok(html.includes('<meta name="description" content="'), `${route.path}: description`);
   const graph = JSON.parse(html.match(/<script type="application\/ld\+json" data-seo-schema>([\s\S]*?)<\/script>/)?.[1])['@graph'];
   assert.equal(graph.find(n => n['@type'] === 'WebPage')?.url, `https://proapp.uk${route.path}`);
+  const webPage = graph.find(n => n['@type'] === 'WebPage');
+  assert.match(webPage.datePublished ?? '', /^\d{4}-\d{2}-\d{2}$/, `${route.path}: datePublished (add it to src/content/pageDates.js)`);
+  if (webPage.dateModified) assert.ok(webPage.dateModified.slice(0, 10) >= webPage.datePublished, `${route.path}: dateModified before datePublished`);
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]));
   for (const match of html.matchAll(/href="#([^"]+)"/g)) {
     assert.ok(ids.has(match[1]), `${route.path}: missing anchor ${match[1]}`);

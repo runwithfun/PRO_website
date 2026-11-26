@@ -220,3 +220,4 @@
 .ou-grid { display: grid; gap: 10px; max-width: 700px; margin-top: 24px; }
 .ou-grid-title { margin: 6px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: #8e8e98; }
 .ou-assistants li { background: #ed62a41f; border-color: #ed62a455; }
+.an-table thead th:last-child { color: inherit; }

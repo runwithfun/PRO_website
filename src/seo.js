@@ -128,6 +128,24 @@ export const ROUTES = [
     sources: ['src/pages/Zone2Calculator.jsx', 'src/content/zone2.js', 'src/pages/tools.css'],
   },
   {
+    path: '/tools',
+    file: 'tools.html',
+    title: 'Free Apple Health Tools: HRV Checker, Zone 2, Readiness, AI',
+    description:
+      'Free tools for Apple Health data: HRV by age checker, Zone 2 heart rate calculator, readiness on any Apple Watch, and a free MCP connector for ChatGPT and Claude.',
+    sources: ['src/pages/Tools.jsx', 'src/components/FreeTools.jsx'],
+  },
+  {
+    path: '/analyze-apple-health-data-with-ai',
+    file: 'analyze-apple-health-data-with-ai.html',
+    title: 'Analyze Apple Health Data with AI: 5 Ways Compared (2026)',
+    description:
+      'Ask ChatGPT, Claude or Grok about your Apple Health data: a free MCP connector, built-in features (US only), export uploads, apps and local servers compared.',
+    faq: 'analyze',
+    dateModified: '2026-11-26',
+    sources: ['src/pages/AnalyzeAppleHealth.jsx', 'src/content/analyzeAppleHealth.js'],
+  },
+  {
     path: '/apple-watch-readiness-score',
     file: 'apple-watch-readiness-score.html',
     title: 'Apple Watch Readiness Score on Older Watches — P.R.O.',

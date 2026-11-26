@@ -13,6 +13,8 @@ import GoodHrv from './pages/GoodHrv';
 import Zone2Calculator from './pages/Zone2Calculator';
 import AppleWatchReadiness from './pages/AppleWatchReadiness';
 import OutsideUs from './pages/OutsideUs';
+import Tools from './pages/Tools';
+import AnalyzeAppleHealth from './pages/AnalyzeAppleHealth';
 import AppleHealthMcpServer from './pages/AppleHealthMcpServer';
 import BestMcpServers from './pages/BestMcpServers';
 import { assistantGuides } from './content/assistantGuides';
@@ -97,6 +99,8 @@ export function AppShell() {
             <Route path="/zone-2-calculator" element={<Zone2Calculator />} />
             <Route path="/apple-watch-readiness-score" element={<AppleWatchReadiness />} />
             <Route path="/apple-health-ai-outside-us" element={<OutsideUs />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/analyze-apple-health-data-with-ai" element={<AnalyzeAppleHealth />} />
             <Route path="/apple-health-mcp" element={<AppleHealthMcpServer />} />
             <Route path="/best-apple-health-mcp-servers" element={<BestMcpServers />} />
             <Route path="/terms" element={<Terms />} />

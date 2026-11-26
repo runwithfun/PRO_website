@@ -36,6 +36,8 @@ export const PUBLISHED = {
   '/oura-to-chatgpt': '2026-11-26',
   '/changelog': '2026-11-26',
   '/athlytic-alternative': '2026-11-26',
+  '/tools': '2026-11-26',
+  '/analyze-apple-health-data-with-ai': '2026-11-26',
 };
 // Device guides (/garmin-apple-health and the rest) all went live together.
 export const DEVICE_GUIDES_PUBLISHED = '2026-10-27';

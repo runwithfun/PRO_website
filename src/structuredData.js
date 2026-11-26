@@ -16,6 +16,7 @@ import { deviceChats, chatSteps, guideOf } from './content/deviceChatgpt.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 import { whoopAlternativeFaq, runnaAlternativeFaq, athlyticAlternativeFaq, alternatives } from './content/alternatives.js';
 import { changelog } from './content/changelog.js';
+import { analyzeFaq } from './content/analyzeAppleHealth.js';
 import { CHATGPT_PLUGIN } from './content/deviceChatgpt.js';
 import { PUBLISHED, DEVICE_GUIDES_PUBLISHED, isoDate } from './content/pageDates.js';
 import { CHECKED as AG_CHECKED } from './content/assistantGuides.js';
@@ -132,7 +133,7 @@ export function structuredData(route, store = {}) {
     });
   }
   if (route.faq) {
-    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, bestMcp: bestMcpFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq, athlyticAlternative: athlyticAlternativeFaq }[route.faq] ?? faq;
+    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, bestMcp: bestMcpFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq, athlyticAlternative: athlyticAlternativeFaq, analyze: analyzeFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({

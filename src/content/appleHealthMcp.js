@@ -25,7 +25,7 @@ export const ahmCompare = [
   ['Assistants on your phone', 'No.', 'No — local network only.', 'No.', 'Yes — ChatGPT, Claude and Grok on iPhone, plus web and desktop.'],
   ['Works with', 'Local MCP clients.', 'Local MCP clients.', 'Local MCP clients.', 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini, all tested by us; Manus connection confirmed.'],
   ['You choose what’s shared', 'The whole export.', 'Whatever the app exports.', 'Whatever you export.', 'Per category — switch off workouts, sleep, heart rate and more in one tap; revoke any assistant in P.R.O.'],
-  ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude, Gemini and Cursor.'],
+  ['Beyond raw data', 'Exported records.', 'Exported records.', 'Exported records.', 'Workout summaries, splits, heart-rate zones, personal records, personal baselines, a daily brief, training plan, coach notes and interactive P.R.O. cards in ChatGPT, Claude, Gemini and Cursor.'],
   ['Cost', 'Free, open source.', 'Paid app tier required.', 'Paid app.', 'Free. The connector is included in P.R.O. at no cost.'],
 ];
 
@@ -90,8 +90,8 @@ export const ahmFaq = [
   { q: 'Does it work with Claude Desktop, Cursor and Claude Code?', a: 'Yes. P.R.O. is a remote MCP server over Streamable HTTP with OAuth, and we have tested it in Claude, Claude Code and Cursor. In Claude Desktop you add it as a custom connector, the same way as in the Claude app.' },
   { q: 'Does it work outside the US?', a: 'Yes. The P.R.O. connector is not limited to the US. Your assistant’s own rules still apply: Gemini offers custom apps only in the US, while ChatGPT, Claude, Codex, Grok and Perplexity can add the connector in other countries if your plan allows custom connectors.' },
   { q: 'Is it free?', a: 'Yes. The P.R.O. connector is free, and P.R.O. is free to download. Your assistant’s plan must allow custom MCP connections — Claude’s Free plan, for example, allows one custom connector.' },
-  { q: 'Which data can the assistant see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, and coach memory. Switch any of them off in Settings → MCP Connect → Data the assistant can read; a switched-off category is not returned to any connected assistant.' },
-  { q: 'Can the assistant change my Apple Health data?', a: 'No. P.R.O. never writes to Apple Health. An assistant can save a coach note only if you turn on Allow saving coach notes (off by default), suggest training-plan changes that wait for your acceptance in P.R.O., and request a fresh sync. It cannot delete data, make payments or send messages.' },
+  { q: 'Which data can the assistant see?', a: 'Only the categories you allow in P.R.O.: profile, goals, daily metrics, water, workouts, workout routes, sleep, heart rate and HRV, and coach memory. Switch any of them off in Settings → MCP Connect → Data the assistant can read; a switched-off category is not returned to any connected assistant.' },
+  { q: 'Can the assistant change my Apple Health data?', a: 'No. The connector never writes to Apple Health. An assistant can save a coach note only if you turn on Allow saving coach notes (off by default), suggest training-plan changes that wait for your acceptance in P.R.O., and request a fresh sync. It cannot delete data, make payments or send messages.' },
 ];
 
 export const ahmSources = [

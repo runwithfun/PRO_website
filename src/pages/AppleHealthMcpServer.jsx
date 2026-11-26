@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AssistantIcon from '../components/mcp/AssistantIcon';
 import { MCP_URL } from '../content/mcpGuides';
-import { mcpTools } from '../content/mcpTools';
+import { mcpActionCount, mcpExamplePrompts, mcpTools } from '../content/mcpTools';
+import ToolTable from '../components/mcp/ToolTable';
 import { AHM_CHECKED, ahmClients, ahmColumnNotes, ahmColumns, ahmCompare, ahmFaq, ahmSources } from '../content/appleHealthMcp';
 import './mcp-connect.css';
 import './assistant-guide.css';
@@ -88,13 +89,15 @@ export default function AppleHealthMcpServer() {
 
     <section className="connect-wrap connect-section tool-prose" aria-labelledby="exposes">
       <h2 id="exposes">What the P.R.O. MCP server exposes</h2>
-      <p className="tool-lead">Read tools for your profile, goals, daily metrics, workouts, training load, training plan and sleep, plus three limited write actions. Data tools respect your access settings.</p>
-      <div className="connect-tools"><table><caption>P.R.O. MCP tools and access</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Access</th></tr></thead><tbody>{mcpTools.map((t) => <tr key={t.name}><th scope="row"><code>{t.name}</code></th><td>{t.what}</td><td>{t.access}</td></tr>)}</tbody></table></div>
+      <p className="tool-lead">{mcpTools.length} tools. {mcpTools.length - mcpActionCount} of them read your profile, goals, daily metrics, baselines, workouts, personal records, training load, plan and a daily brief. The other {mcpActionCount} are limited actions. Data tools respect your access settings, and the full list with input schemas is at <a href="/mcp/tools.json">/mcp/tools.json</a>.</p>
+      <ToolTable />
+      <p>Try asking one of these.</p>
+      <ul>{mcpExamplePrompts.map((p) => <li key={p}>“{p}”</li>)}</ul>
       <ul>
         <li>An assistant can suggest plan changes; they are saved as pending and change nothing until you accept them in P.R.O.</li>
-        <li>In P.R.O., Settings → MCP Connect → Data the assistant can read lets you switch off profile, goals, daily metrics, workouts, workout routes, sleep, heart rate and HRV, or coach memory. Allow saving coach notes is off by default.</li>
+        <li>In P.R.O., Settings → MCP Connect → Data the assistant can read lets you switch off profile, goals, daily metrics, water, workouts, workout routes, sleep, heart rate and HRV, or coach memory. Allow saving coach notes is off by default.</li>
         <li>To revoke access, open Settings → MCP Connect, tap × beside the assistant under Connected and confirm Disconnect. Removing the connector only inside the assistant does not revoke its access; deleting your P.R.O. account revokes all connector tokens.</li>
-        <li>The server can’t delete data, make payments, send messages or change account settings, and P.R.O. never writes to Apple Health.</li>
+        <li>The server can’t delete data, make payments, send messages or change account settings, and it never writes to Apple Health.</li>
       </ul>
     </section>
 
@@ -120,7 +123,7 @@ export default function AppleHealthMcpServer() {
       <ul className="tool-sources">{ahmSources.map(([t, u]) => <li key={u}><a href={u} target="_blank" rel="noopener nofollow">{t}</a></li>)}</ul>
       <div className="connect-end">
         <p>Client setup checked {AHM_CHECKED}. Interfaces change; if a menu looks different, follow the client’s own docs.</p>
-        <div><Link to="/support">Get help ↗</Link><Link to="/mcp-connect">All assistants ↗</Link></div>
+        <div><Link to="/changelog">What’s new ↗</Link><Link to="/support">Get help ↗</Link><Link to="/mcp-connect">All assistants ↗</Link></div>
       </div>
     </section>
   </div>;

@@ -25,6 +25,7 @@ import Alternative from './pages/Alternative';
 import { alternatives } from './content/alternatives';
 import Terms from './pages/Terms';
 import Support from './pages/Support';
+import Changelog from './pages/Changelog';
 import ModernNav from './components/ModernNav';
 import ModernFooter from './components/ModernFooter';
 import ScrollToTop from './components/ScrollToTop';
@@ -97,6 +98,7 @@ export function AppShell() {
             <Route path="/best-apple-health-mcp-servers" element={<BestMcpServers />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/changelog" element={<Changelog />} />
           </Routes>
         </main>
         <ModernFooter />

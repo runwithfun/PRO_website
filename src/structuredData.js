@@ -14,6 +14,7 @@ import { mcpDemo } from './content/mcpDemo.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
+import { changelog } from './content/changelog.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 
@@ -154,6 +155,7 @@ export function structuredData(route, store = {}) {
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(dg && { mainEntity: { '@id': `${SITE}${route.path}#howto` }, dateModified: dg.checked }),
     ...(route.path === HUB_PATH && { mainEntity: { '@id': `${SITE}${HUB_PATH}#devices` } }),
+    ...(route.path === '/changelog' && { about: { '@id': `${SITE}/#app` }, dateModified: changelog[0].date }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };
 }

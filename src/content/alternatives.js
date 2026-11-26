@@ -1,10 +1,10 @@
 // "X alternative" landing pages (/whoop-alternative, /runna-alternative).
-// Competitor facts checked 2026-10-27 against official pages (WHOOP membership and
+// Competitor facts first checked 2026-10-27, re-checked 2026-11-26 against official pages (WHOOP membership and
 // support, Runna pricing and support, Garmin, Strava and Nike help, App Store);
 // links are in `sources`. Keep consistent with src/content/compare.js and the
 // WHOOP entry in src/content/deviceGuides.js. Re-check prices every quarter.
 
-export const CHECKED = '27 October 2026';
+export const CHECKED = '26 November 2026';
 
 export const ASSISTANTS_TESTED = 'ChatGPT, Claude, Claude Code, Codex, Cursor, Grok, Perplexity and Gemini';
 
@@ -16,18 +16,19 @@ export const alternatives = [
     id: 'whoop',
     path: '/whoop-alternative',
     faqKey: 'whoopAlternative',
-    title: 'WHOOP Alternative 2026: No Band or $199 Membership — P.R.O.',
-    description: 'Skip the WHOOP band and $199–$359/yr membership: readiness, training load, sleep and an AI coach from Apple Health, plus a free MCP connector.',
+    title: 'WHOOP Alternative for Apple Watch: 7 Apps Like WHOOP, No Band',
+    description: 'Yes, your Apple Watch can do WHOOP’s job. P.R.O., Athlytic, Bevel and 4 more apps compared, plus a free MCP connector to ask ChatGPT or Claude about recovery.',
     competitor: 'WHOOP',
-    eyebrow: 'WHOOP ALTERNATIVE · PRICES CHECKED 27 OCTOBER 2026',
-    h1: 'The WHOOP alternative that uses the watch you already have',
+    eyebrow: 'WHOOP ALTERNATIVES FOR APPLE WATCH · UPDATED 26 NOVEMBER 2026',
+    h1: 'WHOOP alternatives for Apple Watch: apps like WHOOP, no band',
     answer: [
-      'P.R.O. is a free iPhone app whose MCP connector lets you ask ChatGPT, Claude, Gemini, Grok or Perplexity about your recovery and strain with your real numbers, from whatever your Apple Watch, Garmin, Oura or other tracker already writes to Apple Health. No band and no WHOOP membership, which costs $199 to $359 a year.',
+      'Yes, an Apple Watch can do WHOOP’s job. It already records the HRV, resting heart rate and sleep that recovery scores are built on, so an app can give you recovery, strain and sleep scores without a band or a WHOOP membership, which costs $149 to $359 a year.',
+      'P.R.O. is a free iPhone app whose MCP connector lets you ask ChatGPT, Claude, Gemini, Grok or Perplexity about your recovery and strain with your real numbers, from whatever your Apple Watch, Garmin, Oura or other tracker writes to Apple Health.',
       'The app adds an AI coach, training load and a sleep score. Daily readiness in the app and adaptive training plans come with Pro from $2.99 a month.',
     ],
     facts: [
       ['P.R.O.', 'Free; optional Pro from $2.99/mo or $29.99/yr'],
-      ['WHOOP', '$199–$359 a year, band included, 12-month commitment'],
+      ['WHOOP', '$149–$359 a year, band included, 12-month commitment'],
       ['Hardware', 'None — any device that writes to Apple Health'],
       ['MCP connector', 'Free, for ChatGPT, Claude, Gemini, Grok, Perplexity'],
     ],
@@ -38,10 +39,23 @@ export const alternatives = [
       more: ['How did I sleep this week compared to last week?', 'Which workouts pushed my training load up most this month?', 'Is my resting heart rate trending up?'],
       after: 'The assistant calls P.R.O., reads your numbers and answers with them. In ChatGPT, Claude, Gemini and Cursor it can also show interactive P.R.O. cards for sleep, workouts and plans. You choose which data categories it sees and can revoke access in the app at any time.',
     },
+    list: {
+      title: '7 WHOOP alternatives for Apple Watch',
+      lead: 'Each of these turns Apple Watch data into WHOOP-style scores, with no band. With P.R.O. you can also ask ChatGPT, Claude or Grok about your recovery, for free.',
+      rows: [
+        ['P.R.O.', 'Free. Pro from $2.99/mo or $29.99/yr', 'Readiness from HRV, resting heart rate and sleep against your 28-day baseline, training load, sleep score, AI coach, adaptive plans with Pro', 'Yes. Free MCP connector for ChatGPT, Claude, Gemini, Grok, Perplexity', 'Any watch or ring, and asking your AI assistant about recovery', 'https://apps.apple.com/us/app/p-r-o/id6749865568'],
+        ['Athlytic', 'Free. Pro $4.99/mo or $29.99/yr, 1 week free', 'Recovery, Exertion 0–10 with a daily target, sleep', 'No connector found', 'The closest copy of WHOOP’s scores on Apple Watch', 'https://apps.apple.com/us/app/id1543571755'],
+        ['Bevel', 'Free. Pro $14.99/mo or $99.99/yr', 'Recovery, strain, sleep, stress and energy scores, nutrition logging', 'No connector found', 'Recovery plus food logging in one app', 'https://apps.apple.com/us/app/id6456176249'],
+        ['Gentler Streak', 'Free. Premium $8.99/mo or $39.99/yr', 'Activity and rest guidance, wellbeing check-ins', 'Not stated', 'Gentle, wellbeing-first guidance', 'https://apps.apple.com/us/app/id1576857102'],
+        ['Training Today', 'Free Readiness to Train score. $2.95/mo or $29.99/yr', 'Readiness from HRV, adaptive swim, bike and run workouts', 'Not stated', 'A simple readiness score with workouts', 'https://apps.apple.com/us/app/id1507992127'],
+        ['BodyState', 'Free. From $2.99/week or $39.99/yr', 'Energy score 1–100, sleep and recovery, stress, acute training load', 'Not stated', 'A Body Battery-style energy score', 'https://apps.apple.com/us/app/id6479940325'],
+        ['Harvee', 'Free. $4.99/mo, yearly from $27.99', 'Stress from HRV against your 30-day average, recovery, sleep stages', 'Not stated', 'HRV-based stress tracking', 'https://apps.apple.com/us/app/id6746194884'],
+      ],
+    },
     columns: ['P.R.O.', 'WHOOP', 'Athlytic', 'Bevel'],
     rows: [
       [MCP_ROW, PRO_MCP, 'No official connector', 'No', 'No'],
-      ['Price (US)', 'Free; optional Pro from $2.99/mo or $29.99/yr', 'One $199/yr, Peak $239/yr, Life $359/yr; monthly ($25–$40) only after the first 12 months', '$4.99/mo or $29.99/yr, 7-day trial', 'Free app; Bevel Pro $14.99/mo or $99.99/yr'],
+      ['Price (US)', 'Free; optional Pro from $2.99/mo or $29.99/yr', 'One $149 first year, then $199/yr; Peak $239/yr; Life $359/yr; monthly ($25–$40) only after the first 12 months', '$4.99/mo or $29.99/yr, 7-day trial', 'Free app; Bevel Pro $14.99/mo or $99.99/yr'],
       ['Hardware', 'None — Apple Watch, Garmin, Oura, WHOOP, Polar, COROS or anything else that writes to Apple Health', 'WHOOP 5.0 (One, Peak) or WHOOP MG (Life), included', 'Apple Watch for most features', 'Apple Watch, Oura, Garmin, Amazfit'],
       ['Without a subscription', 'Free app', 'Stops collecting and analysing data when the membership ends', 'Subscription after the 7-day trial', 'Free tier'],
       ['Recovery / readiness', 'Daily status — ready, caution or recover — from HRV, resting heart rate and sleep against your 28-day baseline, with the reasons; free through MCP, in the app with Pro', 'Recovery score (%)', 'Recovery score (0–100%)', 'Recovery score'],
@@ -56,7 +70,7 @@ export const alternatives = [
       lead: 'WHOOP sells 12-month memberships with the band included. New members can’t pick month-to-month billing; it is offered only after the first 12 months, at $25–$40 a month depending on the tier.',
       head: ['', '1 year', '3 years'],
       rows: [
-        ['WHOOP One', '$199', '$597'],
+        ['WHOOP One', '$149', '$547'],
         ['WHOOP Peak', '$239', '$717'],
         ['WHOOP Life', '$359', '$1,077'],
         ['P.R.O. free', '$0', '$0'],
@@ -104,7 +118,7 @@ export const alternatives = [
       },
       {
         q: 'How much does WHOOP cost in 2026?',
-        a: 'As of 27 October 2026, WHOOP One is $199 a year, Peak $239 a year and Life $359 a year in the US, with the band included. Month-to-month billing ($25, $30 and $40) is offered only to members who have completed a 12-month commitment.',
+        a: 'As of 26 November 2026, WHOOP One is $149 for the first year and $199 a year after that, Peak $239 a year and Life $359 a year in the US, with the band included. Month-to-month billing ($25, $30 and $40) is offered only to members who have completed a 12-month commitment.',
       },
       {
         q: 'Can you use WHOOP without a subscription?',
@@ -116,11 +130,11 @@ export const alternatives = [
       },
       {
         q: 'Athlytic vs WHOOP: what is the difference?',
-        a: 'Athlytic is an iPhone app ($4.99/month or $29.99/year) that calculates recovery, exertion and sleep scores from Apple Watch data; WHOOP is a band with a $199–$359 yearly membership. P.R.O. is an alternative to both: a free app with an AI coach and an MCP connector for ChatGPT and Claude, with adaptive training plans in Pro.',
+        a: 'Athlytic is an iPhone app ($4.99/month or $29.99/year) that calculates recovery, exertion and sleep scores from Apple Watch data; WHOOP is a band with a $149–$359 yearly membership. P.R.O. is an alternative to both: a free app with an AI coach and an MCP connector for ChatGPT and Claude, with adaptive training plans in Pro.',
       },
       {
         q: 'Can ChatGPT or Claude read my recovery data?',
-        a: `Yes, through MCP. Add P.R.O.’s free connector, https://mcp.proapp.uk, to ChatGPT, Claude, Gemini, Grok or Perplexity and ask “Am I recovered enough to train hard today?” — the assistant reads your readiness status, HRV, resting heart rate, sleep and training load from Apple Health. We have tested it in ${ASSISTANTS_TESTED}. As of 27 October 2026 WHOOP has no official MCP connector.`,
+        a: `Yes, through MCP. Add P.R.O.’s free connector, https://mcp.proapp.uk, to ChatGPT, Claude, Gemini, Grok or Perplexity and ask “Am I recovered enough to train hard today?” — the assistant reads your readiness status, HRV, resting heart rate, sleep and training load from Apple Health. We have tested it in ${ASSISTANTS_TESTED}. As of 26 November 2026 we found no official WHOOP MCP connector.`,
       },
       {
         q: 'Does WHOOP data work in P.R.O.?',
@@ -144,10 +158,10 @@ export const alternatives = [
     id: 'runna',
     path: '/runna-alternative',
     faqKey: 'runnaAlternative',
-    title: 'Runna Alternative 2026: AI Running Plans From $2.99 — P.R.O.',
-    description: 'Runna is $19.99/mo. P.R.O. builds adaptive running plans from your Apple Health runs from $2.99/mo, and ChatGPT or Claude can adjust them via MCP.',
+    title: 'Runna Alternatives 2026: 9 Running Plan Apps, Free and Cheaper',
+    description: 'Runna is $19.99/mo. 9 alternatives compared, 3 of them free. P.R.O. plans adapt to your HRV and sleep from $2.99/mo, and ChatGPT or Claude can adjust them via MCP.',
     competitor: 'Runna',
-    eyebrow: 'RUNNA ALTERNATIVE · PRICES CHECKED 27 OCTOBER 2026',
+    eyebrow: 'RUNNA ALTERNATIVES · UPDATED 26 NOVEMBER 2026',
     h1: 'The Runna alternative that builds running plans from your real runs',
     answer: [
       'P.R.O. builds adaptive running plans — 5K, half marathon, return to running or any goal you describe — from the runs, heart rate and sleep in Apple Health, and adjusts them to your training load and recovery. Plans come with Pro from $2.99 a month or $29.99 a year; Runna costs $19.99 a month or $119.99 a year. With P.R.O.’s free MCP connector, ChatGPT or Claude can read your real runs and propose changes to your plan.',
@@ -166,9 +180,24 @@ export const alternatives = [
       more: ['Am I on track for my half-marathon plan?', 'My legs are heavy — make this week easier and move the intervals.', 'What was my average pace on my last long run?'],
       after: 'The assistant reads your training history through P.R.O., writes the plan with your real paces and sends it as a pending proposal; you review and accept it in the app. In ChatGPT, Claude, Gemini and Cursor it can show interactive P.R.O. plan and workout cards.',
     },
+    list: {
+      title: '9 Runna alternatives, free and cheaper',
+      lead: 'Runna costs $19.99 a month. These build running plans for less, and three are free. P.R.O. plans react to your HRV, resting heart rate and sleep, and ChatGPT or Claude can read and adjust them through a free MCP connector.',
+      rows: [
+        ['P.R.O.', 'Free app. Plans with Pro from $2.99/mo or $29.99/yr', 'Adaptive AI plans for 5K, half marathon, return to running or any goal, adjusted to load, HRV, resting heart rate and sleep', 'Yes. Free MCP connector; the assistant can propose plan changes you accept in the app', 'Plans that react to recovery, any watch, 50+ sports', 'https://apps.apple.com/us/app/p-r-o/id6749865568'],
+        ['Nike Run Club', 'Free', 'Guided Runs and plans from 4 weeks to a 12-week marathon', 'Not stated', 'Free plans and audio-guided runs', 'https://apps.apple.com/us/app/id387771637'],
+        ['ASICS Runkeeper', 'Free. GO $9.99/mo or $39.99/yr', 'Run tracking; GO adds race plans from 5K to marathon', 'Not stated', 'A cheap yearly plan subscription', 'https://apps.apple.com/us/app/id300235330'],
+        ['Garmin Coach', 'Free with a Garmin watch', 'Adaptive 5K, 10K and half-marathon plans in Garmin Connect', 'Not stated', 'Garmin owners who want plans on the watch', 'https://www.garmin.com/en-GB/blog/which-adaptive-training-plan-is-right-for-you/'],
+        ['Run With Hal', '$6.99/mo or $59.99/yr', 'Coach-led adaptive plans from 5K to 50K', 'Not stated', 'Classic Hal Higdon plans that adapt', 'https://apps.apple.com/us/app/id1437166081'],
+        ['TrainAsONE', '$9.99/mo or $101.99/yr, 21-day trial', 'AI plan from couch to 5K to ultra, adjusts to missed workouts', 'Not stated', 'An AI plan that reshuffles around real life', 'https://apps.apple.com/us/app/id1541355896'],
+        ['Miles', '$14.99/mo or $99.99/yr, 7-day trial', 'Adaptive 5K to marathon plans, live pace coaching', 'Not stated', 'Live pace coaching on Apple Watch', 'https://apps.apple.com/us/app/id6763786354'],
+        ['Coopah', 'Pro from $19.99', 'Adaptive plans with human coaches, race-day confidence score', 'Not stated', 'Human coaches on top of an app', 'https://apps.apple.com/us/app/id1587165314'],
+        ['Athletica', '$19.90/mo or $189/yr', 'AI weekly planning and coach feedback', 'Not stated', 'Multi-sport AI planning', 'https://apps.apple.com/us/app/id6737747559'],
+      ],
+    },
     columns: ['P.R.O.', 'Runna', 'Garmin Coach', 'Nike Run Club', 'Strava'],
     rows: [
-      [MCP_ROW, `${PRO_MCP}; the assistant can propose plan changes`, 'No', 'No official connector', 'No', 'Official connector since June 2026 — subscribers only, Claude only at launch'],
+      [MCP_ROW, `${PRO_MCP}; the assistant can propose plan changes`, 'No', 'No official connector', 'No', 'Official connector since June 2026, read-only, for subscribers'],
       ['Price (US)', 'Free app; plans with Pro from $2.99/mo or $29.99/yr', '$19.99/mo or $119.99/yr, 7-day trial; Strava + Runna bundle $149.99/yr', 'Free; optional Garmin Connect+ $6.99/mo or $69.99/yr', 'Free', '$11.99/mo or $79.99/yr (US App Store)'],
       ['Watches', 'Any watch that writes runs to Apple Health: Apple Watch, Garmin, COROS, Polar, Suunto and more', 'Apple Watch, Garmin, COROS, Suunto, Amazfit; Fitbit activities via import', 'Garmin watches only', 'iPhone, Android, Apple Watch', 'Syncs from most watches'],
       ['Running plans', 'Adaptive AI plans: 5K Starter, Half Marathon Base, Return to Running, or any race or goal you describe', '5K to ultra, Couch to 5K, return to running, triathlon running, strength', 'Adaptive 5K, 10K and half marathon; marathon plans are not adaptive', 'Guided Runs; plan availability varies by region', 'No plans of its own (sells the Runna bundle)'],
@@ -222,7 +251,7 @@ export const alternatives = [
       },
       {
         q: 'How much does Runna cost in 2026?',
-        a: 'As of 27 October 2026 Runna costs $19.99 a month or $119.99 a year in the US, with a 7-day free trial. Strava sells a Strava + Runna bundle for $149.99 a year.',
+        a: 'As of 26 November 2026 Runna costs $19.99 a month or $119.99 a year in the US, with a 7-day free trial. Strava sells a Strava + Runna bundle for $149.99 a year.',
       },
       {
         q: 'Is Runna free?',
@@ -261,7 +290,122 @@ export const alternatives = [
       ['P.R.O. — App Store', 'https://apps.apple.com/us/app/p-r-o/id6749865568'],
     ],
   },
+  {
+    id: 'athlytic',
+    path: '/athlytic-alternative',
+    faqKey: 'athlyticAlternative',
+    title: 'Athlytic Alternatives 2026: 7 Apple Watch Recovery Apps Compared',
+    description: 'P.R.O., Bevel, FITIV Pulse, Livity, Gentler Streak, HealthFit and more compared with Athlytic. P.R.O. is free and adds an MCP connector for ChatGPT and Claude.',
+    competitor: 'Athlytic',
+    eyebrow: 'ATHLYTIC ALTERNATIVES · UPDATED 26 NOVEMBER 2026',
+    h1: 'Athlytic alternatives for Apple Watch',
+    answer: [
+      'Athlytic is a good recovery app: it turns Apple Watch HRV, resting heart rate and sleep into Recovery, Exertion and Sleep scores for $4.99 a month or $29.99 a year. The alternatives below do the same job with different extras, from nutrition logging to training plans.',
+      'P.R.O. is free and adds a free MCP connector, so you can ask ChatGPT, Claude, Gemini, Grok or Perplexity about your recovery and training with your real numbers. It reads any device that writes to Apple Health, from Apple Watch to Garmin and Oura.',
+    ],
+    facts: [
+      ['P.R.O.', 'Free; optional Pro from $2.99/mo or $29.99/yr'],
+      ['Athlytic', '$4.99/mo or $29.99/yr, 1 week free'],
+      ['Hardware', 'Apple Watch, Garmin, Oura or anything that writes to Apple Health'],
+      ['MCP connector', 'Free, for ChatGPT, Claude, Gemini, Grok, Perplexity'],
+    ],
+    list: {
+      title: '7 Athlytic alternatives at a glance',
+      lead: 'All of them read Apple Health. P.R.O. is free and also works inside your AI assistant through MCP.',
+      rows: [
+        ['P.R.O.', 'Free. Pro from $2.99/mo or $29.99/yr', 'Readiness from HRV, resting heart rate and sleep against your 28-day baseline, training load, sleep score, AI coach, adaptive plans with Pro', 'Yes. Free MCP connector for ChatGPT, Claude, Gemini, Grok, Perplexity', 'Recovery you can ask your AI assistant about, from any device', 'https://apps.apple.com/us/app/p-r-o/id6749865568'],
+        ['Bevel', 'Free. Pro $14.99/mo or $99.99/yr', 'Recovery, strain, sleep, stress and energy scores, nutrition logging', 'No connector found', 'Recovery plus food logging', 'https://apps.apple.com/us/app/id6456176249'],
+        ['FITIV Pulse', 'Free. Pro $9.99/mo or $59.99/yr', 'Heart rate zones, HRV, sleep, readiness, training load, strength log', 'Not stated', 'Heart-rate-zone training', 'https://apps.apple.com/us/app/id942494517'],
+        ['Livity', 'Free. Pro $9.99/mo, yearly from $79.99', 'Readiness, recovery, strain, stress, energy, food logging, AI coach', 'Not stated', 'Many scores in one app', 'https://apps.apple.com/us/app/id6498938838'],
+        ['Gentler Streak', 'Free. Premium $8.99/mo or $39.99/yr', 'Activity and rest guidance, wellbeing check-ins', 'Not stated', 'Gentle, wellbeing-first guidance', 'https://apps.apple.com/us/app/id1576857102'],
+        ['HealthFit', '$6.99 once', 'Training load (fitness, fatigue, form), heart rate zones, HRV, sleep, workout export', 'Not stated', 'A one-time purchase, data kept on the phone', 'https://apps.apple.com/us/app/id1202650514'],
+        ['Wellhero', 'Free. Pro $3.99/mo or $29.99/yr', 'HRV and stress, daily recovery, strain, fitness and fatigue trends', 'Not stated', 'A low-cost HRV tracker', 'https://apps.apple.com/us/app/id6448857042'],
+      ],
+    },
+    mcp: {
+      title: 'Ask ChatGPT or Claude about your recovery',
+      lead: `Add P.R.O.’s MCP connector, https://mcp.proapp.uk, to your AI assistant and it can read the Apple Health data you allow: your readiness status, HRV and resting heart rate against your 28-day baseline, sleep, workouts and training load. The connector is completely free, and we have tested it in ${ASSISTANTS_TESTED}.`,
+      prompt: 'Am I recovered enough for a hard session today? Compare my HRV and resting heart rate with my 28-day baseline, check last night’s sleep and this week’s load, and tell me what to do.',
+      more: ['Why was my recovery low this week?', 'How does my sleep change after hard workouts?', 'Is my training load climbing too fast?'],
+      after: 'The assistant calls P.R.O., reads your numbers and answers with them. In ChatGPT, Claude, Gemini and Cursor it can also show interactive P.R.O. cards for sleep, workouts and plans. You choose which data categories it sees and can revoke access in the app at any time.',
+    },
+    columns: ['P.R.O.', 'Athlytic', 'Bevel'],
+    rows: [
+      [MCP_ROW, PRO_MCP, 'No connector found', 'No connector found'],
+      ['Price (US)', 'Free; optional Pro from $2.99/mo or $29.99/yr', '$4.99/mo or $29.99/yr, 1 week free', 'Free app; Bevel Pro $14.99/mo or $99.99/yr'],
+      ['Hardware', 'None extra: Apple Watch, Garmin, Oura, WHOOP, Polar, COROS or anything that writes to Apple Health', 'Apple Watch for most features', 'Apple Watch'],
+      ['Recovery / readiness', 'Daily status, ready, caution or recover, from HRV, resting heart rate and sleep against your 28-day baseline, with the reasons; free through MCP, in the app with Pro', 'Recovery score', 'Recovery score'],
+      ['Strain / training load', 'Training load from heart-rate zones, acute vs chronic load ratio and a daily target band', 'Exertion (0–10) with a daily target', 'Strain score'],
+      ['Sleep', 'Sleep score and stages', 'Sleep score', 'Sleep score'],
+      ['AI coach', 'AI coach chat in the app, plus your own ChatGPT or Claude through MCP', 'Ask Athlytic, with Apple Intelligence', 'Bevel Intelligence'],
+      ['Training plans', 'Adaptive AI plans with Pro that adjust to load and recovery', 'Daily workout suggestions', 'Strength plans'],
+    ],
+    picks: [
+      ['P.R.O.', 'You want recovery and training load for free, from any device in Apple Health, and to ask ChatGPT or Claude about it through MCP. Plans with Pro from $2.99 a month.'],
+      ['Athlytic', 'You want WHOOP-style Recovery and Exertion scores on Apple Watch and are happy to pay $29.99 a year.'],
+      ['Bevel', 'You want recovery and nutrition logging in one app.'],
+    ],
+    steps: [
+      {
+        title: 'Keep your data in Apple Health',
+        text: 'Athlytic reads Apple Health, and so does P.R.O., so there is nothing to export. Your Apple Watch history is already there, along with anything Garmin, Oura or other trackers write.',
+        links: [['/apple-health-sync', 'Sync any tracker with Apple Health']],
+      },
+      {
+        title: 'Install P.R.O. and allow Apple Health access',
+        text: 'It’s free. P.R.O. reads your past workouts, so baselines and training load start from the history you already have.',
+      },
+      {
+        title: 'Check readiness each morning',
+        text: 'Ask your assistant through the free MCP connector, or see it in the app with Pro: ready, caution or recover, with the reasons, next to today’s load target.',
+        links: [['/apple-watch-readiness-score', 'How the readiness rules work']],
+      },
+      {
+        title: 'Connect ChatGPT or Claude through MCP',
+        text: 'Add https://mcp.proapp.uk as a custom connector and approve it with a code from the app. About two minutes.',
+        links: [['/mcp-connect', 'Connection guide'], ['/apple-health-mcp', 'How the MCP server works']],
+      },
+    ],
+    faq: [
+      {
+        q: 'What is the best Athlytic alternative?',
+        a: 'It depends on the extra you want. Bevel adds nutrition logging, FITIV Pulse heart rate zone training, HealthFit a one-time price. P.R.O. is free and works inside ChatGPT, Claude, Gemini, Grok or Perplexity through its free MCP connector.',
+      },
+      {
+        q: 'Is there a free Athlytic alternative?',
+        a: 'Yes. P.R.O. is free on the App Store, with an optional Pro from $2.99 a month, and its MCP connector for ChatGPT and Claude is completely free. Bevel, FITIV Pulse, Livity, Gentler Streak and Wellhero also have free tiers.',
+      },
+      {
+        q: 'How much does Athlytic cost?',
+        a: 'As of 26 November 2026, Athlytic is $4.99 a month or $29.99 a year in the US, with 1 week free.',
+      },
+      {
+        q: 'Athlytic vs Bevel: what is the difference?',
+        a: 'Both turn Apple Watch data into recovery, strain and sleep scores. Athlytic is $29.99 a year; Bevel has a free tier and a Pro plan at $14.99 a month or $99.99 a year, and adds nutrition logging.',
+      },
+      {
+        q: 'Does Athlytic work with ChatGPT or Claude?',
+        a: 'We found no Athlytic connector for ChatGPT or Claude on 26 November 2026. Athlytic’s own Q&A works with Apple Intelligence. P.R.O.’s free MCP connector lets ChatGPT, Claude, Gemini, Grok and Perplexity read your recovery, sleep and training load from Apple Health.',
+      },
+      {
+        q: 'Can I use a Garmin or Oura instead of an Apple Watch?',
+        a: 'With P.R.O., yes: it reads whatever your device writes to Apple Health, so Garmin, Oura, WHOOP, Polar and COROS all count. Athlytic needs an Apple Watch for most features.',
+      },
+    ],
+    sources: [
+      ['Athlytic — App Store', 'https://apps.apple.com/us/app/athlytic-ai-fitness-coach/id1543571755'],
+      ['Athlytic — website', 'https://www.athlyticapp.com/'],
+      ['Bevel — App Store', 'https://apps.apple.com/us/app/bevel-ai-health-coach/id6456176249'],
+      ['FITIV Pulse — App Store', 'https://apps.apple.com/us/app/id942494517'],
+      ['Livity — App Store', 'https://apps.apple.com/us/app/id6498938838'],
+      ['Gentler Streak — App Store', 'https://apps.apple.com/us/app/id1576857102'],
+      ['HealthFit — App Store', 'https://apps.apple.com/us/app/id1202650514'],
+      ['Wellhero — App Store', 'https://apps.apple.com/us/app/id6448857042'],
+      ['P.R.O. — App Store', 'https://apps.apple.com/us/app/p-r-o/id6749865568'],
+    ],
+  },
 ];
 
 export const whoopAlternativeFaq = alternatives[0].faq;
 export const runnaAlternativeFaq = alternatives[1].faq;
+export const athlyticAlternativeFaq = alternatives[2].faq;

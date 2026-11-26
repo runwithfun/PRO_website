@@ -10,7 +10,7 @@ import './alternatives.css';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
 const ICONS = ['ChatGPT', 'Claude', 'Gemini', 'Grok', 'Perplexity', 'Codex'];
 
-// Shared template for the "WHOOP alternative" / "Runna alternative" pages.
+// Shared template for the WHOOP, Runna and Athlytic alternative pages.
 // Content and sources live in src/content/alternatives.js.
 export default function Alternative({ id }) {
   const page = alternatives.find((a) => a.id === id);
@@ -29,6 +29,30 @@ export default function Alternative({ id }) {
         </dl>
         <a className="tool-btn" href={APP_STORE} target="_blank" rel="noopener">Get P.R.O. — free on the App Store</a>
       </header>
+
+      {page.list && (
+        <section className="connect-wrap connect-section" aria-labelledby="list">
+          <div className="connect-section-heading">
+            <h2 id="list">{page.list.title}</h2>
+            <p>{page.list.lead} US App Store prices, checked {CHECKED}.</p>
+          </div>
+          <div className="ag-table alt-list" tabIndex={0} aria-label={page.list.title}>
+            <table>
+              <caption className="sr-only">{page.list.title}, checked {CHECKED}</caption>
+              <thead><tr><th scope="col">App</th><th scope="col">Price (US)</th><th scope="col">What you get</th><th scope="col">ChatGPT and Claude</th><th scope="col">Best for</th></tr></thead>
+              <tbody>{page.list.rows.map(([app, price, what, ai, best, url]) => (
+                <tr key={app} className={app === 'P.R.O.' ? 'is-pro' : undefined}>
+                  <th scope="row"><a href={url} target="_blank" rel={app === 'P.R.O.' ? 'noopener' : 'noopener nofollow'}>{app}</a></th>
+                  <td data-label="Price (US)">{price}</td>
+                  <td data-label="What you get">{what}</td>
+                  <td data-label="ChatGPT and Claude">{ai}</td>
+                  <td data-label="Best for">{best}</td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       <section className="connect-wrap connect-section" aria-labelledby="mcp">
         <div className="alt-mcp">

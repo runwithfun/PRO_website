@@ -31,3 +31,8 @@
   .alt-table td.is-pro::before { color: var(--connect-pink); }
   .alt-table td.is-pro { background: transparent; }
 }
+
+.alt-list thead th:last-child { color: inherit; }
+.alt-list tr.is-pro th, .alt-list tr.is-pro td { background: #ed62a414; }
+.alt-list tr.is-pro th a { color: var(--connect-pink); }
+.alt-list th[scope="row"] a { text-decoration: underline; text-underline-offset: 3px; }

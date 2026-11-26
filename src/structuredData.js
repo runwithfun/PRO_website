@@ -14,7 +14,7 @@ import { mcpDemo } from './content/mcpDemo.js';
 import { deviceGuides } from './content/deviceGuides.js';
 import { deviceChats, chatSteps, guideOf } from './content/deviceChatgpt.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
-import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
+import { whoopAlternativeFaq, runnaAlternativeFaq, athlyticAlternativeFaq, alternatives } from './content/alternatives.js';
 import { changelog } from './content/changelog.js';
 import { CHATGPT_PLUGIN } from './content/deviceChatgpt.js';
 import { PUBLISHED, DEVICE_GUIDES_PUBLISHED, isoDate } from './content/pageDates.js';
@@ -123,8 +123,16 @@ export function structuredData(route, store = {}) {
       itemListElement: deviceGuides.map((g, i) => ({ '@type': 'ListItem', position: i + 1, name: `How to sync ${g.name} with Apple Health`, url: `${SITE}${g.path}` })),
     });
   }
+  const alt = alternatives.find((a) => a.path === route.path);
+  if (alt?.list) {
+    graph.push({
+      '@type': 'ItemList', '@id': `${SITE}${route.path}#apps`, name: alt.list.title,
+      numberOfItems: alt.list.rows.length,
+      itemListElement: alt.list.rows.map(([name, , , , , url], i) => ({ '@type': 'ListItem', position: i + 1, name, url })),
+    });
+  }
   if (route.faq) {
-    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, bestMcp: bestMcpFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq }[route.faq] ?? faq;
+    const items = { appleHealthSync: hubFaq, mcp: mcpFaq, support: supportFaq, compare: compareFaq, hrv: hrvFaq, zone2: zone2Faq, readiness: readinessFaq, outsideUs: outsideUsFaq, appleHealthMcp: ahmFaq, bestMcp: bestMcpFaq, whoopAlternative: whoopAlternativeFaq, runnaAlternative: runnaAlternativeFaq, athlyticAlternative: athlyticAlternativeFaq }[route.faq] ?? faq;
     graph.push({
       '@type': 'FAQPage',
       mainEntity: items.map(({ q, a }) => ({
@@ -194,7 +202,7 @@ export function structuredData(route, store = {}) {
     ...(route.path === '/what-is-a-good-hrv' && { dateModified: isoDate(HRV_REVIEWED) }),
     ...(route.path === '/zone-2-calculator' && { dateModified: isoDate(ZONE2_REVIEWED) }),
     ...(route.path === '/apple-watch-readiness-score' && { dateModified: isoDate(READINESS_REVIEWED) }),
-    ...((route.path === '/whoop-alternative' || route.path === '/runna-alternative') && { dateModified: isoDate(ALT_CHECKED) }),
+    ...(alternatives.some((a) => a.path === route.path) && { dateModified: isoDate(ALT_CHECKED) }),
     ...(route.path === '/what-is-a-good-hrv' && { author: { '@id': `${SITE}/#org` } }),
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),

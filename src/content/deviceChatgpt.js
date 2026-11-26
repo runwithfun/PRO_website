@@ -44,12 +44,16 @@ export const deviceChats = [
     id: 'garmin-chatgpt',
     device: 'garmin',
     path: '/garmin-to-chatgpt',
-    title: 'Connect Garmin to ChatGPT: Free via Apple Health — P.R.O.',
-    description: 'Garmin has no ChatGPT app. Garmin Connect writes to Apple Health and ChatGPT reads it through the free P.R.O. plugin. What works and what doesn’t.',
+    title: 'Connect Garmin to ChatGPT: Free MCP Connector, 5-Minute Setup',
+    description: 'Ask ChatGPT about your Garmin runs, rides, sleep and steps. The free P.R.O. MCP connector reads Garmin data from Apple Health on your iPhone. No export.',
     answer: [
-      'Garmin has no ChatGPT app of its own. What works today: Garmin Connect writes your workouts, steps, heart rate and sleep to Apple Health, the free P.R.O. app syncs Apple Health, and the P.R.O. plugin in ChatGPT reads it. Setup takes about five minutes on an iPhone.',
-      'ChatGPT can then answer about your Garmin runs, rides, sleep and daily activity. It can’t see HRV, resting heart rate, Body Battery or GPS routes, because Garmin Connect keeps them to itself.',
+      'Ask ChatGPT how your running is going and get an answer built from your own Garmin numbers: weekly distance, pace trends, sleep and training load. The free P.R.O. MCP connector brings Garmin data into ChatGPT through Apple Health, right from your iPhone. No export, no computer.',
+      'Setup takes about five minutes: turn on Apple Health in Garmin Connect, install P.R.O. and add the P.R.O. plugin in ChatGPT. It works in the ChatGPT app on your phone, wherever ChatGPT offers plugins.',
     ],
+    example: {
+      q: 'How did my running go this month?',
+      a: 'You ran 14 times for 118 km, 12% more than in October. Your average pace improved from 5:41 to 5:32 per km, and your three longest runs were all on Sundays. Sleep averaged 7 h 06 min. Load has been rising steadily, so hold next week near this level before adding distance.',
+    },
     healthStep: 'In Garmin Connect, open More → Settings → Connect Apps → Apple Health → Connect with Apple Health. Tap Turn On All, then Allow. Garmin Connect writes only while it is open on screen.',
     gapNote: 'Readiness and baselines in P.R.O. use HRV and resting heart rate. With Garmin alone they lean on sleep and training load, unless another source, such as an Apple Watch, writes those two types.',
     prompts: [
@@ -86,12 +90,16 @@ export const deviceChats = [
     id: 'whoop-chatgpt',
     device: 'whoop',
     path: '/whoop-to-chatgpt',
-    title: 'Connect WHOOP to ChatGPT: Free via Apple Health — P.R.O.',
-    description: 'WHOOP has no ChatGPT app. WHOOP writes workouts, sleep and resting heart rate to Apple Health; ChatGPT reads them via the free P.R.O. plugin.',
+    title: 'Connect WHOOP to ChatGPT: Free MCP Connector, 5-Minute Setup',
+    description: 'Ask ChatGPT about your WHOOP sleep, resting heart rate, workouts and steps. The free P.R.O. MCP connector reads WHOOP data from Apple Health. No export.',
     answer: [
-      'WHOOP has no ChatGPT connection of its own. What works today: the WHOOP app writes workouts, sleep, resting heart rate and steps to Apple Health, the free P.R.O. app syncs Apple Health, and the P.R.O. plugin in ChatGPT reads it. Setup takes about five minutes on an iPhone.',
-      'ChatGPT can then answer about your WHOOP workouts, sleep time, resting heart rate and steps. It can’t see HRV, Recovery, Strain or sleep stages, because WHOOP keeps them in its own app.',
+      'Ask ChatGPT whether you are recovering well and get an answer built from your own WHOOP numbers: resting heart rate trends, sleep time, workouts and steps. The free P.R.O. MCP connector brings WHOOP data into ChatGPT through Apple Health, right from your iPhone. No export, no computer.',
+      'Setup takes about five minutes: turn on Apple Health in the WHOOP app, install P.R.O. and add the P.R.O. plugin in ChatGPT. It works in the ChatGPT app on your phone, wherever ChatGPT offers plugins.',
     ],
+    example: {
+      q: 'Am I recovering well this month?',
+      a: 'Your resting heart rate averaged 52 bpm, down from 54 in October, and it rose to 57 only after the two nights you slept under 6 hours. You logged 11 workouts, 9 h 40 min in total, and sleep averaged 7 h 12 min. The trend looks good. Protect your sleep before the hardest sessions.',
+    },
     healthStep: 'In the WHOOP app, open More → App Settings → Integrations → Apple Health and tap Connect. Tap Turn On All, then Allow.',
     gapNote: 'Readiness and baselines in P.R.O. use HRV. WHOOP doesn’t write it, so they lean on resting heart rate, sleep and training load, unless another source, such as an Apple Watch, writes HRV.',
     prompts: [
@@ -127,12 +135,16 @@ export const deviceChats = [
     id: 'oura-chatgpt',
     device: 'oura',
     path: '/oura-to-chatgpt',
-    title: 'Connect Oura to ChatGPT: Free via Apple Health — P.R.O.',
-    description: 'Oura has no ChatGPT app. The Oura app writes sleep stages, heart rate and workouts to Apple Health; ChatGPT reads them via the free P.R.O. plugin.',
+    title: 'Connect Oura to ChatGPT: Free MCP Connector, 5-Minute Setup',
+    description: 'Ask ChatGPT about your Oura sleep stages, heart rate, steps and workouts. The free P.R.O. MCP connector reads Oura data from Apple Health. No export.',
     answer: [
-      'Oura has no ChatGPT connection of its own. What works today: the Oura app writes sleep with stages, heart rate, steps and workouts to Apple Health, the free P.R.O. app syncs Apple Health, and the P.R.O. plugin in ChatGPT reads it. Setup takes about five minutes on an iPhone.',
-      'ChatGPT can then answer about your Oura sleep stages, heart rate, steps and workouts with routes. It can’t see HRV, resting heart rate, temperature or Oura’s Readiness and Sleep scores, because Oura keeps them in its own app.',
+      'Ask ChatGPT how you slept this week and get an answer built from your own Oura numbers: deep and REM sleep night by night, heart rate, steps and workouts. The free P.R.O. MCP connector brings Oura data into ChatGPT through Apple Health, right from your iPhone. No export, no computer.',
+      'Setup takes about five minutes: turn on Apple Health in the Oura app, install P.R.O. and add the P.R.O. plugin in ChatGPT. It works in the ChatGPT app on your phone, wherever ChatGPT offers plugins.',
     ],
+    example: {
+      q: 'How was my sleep this week?',
+      a: 'You slept 7 h 24 min a night on average, 18 minutes more than last week. Deep sleep averaged 1 h 12 min and REM 1 h 41 min. Wednesday was your shortest night and also had the least deep sleep, 48 min. Your three best nights all started before 11 pm, so an earlier bedtime is the easiest win.',
+    },
     healthStep: 'In the Oura app, open the menu → Settings → Data sharing → Apple Health and turn on Connect to Health. Allow the categories, then tap Allow.',
     gapNote: 'Readiness and baselines in P.R.O. use HRV and resting heart rate. With Oura alone they lean on sleep and training load, unless another source, such as an Apple Watch, writes those two types.',
     prompts: [

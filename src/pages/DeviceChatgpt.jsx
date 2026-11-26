@@ -33,6 +33,11 @@ export default function DeviceChatgpt({ id }) {
       </ol></nav>
       <h1 className="font-display font-extrabold tool-h1 hero-in">Connect {g.name} to ChatGPT</h1>
       <div className="ag-answer dg-answer hero-fade" style={{ animationDelay: '120ms' }}>{c.answer.map((p) => <p key={p}>{p}</p>)}</div>
+      {c.example && <div className="rd-chat dc-chat hero-fade" style={{ animationDelay: '140ms' }} aria-label="Example conversation with sample data">
+        <p className="rd-chat-you">{c.example.q}</p>
+        <p className="rd-chat-ai">{c.example.a}</p>
+        <p className="tool-small dc-chat-note">Example answer with sample data. Yours comes from your own {g.name} history.</p>
+      </div>}
       <ol className="dc-flow hero-fade" style={{ animationDelay: '160ms' }} aria-label={`How ${g.name} data reaches ChatGPT`}>
         <li>{g.name}</li><li>Apple Health</li><li className="is-pro">P.R.O.</li><li>ChatGPT</li>
       </ol>

@@ -180,3 +180,5 @@
 .dg-step.dc-step { grid-template-columns: 1fr; }
 .dc-step-link { display: inline-block; margin-top: 10px; font-size: 13px; color: #e6e6eb; text-decoration: underline; text-underline-offset: 3px; }
 .dg-ask a { color: #e6e6eb; text-decoration: underline; text-underline-offset: 3px; }
+.dc-chat { max-width: 640px; margin-top: 22px; }
+.dc-chat-note { justify-self: start; margin: 0; color: #8e8e98; }

@@ -36,6 +36,7 @@ export default function ModernHero() {
         </pre>
 
         <h1 className="animate-slide-up text-4xl font-bold leading-tight text-pink-900 sm:text-5xl lg:text-6xl xl:text-7xl">
+          <span className="mb-4 block text-base font-semibold uppercase tracking-[0.2em] text-pink-700 sm:text-lg">P.R.O. app for Apple Health</span>
           Your Ultimate
           <span className="block bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent">
             Sport Statistics App

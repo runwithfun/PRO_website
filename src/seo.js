@@ -12,9 +12,9 @@ export const ROUTES = [
   {
     path: '/',
     file: 'index.html',
-    title: 'P.R.O. — AI Coach & Training Stats for Apple Health',
+    title: 'P.R.O. App for Apple Health: AI Coach & Free MCP for ChatGPT, Claude',
     description:
-      'P.R.O. turns Apple Health data from Apple Watch, Garmin, WHOOP or any device into dashboards, training analytics and an AI coach. Free on the App Store.',
+      'P.R.O. is a free iPhone app with an Apple Health MCP connector for ChatGPT and Claude, an AI coach and dashboards. Works with Apple Watch, Garmin, WHOOP or any device.',
   },
   {
     path: '/features',

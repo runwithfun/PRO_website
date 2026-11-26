@@ -16,12 +16,15 @@ import { deviceChats, chatSteps, guideOf } from './content/deviceChatgpt.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
 import { changelog } from './content/changelog.js';
+import { CHATGPT_PLUGIN } from './content/deviceChatgpt.js';
 import { PUBLISHED, DEVICE_GUIDES_PUBLISHED, isoDate } from './content/pageDates.js';
 import { CHECKED as AG_CHECKED } from './content/assistantGuides.js';
 import { CHECKED as OUTSIDE_CHECKED } from './content/outsideUs.js';
 import { AHM_CHECKED } from './content/appleHealthMcp.js';
 const SITE = 'https://proapp.uk';
 const APP_STORE = 'https://apps.apple.com/us/app/p-r-o/id6749865568';
+// Official P.R.O. listings elsewhere, so search engines tie them to this site.
+const SAME_AS = [APP_STORE, CHATGPT_PLUGIN, 'https://github.com/runwithfun/pro-mcp', 'https://cursor.directory/plugins/pro-apple-health'];
 
 export function structuredData(route, store = {}) {
   const graph = [
@@ -33,7 +36,7 @@ export function structuredData(route, store = {}) {
       url: `${SITE}/`,
       logo: `${SITE}/favicon.png`,
       ...(store.seller && { legalName: store.seller }),
-      sameAs: [APP_STORE],
+      sameAs: SAME_AS,
     },
     {
       '@type': 'WebSite',
@@ -47,7 +50,8 @@ export function structuredData(route, store = {}) {
       '@type': 'MobileApplication',
       '@id': `${SITE}/#app`,
       name: 'P.R.O.',
-      alternateName: 'P.R.O. AI Coach for Apple Health',
+      alternateName: ['P.R.O. AI Coach for Apple Health', 'P.R.O. app', 'P.R.O. Apple Health MCP'],
+      sameAs: SAME_AS,
       description:
         'iOS sport statistics app with an AI coach: syncs with Apple Health and any device that writes to it, builds widget dashboards, analyses training history across 50+ sports and answers training questions with your real data. Connects to ChatGPT and Claude via MCP.',
       applicationCategory: 'HealthApplication',

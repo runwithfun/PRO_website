@@ -6,6 +6,7 @@ import { ROUTES, REDIRECTS } from '../src/seo.js';
 import { mcpDemo } from '../src/content/mcpDemo.js';
 import { deviceGuides } from '../src/content/deviceGuides.js';
 import { HUB_PATH } from '../src/content/appleHealthSync.js';
+import { deviceChats, chatSteps, guideOf } from '../src/content/deviceChatgpt.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -38,6 +39,22 @@ for (const route of ROUTES) {
     }
     assert.equal(graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.length, 3, `${route.path}: breadcrumbs`);
     assert.ok(!/<img\b/.test(html.match(/<main[\s>][\s\S]*<\/main>/)[0]), `${route.path}: guides use drawn mock-ups, not images`);
+  }
+  if (route.deviceChat) {
+    const page = deviceChats.find(c => c.id === route.deviceChat);
+    const howto = graph.find(n => n['@type'] === 'HowTo');
+    assert.equal(howto.step.length, chatSteps(page).length, `${route.path}: HowTo steps`);
+    for (const step of howto.step) assert.ok(html.includes(escape(step.text)), `${route.path}: missing visible step ${step.name}`);
+    assert.equal(graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.length, 3, `${route.path}: breadcrumbs`);
+    const guide = fs.readFileSync(path.join(dist, ROUTES.find(r => r.path === guideOf(page).path).file), 'utf8');
+    assert.ok(guide.includes(`href="${route.path}"`), `${guideOf(page).path} links to ${route.path}`);
+  }
+  if (route.deviceChat || route.faq === 'bestMcp') {
+    const faq = graph.find(n => n['@type'] === 'FAQPage');
+    for (const question of faq.mainEntity) {
+      assert.ok(html.includes(escape(question.name)) && html.includes(escape(question.acceptedAnswer.text)), `${route.path}: FAQ differs from visible answer: ${question.name}`);
+    }
+    assert.equal(graph.find(n => n['@type'] === 'WebPage').dateModified, route.dateModified, `${route.path}: dateModified`);
   }
   if (route.path === HUB_PATH) {
     const list = graph.find(n => n['@type'] === 'ItemList');

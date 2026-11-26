@@ -12,6 +12,7 @@ import { ahmFaq } from './content/appleHealthMcp.js';
 import { bestMcpFaq } from './content/bestMcpServers.js';
 import { mcpDemo } from './content/mcpDemo.js';
 import { deviceGuides } from './content/deviceGuides.js';
+import { deviceChats, chatSteps, guideOf } from './content/deviceChatgpt.js';
 import { HUB_PATH, hubFaq } from './content/appleHealthSync.js';
 import { whoopAlternativeFaq, runnaAlternativeFaq } from './content/alternatives.js';
 const SITE = 'https://proapp.uk';
@@ -86,6 +87,21 @@ export function structuredData(route, store = {}) {
       step: dg.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.title, text: s.text, url: `${SITE}${route.path}#step-${i + 1}` })),
     });
   }
+  const dc = route.deviceChat && deviceChats.find((c) => c.id === route.deviceChat);
+  const dcGuide = dc && guideOf(dc);
+  if (dc) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: dc.faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    });
+    graph.push({
+      '@type': 'HowTo', '@id': `${SITE}${route.path}#howto`,
+      name: `How to connect ${dcGuide.name} to ChatGPT`,
+      description: dc.answer[0],
+      tool: [{ '@type': 'HowToTool', name: `${dcGuide.app || dcGuide.name} app for iPhone` }, { '@type': 'HowToTool', name: 'P.R.O. app for iPhone' }, { '@type': 'HowToTool', name: 'ChatGPT' }],
+      step: chatSteps(dc).map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.title, text: s.text, url: `${SITE}${route.path}#step-${i + 1}` })),
+    });
+  }
   if (route.path === HUB_PATH) {
     graph.push({
       '@type': 'ItemList', '@id': `${SITE}${HUB_PATH}#devices`,
@@ -113,6 +129,12 @@ export function structuredData(route, store = {}) {
             { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
             { '@type': 'ListItem', position: 2, name: 'Apple Health sync', item: `${SITE}${HUB_PATH}` },
             ...(dg ? [{ '@type': 'ListItem', position: 3, name: dg.name, item: `${SITE}${route.path}` }] : []),
+          ]
+        : dc
+        ? [
+            { '@type': 'ListItem', position: 1, name: 'P.R.O.', item: `${SITE}/` },
+            { '@type': 'ListItem', position: 2, name: `${dcGuide.name} and Apple Health`, item: `${SITE}${dcGuide.path}` },
+            { '@type': 'ListItem', position: 3, name: `${dcGuide.name} to ChatGPT`, item: `${SITE}${route.path}` },
           ]
         : ag
         ? [
@@ -153,7 +175,9 @@ export function structuredData(route, store = {}) {
     ...(route.path === '/mcp-connect' && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}/mcp-connect#howto` }, hasPart: { '@id': `${SITE}/mcp-connect#demo-video` } }),
     ...(ag && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(dg && { mainEntity: { '@id': `${SITE}${route.path}#howto` }, dateModified: dg.checked }),
+    ...(dc && { about: { '@id': `${SITE}/#app` }, mainEntity: { '@id': `${SITE}${route.path}#howto` } }),
     ...(route.path === HUB_PATH && { mainEntity: { '@id': `${SITE}${HUB_PATH}#devices` } }),
+    ...(route.dateModified && { dateModified: route.dateModified }),
   });
   return { '@context': 'https://schema.org', '@graph': graph };
 }
